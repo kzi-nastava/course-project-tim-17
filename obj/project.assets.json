@@ -624,24 +624,26 @@
     ]
   },
   "packageFolders": {
-    "/home/zare/.nuget/packages/": {}
+    "C:\\Users\\Anastasija\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/Projekat USI.csproj",
+      "projectUniqueName": "C:\\Users\\Anastasija\\Desktop\\USIProjekat\\Projekat USI.csproj",
       "projectName": "Projekat USI",
-      "projectPath": "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/Projekat USI.csproj",
-      "packagesPath": "/home/zare/.nuget/packages/",
-      "outputPath": "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/obj/",
+      "projectPath": "C:\\Users\\Anastasija\\Desktop\\USIProjekat\\Projekat USI.csproj",
+      "packagesPath": "C:\\Users\\Anastasija\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Anastasija\\Desktop\\USIProjekat\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/zare/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Anastasija\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -680,7 +682,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/current/sdk/6.0.202/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

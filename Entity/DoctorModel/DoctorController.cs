@@ -23,8 +23,13 @@ namespace HealthcareSystem.Entity.DoctorModel
         public Doctor findById(ObjectId id) {
             return doctorCollection.Find(item => item._id == id).FirstOrDefault();
         }
-        
+        public Doctor checkCredentials(string email, string password)
+        {
+            return doctorCollection.Find(item => item.password == password & item.email == email).FirstOrDefault();
+
         }
+
+    }
     }
 
 
