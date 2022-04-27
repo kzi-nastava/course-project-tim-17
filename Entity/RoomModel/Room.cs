@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-namespace HealthcareSystem.Entity.Room
+namespace HealthcareSystem.Entity.RoomModel
 { //type, equipm
     class Room
     {

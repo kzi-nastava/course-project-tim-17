@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
-namespace HealthcareSystem.Entity.Room
+namespace HealthcareSystem.Entity.RoomModel
 {
     class RoomController
     {
@@ -24,6 +24,9 @@ namespace HealthcareSystem.Entity.Room
         public void InsertToCollection(Room room)
         {
             roomCollection.InsertOne(room);
+        }
+        public Room findById(ObjectId id) {
+            return roomCollection.Find(item => item._id == id).FirstOrDefault();
         }
 
     }

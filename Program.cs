@@ -1,9 +1,12 @@
-﻿using HealthcareSystem.Entity.Drug;
+﻿using HealthcareSystem.Entity.DrugModel;
 using HealthcareSystem.Entity;
-using HealthcareSystem.Entity.Room;
+using HealthcareSystem.Entity.RoomModel;
 using MongoDB.Driver;
-using HealthcareSystem.Entity.User;
+using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.Entity.Enumerations;
+using HealthcareSystem.Entity.DoctorModel;
+using HealthcareSystem.Entity.ApointmentModel;
+using MongoDB.Bson;
 namespace HealthcareSystem
 
 {
@@ -16,6 +19,19 @@ namespace HealthcareSystem
             settings.ServerApi = new ServerApi(ServerApiVersion.V1);
             var client = new MongoClient(settings);
             var database = client.GetDatabase("USI");
+
+            DoctorController d = new DoctorController(database);
+
+
+            Apointment ap = new Apointment(new DateTime(),ApointmentType.CHECKUP,new ObjectId("62697f1f2816f31909828195"),new ObjectId("62694f1f2816f31909828195"),new ObjectId("62697f1f2816f31909828193"));
+            //ApointmentController apc = new ApointmentController(database);
+            //apc.InsertToCollection(ap);
+            Console.WriteLine(ap.doctorId);
+            Doctor dr = d.findById(ap.doctorId);
+            Console.WriteLine(dr.name);
+
+
+            
             
 
 

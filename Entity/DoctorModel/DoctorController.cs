@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
-namespace HealthcareSystem.Entity.Doctor
+namespace HealthcareSystem.Entity.DoctorModel
 {
     class DoctorController
     {
@@ -19,6 +19,9 @@ namespace HealthcareSystem.Entity.Doctor
         }
         public void InsertToCollection(Doctor doctor){
             doctorCollection.InsertOne(doctor);
+        }
+        public Doctor findById(ObjectId id) {
+            return doctorCollection.Find(item => item._id == id).FirstOrDefault();
         }
         
         }

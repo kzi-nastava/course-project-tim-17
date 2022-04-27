@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using HealthcareSystem.Entity.Enumerations;
-namespace HealthcareSystem.Entity.User
+namespace HealthcareSystem.Entity.UserModel
 {
     class User
     {

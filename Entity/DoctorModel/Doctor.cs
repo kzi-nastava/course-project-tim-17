@@ -1,10 +1,10 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using HealthcareSystem.Entity.Enumerations;
-using HealthcareSystem.Entity.User;
-namespace HealthcareSystem.Entity.Doctor
+using HealthcareSystem.Entity.UserModel;
+namespace  HealthcareSystem.Entity.DoctorModel
 {
-    class Doctor : User.User
+    class Doctor : User
     {
         [BsonElement("specialisation")]
         public Specialisation specialisation{ get; set; }
