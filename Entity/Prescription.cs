@@ -22,8 +22,9 @@ namespace HealthcareSystem.Entity
 
 
 
-        public Prescription(string when, int quantityPerDay, Meal meal)
+        public Prescription(ObjectId drugId,string when, int quantityPerDay, Meal meal)
         {
+            this.drug = drugId;
             this.when = when;
             this.quantityPerDay = quantityPerDay;
             this.meal = meal;
