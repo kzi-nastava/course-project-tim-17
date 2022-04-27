@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/ognjen/Desktop/Projekat USI/Projekat USI.csproj": {}
+    "C:\\Users\\Anastasija\\Desktop\\USI\\Projekat USI.csproj": {}
   },
   "projects": {
-    "/home/ognjen/Desktop/Projekat USI/Projekat USI.csproj": {
+    "C:\\Users\\Anastasija\\Desktop\\USI\\Projekat USI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ognjen/Desktop/Projekat USI/Projekat USI.csproj",
+        "projectUniqueName": "C:\\Users\\Anastasija\\Desktop\\USI\\Projekat USI.csproj",
         "projectName": "Projekat USI",
-        "projectPath": "/home/ognjen/Desktop/Projekat USI/Projekat USI.csproj",
-        "packagesPath": "/home/ognjen/.nuget/packages/",
-        "outputPath": "/home/ognjen/Desktop/Projekat USI/obj/",
+        "projectPath": "C:\\Users\\Anastasija\\Desktop\\USI\\Projekat USI.csproj",
+        "packagesPath": "C:\\Users\\Anastasija\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Anastasija\\Desktop\\USI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/ognjen/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Anastasija\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -58,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/162/sdk/6.0.202/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

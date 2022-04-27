@@ -1,5 +1,6 @@
 ﻿using HealthcareSystem.Entity.Drug;
 using HealthcareSystem.Entity;
+using HealthcareSystem.Entity.Room;
 using MongoDB.Driver;
 namespace HealthcareSystem
 
@@ -18,9 +19,21 @@ namespace HealthcareSystem
 
             drug.getAllDrugs();
 
-            
+            RoomController r = new RoomController(database);
 
-            
+            List<Equipment> equipments = new List<Equipment>();
+            Equipment e1 = new Equipment("STOLICA", "BIJELA", 10);
+            equipments.Add(e1);
+            Equipment e2 = new Equipment("STO", "BIJELI", 10);
+            equipments.Add(e2);
+            Equipment e3 = new Equipment("Krevet", "Za jednu osobu", 15);
+            equipments.Add(e3);
+
+
+            Room room = new Room("operacija", equipments);
+
+            r.InsertToCollection(room);
+            r.getAllDrugs();
         }
     }
 }

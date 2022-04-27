@@ -30,3 +30,35 @@
 /home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/runtimes/osx/native/libmongocrypt.dylib
 /home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/runtimes/win/native/mongocrypt.dll
 /home/ognjen/Desktop/Projekat USI/obj/Debug/net6.0/Projekat USI.csproj.CopyComplete
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\Projekat USI.exe
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\Projekat USI.deps.json
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\Projekat USI.runtimeconfig.json
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\Projekat USI.dll
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\Projekat USI.pdb
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\DnsClient.dll
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\MongoDB.Bson.dll
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\MongoDB.Driver.dll
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\MongoDB.Driver.Core.dll
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\MongoDB.Libmongocrypt.dll
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\SharpCompress.dll
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\runtimes\linux\native\libsnappy64.so
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\runtimes\linux\native\libzstd.so
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\runtimes\osx\native\libsnappy64.dylib
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\runtimes\osx\native\libzstd.dylib
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\runtimes\win\native\libzstd.dll
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\runtimes\win\native\snappy32.dll
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\runtimes\win\native\snappy64.dll
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\Anastasija\Desktop\USI\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
+C:\Users\Anastasija\Desktop\USI\obj\Debug\net6.0\Projekat USI.csproj.AssemblyReference.cache
+C:\Users\Anastasija\Desktop\USI\obj\Debug\net6.0\Projekat USI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Anastasija\Desktop\USI\obj\Debug\net6.0\Projekat USI.AssemblyInfoInputs.cache
+C:\Users\Anastasija\Desktop\USI\obj\Debug\net6.0\Projekat USI.AssemblyInfo.cs
+C:\Users\Anastasija\Desktop\USI\obj\Debug\net6.0\Projekat USI.csproj.CoreCompileInputs.cache
+C:\Users\Anastasija\Desktop\USI\obj\Debug\net6.0\Projekat USI.csproj.CopyComplete
+C:\Users\Anastasija\Desktop\USI\obj\Debug\net6.0\Projekat USI.dll
+C:\Users\Anastasija\Desktop\USI\obj\Debug\net6.0\refint\Projekat USI.dll
+C:\Users\Anastasija\Desktop\USI\obj\Debug\net6.0\Projekat USI.pdb
+C:\Users\Anastasija\Desktop\USI\obj\Debug\net6.0\Projekat USI.genruntimeconfig.cache
+C:\Users\Anastasija\Desktop\USI\obj\Debug\net6.0\ref\Projekat USI.dll
