@@ -7,6 +7,7 @@ using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.CheckModel;
+using HealthcareSystem.Entity.HealthCardModel;
 using MongoDB.Bson;
 namespace HealthcareSystem
 
@@ -30,25 +31,28 @@ namespace HealthcareSystem
            // Console.WriteLine(ap.doctorId);
             //Doctor dr = d.findById(ap.doctorId);
             //Console.WriteLine(dr.name);
-            /*
-            Anamnesis an = new Anamnesis("bla", "blabla", "blaa");
+            
+            Anamnesis an = new Anamnesis("ahahahh", "blablahaah", "ahahahah");
             Ingredient i = new Ingredient("sastojak");
             List<Ingredient> sastojci = new List<Ingredient>();
             Drug drug = new Drug("droga", sastojci);
             Prescription pr = new Prescription(drug._id, "kada", 6, Meal.AFTER);
             Check check = new Check(ap._id, an, pr);
-            CheckController ch = new CheckController(database);
-            ch.InsertToCollection(check);
-            */
+            // CheckController ch = new CheckController(database);
+            // ch.InsertToCollection(check);
+            HealthCardController hc = new HealthCardController(database);
+            HealthCard hchchchhc = hc.findById(new ObjectId("6269a92255413fe82e5e8e27"));
+            hc.addCheck(hchchchhc, check);
             
-            
 
 
 
 
 
-            
-            
+
+
+
+
         }
     }
 }
