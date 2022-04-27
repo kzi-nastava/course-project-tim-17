@@ -1,6 +1,8 @@
 ﻿using HealthcareSystem.Entity.Drug;
 using HealthcareSystem.Entity;
 using MongoDB.Driver;
+using HealthcareSystem.Entity.User;
+using HealthcareSystem.Entity.Enumerations;
 namespace HealthcareSystem
 
 {
@@ -14,13 +16,11 @@ namespace HealthcareSystem
             var client = new MongoClient(settings);
             var database = client.GetDatabase("USI");
 
-            DrugController drug = new DrugController(database);
+            UserController userController = new UserController(database);
 
-            drug.getAllDrugs();
-
-            
-
-            
+            User user = new Use("Govnjen", "Smradovanovic", "ognjen34car@gmail.com", "govnjen123", Role.MANAGER);
+            userController.InsertToCollection(user);
+            userController.getAllUsers();
         }
     }
 }
