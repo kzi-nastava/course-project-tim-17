@@ -7,18 +7,18 @@ namespace HealthcareSystem.Entity.User
     {
         public IMongoCollection<User> userCollection;
         public UserController(IMongoDatabase database){
-            this.UserCollection = database.GetCollection<User>("Users");
+            this.userCollection = database.GetCollection<User>("Users");
             
             }
         public void getAllUsers() {
-            List<User> Users = UserCollection.Find(item =>  true).ToList();
+            List<User> users = userCollection.Find(item =>  true).ToList();
 
-            foreach(User User in Users) {
-                Console.WriteLine(User.name);
+            foreach(User user in users) {
+                Console.WriteLine(user.name);
             }
         }
-        public void InsertToCollection(User User){
-            UserCollection.InsertOne(User);
+        public void InsertToCollection(User user){
+            userCollection.InsertOne(user);
         }
         
         }

@@ -18,7 +18,7 @@ namespace HealthcareSystem
 
             UserController userController = new UserController(database);
 
-            User user = new Use("Govnjen", "Smradovanovic", "ognjen34car@gmail.com", "govnjen123", Role.MANAGER);
+            User user = new User("Gogo", "Smrado", "gogo@gmail.com", "govnjen123", Role.SECRETARY);
             userController.InsertToCollection(user);
             userController.getAllUsers();
         }

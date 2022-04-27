@@ -12,7 +12,7 @@ namespace HealthcareSystem.Entity.User
         public string lastName {get; set;}
         [BsonElement("email")]
         public string email {get; set;}
-        [BsonElemenet("password")]
+        [BsonElement("password")]
         public string password {get; set;}
         [BsonElement("role")]
         public Role role {get; set;}
@@ -23,7 +23,7 @@ namespace HealthcareSystem.Entity.User
                 this.lastName = lastName;
                 this.email = email;
                 this.password = password;
-                this.Role = Role;
+                this.role = role;
             }
     }
 
