@@ -16,6 +16,7 @@ namespace HealthcareSystem
             settings.ServerApi = new ServerApi(ServerApiVersion.V1);
             var client = new MongoClient(settings);
             var database = client.GetDatabase("USI");
+            
 
 
 
