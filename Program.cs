@@ -4,6 +4,8 @@ using HealthcareSystem.Entity.Room;
 using MongoDB.Driver;
 using HealthcareSystem.Entity.User;
 using HealthcareSystem.Entity.Enumerations;
+//brisanje
+using HealthcareSystem.Entity.Doctor;
 namespace HealthcareSystem
 
 {
@@ -16,6 +18,13 @@ namespace HealthcareSystem
             settings.ServerApi = new ServerApi(ServerApiVersion.V1);
             var client = new MongoClient(settings);
             var database = client.GetDatabase("USI");
+
+            // test
+            DoctorController dc = new DoctorController(database);
+            Doctor d = new Doctor("ime", "prezime", "email", "sifra", Role.DOCTOR, Specialisation.PEDIATRICS);
+            dc.InsertToCollection(d);
+            dc.getAllDoctors();
+
 
 
 
