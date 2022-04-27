@@ -624,41 +624,24 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "/home/zare/.nuget/packages/": {}
-=======
-    "C:\\Users\\Anastasija\\.nuget\\packages\\": {}
->>>>>>> angie
+    "/home/ognjen/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/Projekat USI.csproj",
+      "projectUniqueName": "/home/ognjen/Desktop/Projekat USI/Projekat USI.csproj",
       "projectName": "Projekat USI",
-      "projectPath": "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/Projekat USI.csproj",
-      "packagesPath": "/home/zare/.nuget/packages/",
-      "outputPath": "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/obj/",
+      "projectPath": "/home/ognjen/Desktop/Projekat USI/Projekat USI.csproj",
+      "packagesPath": "/home/ognjen/.nuget/packages/",
+      "outputPath": "/home/ognjen/Desktop/Projekat USI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/zare/.nuget/NuGet/NuGet.Config"
-=======
-      "projectUniqueName": "C:\\Users\\Anastasija\\Desktop\\USI\\Projekat USI.csproj",
-      "projectName": "Projekat USI",
-      "projectPath": "C:\\Users\\Anastasija\\Desktop\\USI\\Projekat USI.csproj",
-      "packagesPath": "C:\\Users\\Anastasija\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Anastasija\\Desktop\\USI\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\Anastasija\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> angie
+        "/home/ognjen/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -697,8 +680,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/162/sdk/6.0.202/RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /home/ognjen/Desktop/Projekat USI/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
