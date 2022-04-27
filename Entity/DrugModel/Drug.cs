@@ -1,6 +1,8 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-namespace HealthcareSystem.Entity.Drug
+
+
+namespace HealthcareSystem.Entity.DrugModel
 {
     class Drug
     {

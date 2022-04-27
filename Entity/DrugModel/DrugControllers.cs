@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
-namespace HealthcareSystem.Entity.Drug
+namespace HealthcareSystem.Entity.DrugModel
 {
     class DrugController
     {
