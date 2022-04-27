@@ -30,7 +30,7 @@ namespace HealthcareSystem
            // Console.WriteLine(ap.doctorId);
             //Doctor dr = d.findById(ap.doctorId);
             //Console.WriteLine(dr.name);
-
+            /*
             Anamnesis an = new Anamnesis("bla", "blabla", "blaa");
             Ingredient i = new Ingredient("sastojak");
             List<Ingredient> sastojci = new List<Ingredient>();
@@ -39,7 +39,7 @@ namespace HealthcareSystem
             Check check = new Check(ap._id, an, pr);
             CheckController ch = new CheckController(database);
             ch.InsertToCollection(check);
-
+            */
             
             
 
