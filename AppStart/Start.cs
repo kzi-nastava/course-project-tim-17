@@ -11,6 +11,7 @@ using HealthcareSystem.Entity.HealthCardModel;
 using MongoDB.Bson;
 using HealthcareSystem.Functions;
 using HealthcareSystem.UI;
+using HealthcareSystem.RoleControllers;
 
 namespace HealthcareSystem.AppStart;
 
@@ -58,7 +59,8 @@ static class Start
 
             if (loggedUser.role == Role.MANAGER)
             {
-                ManagerUI ui = new ManagerUI(database, loggedUser);
+                ManagerControllers managerControllers = new ManagerControllers(database);
+                ManagerUI ui = new ManagerUI(managerControllers,loggedUser);
                 loggedUser = null;
             }
         }
