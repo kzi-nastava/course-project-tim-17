@@ -50,10 +50,15 @@ static class Start
         Console.WriteLine(hchchchhc.height);
         */
 
-
-        DoctorController controller = new DoctorController(database);
+        Ingredient i = new Ingredient("sastojak");
+        List<Ingredient> sastojci = new List<Ingredient>();
+        sastojci.Add(i);
+        DrugVerificationController dvc = new DrugVerificationController(database);
+        DrugVerification dv = new DrugVerification("brufen", sastojci);
+        dvc.InsertToCollection(dv);
+       // DoctorController controller = new DoctorController(database);
         //List<Doctor> useri = controller.doctorCollection.Find(Item => true).ToList();
-
+        /*
         UserController userController = new UserController(database);
         DoctorController dc = new DoctorController(database);
 
@@ -77,7 +82,8 @@ static class Start
 
 
 
-
+        */
+        
     }
 
 }
