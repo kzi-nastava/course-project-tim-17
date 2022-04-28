@@ -10,6 +10,7 @@ using HealthcareSystem.Entity.CheckModel;
 using HealthcareSystem.Entity.HealthCardModel;
 using MongoDB.Bson;
 using HealthcareSystem.Functions;
+
 namespace HealthcareSystem.AppStart;
 
 
@@ -50,13 +51,13 @@ static class Start
         Console.WriteLine(hchchchhc.height);
         */
 
-        Ingredient i = new Ingredient("sastojak");
-        List<Ingredient> sastojci = new List<Ingredient>();
-        sastojci.Add(i);
-        DrugVerificationController dvc = new DrugVerificationController(database);
-        DrugVerification dv = new DrugVerification("brufen", sastojci);
-        dvc.InsertToCollection(dv);
-       // DoctorController controller = new DoctorController(database);
+        // Ingredient i = new Ingredient("sastojak");
+        // List<Ingredient> sastojci = new List<Ingredient>();
+        // sastojci.Add(i);
+        // DrugVerificationController dvc = new DrugVerificationController(database);
+        // DrugVerification dv = new DrugVerification("brufen", sastojci);
+        // dvc.InsertToCollection(dv);
+       DoctorController controller = new DoctorController(database);
         //List<Doctor> useri = controller.doctorCollection.Find(Item => true).ToList();
         /*
         UserController userController = new UserController(database);
@@ -74,16 +75,12 @@ static class Start
 
         BlockedUserController buc = new BlockedUserController(database);
         buc.pritBlockedUsers();
-
-        
- 
-
-
-
-
-
         */
-        
+        Doctor doctor = controller.findById(new ObjectId("62697f1f2816f31909828195"));
+        FreeDayRequest fdr = new FreeDayRequest(new DateTime(), new DateTime(), doctor._id, false);
+        FreeDayRequestController fdrc = new FreeDayRequestController(database);
+        fdrc.InsertToCollection(fdr);
+
     }
 
 }
