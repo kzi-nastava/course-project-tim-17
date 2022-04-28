@@ -1,6 +1,17 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-
+using HealthcareSystem.Entity.DrugModel;
+using HealthcareSystem.Entity;
+using HealthcareSystem.Entity.RoomModel;
+using MongoDB.Driver;
+using HealthcareSystem.Entity.UserModel;
+using HealthcareSystem.Entity.Enumerations;
+using HealthcareSystem.Entity.DoctorModel;
+using HealthcareSystem.Entity.ApointmentModel;
+using HealthcareSystem.Entity.CheckModel;
+using HealthcareSystem.Entity.HealthCardModel;
+using MongoDB.Bson;
+using HealthcareSystem.Functions;
 namespace HealthcareSystem.Entity.HealthCardModel;
 
 class HealthCard
@@ -22,6 +33,16 @@ class HealthCard
         this.height = height;
         this.weight = weight;
         this.patientId = patientId;
+    }
+
+    public void insert_new(HealthCard hc)
+    {
+        var settings = MongoClientSettings.FromConnectionString("mongodb+srv://Tim17:UXGhApWVw9oc6VGg@cluster0.se6mz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+        settings.ServerApi = new ServerApi(ServerApiVersion.V1);
+        var client = new MongoClient(settings);
+        var database = client.GetDatabase("USI");
+        HealthCardController h = new HealthCardController(database);
+        h.InsertToCollection(hc);
     }
     
     

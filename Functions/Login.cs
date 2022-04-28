@@ -13,14 +13,19 @@ static class Login {
 
 
         User loggedUser = uc.checkCredentials(email, password);
-        
-        
+        BlockedUserController blockedUserController = new BlockedUserController(db);
+
 
         if (loggedUser == null)
         {
             loggedUser = (User)dc.checkCredentials(email, password);
         }
-        
+        if (loggedUser != null) {
+            if (blockedUserController.checkIfBlocked(loggedUser._id) != null) {
+                Console.WriteLine("Sorry, you are blocked!B)");
+                return null;
+            }
+        }
         return loggedUser;
 
 
