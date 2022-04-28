@@ -29,10 +29,9 @@ static class Start
         var database = client.GetDatabase("USI");
        
         
-        RoomController rc = new RoomController(database,"Rooms");
-        Room r = rc.findById(new ObjectId("626a71c6500e4e92266aef9e"));
-        Equipment eq = new Equipment(EquipmentType.CHECKUP_EQUIPMENT,"Spoon",50,true);
-        rc.addEquipment(r,eq);
+        MoveEquipmentRequest mer = new MoveEquipmentRequest(new DateOnly(),new ObjectId("626a71c6500e4e92266aef9e"),new ObjectId("626a71c6200e4e92266aef9e"),new Equipment(EquipmentType.FURNITURE,"Chair",3,false));
+        MoveEquipmentRequestController merc = new MoveEquipmentRequestController(database);
+        merc.InsertToCollection(mer);
 
     }
 
