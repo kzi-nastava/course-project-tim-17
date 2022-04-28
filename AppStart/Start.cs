@@ -9,6 +9,7 @@ using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.CheckModel;
 using HealthcareSystem.Entity.HealthCardModel;
 using MongoDB.Bson;
+using HealthcareSystem.Functions;
 namespace HealthcareSystem.AppStart;
 
 
@@ -18,6 +19,7 @@ static class Start
 
     public static void ProgramStart()
     {
+    
 
   
         var settings = MongoClientSettings.FromConnectionString("mongodb+srv://Tim17:UXGhApWVw9oc6VGg@cluster0.se6mz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
@@ -60,17 +62,12 @@ static class Start
         Console.WriteLine("Unesite Vas password: ");
         string newPassword = Console.ReadLine();
 
-        var loggedUser = userController.checkCredentials(newEmail, newPassword);
+        User loggedUser = Login.validate(database,newEmail,newPassword);
+        
 
-        if (loggedUser == null)
-        {
-            loggedUser = dc.checkCredentials(newEmail, newPassword);
-        }
-        if (loggedUser != null)
-        {
-            Console.WriteLine(loggedUser.name);
-        }
+        Console.WriteLine(loggedUser.name);
 
+ 
 
 
 
