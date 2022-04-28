@@ -10,6 +10,7 @@ using HealthcareSystem.Entity.CheckModel;
 using HealthcareSystem.Entity.HealthCardModel;
 using MongoDB.Bson;
 using HealthcareSystem.Functions;
+using HealthcareSystem.UI;
 
 namespace HealthcareSystem.AppStart;
 
@@ -29,10 +30,38 @@ static class Start
         var database = client.GetDatabase("USI");
 
 
-        Revision rev = new Revision("NIsta ne znas jebem te usta", new ObjectId("626a60715522d32768c66fef"));
-        RevisionController revc = new RevisionController(database);
-        revc.InsertToCollection(rev);
+        User loggedUser = null;
 
+        while (loggedUser == null) {
+            Console.WriteLine("############Hospital: Novak Djokovic####################");
+            Console.Write("Enter e-mail(or x for exti): ");
+            string email = Console.ReadLine();
+            if(email == "x")
+            {
+                loggedUser = null;
+                break;
+            }
+            Console.WriteLine();
+            Console.Write("Enter password: ");
+            string password = Console.ReadLine();
+
+            loggedUser = Login.validate(database, email, password);
+
+
+        }
+
+
+        if (loggedUser != null)
+        {
+            Console.WriteLine(loggedUser.name);
+
+
+            if (loggedUser.role == Role.MANAGER)
+            {
+                ManagerUI ui = new ManagerUI(database, loggedUser);
+                loggedUser = null;
+            }
+        }
     }
 
 }

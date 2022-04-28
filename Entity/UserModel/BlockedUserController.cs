@@ -31,7 +31,10 @@ namespace HealthcareSystem.Entity.UserModel
         {
             return blockedUserCollection.Find(item => item._id == id).FirstOrDefault();
         }
-
+        public BlockedUser checkIfBlocked(ObjectId id)
+        {
+            return blockedUserCollection.Find(item => item.userId == id).FirstOrDefault();
+        }
 
 
         public User getBlockedUser(ObjectId id)
