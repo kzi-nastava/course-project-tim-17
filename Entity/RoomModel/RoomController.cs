@@ -6,9 +6,10 @@ namespace HealthcareSystem.Entity.RoomModel
     class RoomController
     {
         public IMongoCollection<Room> roomCollection;
-        public RoomController(IMongoDatabase database)
+        
+        public RoomController(IMongoDatabase database,string roomType)
         {
-            this.roomCollection = database.GetCollection<Room>("Rooms");
+            this.roomCollection = database.GetCollection<Room>(roomType);
 
 
         }
@@ -28,6 +29,11 @@ namespace HealthcareSystem.Entity.RoomModel
         public Room findById(ObjectId id) {
             return roomCollection.Find(item => item._id == id).FirstOrDefault();
         }
+        public void addEquipment(Room room, Equipment equipment) 
+    {
+        room.equipments.Add(equipment);
+        roomCollection.ReplaceOne(item => item._id == room._id, room);
+    }
 
     }
 }

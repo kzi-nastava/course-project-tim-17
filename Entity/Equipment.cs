@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using HealthcareSystem.Entity.Enumerations;
 namespace HealthcareSystem.Entity
 {
 
@@ -7,19 +8,21 @@ namespace HealthcareSystem.Entity
     {
         public ObjectId _id { get; set; }
         [BsonElement("type")]
-        public string type;
+        public EquipmentType type;
         [BsonElement("quantity")]
-        public int quantity;
-        [BsonElement("description")]
-        public string description;
+        public int quantity{get;set;}
+        [BsonElement("item")]
+        public string item{get;set;}
+        [BsonElement("isDynamic")]
+        public bool isDynamic{get;set;}
 
-
-        public Equipment(string type, string description, int quantity)
+        public Equipment(EquipmentType type, string item, int quantity,bool dynamic)
         {
             this.type = type;
-            this.description = description;
+            this.item = item;
             this.quantity = quantity;
             this._id = ObjectId.GenerateNewId();
+            this.isDynamic = dynamic;
         }
 
     }

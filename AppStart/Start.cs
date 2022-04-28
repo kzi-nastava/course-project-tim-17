@@ -27,59 +27,12 @@ static class Start
         settings.ServerApi = new ServerApi(ServerApiVersion.V1);
         var client = new MongoClient(settings);
         var database = client.GetDatabase("USI");
-        /*
-        DoctorController d = new DoctorController(database);
-
-
-        Apointment ap = new Apointment(new DateTime(), ApointmentType.CHECKUP, new ObjectId("62697f1f2816f31909828195"), new ObjectId("62694f1f2816f31909828195"), new ObjectId("62697f1f2816f31909828193"));
-        //ApointmentController apc = new ApointmentController(database);
-        //apc.InsertToCollection(ap);
-        // Console.WriteLine(ap.doctorId);
-        //Doctor dr = d.findById(ap.doctorId);
-        //Console.WriteLine(dr.name);
-
-        Anamnesis an = new Anamnesis("ahahahh", "blablahaah", "ahahahah");
-        Ingredient i = new Ingredient("sastojak");
-        List<Ingredient> sastojci = new List<Ingredient>();
-        Drug drug = new Drug("droga", sastojci);
-        Prescription pr = new Prescription(drug._id, "kada", 6, Meal.AFTER);
-        Check check = new Check(ap._id, an, pr);
-        // CheckController ch = new CheckController(database);
-        // ch.InsertToCollection(check);
-        HealthCardController hc = new HealthCardController(database);
-        HealthCard hchchchhc = hc.findById(new ObjectId("6269a92255413fe82e5e8e27"));
-        Console.WriteLine(hchchchhc.height);
-        */
-
-        // Ingredient i = new Ingredient("sastojak");
-        // List<Ingredient> sastojci = new List<Ingredient>();
-        // sastojci.Add(i);
-        // DrugVerificationController dvc = new DrugVerificationController(database);
-        // DrugVerification dv = new DrugVerification("brufen", sastojci);
-        // dvc.InsertToCollection(dv);
-       DoctorController controller = new DoctorController(database);
-        //List<Doctor> useri = controller.doctorCollection.Find(Item => true).ToList();
-        /*
-        UserController userController = new UserController(database);
-        DoctorController dc = new DoctorController(database);
-
-        // Console.WriteLine("Unesite Vas email: ");
-        // string newEmail = Console.ReadLine();
-        // Console.WriteLine("Unesite Vas password: ");
-        // string newPassword = Console.ReadLine();
-
-        // User loggedUser = Login.validate(database,newEmail,newPassword);
+       
         
-
-        // BlockedUser bu = new BlockedUser(loggedUser._id,BlockedBy.SYSTEM);
-
-        BlockedUserController buc = new BlockedUserController(database);
-        buc.pritBlockedUsers();
-        */
-        Doctor doctor = controller.findById(new ObjectId("62697f1f2816f31909828195"));
-        FreeDayRequest fdr = new FreeDayRequest(new DateTime(), new DateTime(), doctor._id, false);
-        FreeDayRequestController fdrc = new FreeDayRequestController(database);
-        fdrc.InsertToCollection(fdr);
+        RoomController rc = new RoomController(database,"Rooms");
+        Room r = rc.findById(new ObjectId("626a71c6500e4e92266aef9e"));
+        Equipment eq = new Equipment(EquipmentType.CHECKUP_EQUIPMENT,"Spoon",50,true);
+        rc.addEquipment(r,eq);
 
     }
 
