@@ -57,16 +57,20 @@ static class Start
         UserController userController = new UserController(database);
         DoctorController dc = new DoctorController(database);
 
-        Console.WriteLine("Unesite Vas email: ");
-        string newEmail = Console.ReadLine();
-        Console.WriteLine("Unesite Vas password: ");
-        string newPassword = Console.ReadLine();
+        // Console.WriteLine("Unesite Vas email: ");
+        // string newEmail = Console.ReadLine();
+        // Console.WriteLine("Unesite Vas password: ");
+        // string newPassword = Console.ReadLine();
 
-        User loggedUser = Login.validate(database,newEmail,newPassword);
+        // User loggedUser = Login.validate(database,newEmail,newPassword);
         
 
-        Console.WriteLine(loggedUser.name);
+        // BlockedUser bu = new BlockedUser(loggedUser._id,BlockedBy.SYSTEM);
 
+        BlockedUserController buc = new BlockedUserController(database);
+        buc.pritBlockedUsers();
+
+        
  
 
 
