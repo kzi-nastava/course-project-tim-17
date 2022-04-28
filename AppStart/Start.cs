@@ -27,11 +27,11 @@ static class Start
         settings.ServerApi = new ServerApi(ServerApiVersion.V1);
         var client = new MongoClient(settings);
         var database = client.GetDatabase("USI");
-       
-        
-        MoveEquipmentRequest mer = new MoveEquipmentRequest(new DateOnly(),new ObjectId("626a71c6500e4e92266aef9e"),new ObjectId("626a71c6200e4e92266aef9e"),new Equipment(EquipmentType.FURNITURE,"Chair",3,false));
-        MoveEquipmentRequestController merc = new MoveEquipmentRequestController(database);
-        merc.InsertToCollection(mer);
+
+
+        Revision rev = new Revision("NIsta ne znas jebem te usta", new ObjectId("626a60715522d32768c66fef"));
+        RevisionController revc = new RevisionController(database);
+        revc.InsertToCollection(rev);
 
     }
 
