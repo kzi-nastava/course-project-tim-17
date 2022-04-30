@@ -14,7 +14,10 @@ using MongoDB.Driver;
 using HealthcareSystem.CheckAppointemtRequestModel;
 using MongoDB.Bson;
 
-namespace HealthcareSystem.AppStart;
+using HealthcareSystem.Entity.UserActionModel;
+
+
+ namespace HealthcareSystem.AppStart;
 
 
 
@@ -23,6 +26,7 @@ static class Start
 
     public static void ProgramStart()
     {
+
         var settings = MongoClientSettings.FromConnectionString("mongodb+srv://Tim17:UXGhApWVw9oc6VGg@cluster0.se6mz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
         settings.ServerApi = new ServerApi(ServerApiVersion.V1);
         var client = new MongoClient(settings);
@@ -84,9 +88,22 @@ static class Start
                         
                     }
 
+                    if (loggedUser != null && loggedUser.role == Role.PATIENT)
+                    {
+                        PatientControllers patientControllers = new PatientControllers(database);
+                        ApointmentController apointmentController = new ApointmentController(database);
+                        DoctorController doctorController = new DoctorController(database);
+                        RoomController roomController = new RoomController(database);
+                        UserActionController userActionController = new UserActionController(database);
+                        BlockedUserController blockedUserController = new BlockedUserController(database);
+                        PatientUI ui = new PatientUI(patientControllers, apointmentController, doctorController, roomController, userActionController, blockedUserController, loggedUser);
+                        loggedUser = null;
+                    }
+
                 }
             }
           
+
         }
 
     }

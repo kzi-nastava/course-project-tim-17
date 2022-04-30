@@ -5,30 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b34d0b7-13a6-48f1-9e28-f5b4afdb0432" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Entity/ApointmentModel/AppointmentService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoleControllers/DoctorRepositories.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/DoctorUI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjekatUsi.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjekatUsi.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AppStart/Start.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AppStart/Start.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/ApointmentModel/ApointmentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/ApointmentModel/ApointmentController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/DoctorModel/DoctorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/DoctorModel/DoctorController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/RoomModel/RoomController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/RoomModel/RoomController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Functions/Login.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Functions/Login.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Projekat USI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Projekat USI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Projekat USI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Projekat USI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.genruntimeconfig.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/ref/Projekat USI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/ref/Projekat USI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/refint/Projekat USI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/refint/Projekat USI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Projekat USI.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Projekat USI.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Projekat USI.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Projekat USI.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +73,7 @@
       <workItem from="1651254054366" duration="23571000" />
       <workItem from="1651284824709" duration="231000" />
       <workItem from="1651310946732" duration="872000" />
+      <workItem from="1651338805376" duration="435000" />
     </task>
     <servers />
   </component>

@@ -1,10 +1,14 @@
+using HealthcareSystem.Entity.CheckModel;
 using HealthcareSystem.Entity.DoctorModel;
+using HealthcareSystem.Entity.DrugModel;
 using HealthcareSystem.Entity.Enumerations;
+using HealthcareSystem.Entity.HealthCardModel;
 using HealthcareSystem.Entity.RoomModel;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace HealthcareSystem.Entity.ApointmentModel
 {
@@ -231,7 +235,114 @@ namespace HealthcareSystem.Entity.ApointmentModel
 
             }
         }
-        
+
+        public void PerformCheckup(Apointment apointment)
+        {
+            if (ApointmentStarted(apointment))
+            {
+                User patient = doctorRepositories.userController.userCollection
+                    .Find(item => item._id == apointment.patientId).FirstOrDefault();
+                HealthCard patientHealthCard = doctorRepositories.healthCardController.healthCardCollection
+                    .Find(item => item.patientId == patient._id).FirstOrDefault();
+
+                string option = "";
+                Console.WriteLine(patient.name + " " + patient.lastName + " " + patientHealthCard.height + " " + patientHealthCard.weight);
+                Console.WriteLine("1 -> Change height");
+                Console.WriteLine("2 -> Change weight");
+                Console.WriteLine("3 -> Enter amnesis and perscription");
+                Console.WriteLine("Choose option: ");
+                option = Console.ReadLine();
+                if (option == "1")
+                {
+                    Console.WriteLine("Enter new height");
+                    string newHeight = Console.ReadLine();
+                    patientHealthCard.height = Convert.ToDouble(newHeight);
+                    doctorRepositories.healthCardController.update(patientHealthCard);
+                }
+                else if (option == "2")
+                {
+                    Console.WriteLine("Enter new weight");
+                    string newWeight = Console.ReadLine();
+                    patientHealthCard.weight = Convert.ToDouble(newWeight);
+                    doctorRepositories.healthCardController.update(patientHealthCard);
+                }
+                else if (option == "3")
+                {
+                    Anamnesis anamnesis = enterAnamnesis();
+                    Prescription prescription = enterPresciption();
+                    Check check = new Check(apointment._id, anamnesis, prescription);
+                    doctorRepositories.checkController.InsertToCollection(check);
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("Apointment has not started yet.");
+            }
+        }
+
+        public bool ApointmentStarted(Apointment apointment)
+        {
+            DateTime currentDateTime = DateTime.Now;
+            DateTime endOfApointment= apointment.dateTime.AddMinutes(15);
+            if (apointment.dateTime<currentDateTime & endOfApointment > currentDateTime)
+            {
+                return true;
+            }
+            
+            
+            return false;
+        }
+
+        public Anamnesis enterAnamnesis()
+        {
+            Console.WriteLine("Enter description: ");
+            string description = Console.ReadLine();
+            Console.WriteLine("Enter sypmtons: ");
+            string sypmtons = Console.ReadLine();
+            Console.WriteLine("Enter diagnosis: ");
+            string diagnosis = Console.ReadLine();
+            Anamnesis anamnesis = new Anamnesis(description, sypmtons, diagnosis);
+            return anamnesis;
+        }
+
+        public Prescription enterPresciption()
+        {
+            Console.WriteLine("Enter drug name: ");
+            string drugName = Console.ReadLine();
+            Drug drug = doctorRepositories.drugController.drugCollection.Find(item => item.name == drugName)
+                .FirstOrDefault();
+            
+            Console.WriteLine("Enter when to take drug: ");
+            string when = Console.ReadLine();
+            Console.WriteLine("Enter how many times to take drug per day: ");
+            string quantity = Console.ReadLine();
+            
+            Console.WriteLine("How to take drug based on meal - 1)Before 2)After 3)During 4)does not matter");
+            string option = Console.ReadLine();
+            
+            
+            Meal meal = Meal.BEFORE;
+            if (option == "1")
+            {
+                meal = Meal.BEFORE;
+            }
+            else if (option == "2")
+            {
+                meal = Meal.AFTER;
+            }
+            else if (option == "3")
+            {
+                meal = Meal.DURING;
+            }
+            else if (option == "4")
+            {
+                meal = Meal.DOESNOTMATTER;
+            }
+
+            Prescription prescription = new Prescription(drug._id, when, Int32.Parse(quantity), meal);
+            return prescription;
+        }
     }
     
     
