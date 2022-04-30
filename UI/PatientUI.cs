@@ -4,6 +4,7 @@ using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.RoleControllers;
 using HealthcareSystem.Entity.RoomModel;
+using HealthcareSystem.Entity.UserActionModel;
 
 namespace HealthcareSystem.UI
 {
@@ -13,18 +14,22 @@ namespace HealthcareSystem.UI
         public ApointmentController apointmentController {get;set;}
         public DoctorController doctorController {get;set;}
         public RoomController roomController {get; set;}
-        public PatientUI(PatientControllers patientControllers, ApointmentController apointmentController, DoctorController doctorController, RoomController roomController, User loggedUser)
+        public UserActionController userActionController {get; set;}
+        public BlockedUserController blockedUserController {get; set;}
+        public PatientUI(PatientControllers patientControllers, ApointmentController apointmentController, DoctorController doctorController, RoomController roomController, UserActionController userActionController, BlockedUserController blockedUserController, User loggedUser)
         {
             this.loggedUser = loggedUser;
             this.patientControllers = patientControllers;
             this.apointmentController = apointmentController;
             this.doctorController = doctorController;
             this.roomController = roomController;
+            this.userActionController = userActionController;
+            this.blockedUserController = blockedUserController;
             this.UI();
         }
         public void UI(){
             string option = "";
-            ApointmentService apointmentservice = new ApointmentService(patientControllers, apointmentController, doctorController, roomController, loggedUser);
+            ApointmentService apointmentservice = new ApointmentService(patientControllers, apointmentController, doctorController, roomController, userActionController, blockedUserController, loggedUser);
             while (true){
                 Console.WriteLine("1. Appointment Scheduling");
                 Console.WriteLine("2. Read Appointment");

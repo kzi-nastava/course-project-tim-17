@@ -6,6 +6,7 @@ using HealthcareSystem.RoleControllers;
 using HealthcareSystem.Entity.RoomModel;
 using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.UserModel;
+using HealthcareSystem.Entity.UserActionModel;
 
 namespace HealthcareSystem.Entity.ApointmentModel
 {
@@ -15,17 +16,37 @@ namespace HealthcareSystem.Entity.ApointmentModel
         public ApointmentController apointmentController {get; set;}
         public DoctorController doctorControllers {get; set;}
         public RoomController roomController {get; set;}
-        public ApointmentService(PatientControllers patientControllers, ApointmentController apointmentController, DoctorController doctorControllers, RoomController roomController, User loggedUser)
+        public UserActionController userActionController {get; set;}
+        public BlockedUserController blockedUserController {get; set;}
+        public ApointmentService(PatientControllers patientControllers, ApointmentController apointmentController, DoctorController doctorControllers, RoomController roomController, UserActionController userActionController, BlockedUserController blockedUserController, User loggedUser)
         {
             this.loggedUser = loggedUser;
             this.roomController = roomController;
             this.apointmentController = apointmentController;
             this.patientControllers = patientControllers;
             this.doctorControllers = doctorControllers;
+            this.userActionController = userActionController;
+            this.blockedUserController = blockedUserController;
         }
 
         public void trollCheck(){
-            
+            int create = 0, change = 0;
+            List<UserAction> userActions = userActionController.findAllByUser(loggedUser._id);
+            foreach(UserAction userAction in userActions){
+                if(DateTime.Compare(userAction.dateTime, DateTime.Today.AddMinutes(-43200))>0){
+                    if(userAction.actionStatus == ActionStatus.CREATE){
+                        create = create + 1;
+                    }else{
+                        change = change + 1;
+                    }
+                }
+            }
+            if(create >= 8 || change >= 5){
+                BlockedUser blockedUser = new BlockedUser(loggedUser._id, BlockedBy.SYSTEM);
+                blockedUserController.InsertToCollection(blockedUser);
+                Console.WriteLine("The account is blocked because too much changes were made to the appointments. Contact secretary for more info.");
+                System.Environment.Exit(1);
+            }
         }
 
         public void addApointment(){
@@ -116,7 +137,11 @@ namespace HealthcareSystem.Entity.ApointmentModel
                 Apointment appointmentsubmit = new Apointment(date, apointmenttype, doctorsubmit, roomsubmit, loggedUser._id);
                 apointmentController.InsertToCollection(appointmentsubmit);
                 Console.WriteLine("Appointment inserted!");
+                UserAction userAction = new UserAction(loggedUser._id, appointmentsubmit._id, DateTime.Today, ActionStatus.CREATE);
+                userActionController.InsertToCollection(userAction);
+                
             }
+        trollCheck();
         }
 
         public void changeApointment(){
@@ -220,6 +245,8 @@ namespace HealthcareSystem.Entity.ApointmentModel
                         apointmentOld.roomId = roomSubmit;
                         apointmentController.replaceApointment(apointmentOld);
                         Console.WriteLine("Apointment edited successfully");
+                        UserAction userAction = new UserAction(loggedUser._id, apointmentOld._id, DateTime.Today, ActionStatus.CHANGE);
+                        userActionController.InsertToCollection(userAction);
                     }
                     
                     
@@ -273,11 +300,9 @@ namespace HealthcareSystem.Entity.ApointmentModel
                         apointmentOld.roomId = roomsubmit;
                         apointmentController.replaceApointment(apointmentOld);
                         Console.WriteLine("Apointment edited successfully");
+                        UserAction userAction = new UserAction(loggedUser._id, apointmentOld._id, DateTime.Today, ActionStatus.CHANGE);
+                        userActionController.InsertToCollection(userAction);
                     }
-
-
-
-
                 }
                 if(option == "3"){
                     List<Doctor> allDoctors = patientControllers.doctorCollection.Find(Item => true).ToList();
@@ -321,12 +346,13 @@ namespace HealthcareSystem.Entity.ApointmentModel
                         apointmentOld.doctorId = doctorsubmit;
                         apointmentController.replaceApointment(apointmentOld);
                         Console.WriteLine("Apointment edited successfully");
+                        UserAction userAction = new UserAction(loggedUser._id, apointmentOld._id, DateTime.Today, ActionStatus.CHANGE);
+                        userActionController.InsertToCollection(userAction);
                     }
-
-
                 }
+
             }
-            
+        trollCheck();
         }
 
         public void deleteApointment(){
@@ -358,7 +384,9 @@ namespace HealthcareSystem.Entity.ApointmentModel
             }
             apointmentController.DeleteApointment(apointmentDelete);
             Console.WriteLine("Appointment has been deleted!");
-
+            UserAction userAction = new UserAction(loggedUser._id, apointmentDelete._id, DateTime.Today, ActionStatus.CREATE);
+            userActionController.InsertToCollection(userAction);
+        trollCheck();
         }
 
         public void readApointment(){

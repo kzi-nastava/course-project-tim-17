@@ -12,6 +12,7 @@ using MongoDB.Bson;
 using HealthcareSystem.Functions;
 using HealthcareSystem.UI;
 using HealthcareSystem.RoleControllers;
+using HealthcareSystem.Entity.UserActionModel;
 
 namespace HealthcareSystem.AppStart;
 
@@ -69,7 +70,9 @@ static class Start
                 ApointmentController apointmentController = new ApointmentController(database);
                 DoctorController doctorController = new DoctorController(database);
                 RoomController roomController = new RoomController(database);
-                PatientUI ui = new PatientUI(patientControllers, apointmentController, doctorController, roomController, loggedUser);
+                UserActionController userActionController = new UserActionController(database);
+                BlockedUserController blockedUserController = new BlockedUserController(database);
+                PatientUI ui = new PatientUI(patientControllers, apointmentController, doctorController, roomController, userActionController, blockedUserController, loggedUser);
                 loggedUser = null;
             }
         }
