@@ -10,18 +10,26 @@ namespace HealthcareSystem.Entity.ApointmentModel
             this.apointmentCollection = database.GetCollection<Apointment>("Apointments");
             
             }
-        public void getAllAppointments() {
+        public List<Apointment> getAllAppointments() {
             List<Apointment> apointments = apointmentCollection.Find(item =>  true).ToList();
 
-            foreach(Apointment apointment in apointments) {
-                Console.WriteLine(apointment.patientId);
-            }
+            return apointments;
         }
         public void InsertToCollection(Apointment apointment){
             apointmentCollection.InsertOne(apointment);
         }
-        
+
+        public void UpdateApointment(Apointment apointment)
+        {
+            apointmentCollection.ReplaceOne(item => item._id == apointment._id, apointment);
         }
+
+        public void DeleteApointment(Apointment apointment)
+        {
+            apointmentCollection.DeleteOne(item => item._id == apointment._id);
+        }
+
     }
+}
 
 

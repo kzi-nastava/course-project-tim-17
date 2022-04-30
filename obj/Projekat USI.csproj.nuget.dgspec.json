@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/ognjen/Desktop/Projekat USI/Projekat USI.csproj": {}
+    "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/Projekat USI.csproj": {}
   },
   "projects": {
-    "/home/ognjen/Desktop/Projekat USI/Projekat USI.csproj": {
+    "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/Projekat USI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ognjen/Desktop/Projekat USI/Projekat USI.csproj",
+        "projectUniqueName": "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/Projekat USI.csproj",
         "projectName": "Projekat USI",
-        "projectPath": "/home/ognjen/Desktop/Projekat USI/Projekat USI.csproj",
-        "packagesPath": "/home/ognjen/.nuget/packages/",
-        "outputPath": "/home/ognjen/Desktop/Projekat USI/obj/",
+        "projectPath": "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/Projekat USI.csproj",
+        "packagesPath": "/home/zare/.nuget/packages/",
+        "outputPath": "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/ognjen/.nuget/NuGet/NuGet.Config"
+          "/home/zare/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -58,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/162/sdk/6.0.202/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/current/sdk/6.0.202/RuntimeIdentifierGraph.json"
         }
       }
     }
