@@ -11,7 +11,10 @@ using HealthcareSystem.Functions;
 using HealthcareSystem.RoleControllers;
 using HealthcareSystem.UI;
 using MongoDB.Driver;
+<<<<<<< HEAD
 using HealthcareSystem.Entity.UserActionModel;
+=======
+>>>>>>> 459dab3e6b2e7d0f7295dd71bdfdcfd2ff3159e1
 
 namespace HealthcareSystem.AppStart;
 
@@ -22,7 +25,10 @@ static class Start
 
     public static void ProgramStart()
     {
+<<<<<<< HEAD
         
+=======
+>>>>>>> 459dab3e6b2e7d0f7295dd71bdfdcfd2ff3159e1
         var settings = MongoClientSettings.FromConnectionString("mongodb+srv://Tim17:UXGhApWVw9oc6VGg@cluster0.se6mz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
         settings.ServerApi = new ServerApi(ServerApiVersion.V1);
         var client = new MongoClient(settings);
@@ -84,6 +90,7 @@ static class Start
                     
                         
                     }
+<<<<<<< HEAD
                     if (loggedUser != null && loggedUser.role == Role.PATIENT)
                     {
                         PatientControllers patientControllers = new PatientControllers(database);
@@ -95,11 +102,16 @@ static class Start
                         PatientUI ui = new PatientUI(patientControllers, apointmentController, doctorController, roomController, userActionController, blockedUserController, loggedUser);
                         loggedUser = null;
                     }
+=======
+>>>>>>> 459dab3e6b2e7d0f7295dd71bdfdcfd2ff3159e1
 
                 }
             }
           
+<<<<<<< HEAD
             
+=======
+>>>>>>> 459dab3e6b2e7d0f7295dd71bdfdcfd2ff3159e1
         }
 
     }

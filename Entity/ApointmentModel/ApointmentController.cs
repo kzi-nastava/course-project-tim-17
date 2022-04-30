@@ -23,6 +23,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
         {
             apointmentCollection.ReplaceOne(item => item._id == apointment._id, apointment);
         }
+<<<<<<< HEAD
         public List<Apointment> findAllByUser(ObjectId id) {
             return apointmentCollection.Find(item => item.patientId == id).ToList();
         }
@@ -31,6 +32,9 @@ namespace HealthcareSystem.Entity.ApointmentModel
         {
             apointmentCollection.ReplaceOne(item => item._id == apointment._id, apointment);
         }
+=======
+
+>>>>>>> 459dab3e6b2e7d0f7295dd71bdfdcfd2ff3159e1
         public void DeleteApointment(Apointment apointment)
         {
             apointmentCollection.DeleteOne(item => item._id == apointment._id);

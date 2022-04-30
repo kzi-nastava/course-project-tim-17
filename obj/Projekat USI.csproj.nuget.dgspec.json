@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/Projekat USI.csproj": {}
   },
   "projects": {
@@ -15,6 +16,22 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/slepilepi/.nuget/NuGet/NuGet.Config"
+=======
+    "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/Projekat USI.csproj": {}
+  },
+  "projects": {
+    "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/Projekat USI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/Projekat USI.csproj",
+        "projectName": "Projekat USI",
+        "projectPath": "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/Projekat USI.csproj",
+        "packagesPath": "/home/zare/.nuget/packages/",
+        "outputPath": "/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/zare/.nuget/NuGet/NuGet.Config"
+>>>>>>> 459dab3e6b2e7d0f7295dd71bdfdcfd2ff3159e1
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -64,7 +81,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/current/sdk/6.0.202/RuntimeIdentifierGraph.json"
+>>>>>>> 459dab3e6b2e7d0f7295dd71bdfdcfd2ff3159e1
         }
       }
     }
