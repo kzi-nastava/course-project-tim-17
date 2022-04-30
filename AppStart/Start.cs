@@ -11,7 +11,8 @@ using HealthcareSystem.Functions;
 using HealthcareSystem.RoleControllers;
 using HealthcareSystem.UI;
 using MongoDB.Driver;
-using HealthcareSystem.CheckAppointemtRequestModel;
+using HealthcareSystem.Entity.CheckAppointmentRequestModel;
+using HealthcareSystem.Entity.AppointmentRequestsModel;
 using MongoDB.Bson;
 
 using HealthcareSystem.Entity.UserActionModel;
@@ -96,7 +97,9 @@ static class Start
                         RoomController roomController = new RoomController(database);
                         UserActionController userActionController = new UserActionController(database);
                         BlockedUserController blockedUserController = new BlockedUserController(database);
-                        PatientUI ui = new PatientUI(patientControllers, apointmentController, doctorController, roomController, userActionController, blockedUserController, loggedUser);
+                        AppointmentRequestsController appointmentRequestsController = new AppointmentRequestsController(database);
+                        CheckAppointmentRequestController checkAppointmentRequestController = new CheckAppointmentRequestController (database);
+                        PatientUI ui = new PatientUI(patientControllers, apointmentController, doctorController, roomController, userActionController, blockedUserController, appointmentRequestsController, checkAppointmentRequestController, loggedUser);
                         loggedUser = null;
                     }
 

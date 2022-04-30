@@ -7,7 +7,7 @@ using HealthcareSystem.Entity.ApointmentModel;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace HealthcareSystem.CheckAppointemtRequestModel
+namespace HealthcareSystem.Entity.CheckAppointmentRequestModel
 {
     class CheckAppointmentRequestController
     {
