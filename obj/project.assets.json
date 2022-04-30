@@ -624,19 +624,19 @@
     ]
   },
   "packageFolders": {
-    "/home/ognjen/.nuget/packages/": {}
+    "/home/slepilepi/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/ognjen/Desktop/Projekat USI/Projekat USI.csproj",
+      "projectUniqueName": "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/Projekat USI.csproj",
       "projectName": "Projekat USI",
-      "projectPath": "/home/ognjen/Desktop/Projekat USI/Projekat USI.csproj",
-      "packagesPath": "/home/ognjen/.nuget/packages/",
-      "outputPath": "/home/ognjen/Desktop/Projekat USI/obj/",
+      "projectPath": "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/Projekat USI.csproj",
+      "packagesPath": "/home/slepilepi/.nuget/packages/",
+      "outputPath": "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/ognjen/.nuget/NuGet/NuGet.Config"
+        "/home/slepilepi/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -675,12 +675,18 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.2, 6.0.2]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/162/sdk/6.0.202/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
       }
     }
   }
