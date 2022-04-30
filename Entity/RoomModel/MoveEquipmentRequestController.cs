@@ -6,28 +6,34 @@ namespace HealthcareSystem.Entity.RoomModel
     class MoveEquipmentRequestController
     {
         public IMongoCollection<MoveEquipmentRequest> moveEquipmentRequestCollection;
-        
+
         public MoveEquipmentRequestController(IMongoDatabase database)
         {
             this.moveEquipmentRequestCollection = database.GetCollection<MoveEquipmentRequest>("MoveEquipmentRequests");
 
 
         }
-        public void getAllReqiests()
+        public List<MoveEquipmentRequest> GetAllMoveEquipmentRequests()
         {
-            List<MoveEquipmentRequest> moveEquipmentRequests = moveEquipmentRequestCollection.Find(item => true).ToList();
+            return moveEquipmentRequestCollection.Find(item => true).ToList();
 
-            foreach (MoveEquipmentRequest moveEquipmentRequest in moveEquipmentRequests)
-            {
-                Console.WriteLine(moveEquipmentRequest.equipment.item);
-            }
         }
         public void InsertToCollection(MoveEquipmentRequest moveEquipmentRequest)
         {
             moveEquipmentRequestCollection.InsertOne(moveEquipmentRequest);
         }
-        public MoveEquipmentRequest findById(ObjectId id) {
+        public MoveEquipmentRequest findById(ObjectId id)
+        {
             return moveEquipmentRequestCollection.Find(item => item._id == id).FirstOrDefault();
+        }
+
+        public void DeleteMoveEquipmentRequest(ObjectId id)
+        {
+
+            moveEquipmentRequestCollection.DeleteOne(item => item._id == id);
+
+
+
         }
 
     }
