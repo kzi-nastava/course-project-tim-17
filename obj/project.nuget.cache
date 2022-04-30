@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vRdvWNhnRwx9T6FAvFv9nzQh23GG6sHDoM++zBgPhrw0W2nEvN/xNbBeBAZiN96YYx/KXg2VKgV7syUE8dhTbQ==",
+  "dgSpecHash": "Zwt7vcgT0eTT3lb+0MBrWWE9w7rF1LnNs5l6ZOZcJ/wluN7OAA7kxh8jnU7dnGs3EsPHWzKN82VPNFHOm05vLw==",
   "success": true,
-  "projectFilePath": "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/Projekat USI.csproj",
+  "projectFilePath": "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/Projekat USI.csproj",
   "expectedPackageFiles": [
     "/home/slepilepi/.nuget/packages/dnsclient/1.6.0/dnsclient.1.6.0.nupkg.sha512",
     "/home/slepilepi/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",

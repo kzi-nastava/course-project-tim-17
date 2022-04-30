@@ -161,3 +161,35 @@ C:/Users/Anastasija/Desktop/USIProjekat/obj/Debug/net6.0/ref/Projekat USI.dll
 /home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/obj/Debug/net6.0/ref/Projekat USI.dll
 /home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/obj/Debug/net6.0/Projekat USI.pdb
 /home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/obj/Debug/net6.0/Projekat USI.genruntimeconfig.cache
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.csproj.AssemblyReference.cache
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.GeneratedMSBuildEditorConfig.editorconfig
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.AssemblyInfoInputs.cache
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.AssemblyInfo.cs
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.csproj.CoreCompileInputs.cache
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.dll
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/ref/Projekat USI.dll
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.pdb
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/Projekat USI
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/Projekat USI.deps.json
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/Projekat USI.runtimeconfig.json
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/Projekat USI.dll
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/ref/Projekat USI.dll
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/Projekat USI.pdb
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/DnsClient.dll
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/MongoDB.Bson.dll
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/MongoDB.Driver.dll
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/MongoDB.Driver.Core.dll
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/MongoDB.Libmongocrypt.dll
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/SharpCompress.dll
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/linux/native/libsnappy64.so
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/linux/native/libzstd.so
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/osx/native/libsnappy64.dylib
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/osx/native/libzstd.dylib
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/win/native/libzstd.dll
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/win/native/snappy32.dll
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/win/native/snappy64.dll
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/linux/native/libmongocrypt.so
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/osx/native/libmongocrypt.dylib
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/win/native/mongocrypt.dll
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.csproj.CopyComplete
+/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.genruntimeconfig.cache

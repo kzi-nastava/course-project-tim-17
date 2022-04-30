@@ -254,7 +254,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
                             appointmentRequestsController.InsertToCollection(appointmentRequests);
                             CheckAppointementRequest checkAppointmentRequest = new CheckAppointementRequest(appointmentRequests._id, RequestState.EDIT);
                             checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
-                            System.WriteLine("The request has been sent to the system.");
+                            Console.WriteLine("The request has been sent to the system.");
                         }else{
                             apointmentOld.dateTime = newAppointmentDate;
                             apointmentOld.roomId = roomSubmit;
@@ -317,7 +317,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
                             appointmentRequestsController.InsertToCollection(appointmentRequests);
                             CheckAppointementRequest checkAppointmentRequest = new CheckAppointementRequest(appointmentRequests._id, RequestState.EDIT);
                             checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
-                            System.WriteLine("The request has been sent to the system.");
+                            Console.WriteLine("The request has been sent to the system.");
                         }else{
                             
                             apointmentOld.type = apointmentType;
@@ -376,7 +376,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
                             appointmentRequestsController.InsertToCollection(appointmentRequests);
                             CheckAppointementRequest checkAppointmentRequest = new CheckAppointementRequest(appointmentRequests._id, RequestState.EDIT);
                             checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
-                            System.WriteLine("The request has been sent to the system.");
+                            Console.WriteLine("The request has been sent to the system.");
                         }else{
                             apointmentOld.doctorId = doctorsubmit;
                             apointmentController.replaceApointment(apointmentOld);
@@ -419,10 +419,10 @@ namespace HealthcareSystem.Entity.ApointmentModel
                     break;
                 }
             }
-            if(DateTime.Compare (apointmentOld.dateTime, DateTime.Now.AddMinutes(2880)) <0){
+            if(DateTime.Compare (apointmentDelete.dateTime, DateTime.Now.AddMinutes(2880)) <0){
                 CheckAppointementRequest checkAppointmentRequest = new CheckAppointementRequest(apointmentDelete._id, RequestState.DELETE);
                 checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
-                System.WriteLine("The request has been sent to the system.");
+                Console.WriteLine("The request has been sent to the system.");
             }else{
                 apointmentController.DeleteApointment(apointmentDelete);
                 Console.WriteLine("Appointment has been deleted!");
