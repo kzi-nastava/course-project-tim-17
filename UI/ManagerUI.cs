@@ -27,7 +27,7 @@ namespace HealthcareSystem.UI
             Console.WriteLine("1.Room CRUD");
             Console.WriteLine("2.Check Equipment");
             Console.WriteLine("3.Create Move Equipment Request");
-            Console.WriteLine("4.Room CRUD");
+            Console.WriteLine("4.(Test MoveEquipment)");
             while (true)
             {
                 if (option == "x")

@@ -56,21 +56,21 @@ static class Start
                     Console.WriteLine("HELLO!");
                     Console.WriteLine("You are logged in as: ");
                     Console.WriteLine(loggedUser.name, loggedUser.lastName);
-                    if (loggedUser.role == Role.MANAGER)
+                    if (loggedUser != null && loggedUser.role == Role.MANAGER)
                     {
                         ManagerControllers managerControllers = new ManagerControllers(database);
                         ManagerUI ui = new ManagerUI(managerControllers, loggedUser);
                         loggedUser = null;
                         Console.WriteLine("Manager");
                     }
-                    if (loggedUser.role == Role.SECRETARY) 
+                    if (loggedUser != null && loggedUser.role == Role.SECRETARY) 
                     {
                         // SecretaryUI ui = new SecretaryUI(database, loggedUser);
                         // loggedUser = null;
                         Console.WriteLine("Secretary");
                     }
 
-                    if (loggedUser.role == Role.DOCTOR)
+                    if (loggedUser != null && loggedUser.role == Role.DOCTOR)
                     {
                         DoctorRepositories doctorRepositories = new DoctorRepositories(database);
                         DoctorUi ui = new DoctorUi((Doctor)loggedUser, doctorRepositories);
