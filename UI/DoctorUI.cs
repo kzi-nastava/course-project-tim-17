@@ -50,9 +50,22 @@ namespace HealthcareSystem.UI
         {
             AppointmentService appointmentService = new AppointmentService(doctorRepositories);
             appointmentService.PrintSchedule(loggedDoctor);
-            //To do:
-            //Checkup executing
-            
+            string choice = "";
+            Console.WriteLine("1 -> Perform checkup");
+            Console.WriteLine("x -> Exit");
+            Console.WriteLine("Choose option");
+            choice = Console.ReadLine();
+            if (choice == "1")
+            {
+                Console.WriteLine("Enter Id of an Apointment: ");
+                string apointmentId = Console.ReadLine();
+                Apointment apointment =
+                    doctorRepositories.apointmentController.apointmentCollection.Find(item =>
+                        item._id == new ObjectId(apointmentId)).FirstOrDefault();
+                appointmentService.PerformCheckup(apointment);
+            }
+
+
         }
         
         public void PrintMenu()
