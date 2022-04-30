@@ -30,6 +30,11 @@ namespace HealthcareSystem.UI
                     ApointmentCRUD();
                 }
 
+                if (option == "2")
+                {
+                    Schedule();
+                }
+
                 else
                 {
                     Console.WriteLine("Option does not exist!");
@@ -41,6 +46,15 @@ namespace HealthcareSystem.UI
 
         }
 
+        public void Schedule()
+        {
+            AppointmentService appointmentService = new AppointmentService(doctorRepositories);
+            appointmentService.PrintSchedule(loggedDoctor);
+            //To do:
+            //Checkup executing
+            
+        }
+        
         public void PrintMenu()
         {
             Console.WriteLine("1 -> CRUD for appointments");

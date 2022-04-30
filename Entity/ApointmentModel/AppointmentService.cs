@@ -207,6 +207,33 @@ namespace HealthcareSystem.Entity.ApointmentModel
             doctorRepositories.apointmentController.UpdateApointment(apointment);
 
         }
+        public void PrintSchedule(Doctor doctor)
+        {
+            Console.WriteLine("Enter year: ");
+            string year = Console.ReadLine();
+            Console.WriteLine("Enter month: ");
+            string month = Console.ReadLine();
+            Console.WriteLine("Enter day: ");
+            string day = Console.ReadLine();
+           
+
+            DateTime enteredDateTime = new DateTime(Int32.Parse(year), Int32.Parse(month), Int32.Parse(day));
+            List<Apointment> certainDoctorsApointments = doctorRepositories.apointmentController.apointmentCollection
+                .Find(item => item.doctorId == doctor._id & item.dateTime>enteredDateTime).ToList(); //Fix to show for certain date and next 3 days
+            foreach (Apointment apointment in certainDoctorsApointments)
+            {
+                User patient = doctorRepositories.userController.findById(apointment.patientId);
+                Room room = doctorRepositories.roomController.findById(apointment.roomId);
+                Console.WriteLine(apointment._id.ToString() + "|" +apointment.type.ToString() + "|" + apointment.dateTime.ToString("MM/dd/yyyy") + " "
+                                  + apointment.dateTime.ToString("t") + "|" + doctor.name + " " + doctor.lastName
+                                  + "|" + patient.name + " " + patient.lastName + "|" + room.name);
+
+
+            }
+        }
+        
     }
+    
+    
 }
 
