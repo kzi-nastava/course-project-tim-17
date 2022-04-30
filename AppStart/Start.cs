@@ -11,6 +11,8 @@ using HealthcareSystem.Functions;
 using HealthcareSystem.RoleControllers;
 using HealthcareSystem.UI;
 using MongoDB.Driver;
+using HealthcareSystem.CheckAppointemtRequestModel;
+using MongoDB.Bson;
 
 namespace HealthcareSystem.AppStart;
 
@@ -28,8 +30,7 @@ static class Start
         UserController uc = new UserController(database);
         HealthCardController hc = new HealthCardController(database);
 
-        Console.WriteLine(uc.userCollection);
-
+    
         User loggedUser = null;
         Boolean notLogged = true;
         string choice = "";

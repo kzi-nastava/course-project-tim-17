@@ -9,6 +9,9 @@ using HealthcareSystem.Entity.UserModel;
 using HealthCareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;
+using HealthCareSystem.Entity.CheckAppointementRequestModel;
+using MongoDB.Bson;
+using HealthcareSystem.CheckAppointemtRequestModel;
 
 namespace HealthcareSystem.UI
 {
@@ -97,9 +100,21 @@ namespace HealthcareSystem.UI
                 Console.WriteLine("Patient is sucessfully deleted! ");
             }
         }
+
+
+        public void CancelRequest(CheckAppointementRequest cr) {
+            cr.status = Status.DENIED;
+        }
+
+        public void ApproveRequest(CheckAppointementRequest cr)
+        {
+            Console.WriteLine(cr.RequestState.ToString());
+            cr.status = Status.ACCEPTED;
+        }
         public void UI()
         {
             UserService us = new UserService(secretaryControllers);
+            CheckAppointmentRequestService crs = new CheckAppointmentRequestService(secretaryControllers);
             while (true)
             {
             Console.WriteLine("1 -> CREATE/READ/UPDATE/DELETE PATIENT'S ACCOUNT");
@@ -146,6 +161,25 @@ namespace HealthcareSystem.UI
                 }
                 else if(choice == "4")
                 {
+                    crs.printAllRequests();
+                    Console.WriteLine("Enter request id: ");
+                    ObjectId obI = ObjectId.Parse(Console.ReadLine());
+                    CheckAppointementRequest cr = secretaryControllers.checkAppointemtRequestController.FindById(obI);
+                    Console.WriteLine("1 -> APPROVE REQUEST");
+                    Console.WriteLine("2 -> DECLINE REQUEST");
+                    string opt = Console.ReadLine();
+                    if (opt.Equals("1"))
+                    {
+                        cr.status = Status.ACCEPTED;
+                        crs.Update(cr);
+                       
+                    }
+                    else if (opt.Equals("2"))
+                    {
+
+                        cr.status = Status.DENIED;
+                        crs.Update(cr);
+                    }
 
                 }
                 else if (choice == "5") {
