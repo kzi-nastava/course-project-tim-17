@@ -8,15 +8,21 @@ namespace HealthcareSystem.Entity.ApointmentModel
         public IMongoCollection<Apointment> apointmentCollection;
         public ApointmentController(IMongoDatabase database){
             this.apointmentCollection = database.GetCollection<Apointment>("Apointments");
-        }
+            
+            }
         public List<Apointment> getAllAppointments() {
-            return apointmentCollection.Find(item =>  true).ToList();
+            List<Apointment> apointments = apointmentCollection.Find(item =>  true).ToList();
 
+            return apointments;
         }
         public void InsertToCollection(Apointment apointment){
             apointmentCollection.InsertOne(apointment);
         }
 
+        public void UpdateApointment(Apointment apointment)
+        {
+            apointmentCollection.ReplaceOne(item => item._id == apointment._id, apointment);
+        }
         public List<Apointment> findAllByUser(ObjectId id) {
             return apointmentCollection.Find(item => item.patientId == id).ToList();
         }
@@ -29,6 +35,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
         {
             apointmentCollection.DeleteOne(item => item._id == apointment._id);
         }
+
     }
 }
 

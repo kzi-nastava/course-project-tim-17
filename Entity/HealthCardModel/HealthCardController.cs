@@ -13,12 +13,10 @@ class HealthCardController
         this.healthCardCollection = database.GetCollection<HealthCard>("HealthCards");
             
     }
-    public void getAllHealthCards() {
+    public List<HealthCard>  getAllHealthCards() {
         List<HealthCard> healthCards = healthCardCollection.Find(item =>  true).ToList();
 
-        foreach(HealthCard healthCard in healthCards) {
-            Console.WriteLine(healthCard.height);
-        }
+        return healthCards;
     }
     public void InsertToCollection(HealthCard healthCard){
         healthCardCollection.InsertOne(healthCard);
@@ -30,6 +28,16 @@ class HealthCardController
     public void addCheck(HealthCard healthCard, Check check) 
     {
         healthCard.checks.Add(check._id);
+        healthCardCollection.ReplaceOne(item => item._id == healthCard._id, healthCard);
+    }
+
+    public void deleteHealthCard(HealthCard healthCard)
+    {
+        healthCardCollection.DeleteOne(item => item._id == healthCard._id);
+    }
+
+    public void update(HealthCard healthCard) 
+    {
         healthCardCollection.ReplaceOne(item => item._id == healthCard._id, healthCard);
     }
 
