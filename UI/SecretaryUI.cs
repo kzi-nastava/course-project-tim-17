@@ -9,9 +9,8 @@ using HealthcareSystem.Entity.UserModel;
 using HealthCareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;
-using HealthCareSystem.Entity.CheckAppointementRequestModel;
+using HealthcareSystem.Entity.CheckAppointmentRequestModel;
 using MongoDB.Bson;
-using HealthcareSystem.CheckAppointemtRequestModel;
 
 namespace HealthcareSystem.UI
 {

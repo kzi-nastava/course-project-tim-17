@@ -8,7 +8,7 @@ using HealthcareSystem.Entity.Enumerations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace HealthcareSystem.CheckAppointemtRequestModel
+namespace HealthcareSystem.Entity.CheckAppointmentRequestModel
 {
     class CheckAppointementRequest { 
         public ObjectId _id { get; set; }
@@ -16,7 +16,6 @@ namespace HealthcareSystem.CheckAppointemtRequestModel
         public ObjectId appointmentId { get; set; }
        
         [BsonElement("status")]
-
         public Status status{ get; set; }
 
         public RequestState RequestState { get; set; }

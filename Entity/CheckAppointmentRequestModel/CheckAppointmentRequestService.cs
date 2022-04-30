@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HealthcareSystem.CheckAppointemtRequestModel;
 using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Bson;
 
-namespace HealthCareSystem.Entity.CheckAppointementRequestModel
+namespace HealthcareSystem.Entity.CheckAppointmentRequestModel
 {
     class CheckAppointmentRequestService
     {
@@ -48,7 +47,6 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
             secretaryControllers.checkAppointemtRequestController.DeleteCheckAppointementRequestCard(cr);
 
         }
-
         public void Update(CheckAppointementRequest cr) {
             secretaryControllers.checkAppointemtRequestController.Update(cr);
         }

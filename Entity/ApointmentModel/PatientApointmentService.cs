@@ -7,6 +7,8 @@ using HealthcareSystem.Entity.RoomModel;
 using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.Entity.UserActionModel;
+using HealthcareSystem.Entity.AppointmentRequestsModel;
+using HealthcareSystem.Entity.CheckAppointmentRequestModel;
 
 namespace HealthcareSystem.Entity.ApointmentModel
 {
@@ -18,7 +20,9 @@ namespace HealthcareSystem.Entity.ApointmentModel
         public RoomController roomController {get; set;}
         public UserActionController userActionController {get; set;}
         public BlockedUserController blockedUserController {get; set;}
-        public ApointmentService(PatientControllers patientControllers, ApointmentController apointmentController, DoctorController doctorControllers, RoomController roomController, UserActionController userActionController, BlockedUserController blockedUserController, User loggedUser)
+        public AppointmentRequestsController appointmentRequestsController {get; set;}
+        public CheckAppointmentRequestController checkAppointmentRequestController {get; set;}
+        public ApointmentService(PatientControllers patientControllers, ApointmentController apointmentController, DoctorController doctorControllers, RoomController roomController, UserActionController userActionController, BlockedUserController blockedUserController, AppointmentRequestsController appointmentRequestsController, CheckAppointmentRequestController checkAppointmentRequestController, User loggedUser)
         {
             this.loggedUser = loggedUser;
             this.roomController = roomController;
@@ -27,6 +31,8 @@ namespace HealthcareSystem.Entity.ApointmentModel
             this.doctorControllers = doctorControllers;
             this.userActionController = userActionController;
             this.blockedUserController = blockedUserController;
+            this.appointmentRequestsController = appointmentRequestsController;
+            this.checkAppointmentRequestController = checkAppointmentRequestController;
         }
 
         public void trollCheck(){
@@ -241,15 +247,23 @@ namespace HealthcareSystem.Entity.ApointmentModel
                     }
                     else{
                         ObjectId roomSubmit = allRooms[0]._id;
-                        apointmentOld.dateTime = newAppointmentDate;
-                        apointmentOld.roomId = roomSubmit;
-                        apointmentController.replaceApointment(apointmentOld);
-                        Console.WriteLine("Apointment edited successfully");
-                        UserAction userAction = new UserAction(loggedUser._id, apointmentOld._id, DateTime.Today, ActionStatus.CHANGE);
-                        userActionController.InsertToCollection(userAction);
+                        Console.WriteLine(apointmentOld.dateTime);
+                        Console.WriteLine(DateTime.Now.AddMinutes(2880));
+                        if(DateTime.Compare (apointmentOld.dateTime, DateTime.Now.AddMinutes(2880)) <0){
+                            AppointmentRequests appointmentRequests = new AppointmentRequests(apointmentOld.dateTime, apointmentOld.type, apointmentOld.doctorId, roomSubmit, loggedUser._id, apointmentOld._id);
+                            appointmentRequestsController.InsertToCollection(appointmentRequests);
+                            CheckAppointementRequest checkAppointmentRequest = new CheckAppointementRequest(appointmentRequests._id, RequestState.EDIT);
+                            checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
+                            System.WriteLine("The request has been sent to the system.");
+                        }else{
+                            apointmentOld.dateTime = newAppointmentDate;
+                            apointmentOld.roomId = roomSubmit;
+                            apointmentController.replaceApointment(apointmentOld);
+                            Console.WriteLine("Apointment edited successfully");
+                            UserAction userAction = new UserAction(loggedUser._id, apointmentOld._id, DateTime.Today, ActionStatus.CHANGE);
+                            userActionController.InsertToCollection(userAction);
+                        }
                     }
-                    
-                    
                 }
                 if(option == "2"){
                     ApointmentType apointmentType = new ApointmentType();
@@ -295,13 +309,25 @@ namespace HealthcareSystem.Entity.ApointmentModel
                         Console.WriteLine("Sadly, the selected option isn't available.");
                     }
                     else{
+                        Console.WriteLine(apointmentOld.dateTime);
+                        Console.WriteLine(DateTime.Now.AddMinutes(2880));
                         ObjectId roomsubmit = allRooms[0]._id;
-                        apointmentOld.type = apointmentType;
-                        apointmentOld.roomId = roomsubmit;
-                        apointmentController.replaceApointment(apointmentOld);
-                        Console.WriteLine("Apointment edited successfully");
-                        UserAction userAction = new UserAction(loggedUser._id, apointmentOld._id, DateTime.Today, ActionStatus.CHANGE);
-                        userActionController.InsertToCollection(userAction);
+                        if(DateTime.Compare (apointmentOld.dateTime, DateTime.Now.AddMinutes(2880)) <0){
+                            AppointmentRequests appointmentRequests = new AppointmentRequests(apointmentOld.dateTime, apointmentType, apointmentOld.doctorId, roomsubmit, loggedUser._id, apointmentOld._id);
+                            appointmentRequestsController.InsertToCollection(appointmentRequests);
+                            CheckAppointementRequest checkAppointmentRequest = new CheckAppointementRequest(appointmentRequests._id, RequestState.EDIT);
+                            checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
+                            System.WriteLine("The request has been sent to the system.");
+                        }else{
+                            
+                            apointmentOld.type = apointmentType;
+                            apointmentOld.roomId = roomsubmit;
+                            apointmentController.replaceApointment(apointmentOld);
+                            Console.WriteLine("Apointment edited successfully");
+                            UserAction userAction = new UserAction(loggedUser._id, apointmentOld._id, DateTime.Today, ActionStatus.CHANGE);
+                            userActionController.InsertToCollection(userAction);
+                        }
+                        
                     }
                 }
                 if(option == "3"){
@@ -343,11 +369,22 @@ namespace HealthcareSystem.Entity.ApointmentModel
                                 break;
                             }
                         }
-                        apointmentOld.doctorId = doctorsubmit;
-                        apointmentController.replaceApointment(apointmentOld);
-                        Console.WriteLine("Apointment edited successfully");
-                        UserAction userAction = new UserAction(loggedUser._id, apointmentOld._id, DateTime.Today, ActionStatus.CHANGE);
-                        userActionController.InsertToCollection(userAction);
+                        Console.WriteLine(apointmentOld.dateTime);
+                        Console.WriteLine(DateTime.Now.AddMinutes(2880));
+                        if(DateTime.Compare (apointmentOld.dateTime, DateTime.Now.AddMinutes(2880)) <0){
+                            AppointmentRequests appointmentRequests = new AppointmentRequests(apointmentOld.dateTime, apointmentOld.type, doctorsubmit, apointmentOld.roomId, loggedUser._id, apointmentOld._id);
+                            appointmentRequestsController.InsertToCollection(appointmentRequests);
+                            CheckAppointementRequest checkAppointmentRequest = new CheckAppointementRequest(appointmentRequests._id, RequestState.EDIT);
+                            checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
+                            System.WriteLine("The request has been sent to the system.");
+                        }else{
+                            apointmentOld.doctorId = doctorsubmit;
+                            apointmentController.replaceApointment(apointmentOld);
+                            Console.WriteLine("Apointment edited successfully");
+                            UserAction userAction = new UserAction(loggedUser._id, apointmentOld._id, DateTime.Today, ActionStatus.CHANGE);
+                            userActionController.InsertToCollection(userAction);
+                        }
+                        
                     }
                 }
 
@@ -382,10 +419,16 @@ namespace HealthcareSystem.Entity.ApointmentModel
                     break;
                 }
             }
-            apointmentController.DeleteApointment(apointmentDelete);
-            Console.WriteLine("Appointment has been deleted!");
-            UserAction userAction = new UserAction(loggedUser._id, apointmentDelete._id, DateTime.Today, ActionStatus.CREATE);
-            userActionController.InsertToCollection(userAction);
+            if(DateTime.Compare (apointmentOld.dateTime, DateTime.Now.AddMinutes(2880)) <0){
+                CheckAppointementRequest checkAppointmentRequest = new CheckAppointementRequest(apointmentDelete._id, RequestState.DELETE);
+                checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
+                System.WriteLine("The request has been sent to the system.");
+            }else{
+                apointmentController.DeleteApointment(apointmentDelete);
+                Console.WriteLine("Appointment has been deleted!");
+                UserAction userAction = new UserAction(loggedUser._id, apointmentDelete._id, DateTime.Today, ActionStatus.CREATE);
+                userActionController.InsertToCollection(userAction);
+            }
         trollCheck();
         }
 
