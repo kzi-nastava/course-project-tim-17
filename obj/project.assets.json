@@ -629,11 +629,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/Projekat USI.csproj",
+      "projectUniqueName": "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/Projekat USI.csproj",
       "projectName": "Projekat USI",
-      "projectPath": "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/Projekat USI.csproj",
+      "projectPath": "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/Projekat USI.csproj",
       "packagesPath": "/home/slepilepi/.nuget/packages/",
-      "outputPath": "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/obj/",
+      "outputPath": "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/slepilepi/.nuget/NuGet/NuGet.Config"
