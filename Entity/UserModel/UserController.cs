@@ -11,6 +11,7 @@ namespace HealthcareSystem.Entity.UserModel
             this.userCollection = database.GetCollection<User>("Users");
 
         }
+        
         public void getAllUsers()
         {
             List<User> users = userCollection.Find(item => true).ToList();

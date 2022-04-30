@@ -63,6 +63,15 @@ static class Start
                 ManagerUI ui = new ManagerUI(managerControllers,loggedUser);
                 loggedUser = null;
             }
+            if (loggedUser.role == Role.PATIENT)
+            {
+                PatientControllers patientControllers = new PatientControllers(database);
+                ApointmentController apointmentController = new ApointmentController(database);
+                DoctorController doctorController = new DoctorController(database);
+                RoomController roomController = new RoomController(database);
+                PatientUI ui = new PatientUI(patientControllers, apointmentController, doctorController, roomController, loggedUser);
+                loggedUser = null;
+            }
         }
     }
 
