@@ -19,10 +19,14 @@ static class Login {
         if (loggedUser == null)
         {
             loggedUser = (User)dc.checkCredentials(email, password);
+            if (loggedUser == null) {
+                Console.WriteLine("Your email/password are incorrect! Please try again! ");
+                return null;
+            }
         }
         if (loggedUser != null) {
             if (blockedUserController.checkIfBlocked(loggedUser._id) != null) {
-                Console.WriteLine("Sorry, you are blocked!B)");
+                Console.WriteLine("Sorry, you are blocked! ");
                 return null;
             }
         }

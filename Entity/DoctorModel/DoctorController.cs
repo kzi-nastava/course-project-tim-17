@@ -28,6 +28,8 @@ namespace HealthcareSystem.Entity.DoctorModel
             return doctorCollection.Find(item => item.password == password & item.email == email).FirstOrDefault();
 
         }
+        
+        
 
     }
     }

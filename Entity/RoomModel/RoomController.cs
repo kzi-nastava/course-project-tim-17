@@ -7,9 +7,9 @@ namespace HealthcareSystem.Entity.RoomModel
     {
         public IMongoCollection<Room> roomCollection;
         
-        public RoomController(IMongoDatabase database,string roomType)
+        public RoomController(IMongoDatabase database)
         {
-            this.roomCollection = database.GetCollection<Room>(roomType);
+            this.roomCollection = database.GetCollection<Room>("Rooms");
 
 
         }
