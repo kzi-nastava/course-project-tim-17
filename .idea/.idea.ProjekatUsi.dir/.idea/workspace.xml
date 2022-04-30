@@ -4,7 +4,9 @@
     <projectFile>Projekat USI.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b34d0b7-13a6-48f1-9e28-f5b4afdb0432" name="Changes" comment="" />
+    <list default="true" id="3b34d0b7-13a6-48f1-9e28-f5b4afdb0432" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjekatUsi.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjekatUsi.dir/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,6 +71,8 @@
       <workItem from="1651088226057" duration="1572000" />
       <workItem from="1651090591073" duration="1572000" />
       <workItem from="1651254054366" duration="23571000" />
+      <workItem from="1651284824709" duration="231000" />
+      <workItem from="1651310946732" duration="872000" />
     </task>
     <servers />
   </component>
