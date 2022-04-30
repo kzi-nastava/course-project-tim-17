@@ -6,7 +6,7 @@ namespace HealthcareSystem.Entity.RoomModel
 class MoveEquipmentRequest {
     public ObjectId _id{get;set;}
     [BsonElement("moveDate")]
-    public DateOnly moveDate{get;set;}
+    public DateTime moveDate{get;set;}
     [BsonElement("moveFrom")]
     public ObjectId moveFrom{get;set;}
     [BsonElement("moveTo")]
@@ -14,7 +14,7 @@ class MoveEquipmentRequest {
     [BsonElement("equipment")]
     public Equipment equipment{get;set;}
 
-    public MoveEquipmentRequest(DateOnly moveDate,ObjectId moveFrom,ObjectId moveTo,Equipment equipment) {
+    public MoveEquipmentRequest(DateTime moveDate,ObjectId moveFrom,ObjectId moveTo,Equipment equipment) {
         _id = ObjectId.GenerateNewId();
         this.moveDate = moveDate;
         this.moveTo = moveTo;

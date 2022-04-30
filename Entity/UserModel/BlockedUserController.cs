@@ -14,7 +14,7 @@ namespace HealthcareSystem.Entity.UserModel
             this.userCollection = database.GetCollection<User>("Users");
 
         }
-        public void getAllUsers()
+        public void GetAllUsers()
         {
             List<BlockedUser> blockedUsers = blockedUserCollection.Find(item => true).ToList();
 
@@ -27,29 +27,43 @@ namespace HealthcareSystem.Entity.UserModel
         {
             blockedUserCollection.InsertOne(blockedUser);
         }
-        public BlockedUser findById(ObjectId id)
+        public BlockedUser FindById(ObjectId id)
         {
             return blockedUserCollection.Find(item => item._id == id).FirstOrDefault();
         }
-        public BlockedUser checkIfBlocked(ObjectId id)
+
+        public BlockedUser FindByUserId(ObjectId id)
+        {
+            return blockedUserCollection.Find(item => item.userId == id).FirstOrDefault();
+        }
+        public BlockedUser CheckIfBlocked(ObjectId id)
         {
             return blockedUserCollection.Find(item => item.userId == id).FirstOrDefault();
         }
 
 
-        public User getBlockedUser(ObjectId id)
+        public User GetBlockedUser(ObjectId id)
         {
             return userCollection.Find(item => item._id == id).FirstOrDefault();
            
         }
 
-        public void pritBlockedUsers() {
+        public void Unblock(ObjectId id)
+        {
+            blockedUserCollection.DeleteOne(item => item._id == id);
+        }
+
+
+        public void PrintBlockedUsers() {
             var list = blockedUserCollection.Find(item => true).ToList();
             foreach(BlockedUser bu in list) {
-                User u = getBlockedUser(bu.userId);
-                Console.Write(u.name) ;
-                Console.Write(" ") ;
-                Console.WriteLine(u.lastName) ;
+                User u = GetBlockedUser(bu.userId);
+                Console.WriteLine(" -----------------------------");
+                Console.WriteLine("Name: " + " " + u.name);
+                Console.WriteLine("Last name: " + " " + u.lastName);
+                Console.WriteLine("Email: " + " " + u.email);
+                Console.WriteLine("Blocked by: " + " " + bu.blockedBy.ToString());
+                Console.WriteLine();
             }
         }
 
