@@ -219,7 +219,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
 
             DateTime enteredDateTime = new DateTime(Int32.Parse(year), Int32.Parse(month), Int32.Parse(day));
             List<Apointment> certainDoctorsApointments = doctorRepositories.apointmentController.apointmentCollection
-                .Find(item => item.doctorId == doctor._id & item.dateTime>enteredDateTime).ToList(); //Fix to show for certain date and next 3 days
+                .Find(item => item.doctorId == doctor._id & item.dateTime>enteredDateTime & item.dateTime < enteredDateTime.AddDays(4)).ToList(); 
             foreach (Apointment apointment in certainDoctorsApointments)
             {
                 User patient = doctorRepositories.userController.findById(apointment.patientId);

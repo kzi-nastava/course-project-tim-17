@@ -4,17 +4,7 @@
     <projectFile>Projekat USI.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b34d0b7-13a6-48f1-9e28-f5b4afdb0432" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjekatUsi.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjekatUsi.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/ApointmentModel/AppointmentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/ApointmentModel/AppointmentService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/DoctorUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/DoctorUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Projekat USI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Projekat USI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Projekat USI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Projekat USI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Projekat USI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/ref/Projekat USI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/ref/Projekat USI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/refint/Projekat USI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/refint/Projekat USI.dll" afterDir="false" />
-    </list>
+    <list default="true" id="3b34d0b7-13a6-48f1-9e28-f5b4afdb0432" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +68,7 @@
       <updated>1651088218187</updated>
       <workItem from="1651088226057" duration="1572000" />
       <workItem from="1651090591073" duration="1572000" />
-      <workItem from="1651254054366" duration="23253000" />
+      <workItem from="1651254054366" duration="23571000" />
     </task>
     <servers />
   </component>
