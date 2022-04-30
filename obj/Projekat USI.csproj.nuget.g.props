@@ -4,12 +4,21 @@
     <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+<<<<<<< HEAD
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/home/slepilepi/.nuget/packages/</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/home/slepilepi/.nuget/packages/</NuGetPackageFolders>
+=======
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/home/zare/.nuget/packages/</NuGetPackageRoot>
     <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/home/zare/.nuget/packages/</NuGetPackageFolders>
+>>>>>>> 459dab3e6b2e7d0f7295dd71bdfdcfd2ff3159e1
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
     <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.0.0</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+<<<<<<< HEAD
+    <SourceRoot Include="/home/slepilepi/.nuget/packages/" />
+=======
     <SourceRoot Include="/home/zare/.nuget/packages/" />
+>>>>>>> 459dab3e6b2e7d0f7295dd71bdfdcfd2ff3159e1
   </ItemGroup>
 </Project>
