@@ -20,6 +20,35 @@ namespace HealthcareSystem.Entity.RoomModel
             this.type = type;
             this._id = ObjectId.GenerateNewId();
         }
+
+        public override string ToString()
+        {
+            string roomFormated = "Name: " + this.name + " Type:" + this.type.ToString() + "\n"; 
+            roomFormated+= "    Equipment: \n";
+            foreach(Equipment equipment in equipments) {
+                roomFormated+= "        Item Name: " + equipment.item + "Quantity in a room: " + equipment.quantity.ToString() + "\n";
+            }
+            return roomFormated;
+        }
+
+        public bool CheckIfEquipmentIsAvaliable(Equipment equipmentForCheck){
+            foreach (Equipment equipment in equipments) {
+                if(equipment.item == equipmentForCheck.item){
+                    if(equipment.quantity > equipmentForCheck.quantity)return true;
+                };
+            }
+            return false;
+            
+
+        }
+
+        public bool ContainItem(string itemName) {
+            foreach (Equipment equipment in equipments) {
+                if(equipment.item == itemName)return true;
+            }
+            return false;
+
+        }
     }
 
 
