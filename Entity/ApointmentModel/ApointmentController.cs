@@ -38,6 +38,9 @@ namespace HealthcareSystem.Entity.ApointmentModel
             apointmentCollection.DeleteOne(item => item._id == apointment._id);
         }
 
+        public Apointment FindById(ObjectId id) {
+            return apointmentCollection.Find(item => item._id == id).FirstOrDefault();
+        }
     }
 }
 
