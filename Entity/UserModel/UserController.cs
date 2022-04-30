@@ -11,32 +11,51 @@ namespace HealthcareSystem.Entity.UserModel
             this.userCollection = database.GetCollection<User>("Users");
 
         }
-        public void getAllUsers()
+        public List<User> getAllUsers()
         {
             List<User> users = userCollection.Find(item => true).ToList();
 
-            foreach (User user in users)
-            {
-                Console.WriteLine(user.name);
-            }
+            return users;
         }
+
+     
         public void InsertToCollection(User user)
         {
             userCollection.InsertOne(user);
         }
-        public User findById(ObjectId id)
+        public User FindById(ObjectId id)
         {
             return userCollection.Find(item => item._id == id).FirstOrDefault();
         }
 
+        public User FindByEmailAndPassword(string password, string email)
+        {
+            return userCollection.Find(item => item.password == password & item.email == email).FirstOrDefault();
+        }
+
+        public User FindByEmail(string email)
+        {
+            return userCollection.Find(item => item.email == email).FirstOrDefault();
+        }
 
 
-        public User checkCredentials(string email, string password)
+
+        public User CheckCredentials(string email, string password)
         {
             return userCollection.Find(item => item.password == password & item.email == email).FirstOrDefault();
            
         }
 
+
+        public void DeleteFromCollection(ObjectId id) {
+            userCollection.DeleteOne(item => item._id == id);
+        }
+
+        public void Update(User user)
+        {
+          userCollection.ReplaceOne(item => item._id == user._id, user);
+
+        }
     }
 
     }

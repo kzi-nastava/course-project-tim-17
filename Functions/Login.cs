@@ -5,14 +5,14 @@ using MongoDB.Driver;
 namespace HealthcareSystem.Functions;
 
 static class Login {
-    public static User validate(IMongoDatabase db,string email,string password) {
+    public static User Validate(IMongoDatabase db,string email,string password) {
         var userCollection = db.GetCollection<User>("Users");
         var doctorCardCollection = db.GetCollection<Doctor>("Doctors");
         UserController uc = new UserController(db);
         DoctorController dc = new DoctorController(db);
 
 
-        User loggedUser = uc.checkCredentials(email, password);
+        User loggedUser = uc.CheckCredentials(email, password);
         BlockedUserController blockedUserController = new BlockedUserController(db);
 
 
@@ -25,7 +25,8 @@ static class Login {
             }
         }
         if (loggedUser != null) {
-            if (blockedUserController.checkIfBlocked(loggedUser._id) != null) {
+
+            if (blockedUserController.CheckIfBlocked(loggedUser._id) != null) {
                 Console.WriteLine("Sorry, you are blocked! ");
                 return null;
             }

@@ -1,17 +1,16 @@
 ﻿﻿using HealthcareSystem.Entity.DrugModel;
 using HealthcareSystem.Entity;
 using HealthcareSystem.Entity.RoomModel;
-using MongoDB.Driver;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.CheckModel;
 using HealthcareSystem.Entity.HealthCardModel;
-using MongoDB.Bson;
 using HealthcareSystem.Functions;
- using HealthcareSystem.RoleControllers;
- using HealthcareSystem.UI;
+using HealthcareSystem.RoleControllers;
+using HealthcareSystem.UI;
+using MongoDB.Driver;
 
 namespace HealthcareSystem.AppStart;
 
@@ -22,24 +21,29 @@ static class Start
 
     public static void ProgramStart()
     {
-
-
-
         var settings = MongoClientSettings.FromConnectionString("mongodb+srv://Tim17:UXGhApWVw9oc6VGg@cluster0.se6mz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
         settings.ServerApi = new ServerApi(ServerApiVersion.V1);
         var client = new MongoClient(settings);
         var database = client.GetDatabase("USI");
+        UserController uc = new UserController(database);
+        HealthCardController hc = new HealthCardController(database);
 
+        Console.WriteLine(uc.userCollection);
 
         User loggedUser = null;
         Boolean notLogged = true;
+        string choice = "";
         while (notLogged) {
+            if(choice == "x")
+            {
+                break;
+            }
             Console.WriteLine();
             Console.WriteLine("WELCOME TO OUR HEALTHCARE SYSTEM");
             Console.WriteLine("1 -> Log in");
-            Console.WriteLine("2  -> Exit");
+            Console.WriteLine("x  -> Exit");
             Console.WriteLine("Choose option: ");
-            string choice = Console.ReadLine();
+            choice = Console.ReadLine();
             if (choice.Equals("1"))
             {
                 Console.Write("Enter e-mail: ");
@@ -48,26 +52,26 @@ static class Start
                 Console.Write("Enter password: ");
                 string password = Console.ReadLine();
                 Console.WriteLine();
-                loggedUser = Login.validate(database, email, password);
+                loggedUser = Login.Validate(database, email, password);
 
 
                 if (loggedUser != null)
                 {
                     Console.WriteLine("HELLO!");
-                    Console.WriteLine("You are logged in as: ");
-                    Console.WriteLine(loggedUser.name, loggedUser.lastName);
+                    Console.WriteLine("You are logged in as: " + loggedUser.role.ToString().ToUpper() + "  ->  " + loggedUser.name + " " + loggedUser.lastName);
                     if (loggedUser != null && loggedUser.role == Role.MANAGER)
                     {
                         ManagerControllers managerControllers = new ManagerControllers(database);
                         ManagerUI ui = new ManagerUI(managerControllers, loggedUser);
                         loggedUser = null;
-                        Console.WriteLine("Manager");
+                   
                     }
                     if (loggedUser != null && loggedUser.role == Role.SECRETARY) 
                     {
-                        // SecretaryUI ui = new SecretaryUI(database, loggedUser);
-                        // loggedUser = null;
-                        Console.WriteLine("Secretary");
+                        SecretaryControllers secretaryControllers = new SecretaryControllers(database);
+                        SecretaryUI ui = new SecretaryUI(secretaryControllers, loggedUser);
+                        loggedUser = null;
+                  
                     }
 
                     if (loggedUser != null && loggedUser.role == Role.DOCTOR)
@@ -75,16 +79,13 @@ static class Start
                         DoctorRepositories doctorRepositories = new DoctorRepositories(database);
                         DoctorUi ui = new DoctorUi((Doctor)loggedUser, doctorRepositories);
                         loggedUser = null;
+                    
                         
                     }
 
-                    notLogged = false;
                 }
             }
-            else if (choice.Equals("2")){
-                break;
-            }
-
+          
         }
 
     }

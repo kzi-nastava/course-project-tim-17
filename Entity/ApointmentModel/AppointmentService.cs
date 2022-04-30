@@ -115,7 +115,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
 
             foreach (Apointment apointment in apointments)
             {
-                User patient = doctorRepositories.userController.findById(apointment.patientId);
+                User patient = doctorRepositories.userController.FindById(apointment.patientId);
                 Room room = doctorRepositories.roomController.findById(apointment.roomId);
                 Console.WriteLine(apointment._id.ToString() + "|" +apointment.type.ToString() + "|" + apointment.dateTime.ToString("MM/dd/yyyy") + " "
                                   + apointment.dateTime.ToString("t") + "|" + doctor.name + " " + doctor.lastName
@@ -222,7 +222,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
                 .Find(item => item.doctorId == doctor._id & item.dateTime>enteredDateTime & item.dateTime < enteredDateTime.AddDays(4)).ToList(); 
             foreach (Apointment apointment in certainDoctorsApointments)
             {
-                User patient = doctorRepositories.userController.findById(apointment.patientId);
+                User patient = doctorRepositories.userController.FindById(apointment.patientId);
                 Room room = doctorRepositories.roomController.findById(apointment.roomId);
                 Console.WriteLine(apointment._id.ToString() + "|" +apointment.type.ToString() + "|" + apointment.dateTime.ToString("MM/dd/yyyy") + " "
                                   + apointment.dateTime.ToString("t") + "|" + doctor.name + " " + doctor.lastName
