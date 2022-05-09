@@ -7,6 +7,7 @@ using HealthcareSystem.RoleControllers;
 using HealthcareSystem.UI;
 using HealthcareSystem.UI.DoctorView;
 using HealthcareSystem.UI.Manager;
+using HealthcareSystem.UI.Patient;
 using MongoDB.Driver;
 
 namespace HealthcareSystem.Functions
@@ -71,6 +72,12 @@ namespace HealthcareSystem.Functions
                 DoctorGUI doctorGUI = new DoctorGUI((Doctor)loggedUser, doctorRepositories);
                 doctorGUI.Show();
 
+            }
+            else if (loggedUser.role == Role.PATIENT)
+            {
+                PatientRepositories patientRepositories = new PatientRepositories(database);
+                PatientGUI patientGUI = new PatientGUI(loggedUser, patientRepositories);
+                patientGUI.Show();
             }
         
         }

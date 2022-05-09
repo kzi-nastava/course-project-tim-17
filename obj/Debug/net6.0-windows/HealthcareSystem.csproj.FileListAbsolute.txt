@@ -33,6 +33,7 @@ C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\Healthca
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.Manager.ManagerGUI.resources
+<<<<<<< HEAD
 C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.exe
 C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.deps.json
 C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.runtimeconfig.json
@@ -69,3 +70,41 @@ C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.pdb
 C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
 C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
 C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DoctorGUI.resources
+=======
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\HealthcareSystem.exe
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\HealthcareSystem.deps.json
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\HealthcareSystem.runtimeconfig.json
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\HealthcareSystem.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\HealthcareSystem.pdb
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\DnsClient.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\MongoDB.Bson.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\MongoDB.Driver.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\MongoDB.Driver.Core.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\MongoDB.Libmongocrypt.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\SharpCompress.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\runtimes\linux\native\libsnappy64.so
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\runtimes\linux\native\libzstd.so
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\runtimes\osx\native\libsnappy64.dylib
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\runtimes\osx\native\libzstd.dylib
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\runtimes\win\native\libzstd.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\runtimes\win\native\snappy32.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\runtimes\win\native\snappy64.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\runtimes\linux\native\libmongocrypt.so
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\bin\Debug\net6.0-windows\runtimes\win\native\mongocrypt.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\HealthcareSystem.csproj.AssemblyReference.cache
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\HealthcareSystem.Functions.LoginGUI.resources
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\HealthcareSystem.UI.Manager.ManagerGUI.resources
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\HealthcareSystem.csproj.GenerateResource.cache
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\HealthcareSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfoInputs.cache
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfo.cs
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CoreCompileInputs.cache
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CopyComplete
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\HealthcareSystem.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\refint\HealthcareSystem.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\HealthcareSystem.pdb
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.PatientGUI.resources
+>>>>>>> nemanja2

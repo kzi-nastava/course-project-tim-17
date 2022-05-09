@@ -624,19 +624,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dusan\\.nuget\\packages\\": {}
+    "C:\\Users\\SlepiLepi\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Fakultet materijali\\ProjekatUSI\\HealthcareSystem.csproj",
+      "projectUniqueName": "C:\\Users\\SlepiLepi\\Fakultet\\USI\\Projekat 2\\HealthcareSystem.csproj",
       "projectName": "HealthcareSystem",
-      "projectPath": "C:\\Fakultet materijali\\ProjekatUSI\\HealthcareSystem.csproj",
-      "packagesPath": "C:\\Users\\Dusan\\.nuget\\packages\\",
-      "outputPath": "C:\\Fakultet materijali\\ProjekatUSI\\obj\\",
+      "projectPath": "C:\\Users\\SlepiLepi\\Fakultet\\USI\\Projekat 2\\HealthcareSystem.csproj",
+      "packagesPath": "C:\\Users\\SlepiLepi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\SlepiLepi\\Fakultet\\USI\\Projekat 2\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Dusan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\SlepiLepi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -688,5 +693,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\SlepiLepi\\Fakultet\\USI\\Projekat 2\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
