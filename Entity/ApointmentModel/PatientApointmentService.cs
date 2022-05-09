@@ -14,30 +14,16 @@ namespace HealthcareSystem.Entity.ApointmentModel
 {
     class ApointmentService{
         public User loggedUser {get; set;}
-        public PatientControllers patientControllers {get;set;}
-        public ApointmentController apointmentController {get; set;}
-        public DoctorController doctorControllers {get; set;}
-        public RoomController roomController {get; set;}
-        public UserActionController userActionController {get; set;}
-        public BlockedUserController blockedUserController {get; set;}
-        public AppointmentRequestsController appointmentRequestsController {get; set;}
-        public CheckAppointmentRequestController checkAppointmentRequestController {get; set;}
-        public ApointmentService(PatientControllers patientControllers, ApointmentController apointmentController, DoctorController doctorControllers, RoomController roomController, UserActionController userActionController, BlockedUserController blockedUserController, AppointmentRequestsController appointmentRequestsController, CheckAppointmentRequestController checkAppointmentRequestController, User loggedUser)
+        public PatientRepositories patientRepositories { get; set; }
+        public ApointmentService(PatientRepositories patientRepositories, User loggedUser)
         {
+            this.patientRepositories = patientRepositories;
             this.loggedUser = loggedUser;
-            this.roomController = roomController;
-            this.apointmentController = apointmentController;
-            this.patientControllers = patientControllers;
-            this.doctorControllers = doctorControllers;
-            this.userActionController = userActionController;
-            this.blockedUserController = blockedUserController;
-            this.appointmentRequestsController = appointmentRequestsController;
-            this.checkAppointmentRequestController = checkAppointmentRequestController;
         }
 
         public void trollCheck(){
             int create = 0, change = 0;
-            List<UserAction> userActions = userActionController.findAllByUser(loggedUser._id);
+            List<UserAction> userActions = patientRepositories.userActionController.findAllByUser(loggedUser._id);
             foreach(UserAction userAction in userActions){
                 if(DateTime.Compare(userAction.dateTime, DateTime.Today.AddMinutes(-43200))>0){
                     if(userAction.actionStatus == ActionStatus.CREATE){
@@ -47,9 +33,10 @@ namespace HealthcareSystem.Entity.ApointmentModel
                     }
                 }
             }
+            Console.WriteLine(change);
             if(create >= 8 || change >= 5){
                 BlockedUser blockedUser = new BlockedUser(loggedUser._id, BlockedBy.SYSTEM);
-                blockedUserController.InsertToCollection(blockedUser);
+                patientRepositories.blockedUserController.InsertToCollection(blockedUser);
                 Console.WriteLine("The account is blocked because too much changes were made to the appointments. Contact secretary for more info.");
                 System.Environment.Exit(1);
             }
@@ -87,9 +74,9 @@ namespace HealthcareSystem.Entity.ApointmentModel
                 }
             }
             
-            List<Doctor> allDoctors = patientControllers.doctorCollection.Find(Item => true).ToList();
-            List<Apointment> allApointments = patientControllers.apointmentCollection.Find(Item => true).ToList();
-            List<Room> allRooms = patientControllers.roomCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = patientRepositories.patientController.doctorCollection.Find(Item => true).ToList();
+            List<Apointment> allApointments = patientRepositories.patientController.apointmentCollection.Find(Item => true).ToList();
+            List<Room> allRooms = patientRepositories.patientController.roomCollection.Find(Item => true).ToList();
             List<ObjectId> unavailableRoomId = new List<ObjectId>();
             List<ObjectId> unavailableDoctorId = new List<ObjectId>();
             foreach(Apointment appointment in allApointments){
@@ -141,10 +128,10 @@ namespace HealthcareSystem.Entity.ApointmentModel
                     }
                 }
                 Apointment appointmentsubmit = new Apointment(date, apointmenttype, doctorsubmit, roomsubmit, loggedUser._id);
-                apointmentController.InsertToCollection(appointmentsubmit);
+                patientRepositories.appointmentController.InsertToCollection(appointmentsubmit);
                 Console.WriteLine("Appointment inserted!");
                 UserAction userAction = new UserAction(loggedUser._id, appointmentsubmit._id, DateTime.Today, ActionStatus.CREATE);
-                userActionController.InsertToCollection(userAction);
+                patientRepositories.userActionController.InsertToCollection(userAction);
                 
             }
         trollCheck();
@@ -152,9 +139,9 @@ namespace HealthcareSystem.Entity.ApointmentModel
 
         public void changeApointment(){
             DateTime appointmentDate = new DateTime();
-            Apointment apointmentOld = apointmentController.getAllAppointments()[0];
+            Apointment apointmentOld = patientRepositories.appointmentController.getAllAppointments()[0];
             bool isFound = false;
-            List<Apointment> allApointments = patientControllers.apointmentCollection.Find(Item => true).ToList();
+            List<Apointment> allApointments = patientRepositories.patientController.apointmentCollection.Find(Item => true).ToList();
             while (true){
                 Console.WriteLine("Insert appointment date (format dd/mm/yyyy hh:mm)");
                 string rawdate = Console.ReadLine();
@@ -162,7 +149,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
                 if (appointmentDate < DateTime.Today){
                     Console.WriteLine("Inserted date has already passed. Try again.");
                 }else{
-                    List<Apointment> apointmentList = apointmentController.findAllByUser(loggedUser._id);
+                    List<Apointment> apointmentList = patientRepositories.appointmentController.findAllByUser(loggedUser._id);
                     foreach(Apointment apointmentTemp in apointmentList){
                         if(DateTime.Compare(apointmentTemp.dateTime, appointmentDate) == 0){
                             isFound = true;
@@ -212,7 +199,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
                         }
                     }
 
-                    List<Room> allRooms = patientControllers.roomCollection.Find(Item => true).ToList();
+                    List<Room> allRooms = patientRepositories.patientController.roomCollection.Find(Item => true).ToList();
                     List<ObjectId> unavailableRoomId = new List<ObjectId>();
                     List<ObjectId> unavailableDoctorId = new List<ObjectId>();
                     foreach(Apointment appointment in allApointments){
@@ -251,18 +238,18 @@ namespace HealthcareSystem.Entity.ApointmentModel
                         Console.WriteLine(DateTime.Now.AddMinutes(2880));
                         if(DateTime.Compare (apointmentOld.dateTime, DateTime.Now.AddMinutes(2880)) <0){
                             AppointmentRequests appointmentRequests = new AppointmentRequests(apointmentOld.dateTime, apointmentOld.type, apointmentOld.doctorId, roomSubmit, loggedUser._id, apointmentOld._id);
-                            appointmentRequestsController.InsertToCollection(appointmentRequests);
+                            patientRepositories.appointmentRequestsController.InsertToCollection(appointmentRequests);
                             CheckAppointementRequest checkAppointmentRequest = new CheckAppointementRequest(appointmentRequests._id, RequestState.EDIT);
-                            checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
+                            patientRepositories.checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
                             Console.WriteLine("The request has been sent to the system.");
                         }else{
                             apointmentOld.dateTime = newAppointmentDate;
                             apointmentOld.roomId = roomSubmit;
-                            apointmentController.replaceApointment(apointmentOld);
+                            patientRepositories.appointmentController.replaceApointment(apointmentOld);
                             Console.WriteLine("Apointment edited successfully");
-                            UserAction userAction = new UserAction(loggedUser._id, apointmentOld._id, DateTime.Today, ActionStatus.CHANGE);
-                            userActionController.InsertToCollection(userAction);
                         }
+                        UserAction userAction = new UserAction(loggedUser._id, apointmentOld._id, DateTime.Today, ActionStatus.CHANGE);
+                        patientRepositories.userActionController.InsertToCollection(userAction);
                     }
                 }
                 if(option == "2"){
@@ -284,7 +271,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
                             Console.WriteLine("Typed value isn't valid. Try again.");
                         }
                     }
-                    List<Room> allRooms = patientControllers.roomCollection.Find(Item => true).ToList();
+                    List<Room> allRooms = patientRepositories.patientController.roomCollection.Find(Item => true).ToList();
                     List<ObjectId> unavailableRoomId = new List<ObjectId>();
                     foreach(Apointment appointment in allApointments){
                         DateTime startPoint = appointment.dateTime.AddMinutes(-15);
@@ -314,24 +301,24 @@ namespace HealthcareSystem.Entity.ApointmentModel
                         ObjectId roomsubmit = allRooms[0]._id;
                         if(DateTime.Compare (apointmentOld.dateTime, DateTime.Now.AddMinutes(2880)) <0){
                             AppointmentRequests appointmentRequests = new AppointmentRequests(apointmentOld.dateTime, apointmentType, apointmentOld.doctorId, roomsubmit, loggedUser._id, apointmentOld._id);
-                            appointmentRequestsController.InsertToCollection(appointmentRequests);
+                            patientRepositories.appointmentRequestsController.InsertToCollection(appointmentRequests);
                             CheckAppointementRequest checkAppointmentRequest = new CheckAppointementRequest(appointmentRequests._id, RequestState.EDIT);
-                            checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
+                            patientRepositories.checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
                             Console.WriteLine("The request has been sent to the system.");
                         }else{
                             
                             apointmentOld.type = apointmentType;
                             apointmentOld.roomId = roomsubmit;
-                            apointmentController.replaceApointment(apointmentOld);
+                            patientRepositories.appointmentController.replaceApointment(apointmentOld);
                             Console.WriteLine("Apointment edited successfully");
-                            UserAction userAction = new UserAction(loggedUser._id, apointmentOld._id, DateTime.Today, ActionStatus.CHANGE);
-                            userActionController.InsertToCollection(userAction);
                         }
-                        
+                        UserAction userAction = new UserAction(loggedUser._id, apointmentOld._id, DateTime.Today, ActionStatus.CHANGE);
+                        patientRepositories.userActionController.InsertToCollection(userAction);
+
                     }
                 }
                 if(option == "3"){
-                    List<Doctor> allDoctors = patientControllers.doctorCollection.Find(Item => true).ToList();
+                    List<Doctor> allDoctors = patientRepositories.patientController.doctorCollection.Find(Item => true).ToList();
                     List<ObjectId> unavailableDoctorId = new List<ObjectId>();
                     foreach(Apointment appointment in allApointments){
                         DateTime startPoint = appointment.dateTime.AddMinutes(-15);
@@ -373,18 +360,18 @@ namespace HealthcareSystem.Entity.ApointmentModel
                         Console.WriteLine(DateTime.Now.AddMinutes(2880));
                         if(DateTime.Compare (apointmentOld.dateTime, DateTime.Now.AddMinutes(2880)) <0){
                             AppointmentRequests appointmentRequests = new AppointmentRequests(apointmentOld.dateTime, apointmentOld.type, doctorsubmit, apointmentOld.roomId, loggedUser._id, apointmentOld._id);
-                            appointmentRequestsController.InsertToCollection(appointmentRequests);
+                            patientRepositories.appointmentRequestsController.InsertToCollection(appointmentRequests);
                             CheckAppointementRequest checkAppointmentRequest = new CheckAppointementRequest(appointmentRequests._id, RequestState.EDIT);
-                            checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
+                            patientRepositories.checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
                             Console.WriteLine("The request has been sent to the system.");
                         }else{
                             apointmentOld.doctorId = doctorsubmit;
-                            apointmentController.replaceApointment(apointmentOld);
+                            patientRepositories.appointmentController.replaceApointment(apointmentOld);
                             Console.WriteLine("Apointment edited successfully");
-                            UserAction userAction = new UserAction(loggedUser._id, apointmentOld._id, DateTime.Today, ActionStatus.CHANGE);
-                            userActionController.InsertToCollection(userAction);
                         }
-                        
+                        UserAction userAction = new UserAction(loggedUser._id, apointmentOld._id, DateTime.Today, ActionStatus.CHANGE);
+                        patientRepositories.userActionController.InsertToCollection(userAction);
+
                     }
                 }
 
@@ -394,9 +381,9 @@ namespace HealthcareSystem.Entity.ApointmentModel
 
         public void deleteApointment(){
             DateTime appointmentDate = new DateTime();
-            Apointment apointmentDelete = apointmentController.getAllAppointments()[0];
+            Apointment apointmentDelete = patientRepositories.appointmentController.getAllAppointments()[0];
             bool isFound = false;
-            List<Apointment> allApointments = patientControllers.apointmentCollection.Find(Item => true).ToList();
+            List<Apointment> allApointments = patientRepositories.patientController.apointmentCollection.Find(Item => true).ToList();
             while (true){
                 Console.WriteLine("Insert appointment date (format dd/mm/yyyy hh:mm)");
                 string rawdate = Console.ReadLine();
@@ -404,7 +391,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
                 if (appointmentDate < DateTime.Today){
                     Console.WriteLine("Inserted date has already passed. Try again.");
                 }else{
-                    List<Apointment> apointmentList = apointmentController.findAllByUser(loggedUser._id);
+                    List<Apointment> apointmentList = patientRepositories.appointmentController.findAllByUser(loggedUser._id);
                     foreach(Apointment apointmentTemp in apointmentList){
                         if(DateTime.Compare(apointmentTemp.dateTime, appointmentDate) == 0){
                             isFound = true;
@@ -421,20 +408,20 @@ namespace HealthcareSystem.Entity.ApointmentModel
             }
             if(DateTime.Compare (apointmentDelete.dateTime, DateTime.Now.AddMinutes(2880)) <0){
                 CheckAppointementRequest checkAppointmentRequest = new CheckAppointementRequest(apointmentDelete._id, RequestState.DELETE);
-                checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
+                patientRepositories.checkAppointmentRequestController.InsertToCollection(checkAppointmentRequest);
                 Console.WriteLine("The request has been sent to the system.");
             }else{
-                apointmentController.DeleteApointment(apointmentDelete);
+                patientRepositories.appointmentController.DeleteApointment(apointmentDelete);
                 Console.WriteLine("Appointment has been deleted!");
-                UserAction userAction = new UserAction(loggedUser._id, apointmentDelete._id, DateTime.Today, ActionStatus.CREATE);
-                userActionController.InsertToCollection(userAction);
             }
-        trollCheck();
+            UserAction userAction = new UserAction(loggedUser._id, apointmentDelete._id, DateTime.Today, ActionStatus.CREATE);
+            patientRepositories.userActionController.InsertToCollection(userAction);
+            trollCheck();
         }
 
         public void readApointment(){
             List<Apointment> selectedApointments = new List<Apointment>();
-            List<Apointment> allApointments = patientControllers.apointmentCollection.Find(Item => true).ToList();
+            List<Apointment> allApointments = patientRepositories.patientController.apointmentCollection.Find(Item => true).ToList();
             foreach(Apointment apointment in allApointments){
                 if(apointment.patientId == loggedUser._id){
                     selectedApointments.Add(apointment);
@@ -444,8 +431,8 @@ namespace HealthcareSystem.Entity.ApointmentModel
             foreach(Apointment apointment in sortedList){
                 Console.WriteLine("-------------------------------");
                 Console.WriteLine("Date: {0}", apointment.dateTime);
-                Console.WriteLine("Doctor: {0} {1}", doctorControllers.findById(apointment.doctorId).name, doctorControllers.findById(apointment.doctorId).lastName);
-                Console.WriteLine("Room: {0}", roomController.findById(apointment.roomId).name);
+                Console.WriteLine("Doctor: {0} {1}", patientRepositories.doctorController.findById(apointment.doctorId).name, patientRepositories.doctorController.findById(apointment.doctorId).lastName);
+                Console.WriteLine("Room: {0}", patientRepositories.roomController.findById(apointment.roomId).name);
                 if(apointment.type == ApointmentType.CHECKUP){
                     Console.WriteLine("Type: Checkup");
                 }else{

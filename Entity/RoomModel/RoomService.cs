@@ -17,7 +17,6 @@ namespace HealthcareSystem.Entity.RoomModel
         {
             Console.Write("Enter room name: ");
             string roomName = Console.ReadLine();
-            int i = 0;
 
             RoomType roomType = ChooseRoomType(); ;
 

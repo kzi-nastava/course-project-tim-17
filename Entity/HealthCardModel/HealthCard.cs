@@ -10,7 +10,6 @@ using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.CheckModel;
 using HealthcareSystem.Entity.HealthCardModel;
-using MongoDB.Bson;
 using HealthcareSystem.Functions;
 namespace HealthcareSystem.Entity.HealthCardModel;
 
