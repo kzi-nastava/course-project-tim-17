@@ -6,6 +6,7 @@ using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using HealthcareSystem.UI;
 using HealthcareSystem.UI.Manager;
+using HealthcareSystem.UI.Secretary;
 using MongoDB.Driver;
 
 namespace HealthcareSystem.Functions
@@ -58,8 +59,15 @@ namespace HealthcareSystem.Functions
                 ManagerGUI managerGUI = new ManagerGUI(loggedUser,managerControllers);
                 managerGUI.Show();
                 
+            }else if (loggedUser.role == Role.SECRETARY)
+            {
+                
+                SecretaryControllers secretaryControllers = new SecretaryControllers(database);
+                SecretaryGUI secretaryGUI = new SecretaryGUI(loggedUser, secretaryControllers);
+                secretaryGUI.Show();
+                
             }
-        
+
         }
     }
 }
