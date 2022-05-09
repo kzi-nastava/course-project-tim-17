@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xmAnrf+dAYn+hPAgufnHY5EAmfrOSeqDJI/I3gNnEAFQVr8NUTc7ARh+6pPiWwMHJOhMPqGfi1XUS2qhJHTB/g==",
+  "dgSpecHash": "qYKTg1EgkMkKawtgbsbRenP38uqU+uqOXdIiFfACmxy7SPhbKjNcOKFH3OybnmBwbr14qBM20PQ1JWIS5GpcGQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\ProjekatUSI.csproj",
+  "projectFilePath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ognje\\.nuget\\packages\\dnsclient\\1.6.0\\dnsclient.1.6.0.nupkg.sha512",
     "C:\\Users\\ognje\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",

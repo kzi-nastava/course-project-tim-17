@@ -629,9 +629,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\ProjekatUSI.csproj",
-      "projectName": "ProjekatUSI",
-      "projectPath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\ProjekatUSI.csproj",
+      "projectUniqueName": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj",
+      "projectName": "HealthcareSystem",
+      "projectPath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj",
       "packagesPath": "C:\\Users\\ognje\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\obj\\",
       "projectStyle": "PackageReference",

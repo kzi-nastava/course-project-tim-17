@@ -20,7 +20,6 @@ C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\runtimes
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\osx\native\libmongocrypt.dylib
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\win\native\mongocrypt.dll
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\ProjekatUSI.csproj.AssemblyReference.cache
-C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\ProjekatUSI.Form1.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\ProjekatUSI.csproj.GenerateResource.cache
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\ProjekatUSI.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\ProjekatUSI.AssemblyInfoInputs.cache
@@ -32,3 +31,4 @@ C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\refint\P
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\ProjekatUSI.pdb
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\ProjekatUSI.genruntimeconfig.cache
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\ref\ProjekatUSI.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.Functions.LoginGUI.resources

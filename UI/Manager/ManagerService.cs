@@ -6,17 +6,17 @@ using HealthcareSystem.RoleControllers;
 using HealthcareSystem.Entity.Enumerations;
 using MongoDB.Bson;
 
-namespace HealthcareSystem.UI
+namespace HealthcareSystem.UI.Manager
 {
-    class ManagerUI
+    class ManagerService
     {
         public User loggedUser { get; set; }
         public ManagerControllers managerControllers { get; set; }
-        public ManagerUI(ManagerControllers managerControllers, User loggedUser)
+        public ManagerService(ManagerControllers managerControllers, User loggedUser)
         {
             this.loggedUser = loggedUser;
             this.managerControllers = managerControllers;
-            this.UI();
+            
         }
 
         public void UI()

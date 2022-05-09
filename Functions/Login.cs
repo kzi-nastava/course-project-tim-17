@@ -1,39 +1,65 @@
+﻿
 
-using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.Entity.DoctorModel;
+using HealthcareSystem.Entity.Enumerations;
+using HealthcareSystem.Entity.UserModel;
+using HealthcareSystem.RoleControllers;
+using HealthcareSystem.UI;
+using HealthcareSystem.UI.Manager;
 using MongoDB.Driver;
-namespace HealthcareSystem.Functions;
 
-static class Login {
-    public static User Validate(IMongoDatabase db,string email,string password) {
-        var userCollection = db.GetCollection<User>("Users");
-        var doctorCardCollection = db.GetCollection<Doctor>("Doctors");
-        UserController uc = new UserController(db);
-        DoctorController dc = new DoctorController(db);
+namespace HealthcareSystem.Functions
+{
+    class Login
 
+    {
 
-        User loggedUser = uc.CheckCredentials(email, password);
-        BlockedUserController blockedUserController = new BlockedUserController(db);
+        public UserController userRepository;
 
+        public DoctorController doctorRepository;
 
-        if (loggedUser == null)
-        {
-            loggedUser = (User)dc.checkCredentials(email, password);
-            if (loggedUser == null) {
-                Console.WriteLine("Your email/password are incorrect! Please try again! ");
-                return null;
-            }
-        }
-        if (loggedUser != null) {
+        public BlockedUserController blockedUserRepository;
 
-            if (blockedUserController.CheckIfBlocked(loggedUser._id) != null) {
-                Console.WriteLine("Sorry, you are blocked! ");
-                return null;
-            }
-        }
-        return loggedUser;
+        IMongoDatabase database;
 
-
+        public Login(IMongoDatabase db) {
+            this.userRepository = new UserController(db);
+            this.doctorRepository = new DoctorController(db);
+            this.blockedUserRepository = new BlockedUserController(db);
+            this.database = db;
     }
 
+        public int Validate(string email,string password)
+        {
+
+            
+
+            User loggedUser = userRepository.CheckCredentials(email, password);
+
+            if (loggedUser != null) {
+                if (blockedUserRepository.CheckIfBlocked(loggedUser._id) == null)
+                {
+                    return 1;
+                }
+
+                return 2;
+                
+            }
+
+
+            return 0;
+
+
+        }
+
+        public void SuccessfulLogin(User loggedUser) {
+            if (loggedUser.role == Role.MANAGER) {
+                ManagerControllers managerControllers = new ManagerControllers(database);
+                ManagerGUI managerGUI = new ManagerGUI(loggedUser,managerControllers);
+                managerGUI.Show();
+                
+            }
+        
+        }
+    }
 }
