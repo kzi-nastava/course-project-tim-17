@@ -5,6 +5,7 @@ using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using HealthcareSystem.UI;
+using HealthcareSystem.UI.DoctorView;
 using HealthcareSystem.UI.Manager;
 using MongoDB.Driver;
 
@@ -46,6 +47,12 @@ namespace HealthcareSystem.Functions
                 
             }
 
+            loggedUser = doctorRepository.checkCredentials(email, password);
+            if(loggedUser != null)
+            {
+                return 3;
+            }
+
 
             return 0;
 
@@ -58,6 +65,12 @@ namespace HealthcareSystem.Functions
                 ManagerGUI managerGUI = new ManagerGUI(loggedUser,managerControllers);
                 managerGUI.Show();
                 
+            }
+            else if(loggedUser.role == Role.DOCTOR) {
+                DoctorRepositories doctorRepositories = new DoctorRepositories(database);
+                DoctorGUI doctorGUI = new DoctorGUI((Doctor)loggedUser, doctorRepositories);
+                doctorGUI.Show();
+
             }
         
         }
