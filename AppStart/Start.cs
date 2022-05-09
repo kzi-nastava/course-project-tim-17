@@ -91,15 +91,8 @@ static class Start
 
                     if (loggedUser != null && loggedUser.role == Role.PATIENT)
                     {
-                        PatientControllers patientControllers = new PatientControllers(database);
-                        ApointmentController apointmentController = new ApointmentController(database);
-                        DoctorController doctorController = new DoctorController(database);
-                        RoomController roomController = new RoomController(database);
-                        UserActionController userActionController = new UserActionController(database);
-                        BlockedUserController blockedUserController = new BlockedUserController(database);
-                        AppointmentRequestsController appointmentRequestsController = new AppointmentRequestsController(database);
-                        CheckAppointmentRequestController checkAppointmentRequestController = new CheckAppointmentRequestController (database);
-                        PatientUI ui = new PatientUI(patientControllers, apointmentController, doctorController, roomController, userActionController, blockedUserController, appointmentRequestsController, checkAppointmentRequestController, loggedUser);
+                        PatientRepositories patientRepositories = new PatientRepositories(database);
+                        PatientUI ui = new PatientUI(patientRepositories, loggedUser);
                         loggedUser = null;
                     }
 

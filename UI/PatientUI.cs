@@ -11,31 +11,17 @@ using HealthcareSystem.Entity.CheckAppointmentRequestModel;
 namespace HealthcareSystem.UI
 {
     class PatientUI{
+        public PatientRepositories patientRepositories { get; set; }
         public User loggedUser {get; set;}
-        public PatientControllers patientControllers {get;set;}
-        public ApointmentController apointmentController {get;set;}
-        public DoctorController doctorController {get;set;}
-        public RoomController roomController {get; set;}
-        public UserActionController userActionController {get; set;}
-        public BlockedUserController blockedUserController {get; set;}
-        public AppointmentRequestsController appointmentRequestsController {get; set;}
-        public CheckAppointmentRequestController checkAppointmentRequestController {get; set;}
-        public PatientUI(PatientControllers patientControllers, ApointmentController apointmentController, DoctorController doctorController, RoomController roomController, UserActionController userActionController, BlockedUserController blockedUserController, AppointmentRequestsController appointmentRequestsController, CheckAppointmentRequestController checkAppointmentRequestController, User loggedUser)
+        public PatientUI(PatientRepositories patientRepositories, User loggedUser)
         {
             this.loggedUser = loggedUser;
-            this.patientControllers = patientControllers;
-            this.apointmentController = apointmentController;
-            this.doctorController = doctorController;
-            this.roomController = roomController;
-            this.userActionController = userActionController;
-            this.blockedUserController = blockedUserController;
-            this.appointmentRequestsController = appointmentRequestsController;
-            this.checkAppointmentRequestController = checkAppointmentRequestController;
+            this.patientRepositories = patientRepositories;
             this.UI();
         }
         public void UI(){
             string option = "";
-            ApointmentService apointmentservice = new ApointmentService(patientControllers, apointmentController, doctorController, roomController, userActionController, blockedUserController, appointmentRequestsController, checkAppointmentRequestController, loggedUser);
+            ApointmentService apointmentservice = new ApointmentService(patientRepositories, loggedUser);
             while (true){
                 Console.WriteLine("1. Appointment Scheduling");
                 Console.WriteLine("2. Read Appointment");

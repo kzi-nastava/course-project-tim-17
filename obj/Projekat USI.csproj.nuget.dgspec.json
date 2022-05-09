@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/Projekat USI.csproj": {}
+    "C:\\Users\\SlepiLepi\\Fakultet\\USI\\Projekat\\Projekat USI.csproj": {}
   },
   "projects": {
-    "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/Projekat USI.csproj": {
+    "C:\\Users\\SlepiLepi\\Fakultet\\USI\\Projekat\\Projekat USI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/Projekat USI.csproj",
+        "projectUniqueName": "C:\\Users\\SlepiLepi\\Fakultet\\USI\\Projekat\\Projekat USI.csproj",
         "projectName": "Projekat USI",
-        "projectPath": "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/Projekat USI.csproj",
-        "packagesPath": "/home/slepilepi/.nuget/packages/",
-        "outputPath": "/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/",
+        "projectPath": "C:\\Users\\SlepiLepi\\Fakultet\\USI\\Projekat\\Projekat USI.csproj",
+        "packagesPath": "C:\\Users\\SlepiLepi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\SlepiLepi\\Fakultet\\USI\\Projekat\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/slepilepi/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\SlepiLepi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -53,18 +59,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.2, 6.0.2]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,195 +1,32 @@
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/obj/Debug/net6.0/Projekat USI.dll
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/obj/Debug/net6.0/refint/Projekat USI.dll
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/obj/Debug/net6.0/Projekat USI.pdb
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/Projekat USI
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/Projekat USI.deps.json
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/Projekat USI.runtimeconfig.json
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/Projekat USI.dll
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/Projekat USI.pdb
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/DnsClient.dll
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/MongoDB.Bson.dll
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/MongoDB.Driver.dll
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/MongoDB.Driver.Core.dll
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/MongoDB.Libmongocrypt.dll
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/SharpCompress.dll
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/runtimes/linux/native/libsnappy64.so
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/runtimes/linux/native/libzstd.so
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/runtimes/osx/native/libsnappy64.dylib
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/runtimes/osx/native/libzstd.dylib
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/runtimes/win/native/libzstd.dll
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/runtimes/win/native/snappy32.dll
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/runtimes/win/native/snappy64.dll
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/runtimes/linux/native/libmongocrypt.so
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/runtimes/osx/native/libmongocrypt.dylib
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/bin/Debug/net6.0/runtimes/win/native/mongocrypt.dll
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/obj/Debug/net6.0/Projekat USI.csproj.AssemblyReference.cache
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/obj/Debug/net6.0/Projekat USI.GeneratedMSBuildEditorConfig.editorconfig
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/obj/Debug/net6.0/Projekat USI.AssemblyInfoInputs.cache
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/obj/Debug/net6.0/Projekat USI.AssemblyInfo.cs
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/obj/Debug/net6.0/Projekat USI.csproj.CoreCompileInputs.cache
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/obj/Debug/net6.0/Projekat USI.csproj.CopyComplete
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/obj/Debug/net6.0/Projekat USI.genruntimeconfig.cache
-/home/zare/Documents/II semestar/Uvod u softversko inzenjerstvo/ProjekatUsi/obj/Debug/net6.0/ref/Projekat USI.dll
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/Projekat USI
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/Projekat USI.deps.json
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/Projekat USI.runtimeconfig.json
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/Projekat USI.dll
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/Projekat USI.pdb
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/DnsClient.dll
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/MongoDB.Bson.dll
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/MongoDB.Driver.dll
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/MongoDB.Driver.Core.dll
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/MongoDB.Libmongocrypt.dll
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/SharpCompress.dll
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/runtimes/linux/native/libsnappy64.so
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/runtimes/linux/native/libzstd.so
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/runtimes/osx/native/libsnappy64.dylib
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/runtimes/osx/native/libzstd.dylib
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/runtimes/win/native/libzstd.dll
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/runtimes/win/native/snappy32.dll
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/runtimes/win/native/snappy64.dll
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/runtimes/linux/native/libmongocrypt.so
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/runtimes/osx/native/libmongocrypt.dylib
-/home/ognjen/Desktop/Projekat USI/bin/Debug/net6.0/runtimes/win/native/mongocrypt.dll
-/home/ognjen/Desktop/Projekat USI/obj/Debug/net6.0/Projekat USI.csproj.AssemblyReference.cache
-/home/ognjen/Desktop/Projekat USI/obj/Debug/net6.0/Projekat USI.GeneratedMSBuildEditorConfig.editorconfig
-/home/ognjen/Desktop/Projekat USI/obj/Debug/net6.0/Projekat USI.AssemblyInfoInputs.cache
-/home/ognjen/Desktop/Projekat USI/obj/Debug/net6.0/Projekat USI.AssemblyInfo.cs
-/home/ognjen/Desktop/Projekat USI/obj/Debug/net6.0/Projekat USI.csproj.CoreCompileInputs.cache
-/home/ognjen/Desktop/Projekat USI/obj/Debug/net6.0/Projekat USI.csproj.CopyComplete
-/home/ognjen/Desktop/Projekat USI/obj/Debug/net6.0/Projekat USI.dll
-/home/ognjen/Desktop/Projekat USI/obj/Debug/net6.0/refint/Projekat USI.dll
-/home/ognjen/Desktop/Projekat USI/obj/Debug/net6.0/Projekat USI.pdb
-/home/ognjen/Desktop/Projekat USI/obj/Debug/net6.0/Projekat USI.genruntimeconfig.cache
-/home/ognjen/Desktop/Projekat USI/obj/Debug/net6.0/ref/Projekat USI.dll
-<<<<<<< HEAD
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/Projekat USI.exe
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/Projekat USI.deps.json
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/Projekat USI.runtimeconfig.json
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/Projekat USI.dll
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/Projekat USI.pdb
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/DnsClient.dll
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/MongoDB.Bson.dll
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/MongoDB.Driver.dll
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/MongoDB.Driver.Core.dll
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/MongoDB.Libmongocrypt.dll
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/SharpCompress.dll
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/runtimes/linux/native/libsnappy64.so
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/runtimes/linux/native/libzstd.so
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/runtimes/osx/native/libsnappy64.dylib
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/runtimes/osx/native/libzstd.dylib
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/runtimes/win/native/libzstd.dll
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/runtimes/win/native/snappy32.dll
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/runtimes/win/native/snappy64.dll
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/runtimes/linux/native/libmongocrypt.so
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/runtimes/osx/native/libmongocrypt.dylib
-C:/Users/Anastasija/Desktop/USIProjekat/bin/Debug/net6.0/runtimes/win/native/mongocrypt.dll
-C:/Users/Anastasija/Desktop/USIProjekat/obj/Debug/net6.0/Projekat USI.csproj.AssemblyReference.cache
-C:/Users/Anastasija/Desktop/USIProjekat/obj/Debug/net6.0/Projekat USI.GeneratedMSBuildEditorConfig.editorconfig
-C:/Users/Anastasija/Desktop/USIProjekat/obj/Debug/net6.0/Projekat USI.AssemblyInfoInputs.cache
-C:/Users/Anastasija/Desktop/USIProjekat/obj/Debug/net6.0/Projekat USI.AssemblyInfo.cs
-C:/Users/Anastasija/Desktop/USIProjekat/obj/Debug/net6.0/Projekat USI.csproj.CoreCompileInputs.cache
-C:/Users/Anastasija/Desktop/USIProjekat/obj/Debug/net6.0/Projekat USI.csproj.CopyComplete
-C:/Users/Anastasija/Desktop/USIProjekat/obj/Debug/net6.0/Projekat USI.dll
-C:/Users/Anastasija/Desktop/USIProjekat/obj/Debug/net6.0/refint/Projekat USI.dll
-C:/Users/Anastasija/Desktop/USIProjekat/obj/Debug/net6.0/Projekat USI.pdb
-C:/Users/Anastasija/Desktop/USIProjekat/obj/Debug/net6.0/Projekat USI.genruntimeconfig.cache
-C:/Users/Anastasija/Desktop/USIProjekat/obj/Debug/net6.0/ref/Projekat USI.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/Projekat USI
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/Projekat USI.deps.json
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/Projekat USI.runtimeconfig.json
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/Projekat USI.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/ref/Projekat USI.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/Projekat USI.pdb
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/DnsClient.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/MongoDB.Bson.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/MongoDB.Driver.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/MongoDB.Driver.Core.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/MongoDB.Libmongocrypt.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/SharpCompress.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/runtimes/linux/native/libsnappy64.so
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/runtimes/linux/native/libzstd.so
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/runtimes/osx/native/libsnappy64.dylib
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/runtimes/osx/native/libzstd.dylib
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/runtimes/win/native/libzstd.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/runtimes/win/native/snappy32.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/runtimes/win/native/snappy64.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/runtimes/linux/native/libmongocrypt.so
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/runtimes/osx/native/libmongocrypt.dylib
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/bin/Debug/net6.0/runtimes/win/native/mongocrypt.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/obj/Debug/net6.0/Projekat USI.csproj.AssemblyReference.cache
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/obj/Debug/net6.0/Projekat USI.GeneratedMSBuildEditorConfig.editorconfig
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/obj/Debug/net6.0/Projekat USI.AssemblyInfoInputs.cache
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/obj/Debug/net6.0/Projekat USI.AssemblyInfo.cs
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/obj/Debug/net6.0/Projekat USI.csproj.CoreCompileInputs.cache
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/obj/Debug/net6.0/Projekat USI.csproj.CopyComplete
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/obj/Debug/net6.0/Projekat USI.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/obj/Debug/net6.0/ref/Projekat USI.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/obj/Debug/net6.0/Projekat USI.pdb
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/Projekat/course-project-tim-17/obj/Debug/net6.0/Projekat USI.genruntimeconfig.cache
-=======
->>>>>>> 459dab3e6b2e7d0f7295dd71bdfdcfd2ff3159e1
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/Projekat USI
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/Projekat USI.deps.json
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/Projekat USI.runtimeconfig.json
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/Projekat USI.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/ref/Projekat USI.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/Projekat USI.pdb
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/DnsClient.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/MongoDB.Bson.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/MongoDB.Driver.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/MongoDB.Driver.Core.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/MongoDB.Libmongocrypt.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/SharpCompress.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/runtimes/linux/native/libsnappy64.so
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/runtimes/linux/native/libzstd.so
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/runtimes/osx/native/libsnappy64.dylib
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/runtimes/osx/native/libzstd.dylib
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/runtimes/win/native/libzstd.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/runtimes/win/native/snappy32.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/runtimes/win/native/snappy64.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/runtimes/linux/native/libmongocrypt.so
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/runtimes/osx/native/libmongocrypt.dylib
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/bin/Debug/net6.0/runtimes/win/native/mongocrypt.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/obj/Debug/net6.0/Projekat USI.csproj.AssemblyReference.cache
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/obj/Debug/net6.0/Projekat USI.GeneratedMSBuildEditorConfig.editorconfig
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/obj/Debug/net6.0/Projekat USI.AssemblyInfoInputs.cache
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/obj/Debug/net6.0/Projekat USI.AssemblyInfo.cs
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/obj/Debug/net6.0/Projekat USI.csproj.CoreCompileInputs.cache
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/obj/Debug/net6.0/Projekat USI.csproj.CopyComplete
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/obj/Debug/net6.0/Projekat USI.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/obj/Debug/net6.0/ref/Projekat USI.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/obj/Debug/net6.0/Projekat USI.pdb
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/FINALE/obj/Debug/net6.0/Projekat USI.genruntimeconfig.cache
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.csproj.AssemblyReference.cache
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.GeneratedMSBuildEditorConfig.editorconfig
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.AssemblyInfoInputs.cache
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.AssemblyInfo.cs
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.csproj.CoreCompileInputs.cache
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/ref/Projekat USI.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.pdb
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/Projekat USI
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/Projekat USI.deps.json
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/Projekat USI.runtimeconfig.json
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/Projekat USI.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/ref/Projekat USI.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/Projekat USI.pdb
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/DnsClient.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/MongoDB.Bson.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/MongoDB.Driver.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/MongoDB.Driver.Core.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/MongoDB.Libmongocrypt.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/SharpCompress.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/linux/native/libsnappy64.so
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/linux/native/libzstd.so
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/osx/native/libsnappy64.dylib
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/osx/native/libzstd.dylib
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/win/native/libzstd.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/win/native/snappy32.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/win/native/snappy64.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/linux/native/libmongocrypt.so
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/osx/native/libmongocrypt.dylib
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/bin/Debug/net6.0/runtimes/win/native/mongocrypt.dll
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.csproj.CopyComplete
-/home/slepilepi/Desktop/Faksultet/Uvod u Softversko Inzenjerstvo/MainProject/obj/Debug/net6.0/Projekat USI.genruntimeconfig.cache
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\Projekat USI.exe
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\Projekat USI.deps.json
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\Projekat USI.runtimeconfig.json
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\Projekat USI.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\Projekat USI.pdb
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\DnsClient.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\MongoDB.Bson.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\MongoDB.Driver.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\MongoDB.Driver.Core.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\MongoDB.Libmongocrypt.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\SharpCompress.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\runtimes\linux\native\libsnappy64.so
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\runtimes\linux\native\libzstd.so
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\runtimes\osx\native\libsnappy64.dylib
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\runtimes\osx\native\libzstd.dylib
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\runtimes\win\native\libzstd.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\runtimes\win\native\snappy32.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\runtimes\win\native\snappy64.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0\Projekat USI.csproj.AssemblyReference.cache
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0\Projekat USI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0\Projekat USI.AssemblyInfoInputs.cache
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0\Projekat USI.AssemblyInfo.cs
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0\Projekat USI.csproj.CoreCompileInputs.cache
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0\Projekat USI.csproj.CopyComplete
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0\Projekat USI.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0\refint\Projekat USI.dll
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0\Projekat USI.pdb
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0\Projekat USI.genruntimeconfig.cache
+C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0\ref\Projekat USI.dll
