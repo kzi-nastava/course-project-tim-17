@@ -37,12 +37,18 @@ namespace HealthcareSystem.Functions
             {
                 statusLabel.Text = "You are blocked f off moron";
             }           
-            else { 
+            else if(loggedStatus == 1){ 
                 this.loggedUser = login.userRepository.CheckCredentials(emailBox.Text,passwordBox.Text);
                 
                 this.Hide();
                 login.SuccessfulLogin(loggedUser);
 
+            }
+            else if(loggedStatus==3)
+            {
+                this.loggedUser = login.doctorRepository.checkCredentials(emailBox.Text, passwordBox.Text);
+                this.Hide();
+                login.SuccessfulLogin(loggedUser);
             }
             statusLabel.Visible = true;
 
