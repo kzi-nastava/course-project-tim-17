@@ -10,7 +10,11 @@
     <Compile Update="UI\Manager\ManagerGUI.cs">
       <SubType>Form</SubType>
     </Compile>
+<<<<<<< HEAD
     <Compile Update="UI\Patient\PatientGUI.cs">
+=======
+    <Compile Update="UI\Secretary\SecretaryGUI.cs">
+>>>>>>> angie2
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
