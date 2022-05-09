@@ -34,7 +34,6 @@ C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\Healthca
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.Manager.ManagerGUI.resources
 <<<<<<< HEAD
-<<<<<<< HEAD
 C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.exe
 C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.deps.json
 C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.runtimeconfig.json
@@ -109,7 +108,6 @@ C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\HealthcareSy
 C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
 C:\Users\SlepiLepi\Fakultet\USI\Projekat 2\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.PatientGUI.resources
 >>>>>>> nemanja2
-=======
 C:\Users\Anastasija\Desktop\NewMain\bin\Debug\net6.0-windows\HealthcareSystem.exe
 C:\Users\Anastasija\Desktop\NewMain\bin\Debug\net6.0-windows\HealthcareSystem.deps.json
 C:\Users\Anastasija\Desktop\NewMain\bin\Debug\net6.0-windows\HealthcareSystem.runtimeconfig.json
@@ -147,3 +145,5 @@ C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.ge
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.Secretary.SecretaryGUI.resources
 >>>>>>> angie2
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.PatientGUI.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.Secretary.SecretaryGUI.resources

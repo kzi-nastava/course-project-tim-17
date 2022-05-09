@@ -7,11 +7,11 @@ using HealthcareSystem.RoleControllers;
 using HealthcareSystem.UI;
 using HealthcareSystem.UI.DoctorView;
 using HealthcareSystem.UI.Manager;
-<<<<<<< HEAD
+
 using HealthcareSystem.UI.Patient;
-=======
+
 using HealthcareSystem.UI.Secretary;
->>>>>>> angie2
+
 using MongoDB.Driver;
 
 namespace HealthcareSystem.Functions
@@ -78,7 +78,7 @@ namespace HealthcareSystem.Functions
                 secretaryGUI.Show();
                 
             }
-<<<<<<< HEAD
+
             else if(loggedUser.role == Role.DOCTOR) {
                 DoctorRepositories doctorRepositories = new DoctorRepositories(database);
                 DoctorGUI doctorGUI = new DoctorGUI((Doctor)loggedUser, doctorRepositories);
@@ -92,9 +92,9 @@ namespace HealthcareSystem.Functions
                 patientGUI.Show();
             }
         
-=======
 
->>>>>>> angie2
+
+
         }
     }
 }
