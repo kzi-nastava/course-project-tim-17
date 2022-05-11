@@ -127,7 +127,7 @@ namespace HealthcareSystem.UI
                 if (patient != null)
                 {
                     HealthCardService hc = new HealthCardService(secretaryControllers, patient);
-                    hc.DeleteHealthCard();
+                    hc.DeleteHealthCard();                                                      
                     Console.WriteLine("Patient is sucessfully deleted! ");
                 }
                 else
