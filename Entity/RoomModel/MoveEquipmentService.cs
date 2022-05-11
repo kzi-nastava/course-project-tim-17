@@ -17,34 +17,6 @@ namespace HealthcareSystem.Entity.RoomModel
 
 
         }
-        public void CreateMoveEquipmentRequest()
-        {
-            try
-            {
-                Console.Write("Enter move date and time(year-month-day-hour-minute-second(without zeros)): ");
-                string moveDate = Console.ReadLine();
-                string[] moveDateSplit = moveDate.Split("-");
-
-                DateTime date = new DateTime(int.Parse(moveDateSplit[0]), int.Parse(moveDateSplit[1]),
-                int.Parse(moveDateSplit[2]), int.Parse(moveDateSplit[3]), int.Parse(moveDateSplit[4]),
-                int.Parse(moveDateSplit[5]));
-                Console.Write("Enter ID from the room u want to move equipment from: ");
-                ObjectId roomFirstId = new ObjectId(Console.ReadLine());
-                Console.Write("Enter ID from the room u want to move equipment in: ");
-                ObjectId roomSecondId = new ObjectId(Console.ReadLine());
-                Equipment equipment = CreateEquipment();
-                MoveEquipmentRequest mer = new MoveEquipmentRequest(date, roomFirstId, roomSecondId, equipment);
-                moveController.InsertToCollection(mer);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return;
-            }
-
-
-
-        }
         public void MoveEquipment()
         {
             List<MoveEquipmentRequest> moveEquipmentRequests = moveController.GetAllMoveEquipmentRequests();
@@ -82,7 +54,17 @@ namespace HealthcareSystem.Entity.RoomModel
 
             }
         }
+        public void CreateMoveEquipmentRequest(DateTime date,ObjectId roomFirstId,ObjectId roomSecondId,Equipment item)
+        {
+            
+            MoveEquipmentRequest mer = new MoveEquipmentRequest(date, roomFirstId, roomSecondId, item);
+            moveController.InsertToCollection(mer);
+            
 
+
+
+        }
+        
 
 
         public void changeQuantityFromEquipment(Room room, MoveEquipmentRequest moveEquipmentRequest, string operation)

@@ -42,17 +42,17 @@ namespace HealthcareSystem.UI.Manager
                 }
                 if (option == "2")
                 {
-                    roomService.CheckRoomEquipment();
+                   
 
                 }
                 if (option == "3")
                 {
-                    moveService.CreateMoveEquipmentRequest();
+                    
 
                 }
                 if (option == "4")
                 {
-                    moveService.MoveEquipment();
+                   
 
                 }
             }
@@ -68,15 +68,7 @@ namespace HealthcareSystem.UI.Manager
             Console.WriteLine("3.Delete room");
             Console.WriteLine("4.(Test MoveEquipment))");
             Console.WriteLine("x.Exit");
-            while (true)
-            {
-                option = Console.ReadLine();
-                if (option == "x") break;
-                if (option == "1") { roomService.AddRoom(); }
-                if (option == "2") { roomService.PrintRooms(); }
-                if (option == "3") { roomService.DeleteRoom(); }
-                if (option == "4") { roomService.UpdateRoom(); }
-            }
+           
         }
 
 

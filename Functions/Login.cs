@@ -6,7 +6,7 @@ using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using HealthcareSystem.UI;
 using HealthcareSystem.UI.DoctorView;
-using HealthcareSystem.UI.Manager;
+using HealthcareSystem.UI.ManagerView;
 
 using HealthcareSystem.UI.Patient;
 

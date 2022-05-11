@@ -49,6 +49,7 @@ namespace HealthcareSystem.Functions
                 this.loggedUser = login.doctorRepository.checkCredentials(emailBox.Text, passwordBox.Text);
                 this.Hide();
                 login.SuccessfulLogin(loggedUser);
+                this.Dispose(); 
             }
             statusLabel.Visible = true;
 
