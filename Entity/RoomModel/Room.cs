@@ -12,6 +12,8 @@ namespace HealthcareSystem.Entity.RoomModel
         public RoomType type { get; set; }
         [BsonElement("equipments")]
         public List<Equipment> equipments { get; set; } = new List<Equipment>();
+        [BsonElement("inRenovation")]
+        public Boolean inRenovation { get; set; }
 
 
         public Room(string name,RoomType type)
@@ -19,6 +21,7 @@ namespace HealthcareSystem.Entity.RoomModel
             this.name = name;
             this.type = type;
             this._id = ObjectId.GenerateNewId();
+            this.inRenovation = false;
         }
 
         public override string ToString()

@@ -1,6 +1,4 @@
-﻿
-
-using HealthcareSystem.Entity.DoctorModel;
+﻿using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
