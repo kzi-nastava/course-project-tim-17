@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HealthcareSystem.Entity.CheckModel;
+using HealthcareSystem.Entity.DoctorModel;
+using HealthcareSystem.Entity.ReferralModel;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace HealthcareSystem.Entity.HealthCardModel
@@ -27,7 +31,20 @@ namespace HealthcareSystem.Entity.HealthCardModel
             double height = Double.Parse(Console.ReadLine());
             Console.WriteLine("Enter patient's weight: ");
             double weight = Double.Parse(Console.ReadLine());
-            HealthCard hc = new HealthCard(height, weight, this.patient._id);
+            Console.WriteLine("Enter '1' if patient has allergies: ");
+            List<Ingredient> ingredients = new List<Ingredient>();
+            if (Console.ReadLine()=="1")
+            {
+                Console.WriteLine("Enter patients allergies(separate them with coma): ");
+                string allergies = Console.ReadLine();
+                string[] splitted = allergies.Split(',');
+                
+                foreach (string s in splitted)
+                {
+                    ingredients.Add(new Ingredient(s));
+                }
+            }
+            HealthCard hc = new HealthCard(height, weight, this.patient._id, ingredients);
             
             secretaryControllers.healthCardController.InsertToCollection(hc);
 
@@ -79,7 +96,43 @@ namespace HealthcareSystem.Entity.HealthCardModel
 
             
         }
+
+        public List<Check> getChecks(HealthCard healthCard)
+        {
+            List<Check> checks = new List<Check>();
+            List<ObjectId> ids = healthCard.checks;
+            foreach (ObjectId id in ids)
+            {
+                checks.Add(secretaryControllers.checkController.findById(id));
+            }
+
+            return checks;
+        }
+
+
+        public List<Referral> getReferrals(HealthCard healthCard)
+        {
+            List<Referral> referrals = new List<Referral>();
+            List<ObjectId> ids = healthCard.referrals;
+            foreach (ObjectId id in ids)
+            {
+                referrals.Add(secretaryControllers.referralController.findById(id));
+            }
+
+            return referrals;
+        }
+
+        public void addRefferral(HealthCard healthCard, Doctor doctor, Referral r)
+        {
+           
+            healthCard.referrals.Add(r._id);
+            secretaryControllers.healthCardController.healthCardCollection.ReplaceOne(item => item._id == healthCard._id, healthCard);
+        }
+
+
+
+
     }
-        
+
 
 }

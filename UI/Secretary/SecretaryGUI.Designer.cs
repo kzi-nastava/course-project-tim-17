@@ -45,12 +45,13 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(84, 56);
             this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // SecretaryGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1005, 508);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "SecretaryGUI";
