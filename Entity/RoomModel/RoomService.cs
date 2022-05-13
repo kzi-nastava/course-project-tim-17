@@ -1,17 +1,23 @@
 using HealthcareSystem.Entity.Enumerations;
 using MongoDB.Bson;
+using MongoDB.Driver;
+
 namespace HealthcareSystem.Entity.RoomModel
 {
 
     class RoomService
     {
-        public RoomController roomController { get; set; }
+        public RoomController roomController;
+        public RenovationRepository renovationReposotory;
+        public MoveEquipmentRequestController moveController;
 
 
-        public RoomService(RoomController roomController)
+        public RoomService(IMongoDatabase database)
         {
 
-            this.roomController = roomController;
+            this.roomController = new RoomController(database);
+            this.renovationReposotory = new RenovationRepository(database);
+            this.moveController = new MoveEquipmentRequestController(database);
         }
         public void AddRoom(string roomName, RoomType roomType)
         {
@@ -22,14 +28,41 @@ namespace HealthcareSystem.Entity.RoomModel
 
 
         }
-        public void PrintRooms()
+        public void AddRoom(Room room)
         {
-            List<Room> rooms = roomController.GetAllRooms();
-            foreach (Room room in rooms)
-            {
-                Console.WriteLine(room.ToString());
-            }
+
+            roomController.InsertToCollection(room);
+
+
+
         }
+
+        public void addItemToRoom(Room room,Equipment item)
+        {
+
+            
+            
+            roomController.addEquipment(room, item);
+
+
+
+        }
+
+        public void AddEquipmentToRoom(Room room, List<Equipment> equipment)
+        {
+
+
+            foreach (Equipment item in equipment)
+            {
+                roomController.addEquipment(room, item);
+            }
+
+
+
+        }
+
+
+        
 
         public void DeleteRoom(string id)
         {
@@ -44,58 +77,116 @@ namespace HealthcareSystem.Entity.RoomModel
 
 
         }
-
-        public void Tst()
+        public void CheckForRenovations()
         {
-            Console.Write("Enter room ID: ");
-            ObjectId id = new ObjectId(Console.ReadLine());
-            Room room = roomController.findById(id);
-            Console.WriteLine(room.ContainItem("Chair"));
+            List<Renovation> roomsForRenovation = renovationReposotory.GetAllRenovations();
+            DateTime currentTime = DateTime.Now;
+            foreach (Renovation roomForRenovation in roomsForRenovation)
+            {
+                if (currentTime > roomForRenovation.renovationEndDate)
+                {
+                    if (roomForRenovation.RenovationType == 0)
+                    {
+                        StandardRenovation(roomForRenovation);
+                    }
+                    if (roomForRenovation.RenovationType == 1)
+                    {
+                        MergeRoomRenovation mr = renovationReposotory.findMergeRenovationByRenovationId(roomForRenovation._id);
+                        MergeRooms(mr,roomForRenovation); 
+                    }
+                    if (roomForRenovation.RenovationType == 2)
+                    {
+                        SplitRoomRenovation sr = renovationReposotory.findSplitRenovationByRenovationId(roomForRenovation._id);
+                        SplitRoom(sr, roomForRenovation);
+                    }
+
+                }
+
+            }
+        }
+        public void StandardRenovation(Renovation roomRenovation)
+        {
+            Room room = roomController.findById(roomRenovation.roomId);
+            room.InRenovation = false;
+            roomController.UpdateRoom(room);
+            renovationReposotory.DeleteRenovation(roomRenovation._id);
+        }
+
+        public void SplitRoom(SplitRoomRenovation roomForSplit, Renovation roomRenovation)
+        {
+
+            Room room = roomController.findById(roomRenovation.roomId);
+            Room roomOne = new Room(roomForSplit.FirstRoomName, room.type);
+            Room roomTwo = new Room(roomForSplit.SecondRoomName, room.type);
+            AddEquipmentToRoom(roomOne, roomForSplit.firstRoomEquipment);
+            AddEquipmentToRoom(roomTwo, roomForSplit.secondRoomEquipment);
+            AddRoom(roomOne);
+            AddRoom(roomTwo);
+            DeleteRoom(room._id.ToString());
+            DeleteSplitRenovation(roomForSplit);
 
         }
-        public EquipmentType ChooseEquipmentType()
+
+
+        public void MergeRooms(MergeRoomRenovation roomForMerge, Renovation roomRenovation)
         {
-            int i = 1;
-            foreach (EquipmentType et in Enum.GetValues(typeof(EquipmentType)))
-            {
-                Console.Write(i);
-                Console.Write(".");
-                Console.WriteLine(et);
-                i++;
-            }
-            Console.Write("Enter equipment type:");
-            string equipmentTypeOption = Console.ReadLine();
-            int j = 1;
-            EquipmentType equipmentType = new EquipmentType();
-            foreach (EquipmentType et in Enum.GetValues(typeof(EquipmentType)))
-            {
-                if (j.ToString() == equipmentTypeOption) equipmentType = et;
-                j++;
-            }
-            return equipmentType;
+
+            Room roomOne = roomController.findById(roomForMerge.FirstRoomId);
+            Room roomTwo = roomController.findById(roomForMerge.SecondRoomId);
+            Room newMergedRoom = new Room(roomForMerge.MergedRoomName, roomOne.type);
+            AddEquipmentToRoom(newMergedRoom, MergeEquipment(roomOne.equipments, roomTwo.equipments));
+            AddRoom(newMergedRoom);
+            DeleteRoom(roomOne._id.ToString());
+            DeleteRoom(roomTwo._id.ToString());
+            DeleteMergeRenovation(roomForMerge);
+
         }
 
-        public RoomType ChooseRoomType()
+        public List<Equipment> MergeEquipment(List<Equipment> roomOneEquipment, List<Equipment> roomTwoEquipment)
         {
-            int i = 1;
-            foreach (RoomType et in Enum.GetValues(typeof(RoomType)))
+            List<Equipment> mergedEquipment = new List<Equipment>();
+            List<Equipment> differentEquipment = new List<Equipment>();
+            foreach (Equipment item in roomOneEquipment) 
             {
-                Console.Write(i);
-                Console.Write(".");
-                Console.WriteLine(et);
-                i++;
+                mergedEquipment.Add(item);
             }
-            Console.Write("Enter room type:");
-            string roomTypeOption = Console.ReadLine();
-            int j = 1;
-            RoomType roomType = new RoomType();
-            foreach (RoomType et in Enum.GetValues(typeof(RoomType)))
+            foreach (Equipment item in roomTwoEquipment)
             {
-                if (j.ToString() == roomTypeOption) roomType = et;
-                j++;
+                bool added = false;
+                foreach (Equipment itemTwo in mergedEquipment)
+                {
+                    if (item.item == itemTwo.item)
+                    {
+                        itemTwo.quantity += item.quantity;
+                        added = true;
+                    }
+                }
+                if (!added) 
+                { 
+                    differentEquipment.Add(item); 
+                }
             }
-            return roomType;
+            foreach (Equipment item in differentEquipment) 
+            {
+                mergedEquipment.Add(item);
+            }
+            return mergedEquipment;
+
         }
+
+        public void DeleteSplitRenovation(SplitRoomRenovation sr) 
+        {
+            Renovation r = renovationReposotory.findRenovationById(sr.RenovationId);
+            renovationReposotory.DeleteRenovation(r._id);
+            renovationReposotory.DeleteSplitRenovation(sr._id);
+        }
+        public void DeleteMergeRenovation(MergeRoomRenovation mr)
+        {
+            Renovation r = renovationReposotory.findRenovationById(mr.RenovationId);
+            renovationReposotory.DeleteRenovation(r._id);
+            renovationReposotory.DeleteMergeRenovation(mr._id);
+        }
+
 
         public List<Tuple<Equipment,string>> GetEquipmentByItemName(string itemName)
         {
@@ -185,6 +276,72 @@ namespace HealthcareSystem.Entity.RoomModel
             if (option == "<10") if (10 <= quantity) return true;
             if (option == "1t10") if (0 < quantity && quantity<=10) return true;
             return false;
+        }
+
+        public void MoveEquipment()
+        {
+            List<MoveEquipmentRequest> moveEquipmentRequests = moveController.GetAllMoveEquipmentRequests();
+            DateTime currentTime = DateTime.Now;
+            foreach (MoveEquipmentRequest moveEquipmentRequest in moveEquipmentRequests)
+            {
+
+                if (currentTime > moveEquipmentRequest.moveDate)
+                {
+                    Room roomFrom = roomController.findById(moveEquipmentRequest.moveFrom);
+                    if (roomFrom.CheckIfEquipmentIsAvaliable(moveEquipmentRequest.equipment))
+                    {
+                        Room roomTo = roomController.findById(moveEquipmentRequest.moveTo);
+                        if (roomTo.ContainItem(moveEquipmentRequest.equipment.item))
+                        {
+                            changeQuantityFromEquipment(roomTo, moveEquipmentRequest, "add");
+                            changeQuantityFromEquipment(roomFrom, moveEquipmentRequest, "sub");
+                            moveController.DeleteMoveEquipmentRequest(moveEquipmentRequest._id);
+                        }
+                        else
+                        {
+                            roomController.addEquipment(roomTo, moveEquipmentRequest.equipment);
+                            changeQuantityFromEquipment(roomFrom, moveEquipmentRequest, "sub");
+                            moveController.DeleteMoveEquipmentRequest(moveEquipmentRequest._id);
+
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Equipment Unavaliable");
+                    }
+
+                }
+
+            }
+        }
+        public void CreateMoveEquipmentRequest(DateTime date, ObjectId roomFirstId, ObjectId roomSecondId, Equipment item)
+        {
+
+            MoveEquipmentRequest mer = new MoveEquipmentRequest(date, roomFirstId, roomSecondId, item);
+            moveController.InsertToCollection(mer);
+
+
+
+
+        }
+
+
+
+        public void changeQuantityFromEquipment(Room room, MoveEquipmentRequest moveEquipmentRequest, string operation)
+        {
+            for (int i = 0; i < room.equipments.Count(); i++)
+            {
+                if (room.equipments[i].item == moveEquipmentRequest.equipment.item)
+                {
+                    if (operation == "sub")
+                        room.equipments[i].quantity = room.equipments[i].quantity - moveEquipmentRequest.equipment.quantity;
+                    if (operation == "add")
+                        room.equipments[i].quantity = room.equipments[i].quantity + moveEquipmentRequest.equipment.quantity;
+                    roomController.UpdateRoom(room);
+                }
+            }
+
         }
 
 

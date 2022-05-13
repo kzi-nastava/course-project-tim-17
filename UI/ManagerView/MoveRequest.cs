@@ -1,6 +1,7 @@
 ﻿using HealthcareSystem.Entity;
 using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.RoomModel;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,11 +19,13 @@ namespace HealthcareSystem.UI.ManagerView
     {
         public RoomController roomController;
         public MoveEquipmentRequestController moveEquipmentRequestController;
-        public MoveRequest(RoomController rc, MoveEquipmentRequestController merc)
+        public IMongoDatabase database;
+        public MoveRequest(IMongoDatabase database)
         {
             InitializeComponent();
-            this.roomController = rc;
-            this.moveEquipmentRequestController = merc;
+            this.roomController = new RoomController(database);
+            this.moveEquipmentRequestController = new MoveEquipmentRequestController(database);
+            this.database = database;
             loadComboBoxes();
 
         }
@@ -51,10 +54,9 @@ namespace HealthcareSystem.UI.ManagerView
             Room roomTo = toRoomComboBox.SelectedValue as Room;
             Equipment item = itemComboBox.SelectedValue as Equipment;
             item.quantity = int.Parse(quantityTextBox.Text);
-              
 
-            MoveEquipmentService mes = new MoveEquipmentService(moveEquipmentRequestController, roomController);
-            mes.CreateMoveEquipmentRequest(date, roomFrom._id, roomTo._id, item);
+            RoomService rs = new RoomService(database);
+            rs.CreateMoveEquipmentRequest(date, roomFrom._id, roomTo._id, item);
             MessageBox.Show("Move Request Created!");
             this.Dispose();
 
@@ -71,11 +73,7 @@ namespace HealthcareSystem.UI.ManagerView
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MoveEquipmentService mes = new MoveEquipmentService(moveEquipmentRequestController, roomController);
-            mes.MoveEquipment();
-        }
+        
 
         private void fromRoomComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {

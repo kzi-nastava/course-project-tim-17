@@ -1,6 +1,7 @@
 ﻿using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.RoomModel;
 using HealthcareSystem.RoleControllers;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,13 +16,15 @@ namespace HealthcareSystem.UI.ManagerView
 {
     partial class ModifyRoom : Form
     {
-        public ManagerControllers managerControllers { get; set; }
+        public ManagerControllers managerControllers;
         public Room room;
-        public ModifyRoom(ManagerControllers managerControllers,Room room)
+        public IMongoDatabase database;
+        public ModifyRoom(IMongoDatabase database, Room room)
         {
             InitializeComponent();
-            this.managerControllers = managerControllers;
+            this.managerControllers = new ManagerControllers(database);
             this.room = room;
+            this.database = database; 
             loadRoomTypes();
         }
 
@@ -48,7 +51,7 @@ namespace HealthcareSystem.UI.ManagerView
             room.name = roomName.Text;
             Enum.TryParse(roomTypeComboBox.SelectedItem.ToString(), out RoomType roomType);
             room.type = roomType;
-            RoomService rs = new RoomService(managerControllers.roomCollection);
+            RoomService rs = new RoomService(database);
             rs.UpdateRoom(room);
             MessageBox.Show("Room Updated!");
             this.Dispose();
