@@ -21,8 +21,17 @@ C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\runtimes
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\win\native\mongocrypt.dll
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.csproj.AssemblyReference.cache
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.Functions.LoginGUI.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentCreationForm.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentsTableForm.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangdeAppointmentDateTimeForm.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DoctorGUI.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddComplexRenovation.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRenovation.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRoom.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ManagerGUI.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ModifyRoom.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.MoveRequest.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ShowEquipment.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.PatientGUI.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.Secretary.SecretaryGUI.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.csproj.GenerateResource.cache
@@ -36,9 +45,3 @@ C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\refint\H
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.pdb
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
-C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRoom.resources
-C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.modifyRoom.resources
-C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ShowEquipment.resources
-C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.MoveRequest.resources
-C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRenovation.resources
-C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddComplexRenovation.resources

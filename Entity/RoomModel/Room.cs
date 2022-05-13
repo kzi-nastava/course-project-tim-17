@@ -16,12 +16,15 @@ namespace HealthcareSystem.Entity.RoomModel
         public bool InRenovation { get; set; }
 
 
+
         public Room(string name,RoomType type)
         {
             this.name = name;
             this.type = type;
             this._id = ObjectId.GenerateNewId();
-            InRenovation = false;
+
+            this.InRenovation = false;
+
         }
 
         public override string ToString()

@@ -17,5 +17,14 @@ namespace HealthcareSystem.Entity.AppointmentRequestsModel
         public void InsertToCollection(AppointmentRequests appointmentRequest){
             appointmentRequestCollection.InsertOne(appointmentRequest);
         }
+
+
+
+        public AppointmentRequests FindById(ObjectId id)
+        {
+            return appointmentRequestCollection.Find(item => item._id == id).FirstOrDefault();
+        }
+
+
     }
 }

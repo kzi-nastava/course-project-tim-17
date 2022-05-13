@@ -1,12 +1,14 @@
-﻿
-
-using HealthcareSystem.Entity.DoctorModel;
+﻿using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using HealthcareSystem.UI;
 using HealthcareSystem.UI.DoctorView;
 using HealthcareSystem.UI.ManagerView;
+
+using HealthcareSystem.UI.Secretary;
+using HealthcareSystem.UI.Patient;
+
 
 using HealthcareSystem.UI.Patient;
 
@@ -74,8 +76,11 @@ namespace HealthcareSystem.Functions
             {
                 
                 SecretaryControllers secretaryControllers = new SecretaryControllers(database);
-                SecretaryGUI secretaryGUI = new SecretaryGUI(loggedUser, secretaryControllers);
-                secretaryGUI.Show();
+               // SecretaryGUI secretaryGUI = new SecretaryGUI(loggedUser, secretaryControllers);
+                //secretaryGUI.Show();
+
+                
+                SecretaryUI secretaryUI = new SecretaryUI(secretaryControllers, loggedUser);
                 
             }
 
@@ -93,8 +98,7 @@ namespace HealthcareSystem.Functions
             }
         
 
-
-
         }
     }
 }
+

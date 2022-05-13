@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HealthcareSystem.Entity.ApointmentModel;
+﻿using HealthcareSystem.Entity.ApointmentModel;
+using HealthcareSystem.Entity.AppointmentRequestsModel;
+using HealthcareSystem.Entity.CheckAppointmentRequestModel;
+using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Bson;
-
-namespace HealthcareSystem.Entity.CheckAppointmentRequestModel
+namespace HealthCareSystem.Entity.CheckAppointementRequestModel
 {
     class CheckAppointmentRequestService
     {
@@ -23,33 +20,57 @@ namespace HealthcareSystem.Entity.CheckAppointmentRequestModel
 
         public void printAllRequests()
         {
-            List<CheckAppointementRequest> crs  = secretaryControllers.checkAppointemtRequestController.GetAllCheckAppointmentRequests();
-            foreach(CheckAppointementRequest c in crs)
+            List<CheckAppointementRequest> crs = secretaryControllers.checkAppointemtRequestController.GetAllCheckAppointmentRequests();
+            User patient;
+            foreach (CheckAppointementRequest c in crs)
             {
                 Console.WriteLine("APPOINTMENT INFO: ");
                 Console.WriteLine("--------------------------------");
                 Console.WriteLine("ID: " + c._id);
-                Apointment ap = secretaryControllers.AppointemtController.FindById(c.appointmentId);
-                User patient = secretaryControllers.userController.FindById((secretaryControllers.AppointemtController.FindById(c.appointmentId).patientId));
-                Console.WriteLine("PATIENT: " + patient.name +  " " + patient.lastName);
-                Console.WriteLine("ROOM: :  " + secretaryControllers.roomController.findById(ap.roomId).name);
-                Console.WriteLine("DATE: " + ap.dateTime.ToString());
-                Console.WriteLine("REQUEST: " + c.RequestState.ToString());
-                Console.WriteLine("STATUS: " + c.status.ToString());
+                if (c.RequestState == RequestState.DELETE)
+                {
+                    Apointment ap = secretaryControllers.AppointemtController.FindById(c.appointmentId);
+                    if (ap == null) { Console.WriteLine("This appointment has been deleted! "); }
+                    else
+                    {
+                        patient = secretaryControllers.userController.FindById(secretaryControllers.AppointemtController.FindById(c.appointmentId).patientId);
+                        Console.WriteLine("PATIENT: " + patient.name + " " + patient.lastName);
+                        Console.WriteLine("ROOM: :  " + secretaryControllers.roomController.findById(ap.roomId).name);
+                        Console.WriteLine("DATE: " + ap.dateTime.ToString());
+                    }
+                    Console.WriteLine("REQUEST: " + c.RequestState.ToString());
+                    Console.WriteLine("STATUS: " + c.status.ToString());
+                }
+                else
+                {
+                    AppointmentRequests ar = secretaryControllers.appointmentRequestsController.FindById(c.appointmentId);
+
+                    Apointment ap = secretaryControllers.AppointemtController.FindById(ar.appointmentId);
+
+                    patient = secretaryControllers.userController.FindById(ap.patientId);
+                    Console.WriteLine("PATIENT: " + patient.name + " " + patient.lastName);
+                    Console.WriteLine("ROOM: :  " + secretaryControllers.roomController.findById(ap.roomId).name);
+                    Console.WriteLine("DATE: " + ap.dateTime.ToString());
+                    Console.WriteLine("REQUEST: " + c.RequestState.ToString());
+                    Console.WriteLine("STATUS: " + c.status.ToString());
+
+                }
             }
+
         }
 
-        public void DeleteRequest()
+     
+        public void DeleteRequest(ObjectId id)
         {
-            string id = Console.ReadLine();
-            ObjectId obI = ObjectId.Parse(id);
-            CheckAppointementRequest cr = secretaryControllers.checkAppointemtRequestController.FindById(obI);
+            CheckAppointementRequest cr = secretaryControllers.checkAppointemtRequestController.FindById(id);
             secretaryControllers.checkAppointemtRequestController.DeleteCheckAppointementRequestCard(cr);
 
         }
-        public void Update(CheckAppointementRequest cr) {
+
+        public void Update(CheckAppointementRequest cr)
+        {
             secretaryControllers.checkAppointemtRequestController.Update(cr);
         }
-      
+
     }
 }

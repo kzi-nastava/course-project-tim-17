@@ -16,7 +16,8 @@ namespace HealthCareSystem.Entity.UserModel
 
         public SecretaryControllers secretaryControllers { get; set; }
 
-        public UserService(SecretaryControllers sc) {
+        public UserService(SecretaryControllers sc)
+        {
             this.secretaryControllers = sc;
         }
 
@@ -37,6 +38,28 @@ namespace HealthCareSystem.Entity.UserModel
             return user;
         }
 
+
+        public User AddPatient()
+        {
+            Console.WriteLine("Enter name: ");
+            string name = Console.ReadLine();
+            Console.WriteLine("Enter last name: ");
+            string lastName = Console.ReadLine();
+            Console.WriteLine("Enter email: ");
+            string email = Console.ReadLine();
+            Console.WriteLine("Enter password: ");
+            string password = Console.ReadLine();
+            Role role = Role.PATIENT;
+            User user = new User(name, lastName, email, password, role);
+            if (!doesUserExist(email, password))
+            {
+                secretaryControllers.userController.InsertToCollection(user);
+                return user;
+            }
+            return null;
+
+        }
+
         public List<User> GetAllPatients()
         {
             List<User> patients = secretaryControllers.userController.userCollection.Find(item => item.role == Role.PATIENT).ToList();
@@ -49,11 +72,22 @@ namespace HealthCareSystem.Entity.UserModel
             Console.WriteLine("Enter email: ");
             string email = Console.ReadLine();
             User u = secretaryControllers.userController.FindByEmail(email);
-            secretaryControllers.userController.DeleteFromCollection(u._id);
-            return u;
+            if (u != null)
+            {
+                BlockedUser b = secretaryControllers.blockedUserController.CheckIfBlocked(u._id);
+                if (b != null)
+                {
+                    secretaryControllers.blockedUserController.Unblock(u._id);
+                }
+                secretaryControllers.userController.DeleteFromCollection(u._id);
+                secretaryControllers.AppointemtController.DeleteApointmentByPatientId(u._id);
+                return u;
+            }
+            return null;
         }
 
-        public User UpdateUser() {
+        public User UpdateUser()
+        {
             Console.WriteLine("Enter email: ");
             string email = Console.ReadLine();
             User u = secretaryControllers.userController.FindByEmail(email);
@@ -67,11 +101,13 @@ namespace HealthCareSystem.Entity.UserModel
             {
                 Console.WriteLine("Enter new name: ");
                 u.name = Console.ReadLine();
-            } else if (choice == "2")
+            }
+            else if (choice == "2")
             {
                 Console.WriteLine("Enter new lastname: ");
                 u.lastName = Console.ReadLine();
-            } else if (choice == "3")
+            }
+            else if (choice == "3")
             {
                 Console.WriteLine("Enter new email: ");
                 u.email = Console.ReadLine();
@@ -97,7 +133,8 @@ namespace HealthCareSystem.Entity.UserModel
         }
 
 
-        public void unblockUser() {
+        public void unblockUser()
+        {
             Console.WriteLine("Enter email: ");
             string email = Console.ReadLine();
             User u = secretaryControllers.userController.FindByEmail(email);
@@ -105,9 +142,21 @@ namespace HealthCareSystem.Entity.UserModel
             secretaryControllers.blockedUserController.Unblock(bu._id);
 
         }
+
+
+        public bool doesUserExist(string email, string password)
+        {
+            User u = secretaryControllers.userController.CheckCredentials(email, password);
+            if (u != null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 
-    
+
+
 }
 
 
