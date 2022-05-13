@@ -4,7 +4,7 @@ using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using HealthcareSystem.UI;
 using HealthcareSystem.UI.DoctorView;
-using HealthcareSystem.UI.Manager;
+using HealthcareSystem.UI.ManagerView;
 
 using HealthcareSystem.UI.Secretary;
 using HealthcareSystem.UI.Patient;
@@ -69,7 +69,7 @@ namespace HealthcareSystem.Functions
         public void SuccessfulLogin(User loggedUser) {
             if (loggedUser.role == Role.MANAGER) {
                 ManagerControllers managerControllers = new ManagerControllers(database);
-                ManagerGUI managerGUI = new ManagerGUI(loggedUser,managerControllers);
+                ManagerGUI managerGUI = new ManagerGUI(loggedUser,database);
                 managerGUI.Show();
                 
             }else if (loggedUser.role == Role.SECRETARY)

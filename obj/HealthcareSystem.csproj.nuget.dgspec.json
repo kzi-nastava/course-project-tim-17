@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Fakultet materijali\\ProjekatUSI\\HealthcareSystem.csproj": {}
+    "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj": {}
   },
   "projects": {
-    "C:\\Fakultet materijali\\ProjekatUSI\\HealthcareSystem.csproj": {
+    "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Fakultet materijali\\ProjekatUSI\\HealthcareSystem.csproj",
+        "projectUniqueName": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj",
         "projectName": "HealthcareSystem",
-        "projectPath": "C:\\Fakultet materijali\\ProjekatUSI\\HealthcareSystem.csproj",
-        "packagesPath": "C:\\Users\\Dusan\\.nuget\\packages\\",
-        "outputPath": "C:\\Fakultet materijali\\ProjekatUSI\\obj\\",
+        "projectPath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj",
+        "packagesPath": "C:\\Users\\ognje\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Dusan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ognje\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

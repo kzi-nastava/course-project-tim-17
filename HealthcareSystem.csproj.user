@@ -17,7 +17,25 @@
     <Compile Update="UI\DoctorView\DoctorGUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UI\Manager\ManagerGUI.cs">
+    <Compile Update="UI\ManagerView\AddComplexRenovation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ManagerView\AddRenovation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ManagerView\AddRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ManagerView\ManagerGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ManagerView\ModifyRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ManagerView\MoveRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ManagerView\ShowEquipment.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\Patient\PatientGUI.cs">
