@@ -23,8 +23,10 @@ C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\Healthca
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.Functions.LoginGUI.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentCreationForm.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentsTableForm.resources
-C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangdeAppointmentDateTimeForm.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DatePickerForm.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DoctorGUI.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.Form1.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateAppointment.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddComplexRenovation.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRenovation.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRoom.resources
