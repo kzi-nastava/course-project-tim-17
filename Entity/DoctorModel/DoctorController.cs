@@ -7,26 +7,25 @@ namespace HealthcareSystem.Entity.DoctorModel
     class DoctorController
     {
         public IMongoCollection<Doctor> doctorCollection;
-        public DoctorController(IMongoDatabase database)
-        {
+        public DoctorController(IMongoDatabase database){
             this.doctorCollection = database.GetCollection<Doctor>("Doctors");
+            
+            }
+        public void getAllDoctors() {
+            List<Doctor> doctors = doctorCollection.Find(item =>  true).ToList();
 
-        }
-        public void getAllDoctors()
-        {
-            List<Doctor> doctors = doctorCollection.Find(item => true).ToList();
-
-            foreach (Doctor doctor in doctors)
-            {
+            foreach(Doctor doctor in doctors) {
                 Console.WriteLine(doctor.name);
             }
         }
-        public void InsertToCollection(Doctor doctor)
-        {
+        public void InsertToCollection(Doctor doctor){
             doctorCollection.InsertOne(doctor);
         }
-        public Doctor findById(ObjectId id)
+        public Doctor findByName(string name, string lastname)
         {
+            return doctorCollection.Find(item => item.name == name & item.lastName == lastname).FirstOrDefault();
+        }
+        public Doctor findById(ObjectId id) {
             return doctorCollection.Find(item => item._id == id).FirstOrDefault();
         }
         public Doctor checkCredentials(string email, string password)
@@ -35,18 +34,13 @@ namespace HealthcareSystem.Entity.DoctorModel
 
         }
 
-        public Doctor findByName(string name, string lastname)
-        {
-            return doctorCollection.Find(item => item.name == name & item.lastName == lastname).FirstOrDefault();
-        }
-
         public List<Doctor> FindDoctorsBySpecialisation(Specialisation s)
         {
             return doctorCollection.Find(item => item.specialisation == s).ToList();
         }
 
-
+       
     }
-}
+    }
 
 

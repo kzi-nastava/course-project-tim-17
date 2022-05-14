@@ -10,24 +10,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace HealthcareSystem.UI.Manager
+namespace HealthcareSystem.UI.Secretary
 
 {
-    partial class ManagerGUI : Form
+    partial class SecretaryGUI : Form
     {
         public User loggedUser { get; set; }
-        public ManagerControllers managerControllers { get; set; }
-        public ManagerGUI(User loggedUser, ManagerControllers managerControllers)
+        public SecretaryControllers secretaryControllers { get; set; }
+        public SecretaryGUI(User loggedUser, SecretaryControllers secretaryControllers)
         {
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.managerControllers = managerControllers;
-            label1.Text = loggedUser.name;
+            this.secretaryControllers = secretaryControllers;
 
-            
+
+
         }
 
-        private void ManagerGUI_Load(object sender, EventArgs e)
+        private void SecretaryGUI_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -33,26 +33,26 @@ namespace HealthcareSystem.Entity.HealthCardModel
             double weight = Double.Parse(Console.ReadLine());
             Console.WriteLine("Enter '1' if patient has allergies: ");
             List<Ingredient> ingredients = new List<Ingredient>();
-            if (Console.ReadLine() == "1")
+            if (Console.ReadLine()=="1")
             {
                 Console.WriteLine("Enter patients allergies(separate them with coma): ");
                 string allergies = Console.ReadLine();
                 string[] splitted = allergies.Split(',');
-
+                
                 foreach (string s in splitted)
                 {
                     ingredients.Add(new Ingredient(s));
                 }
             }
             HealthCard hc = new HealthCard(height, weight, this.patient._id, ingredients);
-
+            
             secretaryControllers.healthCardController.InsertToCollection(hc);
 
         }
 
         public void DeleteHealthCard()
         {
-            List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
+            List<HealthCard> healthCards =secretaryControllers.healthCardController.getAllHealthCards();
             foreach (HealthCard healthCard in healthCards)
             {
                 if (healthCard.patientId == this.patient._id)
@@ -66,11 +66,11 @@ namespace HealthcareSystem.Entity.HealthCardModel
 
 
         public void UpdateHealthCard()
-        {
+        { 
             Console.WriteLine("1 -> Edit height");
             Console.WriteLine("2 -> Edit weight");
             Console.WriteLine("3 -> Add allergy");
-            HealthCard found = null;
+            HealthCard found = null; 
             List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
             foreach (HealthCard healthCard in healthCards)
             {
@@ -92,8 +92,7 @@ namespace HealthcareSystem.Entity.HealthCardModel
                 found.weight = Double.Parse(Console.ReadLine());
 
             }
-            else if (choice == "3")
-            {
+            else if (choice == "3") {
                 Console.WriteLine("Enter new allergy: ");
                 Ingredient a = new Ingredient(Console.ReadLine());
                 found.allergies.Add(a);
@@ -101,7 +100,7 @@ namespace HealthcareSystem.Entity.HealthCardModel
 
             secretaryControllers.healthCardController.update(found);
 
-
+            
         }
 
         public List<Check> getChecks(HealthCard healthCard)
@@ -131,7 +130,7 @@ namespace HealthcareSystem.Entity.HealthCardModel
 
         public void addRefferral(HealthCard healthCard, Doctor doctor, Referral r)
         {
-
+           
             healthCard.referrals.Add(r._id);
             secretaryControllers.healthCardController.healthCardCollection.ReplaceOne(item => item._id == healthCard._id, healthCard);
         }

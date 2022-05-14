@@ -1,13 +1,19 @@
-﻿
-
-using HealthcareSystem.Entity.DoctorModel;
+﻿using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using HealthcareSystem.UI;
 using HealthcareSystem.UI.DoctorView;
-using HealthcareSystem.UI.Manager;
+using HealthcareSystem.UI.ManagerView;
+
+using HealthcareSystem.UI.Secretary;
 using HealthcareSystem.UI.Patient;
+
+
+using HealthcareSystem.UI.Patient;
+
+using HealthcareSystem.UI.Secretary;
+
 using MongoDB.Driver;
 
 namespace HealthcareSystem.Functions
@@ -63,10 +69,21 @@ namespace HealthcareSystem.Functions
         public void SuccessfulLogin(User loggedUser) {
             if (loggedUser.role == Role.MANAGER) {
                 ManagerControllers managerControllers = new ManagerControllers(database);
-                ManagerGUI managerGUI = new ManagerGUI(loggedUser,managerControllers);
+                ManagerGUI managerGUI = new ManagerGUI(loggedUser,database);
                 managerGUI.Show();
                 
+            }else if (loggedUser.role == Role.SECRETARY)
+            {
+                
+                SecretaryControllers secretaryControllers = new SecretaryControllers(database);
+               // SecretaryGUI secretaryGUI = new SecretaryGUI(loggedUser, secretaryControllers);
+                //secretaryGUI.Show();
+
+                
+                SecretaryUI secretaryUI = new SecretaryUI(secretaryControllers, loggedUser);
+                
             }
+
             else if(loggedUser.role == Role.DOCTOR) {
                 DoctorRepositories doctorRepositories = new DoctorRepositories(database);
                 DoctorGUI doctorGUI = new DoctorGUI((Doctor)loggedUser, doctorRepositories);
@@ -80,6 +97,8 @@ namespace HealthcareSystem.Functions
                 patientGUI.Show();
             }
         
+
         }
     }
 }
+

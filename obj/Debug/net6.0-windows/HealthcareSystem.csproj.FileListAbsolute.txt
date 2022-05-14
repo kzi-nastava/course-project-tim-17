@@ -1,86 +1,163 @@
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\HealthcareSystem.exe
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\HealthcareSystem.deps.json
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\HealthcareSystem.runtimeconfig.json
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\HealthcareSystem.dll
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\HealthcareSystem.pdb
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\DnsClient.dll
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\MongoDB.Bson.dll
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\MongoDB.Driver.dll
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\MongoDB.Driver.Core.dll
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\MongoDB.Libmongocrypt.dll
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\SharpCompress.dll
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\runtimes\linux\native\libsnappy64.so
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\runtimes\linux\native\libzstd.so
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\runtimes\osx\native\libsnappy64.dylib
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\runtimes\osx\native\libzstd.dylib
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\runtimes\win\native\libzstd.dll
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\runtimes\win\native\snappy32.dll
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\runtimes\win\native\snappy64.dll
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\runtimes\linux\native\libmongocrypt.so
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\runtimes\osx\native\libmongocrypt.dylib
-C:\Users\SlepiLepi\Fakultet\USI\Testis\bin\Debug\net6.0-windows\runtimes\win\native\mongocrypt.dll
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.csproj.AssemblyReference.cache
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.Functions.LoginGUI.resources
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DoctorGUI.resources
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.UI.Manager.ManagerGUI.resources
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AnamnesisSearch.resources
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentDelete.resources
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentRead.resources
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentSchedulingOptions.resources
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.PatientGUI.resources
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.RecommendedScheduling.resources
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.RegularScheduling.resources
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.csproj.GenerateResource.cache
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfoInputs.cache
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfo.cs
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CoreCompileInputs.cache
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CopyComplete
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.dll
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\refint\HealthcareSystem.dll
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.pdb
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
-C:\Users\SlepiLepi\Fakultet\USI\Testis\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\HealthcareSystem.exe
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\HealthcareSystem.deps.json
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\HealthcareSystem.runtimeconfig.json
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\HealthcareSystem.dll
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\HealthcareSystem.pdb
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\DnsClient.dll
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\MongoDB.Bson.dll
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\MongoDB.Driver.dll
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\MongoDB.Driver.Core.dll
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\MongoDB.Libmongocrypt.dll
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\SharpCompress.dll
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\runtimes\linux\native\libsnappy64.so
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\runtimes\linux\native\libzstd.so
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\runtimes\osx\native\libsnappy64.dylib
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\runtimes\osx\native\libzstd.dylib
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\runtimes\win\native\libzstd.dll
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\runtimes\win\native\snappy32.dll
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\runtimes\win\native\snappy64.dll
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\runtimes\linux\native\libmongocrypt.so
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\runtimes\osx\native\libmongocrypt.dylib
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\bin\Debug\net6.0-windows\runtimes\win\native\mongocrypt.dll
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.csproj.AssemblyReference.cache
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.Functions.LoginGUI.resources
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DoctorGUI.resources
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Manager.ManagerGUI.resources
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AnamnesisSearch.resources
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentDelete.resources
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentRead.resources
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentSchedulingOptions.resources
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.PatientGUI.resources
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.RecommendedScheduling.resources
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.RegularScheduling.resources
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.csproj.GenerateResource.cache
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfoInputs.cache
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfo.cs
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CoreCompileInputs.cache
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CopyComplete
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.dll
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\refint\HealthcareSystem.dll
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.pdb
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
-C:\Users\SlepiLepi\Fakultet\USI\Projekat\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.exe
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.deps.json
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.runtimeconfig.json
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.pdb
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\DnsClient.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\MongoDB.Bson.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\MongoDB.Driver.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\MongoDB.Driver.Core.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\MongoDB.Libmongocrypt.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\SharpCompress.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\linux\native\libsnappy64.so
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\linux\native\libzstd.so
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\osx\native\libsnappy64.dylib
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\osx\native\libzstd.dylib
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\win\native\libzstd.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\win\native\snappy32.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\win\native\snappy64.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\linux\native\libmongocrypt.so
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\win\native\mongocrypt.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.csproj.AssemblyReference.cache
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.Functions.LoginGUI.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentCreationForm.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentsTableForm.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DatePickerForm.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DoctorGUI.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.Form1.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateAppointment.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddComplexRenovation.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRenovation.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRoom.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ManagerGUI.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ModifyRoom.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.MoveRequest.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ShowEquipment.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.PatientGUI.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.Secretary.SecretaryGUI.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.csproj.GenerateResource.cache
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfoInputs.cache
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfo.cs
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CoreCompileInputs.cache
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CopyComplete
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\refint\HealthcareSystem.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.pdb
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.exe
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.deps.json
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.runtimeconfig.json
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.dll
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.pdb
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\DnsClient.dll
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\MongoDB.Bson.dll
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\MongoDB.Driver.dll
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\MongoDB.Driver.Core.dll
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\MongoDB.Libmongocrypt.dll
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\SharpCompress.dll
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\linux\native\libsnappy64.so
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\linux\native\libzstd.so
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\osx\native\libsnappy64.dylib
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\osx\native\libzstd.dylib
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\win\native\libzstd.dll
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\win\native\snappy32.dll
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\win\native\snappy64.dll
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\linux\native\libmongocrypt.so
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\osx\native\libmongocrypt.dylib
+C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\win\native\mongocrypt.dll
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.csproj.AssemblyReference.cache
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.Functions.LoginGUI.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentCreationForm.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentsTableForm.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DatePickerForm.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DoctorGUI.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ScheduleForm.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateAppointment.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddComplexRenovation.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRenovation.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRoom.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ManagerGUI.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ModifyRoom.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.MoveRequest.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ShowEquipment.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.PatientGUI.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.Secretary.SecretaryGUI.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.csproj.GenerateResource.cache
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfoInputs.cache
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfo.cs
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CoreCompileInputs.cache
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CopyComplete
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.dll
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\refint\HealthcareSystem.dll
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.pdb
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.CheckForm.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangeWeightForm.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangeHeightForm.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.MakeReferralForm.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.PerfomeCheckupForm.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.csproj.AssemblyReference.cache
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.Functions.LoginGUI.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentCreationForm.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentsTableForm.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangeHeightForm.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangeWeightForm.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.CheckForm.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DatePickerForm.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DoctorGUI.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.MakeReferralForm.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.PerfomeCheckupForm.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ScheduleForm.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateAppointment.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddComplexRenovation.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRenovation.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRoom.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ManagerGUI.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ModifyRoom.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.MoveRequest.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ShowEquipment.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AnamnesisSearch.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentDelete.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentRead.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentSchedulingOptions.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.PatientGUI.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.RecommendedScheduling.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.RegularScheduling.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Secretary.SecretaryGUI.resources
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.csproj.GenerateResource.cache
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfoInputs.cache
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfo.cs
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CoreCompileInputs.cache
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.dll
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\refint\HealthcareSystem.dll
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.pdb
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\HealthcareSystem.exe
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\HealthcareSystem.deps.json
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\HealthcareSystem.runtimeconfig.json
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\HealthcareSystem.dll
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\HealthcareSystem.pdb
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\DnsClient.dll
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\MongoDB.Bson.dll
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\MongoDB.Driver.dll
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\MongoDB.Driver.Core.dll
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\MongoDB.Libmongocrypt.dll
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\SharpCompress.dll
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\linux\native\libsnappy64.so
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\linux\native\libzstd.so
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\osx\native\libsnappy64.dylib
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\osx\native\libzstd.dylib
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\win\native\libzstd.dll
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\win\native\snappy32.dll
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\win\native\snappy64.dll
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\linux\native\libmongocrypt.so
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\win\native\mongocrypt.dll
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CopyComplete
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
+C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll

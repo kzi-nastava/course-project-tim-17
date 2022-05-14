@@ -101,11 +101,11 @@ namespace HealthcareSystem.UI.Patient
                 }
                 foreach (ObjectId id in unavailableRoomId.ToList())
                 {
-                    if ((room._id == id && room.type == RoomType.OPERATION_ROOM) || (room.type == RoomType.OPERATION_ROOM && room.inRenovation == true))
+                    if ((room._id == id && room.type == RoomType.OPERATION_ROOM) || (room.type == RoomType.OPERATION_ROOM && room.InRenovation == true))
                     {
                         operationRooms--;
                     }
-                    else if ((room._id == id && room.type == RoomType.CHECKUP_ROOM) || (room.type == RoomType.CHECKUP_ROOM && room.inRenovation == true))
+                    else if ((room._id == id && room.type == RoomType.CHECKUP_ROOM) || (room.type == RoomType.CHECKUP_ROOM && room.InRenovation == true))
                     {
                         checkupRooms--;
                     }

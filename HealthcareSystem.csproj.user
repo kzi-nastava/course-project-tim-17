@@ -1,13 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
   <ItemGroup>
     <Compile Update="Functions\LoginGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\DoctorView\AppointmentCreationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\DoctorView\AppointmentsTableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\DoctorView\ChangeHeightForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\DoctorView\ChangeWeightForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\DoctorView\CheckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\DoctorView\DatePickerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\DoctorView\MakeReferralForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\DoctorView\PerfomeCheckupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\DoctorView\ScheduleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\DoctorView\UpdateAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\DoctorView\DoctorGUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UI\Manager\ManagerGUI.cs">
+    <Compile Update="UI\ManagerView\AddComplexRenovation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ManagerView\AddRenovation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ManagerView\AddRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ManagerView\ManagerGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ManagerView\ModifyRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ManagerView\MoveRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\ManagerView\ShowEquipment.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\Patient\AnamnesisSearch.cs">
@@ -29,6 +78,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\Patient\RegularScheduling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\Secretary\SecretaryGUI.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

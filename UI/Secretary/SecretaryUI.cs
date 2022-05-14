@@ -321,31 +321,27 @@ namespace HealthcareSystem.UI
 
         }
 
-
+        
         public void GetSortedListOfAppointments(DateTime soonest)
         {
             List<ObjectId> doctorIds = secretaryControllers.AppointmentController.GetAvailableDoctor(soonest);            // ovo treba da mi vrati doktore koji mogu da pomjere 
             List<Apointment> allPossibleForReschedule = new List<Apointment>();
-            foreach (ObjectId dId in doctorIds)
-            {
+            foreach (ObjectId dId in doctorIds) {
                 List<Apointment> apointments = secretaryControllers.AppointmentController.FindAllByDoctor(dId);
-                foreach (Apointment a in apointments)
-                {
+                foreach (Apointment a in apointments) {
                     allPossibleForReschedule.Add(a);
                 }
             }
         }
 
-        public List<Apointment> GetAppointmentsOfDoctors(List<Doctor> doctors)
-        {
+        public List<Apointment> GetAppointmentsOfDoctors(List<Doctor> doctors) {
             List<Apointment> all = secretaryControllers.AppointmentController.getAllAppointments();
             List<Apointment> scheduledAppointments = new List<Apointment>();
-            foreach (Doctor d in doctors)
-            {
+            foreach (Doctor d in doctors) {
                 List<Apointment> doctorsAppointments = secretaryControllers.AppointmentController.FindAllByDoctor(d._id);
-                foreach (Apointment a in doctorsAppointments)
+                foreach(Apointment a in doctorsAppointments)
                 {
-
+                   
                     scheduledAppointments.Add(a);
 
                 }
@@ -382,8 +378,7 @@ namespace HealthcareSystem.UI
             if (appointmentsInNextTwoHours.Count > 0)
             {
                 Console.WriteLine("Doctors are not available! ");
-                foreach (Apointment a in appointmentsInNextTwoHours)
-                {
+                foreach (Apointment a in appointmentsInNextTwoHours) {
                     Console.WriteLine("-----------------------------------------");
                     Console.WriteLine("Date: " + a.dateTime);
                     Console.WriteLine("DoctorId: " + a.doctorId);
@@ -410,20 +405,19 @@ namespace HealthcareSystem.UI
                 }
             }
 
+    
 
 
-
-
+        
         }
 
-        public void PrintAllSpecializations()
-        {
+        public void PrintAllSpecializations() {
             Console.WriteLine(Specialisation.GYNECOLOGY);
             Console.WriteLine(Specialisation.PEDIATRICS);
             Console.WriteLine(Specialisation.OPHTHALMOLOGY);
             Console.WriteLine(Specialisation.INTERNAL_MEDICINE);
             Console.WriteLine(Specialisation.DERMATOLOGY);
-
+            
         }
 
         public void CancelRequest(CheckAppointementRequest cr)
@@ -474,7 +468,7 @@ namespace HealthcareSystem.UI
                 }
                 else if (choice == "2")
                 {
-
+                   
                     PrintAllPatients(patients);
                     us.blockUser();
                     Console.WriteLine("Patient is sucessfully blocked! ");
@@ -515,7 +509,7 @@ namespace HealthcareSystem.UI
                             Console.WriteLine("Appointement is succesfully edited!");
                         }
                     }
-                    else if (opt.Equals("2"))
+                    else if (opt.Equals("2"))          
                     {
 
                         cr.status = Status.DENIED;
@@ -533,8 +527,7 @@ namespace HealthcareSystem.UI
                     Console.WriteLine("Appointement is succesfully created!");
 
                 }
-                else if (choice == "6")
-                {
+                else if (choice == "6") {
 
                     PrintAllPatients(patients);
                     Console.WriteLine("Enter patient email: ");
@@ -542,7 +535,7 @@ namespace HealthcareSystem.UI
                     PrintAllSpecializations();
                     Console.WriteLine("Enter specialization: ");
                     Specialisation s = (Specialisation)Enum.Parse(typeof(Specialisation), (Console.ReadLine().ToUpper()));
-
+           
                     List<Doctor> doctors = secretaryControllers.doctorController.FindDoctorsBySpecialisation(s);
 
                     User patient = secretaryControllers.userController.FindByEmail(patientEmail);

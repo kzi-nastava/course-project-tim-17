@@ -15,7 +15,7 @@ namespace HealthcareSystem.RoleControllers
 {
     class PatientRepositories
     {
-        
+
         public PatientControllers patientController;
         public ApointmentController appointmentController;
         public DoctorController doctorController;

@@ -1,305 +1,347 @@
 using HealthcareSystem.Entity.Enumerations;
 using MongoDB.Bson;
+using MongoDB.Driver;
+
 namespace HealthcareSystem.Entity.RoomModel
 {
 
     class RoomService
     {
-        public RoomController roomController { get; set; }
+        public RoomController roomController;
+        public RenovationRepository renovationReposotory;
+        public MoveEquipmentRequestController moveController;
 
 
-        public RoomService(RoomController roomController)
+        public RoomService(IMongoDatabase database)
         {
 
-            this.roomController = roomController;
+            this.roomController = new RoomController(database);
+            this.renovationReposotory = new RenovationRepository(database);
+            this.moveController = new MoveEquipmentRequestController(database);
         }
-        public void AddRoom()
+        public void AddRoom(string roomName, RoomType roomType)
         {
-            Console.Write("Enter room name: ");
-            string roomName = Console.ReadLine();
 
-            RoomType roomType = ChooseRoomType(); ;
-
-            try
-            {
-                Room room = new Room(roomName, roomType, false);
-                roomController.InsertToCollection(room);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Invalid Argumets, please try again!");
-                return;
-            }
-
-
-        }
-        public void PrintRooms()
-        {
-            List<Room> rooms = roomController.GetAllRooms();
-            foreach (Room room in rooms)
-            {
-                Console.WriteLine(room.ToString());
-            }
-        }
-
-        public void DeleteRoom()
-        {
-            Console.Write("Enter room ID: ");
-            try
-            {
-                ObjectId id = new ObjectId(Console.ReadLine());
-                roomController.DeleteRoom(id);
-                Console.WriteLine("Invalid id , please try again!");
-                return;
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Invalid id,please try again!");
-            }
-
-
+            Room room = new Room(roomName, roomType);
+            roomController.InsertToCollection(room);
 
 
 
         }
-        public void UpdateRoom()
+        public void AddRoom(Room room)
         {
-            try
+
+            roomController.InsertToCollection(room);
+
+
+
+        }
+
+        public void addItemToRoom(Room room,Equipment item)
+        {
+
+            
+            
+            roomController.addEquipment(room, item);
+
+
+
+        }
+
+        public void AddEquipmentToRoom(Room room, List<Equipment> equipment)
+        {
+
+
+            foreach (Equipment item in equipment)
             {
-                Console.Write("Enter room ID: ");
-                ObjectId id = new ObjectId(Console.ReadLine());
-                Room room = roomController.findById(id);
-                if (room == null) throw new Exception("Room not found!");
-                if (room != null)
+                roomController.addEquipment(room, item);
+            }
+
+
+
+        }
+
+
+        
+
+        public void DeleteRoom(string id)
+        {
+            roomController.DeleteRoom(new ObjectId(id));
+
+
+        }
+        public void UpdateRoom(Room room)
+        {
+
+            roomController.UpdateRoom(room);
+
+
+        }
+        public void CheckForRenovations()
+        {
+            List<Renovation> roomsForRenovation = renovationReposotory.GetAllRenovations();
+            DateTime currentTime = DateTime.Now;
+            foreach (Renovation roomForRenovation in roomsForRenovation)
+            {
+                if (currentTime > roomForRenovation.renovationEndDate)
                 {
-                    Console.WriteLine("1.Change room name : " + room.name);
-                    Console.WriteLine("2.Change room type : " + room.type);
-                    Console.WriteLine("x.Cancle");
-                    Console.Write("Enter option: ");
-                    string option = Console.ReadLine();
-                    if (option == "x") return;
-                    if (option == "1")
+                    if (roomForRenovation.RenovationType == 0)
                     {
-                        room.name = Console.ReadLine();
+                        StandardRenovation(roomForRenovation);
                     }
-                    if (option == "2")
+                    if (roomForRenovation.RenovationType == 1)
                     {
-
-
-                        room.type = ChooseRoomType();
+                        MergeRoomRenovation mr = renovationReposotory.findMergeRenovationByRenovationId(roomForRenovation._id);
+                        MergeRooms(mr,roomForRenovation); 
                     }
-                    roomController.UpdateRoom(room);
-
+                    if (roomForRenovation.RenovationType == 2)
+                    {
+                        SplitRoomRenovation sr = renovationReposotory.findSplitRenovationByRenovationId(roomForRenovation._id);
+                        SplitRoom(sr, roomForRenovation);
+                    }
 
                 }
 
-
-                else
-                {
-                    Console.Write("Room not found");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
             }
         }
-
-        public void Tst()
+        public void StandardRenovation(Renovation roomRenovation)
         {
-            Console.Write("Enter room ID: ");
-            ObjectId id = new ObjectId(Console.ReadLine());
-            Room room = roomController.findById(id);
-            Console.WriteLine(room.ContainItem("Chair"));
-
-        }
-        public EquipmentType ChooseEquipmentType()
-        {
-            int i = 1;
-            foreach (EquipmentType et in Enum.GetValues(typeof(EquipmentType)))
-            {
-                Console.Write(i);
-                Console.Write(".");
-                Console.WriteLine(et);
-                i++;
-            }
-            Console.Write("Enter equipment type:");
-            string equipmentTypeOption = Console.ReadLine();
-            int j = 1;
-            EquipmentType equipmentType = new EquipmentType();
-            foreach (EquipmentType et in Enum.GetValues(typeof(EquipmentType)))
-            {
-                if (j.ToString() == equipmentTypeOption) equipmentType = et;
-                j++;
-            }
-            return equipmentType;
+            Room room = roomController.findById(roomRenovation.roomId);
+            room.InRenovation = false;
+            roomController.UpdateRoom(room);
+            renovationReposotory.DeleteRenovation(roomRenovation._id);
         }
 
-        public RoomType ChooseRoomType()
+        public void SplitRoom(SplitRoomRenovation roomForSplit, Renovation roomRenovation)
         {
-            int i = 1;
-            foreach (RoomType et in Enum.GetValues(typeof(RoomType)))
-            {
-                Console.Write(i);
-                Console.Write(".");
-                Console.WriteLine(et);
-                i++;
-            }
-            Console.Write("Enter room type:");
-            string roomTypeOption = Console.ReadLine();
-            int j = 1;
-            RoomType roomType = new RoomType();
-            foreach (RoomType et in Enum.GetValues(typeof(RoomType)))
-            {
-                if (j.ToString() == roomTypeOption) roomType = et;
-                j++;
-            }
-            return roomType;
+
+            Room room = roomController.findById(roomRenovation.roomId);
+            Room roomOne = new Room(roomForSplit.FirstRoomName, room.type);
+            Room roomTwo = new Room(roomForSplit.SecondRoomName, room.type);
+            AddEquipmentToRoom(roomOne, roomForSplit.firstRoomEquipment);
+            AddEquipmentToRoom(roomTwo, roomForSplit.secondRoomEquipment);
+            AddRoom(roomOne);
+            AddRoom(roomTwo);
+            DeleteRoom(room._id.ToString());
+            DeleteSplitRenovation(roomForSplit);
+
         }
 
-        public void CheckRoomEquipment()
+
+        public void MergeRooms(MergeRoomRenovation roomForMerge, Renovation roomRenovation)
         {
-            try
+
+            Room roomOne = roomController.findById(roomForMerge.FirstRoomId);
+            Room roomTwo = roomController.findById(roomForMerge.SecondRoomId);
+            Room newMergedRoom = new Room(roomForMerge.MergedRoomName, roomOne.type);
+            AddEquipmentToRoom(newMergedRoom, MergeEquipment(roomOne.equipments, roomTwo.equipments));
+            AddRoom(newMergedRoom);
+            DeleteRoom(roomOne._id.ToString());
+            DeleteRoom(roomTwo._id.ToString());
+            DeleteMergeRenovation(roomForMerge);
+
+        }
+
+        public List<Equipment> MergeEquipment(List<Equipment> roomOneEquipment, List<Equipment> roomTwoEquipment)
+        {
+            List<Equipment> mergedEquipment = new List<Equipment>();
+            List<Equipment> differentEquipment = new List<Equipment>();
+            foreach (Equipment item in roomOneEquipment) 
             {
-                Console.WriteLine("1.Item name");
-                Console.WriteLine("2.Item type");
-                Console.WriteLine("3.Quantity");
-                Console.WriteLine("4.Room Type");
-                Console.WriteLine("x.Cancle");
-                string option = Console.ReadLine();
-                List<Room> rooms = roomController.GetAllRooms();
-                List<string> result = new List<string>();
-                if (option == "x") return;
-                if (option == "1")
-                {
-                    string itemName = Console.ReadLine();
-                    foreach (Room room in rooms)
-                    {
-                        foreach (Equipment equipment in room.equipments)
-                        {
-                            if (equipment.item == itemName)
-                            {
-                                string equipmentInfo = "In room : " + room.name +
-                                " Equipment name : " + equipment.item + " Equipment type : "
-                                + equipment.type + " Awaliable quantity : " + equipment.quantity.ToString();
-                                result.Add(equipmentInfo);
-                            }
-                        }
-                    }
-                }
-                if (option == "2")
-                {
-
-
-
-
-                    EquipmentType equipmentType = ChooseEquipmentType();
-
-
-                    foreach (Room room in rooms)
-                    {
-                        foreach (Equipment equipment in room.equipments)
-                        {
-                            if (equipment.type == equipmentType)
-                            {
-                                string equipmentInfo = "In room : " + room.name +
-                                " Equipment name : " + equipment.item + " Equipment type : "
-                                + equipment.type + " Awaliable quantity : " + equipment.quantity.ToString();
-                                result.Add(equipmentInfo);
-                            }
-                        }
-                    }
-
-                }
-                if (option == "3")
-                {
-                    Console.WriteLine("1.Exact amont");
-                    Console.WriteLine("2.In range");
-                    Console.WriteLine("3.More than");
-                    Console.Write("Enter option: ");
-                    string optionForQuantity = Console.ReadLine();
-                    int rangeStart = 0;
-                    int rangeEnd = 0;
-
-                    if (optionForQuantity == "1")
-                    {
-                        Console.Write("Enter amount: ");
-                        rangeStart = int.Parse(Console.ReadLine());
-                        rangeEnd = -1;
-                    }
-                    if (optionForQuantity == "2")
-                    {
-                        Console.Write("Enter start of range: ");
-                        rangeStart = int.Parse(Console.ReadLine());
-                        Console.Write("Enter end of range: ");
-                        rangeEnd = int.Parse(Console.ReadLine());
-                    }
-                    if (optionForQuantity == "3")
-                    {
-                        Console.Write("Enter start of a range: ");
-                        rangeStart = int.Parse(Console.ReadLine());
-                        rangeEnd = -2;
-                    }
-
-                    foreach (Room room in rooms)
-                    {
-                        foreach (Equipment equipment in room.equipments)
-                        {
-                            if (QuantityAmountCheck(equipment.quantity, rangeStart, rangeEnd))
-                            {
-                                string equipmentInfo = "In room : " + room.name +
-                                " Equipment name : " + equipment.item + " Equipment type : "
-                                + equipment.type + " Awaliable quantity : " + equipment.quantity.ToString();
-                                result.Add(equipmentInfo);
-                            }
-                        }
-                    }
-                }
-                if (option == "4")
-                {
-                    RoomType roomType = ChooseRoomType();
-                    foreach (Room room in rooms)
-                    {
-                        if (room.type == roomType)
-                        {
-                            foreach (Equipment equipment in room.equipments)
-                            {
-                                {
-                                    string equipmentInfo = "In room : " + room.name +
-                                    " Equipment name : " + equipment.item + " Equipment type : "
-                                    + equipment.type + " Awaliable quantity : " + equipment.quantity.ToString();
-                                    result.Add(equipmentInfo);
-                                }
-                            }
-                        }
-                    }
-                }
-                if (result.Count == 0)
-                {
-                    Console.WriteLine("No matches found!");
-                }
-                foreach (String res in result)
-                {
-                    Console.WriteLine(res);
-                }
-
+                mergedEquipment.Add(item);
             }
-            catch (Exception ex)
+            foreach (Equipment item in roomTwoEquipment)
             {
-                Console.WriteLine(ex.Message);
-                return;
-
+                bool added = false;
+                foreach (Equipment itemTwo in mergedEquipment)
+                {
+                    if (item.item == itemTwo.item)
+                    {
+                        itemTwo.quantity += item.quantity;
+                        added = true;
+                    }
+                }
+                if (!added) 
+                { 
+                    differentEquipment.Add(item); 
+                }
             }
+            foreach (Equipment item in differentEquipment) 
+            {
+                mergedEquipment.Add(item);
+            }
+            return mergedEquipment;
+
+        }
+
+        public void DeleteSplitRenovation(SplitRoomRenovation sr) 
+        {
+            Renovation r = renovationReposotory.findRenovationById(sr.RenovationId);
+            renovationReposotory.DeleteRenovation(r._id);
+            renovationReposotory.DeleteSplitRenovation(sr._id);
+        }
+        public void DeleteMergeRenovation(MergeRoomRenovation mr)
+        {
+            Renovation r = renovationReposotory.findRenovationById(mr.RenovationId);
+            renovationReposotory.DeleteRenovation(r._id);
+            renovationReposotory.DeleteMergeRenovation(mr._id);
+        }
+
+
+        public List<Tuple<Equipment,string>> GetEquipmentByItemName(string itemName)
+        {
+            List<Tuple<Equipment, string>> itemAndRoom = new List<Tuple<Equipment, string>>();
+            
+            foreach (Room r in roomController.GetAllRooms())
+            {
+                foreach (Equipment equipment in r.equipments)
+                {
+                    if (equipment.item == itemName)
+                    {
+                        itemAndRoom.Add(new Tuple<Equipment, string>(equipment, r.name));
+                    }
+                }
+            }
+
+            return itemAndRoom;
+        }
+
+        public List<Tuple<Equipment, string>> GetEquipmentByItemType(string itemType)
+        {
+            List<Tuple<Equipment, string>> itemAndRoom = new List<Tuple<Equipment, string>>();
+
+            foreach (Room r in roomController.GetAllRooms())
+            {
+                foreach (Equipment equipment in r.equipments)
+                {
+                    if (equipment.type.ToString() == itemType)
+                    {
+                        itemAndRoom.Add(new Tuple<Equipment, string>(equipment, r.name));
+                    }
+                }
+            }
+
+            return itemAndRoom;
+        }
+
+        public List<Tuple<Equipment, string>> GetEquipmentByRoomType(string roomType)
+        {
+            List<Tuple<Equipment, string>> itemAndRoom = new List<Tuple<Equipment, string>>();
+
+            foreach (Room r in roomController.GetAllRooms())
+            {
+                if (r.type.ToString() == roomType)
+                {
+                    foreach (Equipment equipment in r.equipments)
+                    {
+
+
+                        itemAndRoom.Add(new Tuple<Equipment, string>(equipment, r.name));
+
+                    }
+                }
+            }
+
+            return itemAndRoom;
+        }
+
+        public List<Tuple<Equipment, string>> GetEquipmentByQuantity(string type)
+        {
+            List<Tuple<Equipment, string>> itemAndRoom = new List<Tuple<Equipment, string>>();
+
+            foreach (Room r in roomController.GetAllRooms())
+            {
+                
+                
+                foreach (Equipment equipment in r.equipments)
+                    {
+
+                    if (QuantityAmountCheck(equipment.quantity,type))
+                    {
+                        itemAndRoom.Add(new Tuple<Equipment, string>(equipment, r.name));
+                    }
+
+                    }
+                
+            }
+
+            return itemAndRoom;
         }
 
 
 
-        public bool QuantityAmountCheck(int quantity, int rangeStart, int rangeEnd)
+        public bool QuantityAmountCheck(int quantity, string option)
         {
-            if (rangeEnd == -1) if (rangeStart == quantity) return true;
-            if (rangeEnd == -2) if (rangeStart < quantity) return true;
-            if (rangeEnd > -1) if (rangeStart < quantity && rangeEnd > quantity) return true;
+            if (option == ">10") if (10 >= quantity) return true;
+            if (option == "<10") if (10 <= quantity) return true;
+            if (option == "1t10") if (0 < quantity && quantity<=10) return true;
             return false;
+        }
+
+        public void MoveEquipment()
+        {
+            List<MoveEquipmentRequest> moveEquipmentRequests = moveController.GetAllMoveEquipmentRequests();
+            DateTime currentTime = DateTime.Now;
+            foreach (MoveEquipmentRequest moveEquipmentRequest in moveEquipmentRequests)
+            {
+
+                if (currentTime > moveEquipmentRequest.moveDate)
+                {
+                    Room roomFrom = roomController.findById(moveEquipmentRequest.moveFrom);
+                    if (roomFrom.CheckIfEquipmentIsAvaliable(moveEquipmentRequest.equipment))
+                    {
+                        Room roomTo = roomController.findById(moveEquipmentRequest.moveTo);
+                        if (roomTo.ContainItem(moveEquipmentRequest.equipment.item))
+                        {
+                            changeQuantityFromEquipment(roomTo, moveEquipmentRequest, "add");
+                            changeQuantityFromEquipment(roomFrom, moveEquipmentRequest, "sub");
+                            moveController.DeleteMoveEquipmentRequest(moveEquipmentRequest._id);
+                        }
+                        else
+                        {
+                            roomController.addEquipment(roomTo, moveEquipmentRequest.equipment);
+                            changeQuantityFromEquipment(roomFrom, moveEquipmentRequest, "sub");
+                            moveController.DeleteMoveEquipmentRequest(moveEquipmentRequest._id);
+
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Equipment Unavaliable");
+                    }
+
+                }
+
+            }
+        }
+        public void CreateMoveEquipmentRequest(DateTime date, ObjectId roomFirstId, ObjectId roomSecondId, Equipment item)
+        {
+
+            MoveEquipmentRequest mer = new MoveEquipmentRequest(date, roomFirstId, roomSecondId, item);
+            moveController.InsertToCollection(mer);
+
+
+
+
+        }
+
+
+
+        public void changeQuantityFromEquipment(Room room, MoveEquipmentRequest moveEquipmentRequest, string operation)
+        {
+            for (int i = 0; i < room.equipments.Count(); i++)
+            {
+                if (room.equipments[i].item == moveEquipmentRequest.equipment.item)
+                {
+                    if (operation == "sub")
+                        room.equipments[i].quantity = room.equipments[i].quantity - moveEquipmentRequest.equipment.quantity;
+                    if (operation == "add")
+                        room.equipments[i].quantity = room.equipments[i].quantity + moveEquipmentRequest.equipment.quantity;
+                    roomController.UpdateRoom(room);
+                }
+            }
+
         }
 
 

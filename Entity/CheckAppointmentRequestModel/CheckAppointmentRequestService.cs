@@ -63,7 +63,7 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
 
         }
 
-
+     
         public void DeleteRequest(ObjectId id)
         {
             CheckAppointementRequest cr = secretaryControllers.checkAppointemtRequestController.FindById(id);

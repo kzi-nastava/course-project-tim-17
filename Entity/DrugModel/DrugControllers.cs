@@ -21,8 +21,15 @@ namespace HealthcareSystem.Entity.DrugModel
         public void InsertToCollection(Drug drug){
             drugCollection.InsertOne(drug);
         }
-        
+        public Drug FindById(ObjectId id)
+        {
+            return drugCollection.Find(item => item._id == id).FirstOrDefault();
         }
+        public Drug FindByDrugName(string drugName)
+        {
+            return drugCollection.Find(item => item.name == drugName).FirstOrDefault();
+        }
+    }
     }
 
 

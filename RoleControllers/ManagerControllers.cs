@@ -11,6 +11,7 @@ namespace HealthcareSystem.RoleControllers
         public DrugController drugCollection;
         public DrugVerificationController drugVerificationCollection;
         public RevisionController revisionCollection;
+        public RenovationRepository renovationCollection;
 
         public MoveEquipmentRequestController moveCollection;
 
@@ -23,6 +24,7 @@ namespace HealthcareSystem.RoleControllers
             this.drugVerificationCollection = new DrugVerificationController(database);
             this.revisionCollection = new RevisionController(database);
             this.moveCollection = new MoveEquipmentRequestController(database);
+            this.renovationCollection = new RenovationRepository(database);
             
         }
 

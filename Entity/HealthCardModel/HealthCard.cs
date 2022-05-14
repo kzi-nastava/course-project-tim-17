@@ -14,10 +14,10 @@ using HealthcareSystem.Functions;
 namespace HealthcareSystem.Entity.HealthCardModel;
 
 class HealthCard
-{
+{   
     public ObjectId _id { get; set; }
     [BsonElement("checks")]
-    public List<ObjectId> checks { get; set; }
+    public List<ObjectId> checks { get; set; } 
     [BsonElement("height")]
     public double height { get; set; }
     [BsonElement("weight")]
@@ -35,7 +35,7 @@ class HealthCard
         this.height = height;
         this.weight = weight;
         this.patientId = patientId;
-        this.checks = new List<ObjectId>();
+        this.checks = new List<ObjectId>(); 
         this.referrals = new List<ObjectId>();
         this.allergies = allergies;
 
@@ -50,6 +50,6 @@ class HealthCard
         HealthCardController h = new HealthCardController(database);
         h.InsertToCollection(hc);
     }
-
-
+    
+    
 }
