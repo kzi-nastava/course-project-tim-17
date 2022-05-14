@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8bTMFR7r8MdYvvqRpP88yngUYYGtJ45r/oHp9Zub0X8OzcxhoZTAfbDAv55duOPWRJ8uC+F0srK7iyvSFyCx1g==",
+  "dgSpecHash": "pvtqb+o2HU2A+e6XtVLZyuMbQ0rAo8MY+frwTbIMuheSbjF+uG8mYYxFWrG3s17McjM9iaWK1cudyaN/bja7hQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SlepiLepi\\Fakultet\\USI\\Projekat\\Projekat USI.csproj",
+  "projectFilePath": "C:\\Users\\SlepiLepi\\Fakultet\\USI\\Testis\\HealthcareSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SlepiLepi\\.nuget\\packages\\dnsclient\\1.6.0\\dnsclient.1.6.0.nupkg.sha512",
     "C:\\Users\\SlepiLepi\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",

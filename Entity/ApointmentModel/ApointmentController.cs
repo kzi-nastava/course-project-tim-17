@@ -28,6 +28,11 @@ namespace HealthcareSystem.Entity.ApointmentModel
             return apointmentCollection.Find(item => item.patientId == id).ToList();
         }
 
+        public List<Apointment> FindAllByDoctor(ObjectId id)
+        {
+            return apointmentCollection.Find(item => item.doctorId == id).ToList();
+        }
+
         public void replaceApointment(Apointment apointment) 
         {
             apointmentCollection.ReplaceOne(item => item._id == apointment._id, apointment);
@@ -40,6 +45,28 @@ namespace HealthcareSystem.Entity.ApointmentModel
 
         public Apointment FindById(ObjectId id) {
             return apointmentCollection.Find(item => item._id == id).FirstOrDefault();
+        }
+        public List<ObjectId> GetAvailableDoctor(DateTime time)
+        {
+            DateTime today = DateTime.Now;
+            List<ObjectId> doctors = new List<ObjectId>();
+            List<Apointment> apointments = apointmentCollection.Find(item => true).ToList();
+            foreach (Apointment ap in apointments)
+            {
+
+                TimeSpan ts = today - ap.dateTime;
+                double hours = ts.Hours;
+                if (hours > 3)
+                {
+                    doctors.Add(ap.doctorId);
+
+                }
+
+
+            }
+
+            return doctors;
+
         }
     }
 }

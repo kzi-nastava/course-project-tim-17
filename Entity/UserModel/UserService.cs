@@ -20,6 +20,26 @@ namespace HealthCareSystem.Entity.UserModel
             this.secretaryControllers = sc;
         }
 
+        public User AddPatient()
+        {
+            Console.WriteLine("Enter name: ");
+            string name = Console.ReadLine();
+            Console.WriteLine("Enter last name: ");
+            string lastName = Console.ReadLine();
+            Console.WriteLine("Enter email: ");
+            string email = Console.ReadLine();
+            Console.WriteLine("Enter password: ");
+            string password = Console.ReadLine();
+            Role role = Role.PATIENT;
+            User user = new User(name, lastName, email, password, role);
+            if (!doesUserExist(email, password))
+            {
+                secretaryControllers.userController.InsertToCollection(user);
+                return user;
+            }
+            return null;
+
+        }
         public User AddUser()
         {
             Console.WriteLine("Enter name: ");
@@ -104,6 +124,16 @@ namespace HealthCareSystem.Entity.UserModel
             BlockedUser bu = secretaryControllers.blockedUserController.FindByUserId(u._id);
             secretaryControllers.blockedUserController.Unblock(bu._id);
 
+        }
+
+        public bool doesUserExist(string email, string password)
+        {
+            User u = secretaryControllers.userController.CheckCredentials(email, password);
+            if (u != null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 

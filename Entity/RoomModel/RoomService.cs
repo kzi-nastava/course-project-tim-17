@@ -22,7 +22,7 @@ namespace HealthcareSystem.Entity.RoomModel
 
             try
             {
-                Room room = new Room(roomName, roomType);
+                Room room = new Room(roomName, roomType, false);
                 roomController.InsertToCollection(room);
             }
             catch (Exception)
@@ -290,10 +290,6 @@ namespace HealthcareSystem.Entity.RoomModel
                 return;
 
             }
-
-
-
-
         }
 
 

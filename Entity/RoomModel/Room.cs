@@ -10,14 +10,17 @@ namespace HealthcareSystem.Entity.RoomModel
         public string name{get;set;}
         [BsonElement("type")]
         public RoomType type { get; set; }
+        [BsonElement("inRenovation")]
+        public Boolean inRenovation { get; set; }
         [BsonElement("equipments")]
         public List<Equipment> equipments { get; set; } = new List<Equipment>();
 
 
-        public Room(string name,RoomType type)
+        public Room(string name,RoomType type, Boolean inRenovation)
         {
             this.name = name;
             this.type = type;
+            this.inRenovation = inRenovation;
             this._id = ObjectId.GenerateNewId();
         }
 
