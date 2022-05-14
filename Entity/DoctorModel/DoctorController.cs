@@ -35,7 +35,7 @@ namespace HealthcareSystem.Entity.DoctorModel
             return doctorCollection.Find(item => item.specialisation == s).ToList();
         }
 
-
+       
     }
     }
 
