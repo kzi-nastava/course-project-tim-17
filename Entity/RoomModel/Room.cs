@@ -12,25 +12,22 @@ namespace HealthcareSystem.Entity.RoomModel
         public RoomType type { get; set; }
         [BsonElement("equipments")]
         public List<Equipment> equipments { get; set; } = new List<Equipment>();
-
         [BsonElement("inRenovation")]
-        bool inRenovation { get; set; }
+        public bool InRenovation { get; set; }
+
 
         public Room(string name,RoomType type)
         {
             this.name = name;
             this.type = type;
             this._id = ObjectId.GenerateNewId();
+            this.InRenovation = false;
+
         }
 
         public override string ToString()
         {
-            string roomFormated = "Name: " + this.name + " Type:" + this.type.ToString() + "\n"; 
-            roomFormated+= "    Equipment: \n";
-            foreach(Equipment equipment in equipments) {
-                roomFormated+= "        Item Name: " + equipment.item + "Quantity in a room: " + equipment.quantity.ToString() + "\n";
-            }
-            return roomFormated;
+            return this.name;
         }
 
         public bool CheckIfEquipmentIsAvaliable(Equipment equipmentForCheck){

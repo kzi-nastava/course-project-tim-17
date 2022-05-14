@@ -73,6 +73,20 @@ namespace HealthcareSystem.Entity.ApointmentModel
             
 
         }
+        public bool CheckIfRoomIsAvaliableForRenovation(ObjectId roomId, DateTime startDate, DateTime endDate)
+        {
+            List<Apointment> apointments = doctorRepositories.apointmentController.getAllAppointments();
+            foreach (Apointment apointment in apointments)
+            {
+                if (roomId == apointment.roomId)
+                {
+                    if (apointment.dateTime > startDate && apointment.dateTime < endDate) return false;
+                }
+                
+            }
+            return true;
+        }
+
 
         public bool DateTimeFree(DateTime dateTime)
         {

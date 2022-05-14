@@ -25,6 +25,11 @@ namespace HealthcareSystem.Entity
             this.isDynamic = dynamic;
         }
 
+        public override string ToString()
+        {
+            return this.item + "(" + this.quantity.ToString() + ")";
+        }
+
     }
 
 }

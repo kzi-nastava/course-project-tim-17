@@ -29,5 +29,13 @@ partial class DoctorGUI : Form
         {
 
         }
+
+        private void listAllAppointmentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AppointmentsTableForm appointmentsTableForm = new AppointmentsTableForm(loggedUser, doctorRepositories);
+            appointmentsTableForm.Show();
+        }
+
+
     }
 }
