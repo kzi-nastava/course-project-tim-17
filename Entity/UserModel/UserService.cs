@@ -66,6 +66,9 @@ namespace HealthCareSystem.Entity.UserModel
             return patients;
         }
 
+      
+
+
 
         public User DeleteUser()
         {
@@ -80,7 +83,7 @@ namespace HealthCareSystem.Entity.UserModel
                     secretaryControllers.blockedUserController.Unblock(u._id);
                 }
                 secretaryControllers.userController.DeleteFromCollection(u._id);
-                secretaryControllers.AppointemtController.DeleteApointmentByPatientId(u._id);
+                secretaryControllers.AppointmentController.DeleteApointmentByPatientId(u._id);
                 return u;
             }
             return null;

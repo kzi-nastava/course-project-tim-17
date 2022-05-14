@@ -26,7 +26,7 @@ class HealthCard
     public ObjectId patientId { get; set; }
     [BsonElement("allergies")]
     public List<Ingredient> allergies { get; set; }
-    [BsonElement("referalls")]
+    [BsonElement("referrals")]
     public List<ObjectId> referrals { get; set; }
 
     public HealthCard(double height, double weight, ObjectId patientId, List<Ingredient> allergies)

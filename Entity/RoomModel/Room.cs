@@ -13,6 +13,8 @@ namespace HealthcareSystem.Entity.RoomModel
         [BsonElement("equipments")]
         public List<Equipment> equipments { get; set; } = new List<Equipment>();
 
+        [BsonElement("inRenovation")]
+        bool inRenovation { get; set; }
 
         public Room(string name,RoomType type)
         {
