@@ -1,6 +1,6 @@
 ﻿namespace HealthcareSystem.UI.DoctorView
 {
-    partial class ChangdeAppointmentDateTimeForm
+    partial class UpdateAppointment
     {
         /// <summary>
         /// Required designer variable.
@@ -116,7 +116,7 @@
             this.warningMessageLabel.Text = "label3";
             this.warningMessageLabel.Visible = false;
             // 
-            // ChangdeAppointmentDateTimeForm
+            // UpdateAppointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -130,8 +130,9 @@
             this.Controls.Add(this.houTextBox);
             this.Controls.Add(this.hour);
             this.Controls.Add(this.dateTimePicker);
-            this.Name = "ChangdeAppointmentDateTimeForm";
+            this.Name = "UpdateAppointment";
             this.Text = "ChangdeAppointmentDateTimeForm";
+            this.Load += new System.EventHandler(this.UpdateAppointment_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
