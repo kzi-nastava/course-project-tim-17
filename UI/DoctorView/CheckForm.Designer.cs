@@ -131,6 +131,7 @@
             this.performCheckupBtn.TabIndex = 9;
             this.performCheckupBtn.Text = "Perform Checkup";
             this.performCheckupBtn.UseVisualStyleBackColor = true;
+            this.performCheckupBtn.Click += new System.EventHandler(this.performCheckupBtn_Click);
             // 
             // CheckForm
             // 

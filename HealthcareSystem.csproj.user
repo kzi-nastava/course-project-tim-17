@@ -26,6 +26,9 @@
     <Compile Update="UI\DoctorView\MakeReferralForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UI\DoctorView\PerfomeCheckupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UI\DoctorView\ScheduleForm.cs">
       <SubType>Form</SubType>
     </Compile>
