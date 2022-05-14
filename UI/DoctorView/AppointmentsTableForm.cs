@@ -102,7 +102,7 @@ namespace HealthcareSystem.UI.DoctorView
             if (dataGridView1.Rows[rowindex].Cells[0].Value != null)
             {
                 Apointment apointment = doctorRepositories.apointmentController.FindById(new ObjectId(selectedAppointmentId));
-                ChangdeAppointmentDateTimeForm changdeAppointmentDateTimeForm = new ChangdeAppointmentDateTimeForm(doctorRepositories, apointment);
+                UpdateAppointment changdeAppointmentDateTimeForm = new UpdateAppointment(doctorRepositories, apointment);
                 changdeAppointmentDateTimeForm.Show();
             }
             else

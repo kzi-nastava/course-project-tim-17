@@ -119,3 +119,6 @@ C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI
 >>>>>>> aabdfa0456a6b6954fc20c302385800499a6549e
 C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangdeAppointmentDateTimeForm.resources
 >>>>>>> dusan2
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateAppointment.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DatePickerForm.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.Form1.resources
