@@ -35,6 +35,9 @@ namespace HealthcareSystem.UI.DoctorView
         {
             DateTime pickedDateTime = GetDate();
             List<Apointment> certanAppointments = GetCertainAppointments(pickedDateTime);
+            ScheduleForm scheduleForm = new ScheduleForm(loggedUser, doctorRepositories, certanAppointments);
+            scheduleForm.Show();
+            this.Dispose();
         }
 
         private List<Apointment> GetCertainAppointments(DateTime pickedDateTime)

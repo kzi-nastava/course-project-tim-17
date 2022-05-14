@@ -1,6 +1,6 @@
 ﻿namespace HealthcareSystem.UI.DoctorView
 {
-    partial class Form1
+    partial class ScheduleForm
     {
         /// <summary>
         /// Required designer variable.
@@ -51,6 +51,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(146, 63);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(545, 321);
             this.dataGridView1.TabIndex = 0;
             // 
@@ -87,6 +88,7 @@
             this.performBtn.TabIndex = 1;
             this.performBtn.Text = "Perform";
             this.performBtn.UseVisualStyleBackColor = true;
+            this.performBtn.Click += new System.EventHandler(this.performBtn_Click);
             // 
             // warningMessageLabel
             // 
@@ -99,7 +101,7 @@
             this.warningMessageLabel.Text = "label1";
             this.warningMessageLabel.Visible = false;
             // 
-            // Form1
+            // ScheduleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -107,8 +109,9 @@
             this.Controls.Add(this.warningMessageLabel);
             this.Controls.Add(this.performBtn);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "Form1";
+            this.Name = "ScheduleForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.ScheduleForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
