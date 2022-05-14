@@ -28,6 +28,11 @@ namespace HealthcareSystem.Entity.ApointmentModel
             return apointmentCollection.Find(item => item.patientId == id).ToList();
         }
 
+        public List<Apointment> FindAllByDoctor(ObjectId id)
+        {
+            return apointmentCollection.Find(item => item.doctorId == id).ToList();
+        }
+
         public void replaceApointment(Apointment apointment) 
         {
             apointmentCollection.ReplaceOne(item => item._id == apointment._id, apointment);

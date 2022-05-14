@@ -29,7 +29,13 @@ namespace HealthcareSystem.Entity.ReferralModel
             return referralCollection.Find(item => item._id == id).FirstOrDefault();
         }
 
+        public void Delete(ObjectId id)
+        {
 
+            referralCollection.DeleteOne(item => item._id == id);
+
+
+        }
 
     }
 }

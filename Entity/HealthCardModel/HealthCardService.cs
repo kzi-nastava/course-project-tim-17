@@ -69,6 +69,7 @@ namespace HealthcareSystem.Entity.HealthCardModel
         { 
             Console.WriteLine("1 -> Edit height");
             Console.WriteLine("2 -> Edit weight");
+            Console.WriteLine("3 -> Add allergy");
             HealthCard found = null; 
             List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
             foreach (HealthCard healthCard in healthCards)
@@ -90,6 +91,11 @@ namespace HealthcareSystem.Entity.HealthCardModel
                 Console.WriteLine("Enter new value for weight: ");
                 found.weight = Double.Parse(Console.ReadLine());
 
+            }
+            else if (choice == "3") {
+                Console.WriteLine("Enter new allergy: ");
+                Ingredient a = new Ingredient(Console.ReadLine());
+                found.allergies.Add(a);
             }
 
             secretaryControllers.healthCardController.update(found);

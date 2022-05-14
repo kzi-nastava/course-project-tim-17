@@ -1,3 +1,4 @@
+using HealthcareSystem.Entity.Enumerations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
@@ -28,8 +29,12 @@ namespace HealthcareSystem.Entity.DoctorModel
             return doctorCollection.Find(item => item.password == password & item.email == email).FirstOrDefault();
 
         }
-        
-        
+
+        public List<Doctor> FindDoctorsBySpecialisation(Specialisation s)
+        {
+            return doctorCollection.Find(item => item.specialisation == s).ToList();
+        }
+
 
     }
     }

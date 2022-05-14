@@ -29,11 +29,11 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
                 Console.WriteLine("ID: " + c._id);
                 if (c.RequestState == RequestState.DELETE)
                 {
-                    Apointment ap = secretaryControllers.AppointemtController.FindById(c.appointmentId);
+                    Apointment ap = secretaryControllers.AppointmentController.FindById(c.appointmentId);
                     if (ap == null) { Console.WriteLine("This appointment has been deleted! "); }
                     else
                     {
-                        patient = secretaryControllers.userController.FindById(secretaryControllers.AppointemtController.FindById(c.appointmentId).patientId);
+                        patient = secretaryControllers.userController.FindById(secretaryControllers.AppointmentController.FindById(c.appointmentId).patientId);
                         Console.WriteLine("PATIENT: " + patient.name + " " + patient.lastName);
                         Console.WriteLine("ROOM: :  " + secretaryControllers.roomController.findById(ap.roomId).name);
                         Console.WriteLine("DATE: " + ap.dateTime.ToString());
@@ -45,15 +45,19 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
                 {
                     AppointmentRequests ar = secretaryControllers.appointmentRequestsController.FindById(c.appointmentId);
 
-                    Apointment ap = secretaryControllers.AppointemtController.FindById(ar.appointmentId);
-
-                    patient = secretaryControllers.userController.FindById(ap.patientId);
-                    Console.WriteLine("PATIENT: " + patient.name + " " + patient.lastName);
-                    Console.WriteLine("ROOM: :  " + secretaryControllers.roomController.findById(ap.roomId).name);
-                    Console.WriteLine("DATE: " + ap.dateTime.ToString());
+                    Apointment ap = secretaryControllers.AppointmentController.FindById(ar.appointmentId);
+                    if (ap == null) { Console.WriteLine("This appointment has been deleted! "); }
+                    else
+                    {
+                        patient = secretaryControllers.userController.FindById(ap.patientId);
+                        Console.WriteLine("PATIENT: " + patient.name + " " + patient.lastName);
+                        Console.WriteLine("ROOM: :  " + secretaryControllers.roomController.findById(ap.roomId).name);
+                        Console.WriteLine("DATE: " + ap.dateTime.ToString());
+                        Console.WriteLine("REQUEST: " + c.RequestState.ToString());
+                        Console.WriteLine("STATUS: " + c.status.ToString());
+                    }
                     Console.WriteLine("REQUEST: " + c.RequestState.ToString());
                     Console.WriteLine("STATUS: " + c.status.ToString());
-
                 }
             }
 
