@@ -28,6 +28,10 @@ namespace HealthcareSystem.Entity.HealthCardModel
         {
             return healthCardCollection.Find(item => item._id == id).FirstOrDefault();
         }
+        public HealthCard FindByPatientId(ObjectId id)
+        {
+            return healthCardCollection.Find(item => item.patientId == id).FirstOrDefault();
+        }
 
         public void addCheck(HealthCard healthCard, Check check)
         {

@@ -624,19 +624,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ognje\\.nuget\\packages\\": {}
+    "C:\\Users\\Dusan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj",
+      "projectUniqueName": "C:\\Fakultet materijali\\ProjekatUSI\\HealthcareSystem.csproj",
       "projectName": "HealthcareSystem",
-      "projectPath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj",
-      "packagesPath": "C:\\Users\\ognje\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\obj\\",
+      "projectPath": "C:\\Fakultet materijali\\ProjekatUSI\\HealthcareSystem.csproj",
+      "packagesPath": "C:\\Users\\Dusan\\.nuget\\packages\\",
+      "outputPath": "C:\\Fakultet materijali\\ProjekatUSI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ognje\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Dusan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
