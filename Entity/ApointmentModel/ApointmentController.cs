@@ -1,3 +1,4 @@
+using HealthcareSystem.Entity.DoctorModel;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
@@ -54,6 +55,28 @@ namespace HealthcareSystem.Entity.ApointmentModel
             {
                 apointmentCollection.DeleteOne(item => item._id == a._id);
             }
+
+        }
+
+        public List<ObjectId> GetAvailableDoctor(DateTime time)
+        {
+            DateTime today = DateTime.Now;
+            List<ObjectId> doctors = new List<ObjectId>();
+            List<Apointment> apointments = apointmentCollection.Find(item => true).ToList();
+            foreach (Apointment ap in apointments) {
+
+                TimeSpan ts = today - ap.dateTime;
+                double hours = ts.Hours;
+                if (hours > 3)
+                {
+                    doctors.Add(ap.doctorId);
+                   
+                }
+
+
+            }
+
+            return doctors;
 
         }
     }
