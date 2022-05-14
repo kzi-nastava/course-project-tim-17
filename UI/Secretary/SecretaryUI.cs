@@ -211,7 +211,7 @@ namespace HealthcareSystem.UI
             bool available = false;
             foreach (Apointment ap in apointments)
             {
-                TimeSpan ts = ap.dateTime - today;
+                TimeSpan ts = today - ap.dateTime;
                 double hours = ts.Hours;
                 if (hours > 3)
                 {
@@ -321,14 +321,41 @@ namespace HealthcareSystem.UI
 
         }
 
+        
+        public void GetSortedListOfAppointments(DateTime soonest)
+        {
+            List<ObjectId> doctorIds = secretaryControllers.AppointmentController.GetAvailableDoctor(soonest);            // ovo treba da mi vrati doktore koji mogu da pomjere 
+            List<Apointment> allPossibleForReschedule = new List<Apointment>();
+            foreach (ObjectId dId in doctorIds) {
+                List<Apointment> apointments = secretaryControllers.AppointmentController.FindAllByDoctor(dId);
+                foreach (Apointment a in apointments) {
+                    allPossibleForReschedule.Add(a);
+                }
+            }
+        }
 
+        public List<Apointment> GetAppointmentsOfDoctors(List<Doctor> doctors) {
+            List<Apointment> all = secretaryControllers.AppointmentController.getAllAppointments();
+            List<Apointment> scheduledAppointments = new List<Apointment>();
+            foreach (Doctor d in doctors) {
+                List<Apointment> doctorsAppointments = secretaryControllers.AppointmentController.FindAllByDoctor(d._id);
+                foreach(Apointment a in doctorsAppointments)
+                {
+                   
+                    scheduledAppointments.Add(a);
 
-        public void MakeUrgentAppointment(ObjectId doctorId, ObjectId patientId)
+                }
+            }
+
+            return scheduledAppointments;
+        }
+
+        public void MakeUrgentAppointment(List<Doctor> doctors, ObjectId patientId)
         {
             Console.WriteLine("Enter type of appointment(checkup/operation): ");
             ApointmentType t = (ApointmentType)Enum.Parse(typeof(ApointmentType), (Console.ReadLine().ToUpper()));
-            List<DateTime> doctorInNextTwoHoursTimes = new List<DateTime>();
-            List<Apointment> doctorsAppointments = secretaryControllers.AppointmentController.FindAllByDoctor(doctorId);   // dobila listu svih appointmenta od doktora
+            List<Apointment> appointmentsInNextTwoHours = new List<Apointment>();
+            List<Apointment> doctorsAppointments = GetAppointmentsOfDoctors(doctors);   // dobila listu svih appointmenta od doktora
             List<Room> rooms = secretaryControllers.roomController.GetAllRooms();
             DateTime today = DateTime.Now;
             DateTime searchedDate;
@@ -338,19 +365,24 @@ namespace HealthcareSystem.UI
             {
                 if (ap.dateTime.Date == DateTime.Today)                                                              // da li je datum danas
                 {
-                    TimeSpan ts = ap.dateTime - today;
+                    TimeSpan ts = today - ap.dateTime;
                     double hours = ts.Hours;
-                    if (hours < 3)
+                    if (hours < 5)
                     {
-                        doctorInNextTwoHoursTimes.Add(ap.dateTime);
+                        Console.WriteLine(ap.dateTime.ToString());
+                        appointmentsInNextTwoHours.Add(ap);
                     }
 
                 }
             }
-            if (doctorInNextTwoHoursTimes.Count > 0)
+            if (appointmentsInNextTwoHours.Count > 0)
             {
-
-                Console.WriteLine(doctorInNextTwoHoursTimes.Count);
+                Console.WriteLine("Doctors are not available! ");
+                foreach (Apointment a in appointmentsInNextTwoHours) {
+                    Console.WriteLine("-----------------------------------------");
+                    Console.WriteLine("Date: " + a.dateTime);
+                    Console.WriteLine("DoctorId: " + a.doctorId);
+                }
             }
             else
             {
@@ -363,10 +395,11 @@ namespace HealthcareSystem.UI
                     if (IsRoomAvailable(r, searchedDate))
                     {
                         searchedRoom = r;
-                        Apointment a = new Apointment(searchedDate, t, doctorId, searchedRoom._id, patientId);
+                        Apointment a = new Apointment(searchedDate, t, doctors[0]._id, searchedRoom._id, patientId);
                         Console.WriteLine("Appointment has been sucessfully made!");
                         Console.WriteLine("Room: " + searchedRoom.name);
                         Console.WriteLine("Date and time: " + searchedDate.ToString());
+                        secretaryControllers.AppointmentController.InsertToCollection(a);
                         break;
                     }
                 }
@@ -506,7 +539,7 @@ namespace HealthcareSystem.UI
                     List<Doctor> doctors = secretaryControllers.doctorController.FindDoctorsBySpecialisation(s);
 
                     User patient = secretaryControllers.userController.FindByEmail(patientEmail);
-                    MakeUrgentAppointment(doctors[0]._id, patient._id);
+                    MakeUrgentAppointment(doctors, patient._id);
                 }
                 else if (choice == "7")
                 {
