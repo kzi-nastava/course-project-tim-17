@@ -72,5 +72,11 @@ namespace HealthcareSystem.UI.DoctorView
             MakeReferralForm makeReferralForm = new MakeReferralForm(doctorRepositories, patientsHealthCard);
             makeReferralForm.Show();
         }
+
+        private void performCheckupBtn_Click(object sender, EventArgs e)
+        {
+            PerfomeCheckupForm perfomeCheckupForm = new PerfomeCheckupForm(appointment, patientsHealthCard, doctorRepositories);
+            perfomeCheckupForm.Show();
+        }
     }
 }
