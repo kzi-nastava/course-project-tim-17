@@ -59,7 +59,25 @@
     <Compile Update="UI\ManagerView\ShowEquipment.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UI\Patient\AnamnesisSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\Patient\AppointmentDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\Patient\AppointmentRead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\Patient\AppointmentSchedulingOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UI\Patient\PatientGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\Patient\RecommendedScheduling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\Patient\RegularScheduling.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\Secretary\SecretaryGUI.cs">
