@@ -1,4 +1,5 @@
 ﻿using HealthcareSystem.Entity.CheckModel;
+using HealthcareSystem.Entity.HealthCardModel;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
@@ -34,8 +35,25 @@ namespace HealthcareSystem.Entity.ReferralModel
 
             referralCollection.DeleteOne(item => item._id == id);
 
-
         }
+
+
+        public List<Referral> GetReferralsOfHealthCard(HealthCard h)
+        {
+            List<Referral> referrals = new List<Referral>();
+            foreach (ObjectId rId in h.referrals)
+            {
+                if (findById(rId) != null)
+                {
+                    referrals.Add(findById(rId));
+
+                }
+            }
+
+            return referrals;
+        }
+
+
 
     }
 }

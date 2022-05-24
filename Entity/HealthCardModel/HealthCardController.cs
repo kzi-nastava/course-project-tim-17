@@ -1,4 +1,5 @@
 using HealthcareSystem.Entity.CheckModel;
+using HealthcareSystem.Entity.ReferralModel;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
@@ -44,8 +45,29 @@ namespace HealthcareSystem.Entity.HealthCardModel
         {
             healthCardCollection.ReplaceOne(item => item._id == healthCard._id, healthCard);
         }
+        public string GetAllergies(HealthCard h)
+        {
+            string gatheredAllergies = "";
+            List<Ingredient> allergies = h.allergies;
+            foreach (Ingredient a in allergies)
+            {
+                if (a != null)
+                {
+                    gatheredAllergies += a.name + ";";
+                }
+            }
+            if (gatheredAllergies != "")
+            {
+                return gatheredAllergies;
+            }
+            else
+            {
+                return "None";
+            }
 
-   }
+        }
+
+    }
 
     
 }
