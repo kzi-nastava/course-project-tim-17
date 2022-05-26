@@ -21,6 +21,10 @@ namespace HealthcareSystem.Entity.DoctorModel
         public void InsertToCollection(Doctor doctor){
             doctorCollection.InsertOne(doctor);
         }
+        public Doctor findByName(string name, string lastname)
+        {
+            return doctorCollection.Find(item => item.name == name & item.lastName == lastname).FirstOrDefault();
+        }
         public Doctor findById(ObjectId id) {
             return doctorCollection.Find(item => item._id == id).FirstOrDefault();
         }
