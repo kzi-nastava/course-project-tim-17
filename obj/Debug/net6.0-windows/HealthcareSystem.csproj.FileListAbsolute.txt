@@ -101,3 +101,4 @@ C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.
 C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangeHeightForm.resources
 C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.MakeReferralForm.resources
 C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.PerfomeCheckupForm.resources
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateDynamicEquimptentForm.resources
