@@ -8,11 +8,14 @@ using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.Entity.UserActionModel;
 using HealthcareSystem.Entity.AppointmentRequestsModel;
 using HealthcareSystem.Entity.CheckAppointmentRequestModel;
+using HealthcareSystem.Entity.CheckModel;
+using HealthcareSystem.Entity.HealthCardModel;
 
 namespace HealthcareSystem.RoleControllers
 {
     class PatientRepositories
     {
+
         public PatientControllers patientController;
         public ApointmentController appointmentController;
         public DoctorController doctorController;
@@ -21,6 +24,8 @@ namespace HealthcareSystem.RoleControllers
         public BlockedUserController blockedUserController;
         public AppointmentRequestsController appointmentRequestsController;
         public CheckAppointmentRequestController checkAppointmentRequestController;
+        public CheckController checkController;
+        public HealthCardController healthCardController;
         public PatientRepositories(IMongoDatabase database)
         {
             this.patientController = new PatientControllers(database);
@@ -31,6 +36,8 @@ namespace HealthcareSystem.RoleControllers
             this.blockedUserController = new BlockedUserController(database);
             this.appointmentRequestsController = new AppointmentRequestsController(database);
             this.checkAppointmentRequestController = new CheckAppointmentRequestController(database);
+            this.checkController = new CheckController(database);
+            this.healthCardController = new HealthCardController(database);
         }
     }
 }

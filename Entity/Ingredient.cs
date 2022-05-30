@@ -8,7 +8,8 @@ namespace HealthcareSystem.Entity
         [BsonElement("name")]
         public string name;
 
-        public Ingredient(string name) {this.name = name;
+        public Ingredient(string name) {
+        this.name = name;
         this._id = ObjectId.GenerateNewId();
         }
 
