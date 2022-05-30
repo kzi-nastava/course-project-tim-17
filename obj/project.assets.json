@@ -624,24 +624,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\SlepiLepi\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\ognje\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SlepiLepi\\Fakultet\\USI\\FINALE\\HealthcareSystem.csproj",
+      "projectUniqueName": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj",
       "projectName": "HealthcareSystem",
-      "projectPath": "C:\\Users\\SlepiLepi\\Fakultet\\USI\\FINALE\\HealthcareSystem.csproj",
-      "packagesPath": "C:\\Users\\SlepiLepi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SlepiLepi\\Fakultet\\USI\\FINALE\\obj\\",
+      "projectPath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj",
+      "packagesPath": "C:\\Users\\ognje\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\SlepiLepi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\ognje\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

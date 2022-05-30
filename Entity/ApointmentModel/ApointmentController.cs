@@ -1,4 +1,5 @@
 using HealthcareSystem.Entity.DoctorModel;
+using HealthcareSystem.Entity.Enumerations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
@@ -7,8 +8,11 @@ namespace HealthcareSystem.Entity.ApointmentModel
     class ApointmentController
     {
         public IMongoCollection<Apointment> apointmentCollection;
+        private IMongoDatabase database;
+
         public ApointmentController(IMongoDatabase database){
             this.apointmentCollection = database.GetCollection<Apointment>("Apointments");
+            this.database = database;
             
             }
         public List<Apointment> getAllAppointments() {
@@ -58,27 +62,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
 
         }
 
-        public List<ObjectId> GetAvailableDoctor(DateTime time)
-        {
-            DateTime today = DateTime.Now;
-            List<ObjectId> doctors = new List<ObjectId>();
-            List<Apointment> apointments = apointmentCollection.Find(item => true).ToList();
-            foreach (Apointment ap in apointments) {
-
-                TimeSpan ts = today - ap.dateTime;
-                double hours = ts.Hours;
-                if (hours > 3)
-                {
-                    doctors.Add(ap.doctorId);
-                   
-                }
-
-
-            }
-
-            return doctors;
-
-        }
+       
     }
 }
 

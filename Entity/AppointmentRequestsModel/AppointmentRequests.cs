@@ -39,6 +39,10 @@ namespace HealthcareSystem.Entity.AppointmentRequestsModel
             this.patientId = user;
         }
 
+        /// napraviti isRoomAvailable(Datetime dt, Soba s) 
+        /// dohvatis sve zakazane termine 
+        /// prodjes kroz termine ako se   ( dt - ap.dt) = 0  => zakazan je termin u tom trenutku
+        ///  
 
 
 
