@@ -101,6 +101,9 @@ C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.
 C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangeHeightForm.resources
 C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.MakeReferralForm.resources
 C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.PerfomeCheckupForm.resources
+<<<<<<< HEAD
+C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateDynamicEquimptentForm.resources
+=======
 C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.csproj.AssemblyReference.cache
 C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.Functions.LoginGUI.resources
 C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentCreationForm.resources
@@ -161,3 +164,4 @@ C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\win\nat
 C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CopyComplete
 C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
 C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
+>>>>>>> a6b30218c7ef3d2afa3424098df80e401fd94e0d

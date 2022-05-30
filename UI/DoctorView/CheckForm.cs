@@ -75,6 +75,7 @@ namespace HealthcareSystem.UI.DoctorView
 
         private void performCheckupBtn_Click(object sender, EventArgs e)
         {
+            
             PerfomeCheckupForm perfomeCheckupForm = new PerfomeCheckupForm(appointment, patientsHealthCard, doctorRepositories);
             perfomeCheckupForm.Show();
         }

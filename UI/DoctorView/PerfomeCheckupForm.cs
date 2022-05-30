@@ -43,10 +43,12 @@ namespace HealthcareSystem.UI.DoctorView
             if (drug == null)
             {
                 warningMessageLabel.Text = "Drug does not exist!";
+                warningMessageLabel.Visible = true;
             }
             else if (IsAlergic(drug))
             {
                 warningMessageLabel.Text = "Drug contains ingredients that patient is allergic to!";
+                warningMessageLabel.Visible = true;
             }
             else
             {
@@ -55,7 +57,10 @@ namespace HealthcareSystem.UI.DoctorView
                 doctorRepositories.healthCardController.update(patientHealthCard);
                 doctorRepositories.checkController.InsertToCollection(check);
                 MessageBox.Show("Appointment is finished!");
+                UpdateDynamicEquimptentForm updateDynamicEquimptentForm = new UpdateDynamicEquimptentForm(doctorRepositories, appointment);
+                updateDynamicEquimptentForm.Show();
                 this.Dispose();
+
             }
 
         }
@@ -68,7 +73,9 @@ namespace HealthcareSystem.UI.DoctorView
                 {
                     if (ingredientInDrug.name == ingredient.name)
                     {
+                        Console.WriteLine("Jeste");
                         return true;
+                        
                     }
                 }
             }

@@ -148,7 +148,7 @@
             // dontMatterRadioBtn
             // 
             this.dontMatterRadioBtn.AutoSize = true;
-            this.dontMatterRadioBtn.Location = new System.Drawing.Point(350, 426);
+            this.dontMatterRadioBtn.Location = new System.Drawing.Point(220, 473);
             this.dontMatterRadioBtn.Name = "dontMatterRadioBtn";
             this.dontMatterRadioBtn.Size = new System.Drawing.Size(103, 19);
             this.dontMatterRadioBtn.TabIndex = 12;
@@ -159,7 +159,7 @@
             // beforeRadioBtn
             // 
             this.beforeRadioBtn.AutoSize = true;
-            this.beforeRadioBtn.Location = new System.Drawing.Point(12, 426);
+            this.beforeRadioBtn.Location = new System.Drawing.Point(7, 417);
             this.beforeRadioBtn.Name = "beforeRadioBtn";
             this.beforeRadioBtn.Size = new System.Drawing.Size(88, 19);
             this.beforeRadioBtn.TabIndex = 13;
@@ -171,7 +171,7 @@
             // afferRadioBtn
             // 
             this.afferRadioBtn.AutoSize = true;
-            this.afferRadioBtn.Location = new System.Drawing.Point(129, 426);
+            this.afferRadioBtn.Location = new System.Drawing.Point(220, 417);
             this.afferRadioBtn.Name = "afferRadioBtn";
             this.afferRadioBtn.Size = new System.Drawing.Size(80, 19);
             this.afferRadioBtn.TabIndex = 14;
@@ -182,7 +182,7 @@
             // duringRadioBtn
             // 
             this.duringRadioBtn.AutoSize = true;
-            this.duringRadioBtn.Location = new System.Drawing.Point(250, 426);
+            this.duringRadioBtn.Location = new System.Drawing.Point(7, 473);
             this.duringRadioBtn.Name = "duringRadioBtn";
             this.duringRadioBtn.Size = new System.Drawing.Size(90, 19);
             this.duringRadioBtn.TabIndex = 15;
@@ -192,7 +192,7 @@
             // 
             // finishBtn
             // 
-            this.finishBtn.Location = new System.Drawing.Point(186, 560);
+            this.finishBtn.Location = new System.Drawing.Point(123, 559);
             this.finishBtn.Name = "finishBtn";
             this.finishBtn.Size = new System.Drawing.Size(75, 23);
             this.finishBtn.TabIndex = 16;
@@ -204,18 +204,19 @@
             // 
             this.warningMessageLabel.AutoSize = true;
             this.warningMessageLabel.ForeColor = System.Drawing.Color.Red;
-            this.warningMessageLabel.Location = new System.Drawing.Point(203, 526);
+            this.warningMessageLabel.Location = new System.Drawing.Point(137, 514);
             this.warningMessageLabel.Name = "warningMessageLabel";
             this.warningMessageLabel.Size = new System.Drawing.Size(38, 15);
             this.warningMessageLabel.TabIndex = 17;
             this.warningMessageLabel.Text = "label1";
+            this.warningMessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.warningMessageLabel.Visible = false;
             // 
             // PerfomeCheckupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(458, 613);
+            this.ClientSize = new System.Drawing.Size(346, 613);
             this.Controls.Add(this.warningMessageLabel);
             this.Controls.Add(this.finishBtn);
             this.Controls.Add(this.duringRadioBtn);
