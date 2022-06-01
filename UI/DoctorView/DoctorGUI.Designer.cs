@@ -33,6 +33,7 @@
             this.listAllAppointmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drugRequestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +66,8 @@
             // scheduleToolStripMenuItem
             // 
             this.scheduleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewScheduleToolStripMenuItem});
+            this.viewScheduleToolStripMenuItem,
+            this.drugRequestsToolStripMenuItem});
             this.scheduleToolStripMenuItem.Name = "scheduleToolStripMenuItem";
             this.scheduleToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.scheduleToolStripMenuItem.Text = "Schedule";
@@ -76,6 +78,13 @@
             this.viewScheduleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewScheduleToolStripMenuItem.Text = "View schedule";
             this.viewScheduleToolStripMenuItem.Click += new System.EventHandler(this.viewScheduleToolStripMenuItem_Click);
+            // 
+            // drugRequestsToolStripMenuItem
+            // 
+            this.drugRequestsToolStripMenuItem.Name = "drugRequestsToolStripMenuItem";
+            this.drugRequestsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.drugRequestsToolStripMenuItem.Text = "Drug Requests";
+            this.drugRequestsToolStripMenuItem.Click += new System.EventHandler(this.drugRequestsToolStripMenuItem_Click);
             // 
             // DoctorGUI
             // 
@@ -100,5 +109,6 @@
         private ToolStripMenuItem listAllAppointmentsToolStripMenuItem;
         private ToolStripMenuItem scheduleToolStripMenuItem;
         private ToolStripMenuItem viewScheduleToolStripMenuItem;
+        private ToolStripMenuItem drugRequestsToolStripMenuItem;
     }
 }
