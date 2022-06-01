@@ -34,6 +34,7 @@ C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\Healthca
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateAppointment.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateDynamicEquimptentForm.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddComplexRenovation.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddDrug.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRenovation.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRoom.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ManagerGUI.resources
@@ -59,4 +60,3 @@ C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\refint\H
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.pdb
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
-C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddDrug.resources
