@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.RoleControllers;
+using MongoDB.Driver;
 
 namespace HealthcareSystem.UI.DoctorView
 {
@@ -16,13 +17,15 @@ partial class DoctorGUI : Form
     {
         public Doctor loggedUser { get; set; }
         public DoctorRepositories doctorRepositories { get; set; }
+        public IMongoDatabase database;
 
 
-        public DoctorGUI(Doctor loggedUser, DoctorRepositories doctorRepositories)
+        public DoctorGUI(Doctor loggedUser, IMongoDatabase database)
         {
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.doctorRepositories = doctorRepositories;
+            this.database = database;
+            this.doctorRepositories = new DoctorRepositories(database);
         }
 
         private void DoctorGUI_Load(object sender, EventArgs e)
@@ -40,6 +43,12 @@ partial class DoctorGUI : Form
         {
             DatePickerForm datePickerForm = new DatePickerForm(loggedUser, doctorRepositories);
             datePickerForm.Show();
+        }
+
+        private void drugRequestsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RevisionForm revisionForm = new RevisionForm(database);
+            revisionForm.Show();
         }
     }
 }

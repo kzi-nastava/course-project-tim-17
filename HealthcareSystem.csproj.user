@@ -5,6 +5,9 @@
     <Compile Update="Functions\LoginGUI.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UI\DoctorView\AddDescriptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UI\DoctorView\AppointmentCreationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -27,6 +30,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\DoctorView\PerfomeCheckupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\DoctorView\RevisionForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\DoctorView\ScheduleForm.cs">

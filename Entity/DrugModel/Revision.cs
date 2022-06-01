@@ -7,12 +7,13 @@ class Revision
     [BsonElement("description")]
     public string desctription { get; set; }
     [BsonElement("drugVerificationId")]
-    public ObjectId drugVerificationId { get; set; }
+    public ObjectId drugId { get; set; }
 
     public Revision(string desctription, ObjectId drugVerificationId)
     {
         _id = ObjectId.GenerateNewId();
         this.desctription = desctription;
-        this.drugVerificationId = drugVerificationId;
+        this.drugId = drugVerificationId;
     }
+
 }
