@@ -624,19 +624,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ognje\\.nuget\\packages\\": {}
+    "C:\\Users\\Anastasija\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj",
+      "projectUniqueName": "C:\\Users\\Anastasija\\Desktop\\NewMain\\HealthcareSystem.csproj",
       "projectName": "HealthcareSystem",
-      "projectPath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj",
-      "packagesPath": "C:\\Users\\ognje\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\obj\\",
+      "projectPath": "C:\\Users\\Anastasija\\Desktop\\NewMain\\HealthcareSystem.csproj",
+      "packagesPath": "C:\\Users\\Anastasija\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Anastasija\\Desktop\\NewMain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ognje\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Anastasija\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -685,8 +685,16 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Anastasija\\Desktop\\NewMain\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

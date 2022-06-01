@@ -20,6 +20,7 @@ using HealthcareSystem.Entity;
 using HealthcareSystem.Entity.ReferralModel;
 using HealthcareSystem.Entity.RoomModel;
 using HealthcareSystem.Entity.DoctorModel;
+using HealthcareSystem.Entity.EquipmentRequestModel;
 
 namespace HealthcareSystem.UI
 {
@@ -111,6 +112,7 @@ namespace HealthcareSystem.UI
             }
 
         }
+
         public void DeleteAppointementByRequest(CheckAppointementRequest cr)
         {
             Apointment a = secretaryControllers.AppointmentController.FindById(cr.appointmentId);
@@ -361,6 +363,86 @@ namespace HealthcareSystem.UI
             
         }
 
+        public void PrintLackingEquipmentFromWareHouse()
+        {
+            Room warehouse = secretaryControllers.roomController.getWarehouse();
+            List<Equipment> eq = warehouse.equipments;
+            Console.WriteLine("EQUIPMENT THAT IS LACKING IN WAREHOUSE: ");
+            foreach (Equipment eqItem in eq)
+            {
+                if (eqItem.isDynamic && eqItem.quantity == 0)
+                {
+                    Console.WriteLine("ITEM: " + eqItem.item.ToUpper());
+                    Console.WriteLine("TYPE:" + eqItem.type.ToString());
+                    Console.WriteLine("ID:" + eqItem._id);
+                    Console.WriteLine("----------------------------------------");
+                }
+            }
+        }
+
+        public void MakeEquipmentRequest() {
+            Console.WriteLine("Enter the item name you are making request for: ");
+            String itemName = Console.ReadLine();
+            Console.WriteLine("Enter the quantity: ");
+            int quantity = Int32.Parse(Console.ReadLine());
+            DateTime date = DateTime.Now.AddDays(1);
+            EquipmentRequest er = new EquipmentRequest(itemName, date, quantity);
+            secretaryControllers.equipmentRequestController.InsertToCollection(er);
+
+        }
+
+        public void PrintAllEquipmentRequest(List<EquipmentRequest> requests) {
+            Console.WriteLine("READY REQUESTS");
+            Console.WriteLine("-----------------------------");
+            foreach (EquipmentRequest req in requests) {
+                if (req.DateTime < DateTime.Now) {
+                    Console.WriteLine("ID: " + req._id);
+                    Console.WriteLine("ITEM: " + req.ItemName);
+                    Console.WriteLine("DATE: " + req.DateTime);
+                    Console.WriteLine("QUANTITY: " + req.Quantity.ToString());
+                }
+            }
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("REQUESTS YET TO BE FULFILLED");
+            Console.WriteLine("-----------------------------");
+            foreach (EquipmentRequest req in requests)
+            {
+                if (req.DateTime >= DateTime.Now)
+                {
+                    Console.WriteLine("ITEM: " + req.ItemName);
+                    Console.WriteLine("DATE: " + req.DateTime);
+                    Console.WriteLine("QUANTITY: " + req.Quantity.ToString());
+                }
+            }
+            Console.WriteLine("-----------------------------");
+        }
+
+        public void FulfiilEquipmentRequests()
+        {
+            Room warehouse = secretaryControllers.roomController.getWarehouse();
+
+            List<EquipmentRequest> requests = secretaryControllers.equipmentRequestController.GetAllEquipmentRequests();
+            foreach (EquipmentRequest req in requests)
+            {
+                if (req.DateTime < DateTime.Now)
+                {
+                    foreach (Equipment e in warehouse.equipments) {
+                        if (e.item.ToUpper().Equals(req.ItemName.ToUpper()))
+                        {
+                            e.quantity += req.Quantity;
+                            secretaryControllers.roomController.UpdateRoom(warehouse);
+                            Console.WriteLine("REQUEST " + req._id + " SUCCESFULLY FULFILLED");
+
+                        }
+                        secretaryControllers.equipmentRequestController.DeleteEquipmentRequest(req);
+
+                    }
+
+                }
+            }
+        }
         public void UI()
         {
             UserService us = new UserService(secretaryControllers);
@@ -374,7 +456,11 @@ namespace HealthcareSystem.UI
                 Console.WriteLine("4 -> OVERVIEW OF REQUESTS FOR UPDATE/DELETION OF CHECKUPS");
                 Console.WriteLine("5 -> MAKE AN APPOINTMENT FOR CHECK/OPERATION BASED ON REFFERAL");
                 Console.WriteLine("6 -> MAKE AN APPOINTMENT FOR URGENT CHECK/OPERATION ");
-                Console.WriteLine("7 -> LOG OUT");
+                Console.WriteLine("7 -> CREATE A REQUEST FOR PURCHASE OF DYNAMIC EQUIPMENT ");
+                Console.WriteLine("8 -> CHECK EQUIPMENT REQUESTS ");
+                Console.WriteLine("9 -> ARRANGE DYNAMIC EQUIPMENT ");
+                Console.WriteLine("10 -> OVERVIEW OF REQUESTS FOR DAYS OFF");
+                Console.WriteLine("11 -> LOG OUT");
                 Console.WriteLine("Enter option: ");
                 string choice = Console.ReadLine();
 
@@ -399,7 +485,7 @@ namespace HealthcareSystem.UI
                 }
                 else if (choice == "2")
                 {
-                   
+
                     PrintAllPatients(patients);
                     us.blockUser();
                     Console.WriteLine("Patient is sucessfully blocked! ");
@@ -440,7 +526,7 @@ namespace HealthcareSystem.UI
                             Console.WriteLine("Appointement is succesfully edited!");
                         }
                     }
-                    else if (opt.Equals("2"))          
+                    else if (opt.Equals("2"))
                     {
 
                         cr.status = Status.DENIED;
@@ -460,12 +546,13 @@ namespace HealthcareSystem.UI
                         Referral r = secretaryControllers.referralController.findById(idRefferal);
                         Console.WriteLine("Enter type of appointment(checkup/operation): ");
                         ApointmentType type = (ApointmentType)Enum.Parse(typeof(ApointmentType), (Console.ReadLine().ToUpper()));
-                        MakeAppointmentBasedOnReferral(r,type);
+                        MakeAppointmentBasedOnReferral(r, type);
                         Console.WriteLine("Appointement is succesfully created!");
                     }
 
                 }
-                else if (choice == "6") {
+                else if (choice == "6")
+                {
 
                     PrintAllPatients(patients);
                     Console.WriteLine("Enter patient email: ");
@@ -473,7 +560,7 @@ namespace HealthcareSystem.UI
                     PrintAllSpecializations();
                     Console.WriteLine("Enter specialization: ");
                     Specialisation s = (Specialisation)Enum.Parse(typeof(Specialisation), (Console.ReadLine().ToUpper()));
-           
+
                     List<Doctor> doctors = secretaryControllers.doctorController.FindDoctorsBySpecialisation(s);
 
                     User patient = secretaryControllers.userController.FindByEmail(patientEmail);
@@ -482,6 +569,30 @@ namespace HealthcareSystem.UI
                     MakeUrgentAppointment(doctors, patient._id, type);
                 }
                 else if (choice == "7")
+                {
+                    PrintLackingEquipmentFromWareHouse();
+                    Console.WriteLine("Enter '1' to make a request: ");
+                    if (Console.ReadLine().Equals("1"))
+                    {
+                        MakeEquipmentRequest();
+                    }
+                }
+                else if (choice == "8") {
+                    List<EquipmentRequest> requests = secretaryControllers.equipmentRequestController.GetAllEquipmentRequests();
+                    if (requests.Count == 0)
+                    {
+
+                        Console.WriteLine("NO REQUESTS! ");
+                    }
+                    else
+                    {
+                        PrintAllEquipmentRequest(requests);
+                        Console.WriteLine();
+                        FulfiilEquipmentRequests();
+                    }
+                
+                }
+                else if (choice == "11")
                 {
 
                     break;

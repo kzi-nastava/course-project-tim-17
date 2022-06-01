@@ -1,21 +1,28 @@
 {
   "version": 2,
-  "dgSpecHash": "qYKTg1EgkMkKawtgbsbRenP38uqU+uqOXdIiFfACmxy7SPhbKjNcOKFH3OybnmBwbr14qBM20PQ1JWIS5GpcGQ==",
+  "dgSpecHash": "ibwVfFb7mSMUb59Vu1EAwqHbM8WfN5dQawKIzgm9mQZhynYj32qcy9h/1KvRYaN7AfZWWwcnShqY59qKOIRLrA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj",
+  "projectFilePath": "C:\\Users\\Anastasija\\Desktop\\NewMain\\HealthcareSystem.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ognje\\.nuget\\packages\\dnsclient\\1.6.0\\dnsclient.1.6.0.nupkg.sha512",
-    "C:\\Users\\ognje\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
-    "C:\\Users\\ognje\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
-    "C:\\Users\\ognje\\.nuget\\packages\\mongodb.bson\\2.15.0\\mongodb.bson.2.15.0.nupkg.sha512",
-    "C:\\Users\\ognje\\.nuget\\packages\\mongodb.driver\\2.15.0\\mongodb.driver.2.15.0.nupkg.sha512",
-    "C:\\Users\\ognje\\.nuget\\packages\\mongodb.driver.core\\2.15.0\\mongodb.driver.core.2.15.0.nupkg.sha512",
-    "C:\\Users\\ognje\\.nuget\\packages\\mongodb.libmongocrypt\\1.3.0\\mongodb.libmongocrypt.1.3.0.nupkg.sha512",
-    "C:\\Users\\ognje\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
-    "C:\\Users\\ognje\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
-    "C:\\Users\\ognje\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
-    "C:\\Users\\ognje\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
-    "C:\\Users\\ognje\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512"
+    "C:\\Users\\Anastasija\\.nuget\\packages\\dnsclient\\1.6.0\\dnsclient.1.6.0.nupkg.sha512",
+    "C:\\Users\\Anastasija\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\Anastasija\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
+    "C:\\Users\\Anastasija\\.nuget\\packages\\mongodb.bson\\2.15.0\\mongodb.bson.2.15.0.nupkg.sha512",
+    "C:\\Users\\Anastasija\\.nuget\\packages\\mongodb.driver\\2.15.0\\mongodb.driver.2.15.0.nupkg.sha512",
+    "C:\\Users\\Anastasija\\.nuget\\packages\\mongodb.driver.core\\2.15.0\\mongodb.driver.core.2.15.0.nupkg.sha512",
+    "C:\\Users\\Anastasija\\.nuget\\packages\\mongodb.libmongocrypt\\1.3.0\\mongodb.libmongocrypt.1.3.0.nupkg.sha512",
+    "C:\\Users\\Anastasija\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
+    "C:\\Users\\Anastasija\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\Anastasija\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\Anastasija\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
+    "C:\\Users\\Anastasija\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Anastasija\\Desktop\\NewMain\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
