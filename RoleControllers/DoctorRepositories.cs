@@ -5,7 +5,8 @@ using HealthcareSystem.Entity.HealthCardModel;
 using HealthcareSystem.Entity.CheckModel;
 using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.RoomModel;
-
+using HealthcareSystem.Entity.ReferralModel;
+using HealthcareSystem.Entity.DoctorModel;
 
 namespace HealthcareSystem.RoleControllers
 {
@@ -17,6 +18,8 @@ namespace HealthcareSystem.RoleControllers
         public CheckController checkController;
         public ApointmentController apointmentController;
         public UserController userController;
+        public ReferralController referralController;
+        public DoctorController doctorController;
 
         public DoctorRepositories(IMongoDatabase database)
         {
@@ -26,6 +29,8 @@ namespace HealthcareSystem.RoleControllers
             this.checkController = new CheckController(database);
             this.apointmentController = new ApointmentController(database);
             this.userController = new UserController(database);
+            this.doctorController = new DoctorController(database);
+            this.referralController = new ReferralController(database);
         }
     }
 }
