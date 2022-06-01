@@ -144,5 +144,16 @@ namespace HealthcareSystem.UI.ManagerView
         {
             Application.Exit();
         }
+
+        private void roomListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addDrugButton_Click(object sender, EventArgs e)
+        {
+            AddDrug ad = new AddDrug(database);
+            ad.Show();
+        }
     }
 }
