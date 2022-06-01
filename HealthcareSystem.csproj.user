@@ -44,6 +44,9 @@
     <Compile Update="UI\ManagerView\AddComplexRenovation.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UI\ManagerView\AddDrug.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UI\ManagerView\AddRenovation.cs">
       <SubType>Form</SubType>
     </Compile>
