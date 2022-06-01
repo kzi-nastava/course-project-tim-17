@@ -34,6 +34,7 @@ C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\Healthca
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateAppointment.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateDynamicEquimptentForm.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddComplexRenovation.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddDrug.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRenovation.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRoom.resources
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ManagerGUI.resources
@@ -59,30 +60,70 @@ C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\refint\H
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.pdb
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
 C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
-<<<<<<< HEAD
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.csproj.AssemblyReference.cache
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.Functions.LoginGUI.resources
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentCreationForm.resources
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentsTableForm.resources
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangdeAppointmentDateTimeForm.resources
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DoctorGUI.resources
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddComplexRenovation.resources
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRenovation.resources
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRoom.resources
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ManagerGUI.resources
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ModifyRoom.resources
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.MoveRequest.resources
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ShowEquipment.resources
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.PatientGUI.resources
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.Secretary.SecretaryGUI.resources
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.csproj.GenerateResource.cache
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfoInputs.cache
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfo.cs
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CoreCompileInputs.cache
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.dll
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\refint\HealthcareSystem.dll
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.pdb
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\HealthcareSystem.exe
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\HealthcareSystem.deps.json
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\HealthcareSystem.runtimeconfig.json
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\HealthcareSystem.dll
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\HealthcareSystem.pdb
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\DnsClient.dll
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\MongoDB.Bson.dll
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\MongoDB.Driver.dll
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\MongoDB.Driver.Core.dll
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\MongoDB.Libmongocrypt.dll
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\SharpCompress.dll
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\runtimes\linux\native\libsnappy64.so
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\runtimes\linux\native\libzstd.so
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\runtimes\osx\native\libsnappy64.dylib
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\runtimes\osx\native\libzstd.dylib
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\runtimes\win\native\libzstd.dll
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\runtimes\win\native\snappy32.dll
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\runtimes\win\native\snappy64.dll
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\runtimes\linux\native\libmongocrypt.so
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\runtimes\osx\native\libmongocrypt.dylib
+C:\Fakultet materijali\USIProjekat\bin\Debug\net6.0-windows\runtimes\win\native\mongocrypt.dll
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.csproj.AssemblyReference.cache
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.Functions.LoginGUI.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentCreationForm.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentsTableForm.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangeHeightForm.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangeWeightForm.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.CheckForm.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DatePickerForm.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DoctorGUI.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.MakeReferralForm.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.PerfomeCheckupForm.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ScheduleForm.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateAppointment.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateDynamicEquimptentForm.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddComplexRenovation.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddDrug.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRenovation.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRoom.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ManagerGUI.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ModifyRoom.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.MoveRequest.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ShowEquipment.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AnamnesisSearch.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentDelete.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentRead.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentSchedulingOptions.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.PatientGUI.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.RecommendedScheduling.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.RegularScheduling.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.Secretary.SecretaryGUI.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.csproj.GenerateResource.cache
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfoInputs.cache
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfo.cs
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CoreCompileInputs.cache
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CopyComplete
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.dll
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\refint\HealthcareSystem.dll
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.pdb
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.RevisionForm.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AddDescriptionForm.resources
 C:\Users\Anastasija\Desktop\NewMain\bin\Debug\net6.0-windows\HealthcareSystem.exe
 C:\Users\Anastasija\Desktop\NewMain\bin\Debug\net6.0-windows\HealthcareSystem.deps.json
 C:\Users\Anastasija\Desktop\NewMain\bin\Debug\net6.0-windows\HealthcareSystem.runtimeconfig.json
@@ -104,138 +145,46 @@ C:\Users\Anastasija\Desktop\NewMain\bin\Debug\net6.0-windows\runtimes\win\native
 C:\Users\Anastasija\Desktop\NewMain\bin\Debug\net6.0-windows\runtimes\linux\native\libmongocrypt.so
 C:\Users\Anastasija\Desktop\NewMain\bin\Debug\net6.0-windows\runtimes\osx\native\libmongocrypt.dylib
 C:\Users\Anastasija\Desktop\NewMain\bin\Debug\net6.0-windows\runtimes\win\native\mongocrypt.dll
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CopyComplete
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
-=======
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.exe
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.deps.json
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.runtimeconfig.json
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.dll
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\HealthcareSystem.pdb
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\DnsClient.dll
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\MongoDB.Bson.dll
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\MongoDB.Driver.dll
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\MongoDB.Driver.Core.dll
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\MongoDB.Libmongocrypt.dll
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\SharpCompress.dll
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\linux\native\libsnappy64.so
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\linux\native\libzstd.so
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\osx\native\libsnappy64.dylib
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\osx\native\libzstd.dylib
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\win\native\libzstd.dll
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\win\native\snappy32.dll
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\win\native\snappy64.dll
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\linux\native\libmongocrypt.so
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\osx\native\libmongocrypt.dylib
-C:\Fakultet materijali\ProjekatUSI\bin\Debug\net6.0-windows\runtimes\win\native\mongocrypt.dll
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.csproj.AssemblyReference.cache
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.Functions.LoginGUI.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentCreationForm.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentsTableForm.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DatePickerForm.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DoctorGUI.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ScheduleForm.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateAppointment.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddComplexRenovation.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRenovation.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRoom.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ManagerGUI.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ModifyRoom.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.MoveRequest.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ShowEquipment.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.PatientGUI.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.Secretary.SecretaryGUI.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.csproj.GenerateResource.cache
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.GeneratedMSBuildEditorConfig.editorconfig
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfoInputs.cache
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfo.cs
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CoreCompileInputs.cache
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CopyComplete
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.dll
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\refint\HealthcareSystem.dll
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.pdb
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.CheckForm.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangeWeightForm.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangeHeightForm.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.MakeReferralForm.resources
-C:\Fakultet materijali\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.PerfomeCheckupForm.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.csproj.AssemblyReference.cache
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.Functions.LoginGUI.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentCreationForm.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentsTableForm.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangeHeightForm.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangeWeightForm.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.CheckForm.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DatePickerForm.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DoctorGUI.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.MakeReferralForm.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.PerfomeCheckupForm.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ScheduleForm.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateAppointment.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddComplexRenovation.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRenovation.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRoom.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ManagerGUI.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ModifyRoom.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.MoveRequest.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ShowEquipment.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AnamnesisSearch.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentDelete.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentRead.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentSchedulingOptions.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.PatientGUI.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.RecommendedScheduling.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.RegularScheduling.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.UI.Secretary.SecretaryGUI.resources
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.csproj.GenerateResource.cache
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfoInputs.cache
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfo.cs
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CoreCompileInputs.cache
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.dll
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\refint\HealthcareSystem.dll
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.pdb
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\HealthcareSystem.exe
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\HealthcareSystem.deps.json
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\HealthcareSystem.runtimeconfig.json
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\HealthcareSystem.dll
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\HealthcareSystem.pdb
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\DnsClient.dll
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\MongoDB.Bson.dll
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\MongoDB.Driver.dll
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\MongoDB.Driver.Core.dll
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\MongoDB.Libmongocrypt.dll
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\SharpCompress.dll
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\linux\native\libsnappy64.so
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\linux\native\libzstd.so
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\osx\native\libsnappy64.dylib
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\osx\native\libzstd.dylib
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\win\native\libzstd.dll
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\win\native\snappy32.dll
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\win\native\snappy64.dll
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\linux\native\libmongocrypt.so
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\osx\native\libmongocrypt.dylib
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\bin\Debug\net6.0-windows\runtimes\win\native\mongocrypt.dll
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CopyComplete
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
-C:\Users\SlepiLepi\Fakultet\USI\FINALE\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
->>>>>>> a6b30218c7ef3d2afa3424098df80e401fd94e0d
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.csproj.AssemblyReference.cache
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.Functions.LoginGUI.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AddDescriptionForm.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentCreationForm.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AppointmentsTableForm.resources
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangeHeightForm.resources
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ChangeWeightForm.resources
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.CheckForm.resources
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DatePickerForm.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.DoctorGUI.resources
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.MakeReferralForm.resources
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.PerfomeCheckupForm.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.RevisionForm.resources
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.ScheduleForm.resources
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateAppointment.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateDynamicEquimptentForm.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddComplexRenovation.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddDrug.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRenovation.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.AddRoom.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ManagerGUI.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ModifyRoom.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.MoveRequest.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.ShowEquipment.resources
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AnamnesisSearch.resources
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentDelete.resources
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentRead.resources
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.AppointmentSchedulingOptions.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.PatientGUI.resources
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.RecommendedScheduling.resources
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.Patient.RegularScheduling.resources
->>>>>>> 377cde76f43a57a56b5b7af88c35a417aefb615d
-C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.UpdateDynamicEquimptentForm.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.UI.Secretary.SecretaryGUI.resources
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.csproj.GenerateResource.cache
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfoInputs.cache
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.AssemblyInfo.cs
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CoreCompileInputs.cache
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.csproj.CopyComplete
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.dll
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\refint\HealthcareSystem.dll
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.pdb
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
+C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll

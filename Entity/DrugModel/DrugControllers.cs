@@ -11,12 +11,9 @@ namespace HealthcareSystem.Entity.DrugModel
 
             
             }
-        public void getAllDrugs() {
-            List<Drug> drugs = drugCollection.Find(item =>  true).ToList();
+        public List<Drug> getAllDrugs() {
+            return drugCollection.Find(item =>  true).ToList();
 
-            foreach(Drug drug in drugs) {
-                Console.WriteLine(drug.name);
-            }
         }
         public void InsertToCollection(Drug drug){
             drugCollection.InsertOne(drug);
@@ -28,6 +25,10 @@ namespace HealthcareSystem.Entity.DrugModel
         public Drug FindByDrugName(string drugName)
         {
             return drugCollection.Find(item => item.name == drugName).FirstOrDefault();
+        }
+        public void UpdateDrug(Drug drug)
+        {
+            drugCollection.ReplaceOne(item => item._id == drug._id, drug);
         }
     }
     }
