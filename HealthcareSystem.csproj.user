@@ -38,6 +38,9 @@
     <Compile Update="UI\DoctorView\DoctorGUI.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UI\DoctorView\UpdateDynamicEquimptentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UI\ManagerView\AddComplexRenovation.cs">
       <SubType>Form</SubType>
     </Compile>
