@@ -624,19 +624,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Anastasija\\.nuget\\packages\\": {}
+    "C:\\Users\\ognje\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Anastasija\\Desktop\\NewMain\\HealthcareSystem.csproj",
+      "projectUniqueName": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj",
       "projectName": "HealthcareSystem",
-      "projectPath": "C:\\Users\\Anastasija\\Desktop\\NewMain\\HealthcareSystem.csproj",
-      "packagesPath": "C:\\Users\\Anastasija\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Anastasija\\Desktop\\NewMain\\obj\\",
+      "projectPath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\HealthcareSystem.csproj",
+      "packagesPath": "C:\\Users\\ognje\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ognje\\Desktop\\ProjekatUSI\\ProjekatUSI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Anastasija\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ognje\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -685,7 +685,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

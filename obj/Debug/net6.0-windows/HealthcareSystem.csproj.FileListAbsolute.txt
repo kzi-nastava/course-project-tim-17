@@ -188,3 +188,6 @@ C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\refint\HealthcareSy
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.pdb
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\HealthcareSystem.genruntimeconfig.cache
 C:\Users\Anastasija\Desktop\NewMain\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AddDescriptionForm.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.RevisionForm.resources
+C:\Users\ognje\Desktop\ProjekatUSI\ProjekatUSI\obj\Debug\net6.0-windows\HealthcareSystem.UI.ManagerView.RevisionsForm.resources
