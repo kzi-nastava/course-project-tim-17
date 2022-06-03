@@ -37,6 +37,7 @@
             this.ingredientsView = new System.Windows.Forms.ListView();
             this.Name = new System.Windows.Forms.ColumnHeader();
             this.deleteIngredientButton = new System.Windows.Forms.Button();
+            this.reviseButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -117,11 +118,22 @@
             this.deleteIngredientButton.UseVisualStyleBackColor = true;
             this.deleteIngredientButton.Click += new System.EventHandler(this.deleteIngredientButton_Click);
             // 
+            // reviseButton
+            // 
+            this.reviseButton.Location = new System.Drawing.Point(61, 298);
+            this.reviseButton.Name = "reviseButton";
+            this.reviseButton.Size = new System.Drawing.Size(73, 23);
+            this.reviseButton.TabIndex = 8;
+            this.reviseButton.Text = "Revise";
+            this.reviseButton.UseVisualStyleBackColor = true;
+            this.reviseButton.Click += new System.EventHandler(this.reviseButton_Click);
+            // 
             // AddDrug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(194, 333);
+            this.Controls.Add(this.reviseButton);
             this.Controls.Add(this.deleteIngredientButton);
             this.Controls.Add(this.ingredientsView);
             this.Controls.Add(this.addDrugButton);
@@ -130,6 +142,7 @@
             this.Controls.Add(this.ingredientTextBox);
             this.Controls.Add(this.drugNameTextBox);
             this.Controls.Add(this.label1);
+           
             this.Text = "AddDrug";
             this.Load += new System.EventHandler(this.AddDrug_Load);
             this.ResumeLayout(false);
@@ -148,5 +161,6 @@
         private ListView ingredientsView;
         private ColumnHeader Name;
         private Button deleteIngredientButton;
+        private Button reviseButton;
     }
 }

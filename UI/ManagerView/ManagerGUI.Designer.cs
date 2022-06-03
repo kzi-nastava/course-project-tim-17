@@ -42,6 +42,7 @@
             this.moveRequestButton = new System.Windows.Forms.Button();
             this.renovationButton = new System.Windows.Forms.Button();
             this.addDrugButton = new System.Windows.Forms.Button();
+            this.revisionButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -165,11 +166,22 @@
             this.addDrugButton.UseVisualStyleBackColor = true;
             this.addDrugButton.Click += new System.EventHandler(this.addDrugButton_Click);
             // 
+            // revisionButton
+            // 
+            this.revisionButton.Location = new System.Drawing.Point(12, 214);
+            this.revisionButton.Name = "revisionButton";
+            this.revisionButton.Size = new System.Drawing.Size(93, 23);
+            this.revisionButton.TabIndex = 12;
+            this.revisionButton.Text = "Revisions";
+            this.revisionButton.UseVisualStyleBackColor = true;
+            this.revisionButton.Click += new System.EventHandler(this.revisionButton_Click);
+            // 
             // ManagerGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 362);
+            this.Controls.Add(this.revisionButton);
             this.Controls.Add(this.addDrugButton);
             this.Controls.Add(this.renovationButton);
             this.Controls.Add(this.moveRequestButton);
@@ -208,5 +220,6 @@
         private ColumnHeader nameColum;
         private ColumnHeader roomTypeColum;
         private Button addDrugButton;
+        private Button revisionButton;
     }
 }

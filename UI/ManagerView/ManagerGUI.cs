@@ -71,14 +71,13 @@ namespace HealthcareSystem.UI.ManagerView
 
         {
             roomListView.Items.Clear();    
-            foreach (Room r in managerControllers.roomCollection.GetAllRooms()) { 
+            foreach (Room r in managerControllers.roomCollection.GetAllRooms()) 
+            { 
                 ListViewItem item = new ListViewItem(r._id.ToString());
                 item.SubItems.Add(r.name);
                 item.SubItems.Add(r.type.ToString());
                 roomListView.Items.Add(item);
                 Console.WriteLine(r.InRenovation);
-                
-            
             }
             
         }
@@ -154,6 +153,13 @@ namespace HealthcareSystem.UI.ManagerView
         {
             AddDrug ad = new AddDrug(database);
             ad.Show();
+        }
+
+        private void revisionButton_Click(object sender, EventArgs e)
+        {
+            RevisionsForm rf = new RevisionsForm(database);
+            rf.Show();
+
         }
     }
 }

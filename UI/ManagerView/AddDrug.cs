@@ -1,5 +1,6 @@
 ﻿using HealthcareSystem.Entity;
 using HealthcareSystem.Entity.DrugModel;
+using HealthcareSystem.Entity.Enumerations;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -17,18 +18,33 @@ namespace HealthcareSystem.UI.ManagerView
     {
         DrugController drugRepository;
         List<Ingredient> ingredients;
+        Drug drugInRevision;
+        IMongoDatabase database;
+        bool inRevision;
 
         public AddDrug(IMongoDatabase database)
         {
             drugRepository = new DrugController(database);
             ingredients = new List<Ingredient>();
+            inRevision = false;
+            drugInRevision = null;
+            this.database = database;
             InitializeComponent();
 
         }
 
         private void AddDrug_Load(object sender, EventArgs e)
         {
-
+            if (!inRevision)
+            { 
+                reviseButton.Visible = false;
+                addDrugButton.Visible = true;
+            }
+            if (inRevision)
+            {
+                reviseButton.Visible = true;
+                addDrugButton.Visible = false;
+            }
         }
 
         private void addIngredientButton_Click(object sender, EventArgs e)
@@ -52,6 +68,11 @@ namespace HealthcareSystem.UI.ManagerView
         private void deleteIngredientButton_Click(object sender, EventArgs e)
         {
             ingredients.RemoveAt(ingredientsView.SelectedItems[0].Index);
+            loadIngredientView();
+            
+        }
+        private void loadIngredientView()
+        {
             ingredientsView.Items.Clear();
             foreach (Ingredient i in ingredients)
             {
@@ -60,6 +81,29 @@ namespace HealthcareSystem.UI.ManagerView
 
 
             }
+
+        }
+
+        public void Revise(Drug drug) 
+        {
+            this.ingredients = drug.ingredients;
+            drugNameTextBox.Text = drug.name;
+            inRevision = true;
+            drugInRevision = drug;
+            loadIngredientView();
+        }
+
+        private void reviseButton_Click(object sender, EventArgs e)
+        {
+            drugInRevision.ingredients = this.ingredients;
+            drugInRevision.name = drugNameTextBox.Text;
+            drugInRevision.DrugStatus = DrugStatus.ON_HOLD;
+            drugRepository.UpdateDrug(drugInRevision);
+            RevisionController rs = new RevisionController(database);
+            rs.DeleteByDrugId(drugInRevision._id);
+            MessageBox.Show("Strava");
+            this.Dispose();
+
         }
     }
 }
