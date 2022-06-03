@@ -101,7 +101,7 @@ namespace HealthcareSystem.UI.ManagerView
             drugRepository.UpdateDrug(drugInRevision);
             RevisionController rs = new RevisionController(database);
             rs.DeleteByDrugId(drugInRevision._id);
-            MessageBox.Show("Strava");
+            MessageBox.Show("cool");
             this.Dispose();
 
         }
