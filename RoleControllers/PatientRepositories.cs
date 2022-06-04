@@ -11,6 +11,9 @@ using HealthcareSystem.Entity.CheckModel;
 using HealthcareSystem.Entity.HealthCardModel;
 using HealthcareSystem.Entity.Survey.DoctorSurvey;
 using HealthcareSystem.Entity.Survey.HospitalSurvey;
+using HealthcareSystem.Entity.NotificationModel;
+using HealthcareSystem.Entity.DrugModel;
+
 
 namespace HealthcareSystem.RoleControllers
 {
@@ -28,7 +31,8 @@ namespace HealthcareSystem.RoleControllers
         public HealthCardController healthCardController;
         public DoctorSurveysController doctorSurveysController;
         public HospitalSurveysController hospitalSurveysController;
-
+        public NotificationSettingsController notificationSettingsController;
+        public DrugController drugController;
         public PatientRepositories(IMongoDatabase database)
         {
             this.appointmentController = new ApointmentController(database);
@@ -42,6 +46,8 @@ namespace HealthcareSystem.RoleControllers
             this.healthCardController = new HealthCardController(database);
             this.doctorSurveysController = new DoctorSurveysController(database);
             this.hospitalSurveysController = new HospitalSurveysController(database);
+            this.notificationSettingsController = new NotificationSettingsController(database);
+            this.drugController = new DrugController(database);
         }
     }
 }

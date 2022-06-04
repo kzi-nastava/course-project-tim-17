@@ -36,7 +36,7 @@
             this.searchDoctorBtn = new System.Windows.Forms.Button();
             this.surveyDoctorBtn = new System.Windows.Forms.Button();
             this.surveyHospitalBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.notificationLabel = new System.Windows.Forms.Label();
             this.notificationBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -52,7 +52,7 @@
             // 
             // readAppointmentBtn
             // 
-            this.readAppointmentBtn.Location = new System.Drawing.Point(236, 24);
+            this.readAppointmentBtn.Location = new System.Drawing.Point(285, 24);
             this.readAppointmentBtn.Name = "readAppointmentBtn";
             this.readAppointmentBtn.Size = new System.Drawing.Size(141, 30);
             this.readAppointmentBtn.TabIndex = 1;
@@ -72,7 +72,7 @@
             // 
             // deleteAppointmentBtn
             // 
-            this.deleteAppointmentBtn.Location = new System.Drawing.Point(236, 80);
+            this.deleteAppointmentBtn.Location = new System.Drawing.Point(285, 80);
             this.deleteAppointmentBtn.Name = "deleteAppointmentBtn";
             this.deleteAppointmentBtn.Size = new System.Drawing.Size(141, 30);
             this.deleteAppointmentBtn.TabIndex = 3;
@@ -92,7 +92,7 @@
             // 
             // searchDoctorBtn
             // 
-            this.searchDoctorBtn.Location = new System.Drawing.Point(236, 143);
+            this.searchDoctorBtn.Location = new System.Drawing.Point(285, 143);
             this.searchDoctorBtn.Name = "searchDoctorBtn";
             this.searchDoctorBtn.Size = new System.Drawing.Size(141, 30);
             this.searchDoctorBtn.TabIndex = 5;
@@ -112,7 +112,7 @@
             // 
             // surveyHospitalBtn
             // 
-            this.surveyHospitalBtn.Location = new System.Drawing.Point(236, 199);
+            this.surveyHospitalBtn.Location = new System.Drawing.Point(285, 199);
             this.surveyHospitalBtn.Name = "surveyHospitalBtn";
             this.surveyHospitalBtn.Size = new System.Drawing.Size(141, 30);
             this.surveyHospitalBtn.TabIndex = 7;
@@ -120,15 +120,14 @@
             this.surveyHospitalBtn.UseVisualStyleBackColor = true;
             this.surveyHospitalBtn.Click += new System.EventHandler(this.surveyHospitalBtn_Click);
             // 
-            // label1
+            // notificationLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(288, 261);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "label1";
-            this.label1.Visible = false;
+            this.notificationLabel.AutoSize = true;
+            this.notificationLabel.Location = new System.Drawing.Point(242, 253);
+            this.notificationLabel.Name = "notificationLabel";
+            this.notificationLabel.Size = new System.Drawing.Size(38, 15);
+            this.notificationLabel.TabIndex = 8;
+            this.notificationLabel.Text = "label1";
             // 
             // notificationBtn
             // 
@@ -144,9 +143,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(412, 312);
+            this.ClientSize = new System.Drawing.Size(457, 312);
             this.Controls.Add(this.notificationBtn);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.notificationLabel);
             this.Controls.Add(this.surveyHospitalBtn);
             this.Controls.Add(this.surveyDoctorBtn);
             this.Controls.Add(this.searchDoctorBtn);
@@ -173,7 +172,7 @@
         private Button searchDoctorBtn;
         private Button surveyDoctorBtn;
         private Button surveyHospitalBtn;
-        private Label label1;
+        private Label notificationLabel;
         private Button notificationBtn;
     }
 }
