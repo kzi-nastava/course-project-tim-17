@@ -325,7 +325,7 @@ namespace HealthcareSystem.Entity.RoomModel
 
 
         }
-
+        
 
 
         public void changeQuantityFromEquipment(Room room, MoveEquipmentRequest moveEquipmentRequest, string operation)

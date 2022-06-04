@@ -11,12 +11,8 @@ namespace HealthcareSystem.Entity.DoctorModel
             this.doctorCollection = database.GetCollection<Doctor>("Doctors");
             
             }
-        public void getAllDoctors() {
-            List<Doctor> doctors = doctorCollection.Find(item =>  true).ToList();
-
-            foreach(Doctor doctor in doctors) {
-                Console.WriteLine(doctor.name);
-            }
+        public List<Doctor> getAllDoctors() {
+            return doctorCollection.Find(item =>  true).ToList();
         }
         public void InsertToCollection(Doctor doctor){
             doctorCollection.InsertOne(doctor);

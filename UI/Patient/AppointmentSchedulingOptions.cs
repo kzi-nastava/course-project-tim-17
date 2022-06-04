@@ -1,5 +1,7 @@
 ﻿using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
+using MongoDB.Driver;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,8 +27,9 @@ namespace HealthcareSystem.UI.Patient
 
         private void regularBtn_Click(object sender, EventArgs e)
         {
+            ObjectId doctorId = new ObjectId();
             this.Hide();
-            RegularScheduling regularScheduling = new RegularScheduling(loggedUser, patientRepositories);
+            RegularScheduling regularScheduling = new RegularScheduling(loggedUser, patientRepositories, doctorId);
             regularScheduling.Show();
         }
 

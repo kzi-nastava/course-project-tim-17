@@ -24,13 +24,26 @@ namespace HealthcareSystem.UI.Patient
     {
         public User loggedUser { get; set; }
         public PatientRepositories patientRepositories { get; set; }
-        public RegularScheduling(User loggedUser, PatientRepositories patientRepositories)
+        public ObjectId doctorId { get; set; }
+        public RegularScheduling(User loggedUser, PatientRepositories patientRepositories, ObjectId doctorId)
         {
             InitializeComponent();
             this.loggedUser = loggedUser;
             this.patientRepositories = patientRepositories;
-
+            this.doctorId = doctorId;
         }
+
+        public void setDoctor()
+        {
+            Doctor doctor = patientRepositories.doctorController.findById(doctorId);
+            if (doctor != null)
+            {
+                string doctorName = doctor.name + " " + doctor.lastName;
+                doctorBox.Items.Add(doctorName);
+            }
+            doctorBox.SelectedIndex = 0;
+        }
+
         public void trollCheck()
         {
             int create = 0, change = 0;
@@ -62,9 +75,9 @@ namespace HealthcareSystem.UI.Patient
         private void checkAvailability()
         {
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
-            List<Doctor> allDoctors = patientRepositories.patientController.doctorCollection.Find(Item => true).ToList();
-            List<Apointment> allApointments = patientRepositories.patientController.apointmentCollection.Find(Item => true).ToList();
-            List<Room> allRooms = patientRepositories.patientController.roomCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
+            List<Apointment> allApointments = patientRepositories.appointmentController.apointmentCollection.Find(Item => true).ToList();
+            List<Room> allRooms = patientRepositories.roomController.roomCollection.Find(Item => true).ToList();
             List<ObjectId> unavailableRoomId = new List<ObjectId>();
             List<ObjectId> unavailableDoctorId = new List<ObjectId>();
             foreach (Apointment appointment in allApointments)
@@ -149,6 +162,7 @@ namespace HealthcareSystem.UI.Patient
             timePicker.Format = DateTimePickerFormat.Custom;
             typeBox.Items.Add("Operation");
             typeBox.Items.Add("Checkup");
+            setDoctor();
         }
         private void datePicker_ValueChanged(object sender, EventArgs e)
         {
@@ -174,9 +188,6 @@ namespace HealthcareSystem.UI.Patient
 
         }
 
-
-
-
         private void submitBtn_Click(object sender, EventArgs e)
         {
             if (typeBox.SelectedIndex == -1 || doctorBox.SelectedIndex == -1)
@@ -188,8 +199,8 @@ namespace HealthcareSystem.UI.Patient
             {
                 warningLabel.Visible = false;
                 DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
-                List<Apointment> allApointments = patientRepositories.patientController.apointmentCollection.Find(Item => true).ToList();
-                List<Room> allRooms = patientRepositories.patientController.roomCollection.Find(Item => true).ToList();
+                List<Apointment> allApointments = patientRepositories.appointmentController.apointmentCollection.Find(Item => true).ToList();
+                List<Room> allRooms = patientRepositories.roomController.roomCollection.Find(Item => true).ToList();
                 List<ObjectId> unavailableRoomId = new List<ObjectId>();
                 foreach (Apointment appointment in allApointments)
                 {

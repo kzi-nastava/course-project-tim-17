@@ -35,7 +35,7 @@ namespace HealthcareSystem.Functions
             }
             else if (loggedStatus == 2) 
             {
-                statusLabel.Text = "You are blocked f off moron";
+                statusLabel.Text = "The user has been blocked";
             }           
             else if(loggedStatus == 1){ 
                 this.loggedUser = login.userRepository.CheckCredentials(emailBox.Text,passwordBox.Text);
