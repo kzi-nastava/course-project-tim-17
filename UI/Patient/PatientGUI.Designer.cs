@@ -36,6 +36,8 @@
             this.searchDoctorBtn = new System.Windows.Forms.Button();
             this.surveyDoctorBtn = new System.Windows.Forms.Button();
             this.surveyHospitalBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.notificationBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // schedulingBtn
@@ -118,11 +120,33 @@
             this.surveyHospitalBtn.UseVisualStyleBackColor = true;
             this.surveyHospitalBtn.Click += new System.EventHandler(this.surveyHospitalBtn_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(288, 261);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 15);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "label1";
+            this.label1.Visible = false;
+            // 
+            // notificationBtn
+            // 
+            this.notificationBtn.Location = new System.Drawing.Point(33, 253);
+            this.notificationBtn.Name = "notificationBtn";
+            this.notificationBtn.Size = new System.Drawing.Size(157, 30);
+            this.notificationBtn.TabIndex = 9;
+            this.notificationBtn.Text = "Set Notification";
+            this.notificationBtn.UseVisualStyleBackColor = true;
+            this.notificationBtn.Click += new System.EventHandler(this.notificationBtn_Click);
+            // 
             // PatientGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(412, 271);
+            this.ClientSize = new System.Drawing.Size(412, 312);
+            this.Controls.Add(this.notificationBtn);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.surveyHospitalBtn);
             this.Controls.Add(this.surveyDoctorBtn);
             this.Controls.Add(this.searchDoctorBtn);
@@ -135,6 +159,7 @@
             this.Text = "PatientGUI";
             this.Load += new System.EventHandler(this.PatientGUI_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -148,5 +173,7 @@
         private Button searchDoctorBtn;
         private Button surveyDoctorBtn;
         private Button surveyHospitalBtn;
+        private Label label1;
+        private Button notificationBtn;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
+using HealthcareSystem.Functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,7 +60,9 @@ namespace HealthcareSystem.UI.Patient
         }
         private void searchDoctorBtn_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            DoctorSearch doctorSearch = new DoctorSearch(loggedUser, patientRepositories);
+            doctorSearch.Show();
         }
         private void surveyDoctorBtn_Click(object sender, EventArgs e)
         {
@@ -68,6 +71,13 @@ namespace HealthcareSystem.UI.Patient
         private void surveyHospitalBtn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void notificationBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            NotificationSetting notificationSetting = new NotificationSetting(loggedUser, patientRepositories);
+            notificationSetting.Show();
         }
     }
 }
