@@ -1,5 +1,4 @@
 using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 namespace HealthcareSystem.Entity.AppointmentRequestsModel
 {
@@ -10,15 +9,9 @@ namespace HealthcareSystem.Entity.AppointmentRequestsModel
             this.appointmentRequestCollection = database.GetCollection<AppointmentRequests>("AppointmentRequests");
         }
 
-        public List<AppointmentRequests> findAllByUser(ObjectId id) {
-            return appointmentRequestCollection.Find(item => item.patientId == id).ToList();
-        }
-
         public void InsertToCollection(AppointmentRequests appointmentRequest){
             appointmentRequestCollection.InsertOne(appointmentRequest);
         }
-
-
 
         public AppointmentRequests FindById(ObjectId id)
         {

@@ -1,6 +1,5 @@
 using MongoDB.Driver;
 
-using HealthcareSystem.RoleControllers;
 using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.RoomModel;
@@ -10,13 +9,14 @@ using HealthcareSystem.Entity.AppointmentRequestsModel;
 using HealthcareSystem.Entity.CheckAppointmentRequestModel;
 using HealthcareSystem.Entity.CheckModel;
 using HealthcareSystem.Entity.HealthCardModel;
+using HealthcareSystem.Entity.Survey.DoctorSurvey;
+using HealthcareSystem.Entity.Survey.HospitalSurvey;
 
 namespace HealthcareSystem.RoleControllers
 {
     class PatientRepositories
     {
 
-        public PatientControllers patientController;
         public ApointmentController appointmentController;
         public DoctorController doctorController;
         public RoomController roomController;
@@ -26,9 +26,11 @@ namespace HealthcareSystem.RoleControllers
         public CheckAppointmentRequestController checkAppointmentRequestController;
         public CheckController checkController;
         public HealthCardController healthCardController;
+        public DoctorSurveysController doctorSurveysController;
+        public HospitalSurveysController hospitalSurveysController;
+
         public PatientRepositories(IMongoDatabase database)
         {
-            this.patientController = new PatientControllers(database);
             this.appointmentController = new ApointmentController(database);
             this.doctorController = new DoctorController(database);
             this.roomController = new RoomController(database);
@@ -38,6 +40,8 @@ namespace HealthcareSystem.RoleControllers
             this.checkAppointmentRequestController = new CheckAppointmentRequestController(database);
             this.checkController = new CheckController(database);
             this.healthCardController = new HealthCardController(database);
+            this.doctorSurveysController = new DoctorSurveysController(database);
+            this.hospitalSurveysController = new HospitalSurveysController(database);
         }
     }
 }

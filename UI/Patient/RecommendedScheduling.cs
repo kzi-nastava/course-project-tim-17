@@ -74,8 +74,8 @@ namespace HealthcareSystem.UI.Patient
         {
             Method = "Doctor";
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
-            List<Doctor> allDoctors = patientRepositories.patientController.doctorCollection.Find(Item => true).ToList();
-            List<Apointment> allApointments = patientRepositories.patientController.apointmentCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
+            List<Apointment> allApointments = patientRepositories.appointmentController.apointmentCollection.Find(Item => true).ToList();
             List<DateTime> busyDates = new List<DateTime>();
             List<DateTime> availableDates = new List<DateTime>();
             int datecount = 0;
@@ -149,8 +149,8 @@ namespace HealthcareSystem.UI.Patient
         {
             Method = "Date";
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
-            List<Doctor> allDoctors = patientRepositories.patientController.doctorCollection.Find(Item => true).ToList();
-            List<Apointment> allApointments = patientRepositories.patientController.apointmentCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
+            List<Apointment> allApointments = patientRepositories.appointmentController.apointmentCollection.Find(Item => true).ToList();
             List<ObjectId> unavailableDoctors = new List<ObjectId>();
             foreach(Apointment appointment in allApointments)
             {
@@ -187,8 +187,8 @@ namespace HealthcareSystem.UI.Patient
 
         void submit(DateTime dateTime, ObjectId doctor)
         {
-            List<Room> allRooms = patientRepositories.patientController.roomCollection.Find(Item => true).ToList();
-            List<Apointment> allApointments = patientRepositories.patientController.apointmentCollection.Find(Item => true).ToList();
+            List<Room> allRooms = patientRepositories.roomController.roomCollection.Find(Item => true).ToList();
+            List<Apointment> allApointments = patientRepositories.appointmentController.apointmentCollection.Find(Item => true).ToList();
             foreach (Apointment appointment in allApointments)
             {
                 DateTime startPoint = appointment.dateTime.AddMinutes(-15);
@@ -236,8 +236,8 @@ namespace HealthcareSystem.UI.Patient
         int CheckAvailability()
         {
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
-            List<Doctor> allDoctors = patientRepositories.patientController.doctorCollection.Find(Item => true).ToList();
-            List<Room> allRooms = patientRepositories.patientController.roomCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
+            List<Room> allRooms = patientRepositories.roomController.roomCollection.Find(Item => true).ToList();
             ObjectId doctorId = allDoctors[0]._id;
             foreach(Doctor doctor in allDoctors)
             {
@@ -247,7 +247,7 @@ namespace HealthcareSystem.UI.Patient
                 }
             }
 
-            List<Apointment> allApointments = patientRepositories.patientController.apointmentCollection.Find(Item => true).ToList();
+            List<Apointment> allApointments = patientRepositories.appointmentController.apointmentCollection.Find(Item => true).ToList();
             foreach(Apointment apointment in allApointments)
             {
                 DateTime startPoint = apointment.dateTime.AddMinutes(-15);
@@ -293,7 +293,7 @@ namespace HealthcareSystem.UI.Patient
         void loadDoctor()
         {
             doctorBox.Items.Clear();
-            List<Doctor> allDoctors = patientRepositories.patientController.doctorCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
             foreach (Doctor doctor in allDoctors)
             {
                 string doctorName = doctor.name + " " + doctor.lastName;
@@ -382,7 +382,7 @@ namespace HealthcareSystem.UI.Patient
 
         private void submitBtn_Click(object sender, EventArgs e)
         {
-            List<Doctor> allDoctors = patientRepositories.patientController.doctorCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
             ObjectId doctorId = allDoctors[0]._id;
             DateTime date;
             foreach (Doctor doctor in allDoctors)
