@@ -27,5 +27,12 @@ namespace HealthcareSystem.UI.Patient
         {
 
         }
+
+        private void submitBtn_Click(object sender, EventArgs e)
+        {
+            int count = Convert.ToInt32(Math.Round(hoursNumeric.Value, 0));
+            patientRepositories.notificationSettingsController.ChangeTimeById(loggedUser._id, count);
+            successLabel.Visible = true;
+        }
     }
 }
