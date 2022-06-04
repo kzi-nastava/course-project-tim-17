@@ -185,10 +185,10 @@ namespace HealthcareSystem.UI
             List<Apointment> apointments = secretaryControllers.AppointmentController.getAllAppointments();
             foreach (Apointment ap in apointments)
             {
-                if(ap.roomId == r._id )
+                if (ap.roomId == r._id)
                 {
                     TimeSpan ts = time.Subtract(ap.dateTime);
-                    int hours =Convert.ToInt32(ts.TotalHours);
+                    int hours = Convert.ToInt32(ts.TotalHours);
                     if (hours == 0) // ako je makar jednom razlika 0 sati => zauzeto
                     {
                         return false;
@@ -260,7 +260,7 @@ namespace HealthcareSystem.UI
             List<Apointment> scheduledAppointments = new List<Apointment>();
             foreach (Doctor d in doctors) {
                 List<Apointment> doctorsAppointments = secretaryControllers.AppointmentController.FindAllByDoctor(d._id);
-                foreach(Apointment a in doctorsAppointments)
+                foreach (Apointment a in doctorsAppointments)
                 {
                     scheduledAppointments.Add(a);
                 }
@@ -325,14 +325,14 @@ namespace HealthcareSystem.UI
                 ObjectId apId = ObjectId.Parse(Console.ReadLine());
                 DateTime date = secretaryControllers.AppointmentController.FindById(apId).dateTime;
                 ResheduleAppointment(secretaryControllers.AppointmentController.FindById(apId));
-               
+
                 ObjectId roomId = secretaryControllers.AppointmentController.FindById(apId).roomId;
                 Apointment a = new Apointment(date, t, doctors[0]._id, roomId, patientId);
                 Console.WriteLine("Appointment has been sucessfully made!");
                 Console.WriteLine("Room: " + secretaryControllers.roomController.findById(roomId).name);
                 Console.WriteLine("Date and time: " + date.ToString());
                 secretaryControllers.AppointmentController.InsertToCollection(a);
-          
+
             }
             else
             {
@@ -351,7 +351,7 @@ namespace HealthcareSystem.UI
                     }
                 }
             }
-        
+
         }
 
         public static void PrintAllSpecializations() {
@@ -360,7 +360,7 @@ namespace HealthcareSystem.UI
             Console.WriteLine(Specialisation.OPHTHALMOLOGY);
             Console.WriteLine(Specialisation.INTERNAL_MEDICINE);
             Console.WriteLine(Specialisation.DERMATOLOGY);
-            
+
         }
 
         public void PrintLackingEquipmentFromWareHouse()
@@ -442,6 +442,117 @@ namespace HealthcareSystem.UI
 
                 }
             }
+        }
+
+        public static Boolean RoomLacks(Room r)
+        {
+            foreach (Equipment e in r.equipments)
+            {
+                if (e.quantity < 5 && e.isDynamic)
+                {
+                    return true;
+
+                }
+            }
+            return false;
+
+        }
+
+        public void PrintRoomsNeedingEquipment(List<Room> rooms)
+        {
+            foreach (Room room in rooms) {
+                if (RoomLacks(room) && !room.name.Equals("Warehouse"))
+                {
+                    Console.WriteLine("ROOM: " + room.name);
+                    Console.WriteLine("TYPE: " + room.type.ToString());
+                    Console.WriteLine("ID: " + room._id);
+                    Console.WriteLine("ITEMS:");
+                    foreach (Equipment e in room.equipments)
+                    {
+                        if (e.isDynamic)
+                        {
+                            Console.WriteLine("        ITEM: " + e.item);
+                            Console.WriteLine("        TYPE: " + e.type.ToString());
+                            if (e.quantity < 5)
+                            {
+                                Console.WriteLine("        QUANTITY: " + e.quantity + " ***");
+                            }
+                            else
+                            {
+                                Console.WriteLine("        QUANTITY: " + e.quantity);
+                            }
+                        }
+
+
+                    }
+                    Console.WriteLine();
+                }
+
+            }
+
+        }
+
+        public Boolean DoesRoomHave(Room room, String Itemname)
+        {
+            foreach (Equipment e in room.equipments) {
+                if (e.item.ToUpper().Equals(Itemname.ToUpper())) {
+                    return true;
+                }
+
+            }
+            return false;
+
+        }
+        public void GetRoomsWhichHaveSpecificEquipment(List<Room> rooms, String ItemName)
+        {
+            foreach (Room room in rooms)
+            {
+                if (DoesRoomHave(room, ItemName))
+                {
+                    Console.WriteLine("ID: " + room._id);
+                    Console.WriteLine("ROOM: " + room.name);
+                    Console.WriteLine("TYPE: " + room.type);
+                    foreach (Equipment e in room.equipments)
+                    {
+                        if (e.item.ToUpper().Equals(ItemName.ToUpper()))
+                        {
+                            Console.WriteLine("QUANTITY: " + e.quantity);
+                        }
+                    }
+                    Console.WriteLine();
+                }
+
+            }
+        }
+
+        public void Transfer(Room from, Room to, String ItemName) {
+            Equipment e = from.equipments.Where(e => e.item.ToUpper() == ItemName.ToUpper()).FirstOrDefault();
+            Console.WriteLine("Max quantity you can enter is: " + e.quantity);
+            int enteredQuantity = Int32.Parse(Console.ReadLine());
+            while (enteredQuantity > e.quantity) {
+                Console.WriteLine("Not possible. Please enter again: ");
+                enteredQuantity = Int32.Parse(Console.ReadLine());
+            }
+            foreach (Equipment eq in from.equipments)
+            {
+                if (eq.item.ToUpper().Equals(ItemName.ToUpper()))
+                {
+                    eq.quantity -= enteredQuantity;
+                    secretaryControllers.roomController.UpdateRoom(from);
+                }
+            }
+            foreach (Equipment eq in to.equipments)
+            {
+                if (eq.item.ToUpper().Equals(ItemName.ToUpper()))
+                {
+                    eq.quantity += enteredQuantity;
+                    secretaryControllers.roomController.UpdateRoom(to);
+                }
+            }
+
+            Console.WriteLine("Sucessfully transfered! ");
+
+
         }
         public void UI()
         {
@@ -577,7 +688,8 @@ namespace HealthcareSystem.UI
                         MakeEquipmentRequest();
                     }
                 }
-                else if (choice == "8") {
+                else if (choice == "8")
+                {
                     List<EquipmentRequest> requests = secretaryControllers.equipmentRequestController.GetAllEquipmentRequests();
                     if (requests.Count == 0)
                     {
@@ -590,7 +702,22 @@ namespace HealthcareSystem.UI
                         Console.WriteLine();
                         FulfiilEquipmentRequests();
                     }
-                
+
+                }
+                else if (choice == "9") {
+                    List<Room> rooms = secretaryControllers.roomController.GetAllRooms();
+                    PrintRoomsNeedingEquipment(rooms);
+                    Console.WriteLine("Enter room ID which needs more equipment: ");
+                    ObjectId roomIdInto = ObjectId.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the name of equipment: ");
+                    String name = Console.ReadLine();
+                    Console.WriteLine();
+                    GetRoomsWhichHaveSpecificEquipment(rooms, name);
+                    Console.WriteLine("Enter room ID from which you transfer: ");
+                    ObjectId roomIdFrom = ObjectId.Parse(Console.ReadLine());
+                    Room from = secretaryControllers.roomController.findById(roomIdFrom);
+                    Room inn = secretaryControllers.roomController.findById(roomIdInto);
+                    Transfer(from, inn, name);
                 }
                 else if (choice == "11")
                 {

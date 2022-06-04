@@ -13,17 +13,25 @@ class RevisionController
 
 
     }
-    public void getAllDrugRevisions()
+    public List<Revision> getAllDrugRevisions()
     {
-        List<Revision> revisionVerifications = revisionCollection.Find(item => true).ToList();
+        return revisionCollection.Find(item => true).ToList();
 
-        foreach (Revision r in revisionVerifications)
-        {
-            Console.WriteLine(r.desctription);
-        }
+    }
+
+    public Revision FindByDrugId(ObjectId id)
+    {
+        return revisionCollection.Find(item => item.drugId == id).FirstOrDefault();
     }
     public void InsertToCollection(Revision r)
     {
         revisionCollection.InsertOne(r);
+    }
+    public void DeleteByDrugId(ObjectId id)
+    {
+
+        revisionCollection.DeleteOne(item => item.drugId == id);
+
+
     }
 }
