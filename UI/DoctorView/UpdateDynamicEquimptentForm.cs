@@ -87,5 +87,10 @@ namespace HealthcareSystem.UI.DoctorView
         {
             return doctorRepositories.roomController.findById(appointment.roomId);
         }
+
+        private void UpdateDynamicEquimptentForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

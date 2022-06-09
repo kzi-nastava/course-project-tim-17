@@ -124,3 +124,4 @@ C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.gen
 C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\ref\HealthcareSystem.dll
 C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.RevisionForm.resources
 C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.AddDescriptionForm.resources
+C:\Fakultet materijali\USIProjekat\obj\Debug\net6.0-windows\HealthcareSystem.UI.DoctorView.FreeDayRequestForm.resources

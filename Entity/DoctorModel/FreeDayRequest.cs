@@ -12,18 +12,19 @@ class FreeDayRequest
     public DateTime endOf { get; set; }
     [BsonElement("doctorId")]
     public ObjectId doctorId { get; set; }
-    [BsonElement("urgent")]
-    public bool urgent { get; set; }
+    [BsonElement("description")]
+    public string description { get; set; }
+
     [BsonElement("status")]
     public Status status { get; set; }
 
-    public FreeDayRequest(DateTime startOf, DateTime endOf, ObjectId doctorId, bool urgent)
+    public FreeDayRequest(DateTime startOf, DateTime endOf, ObjectId doctorId, string description)
     {
         _id = ObjectId.GenerateNewId();
         this.startOf = startOf;
         this.endOf = endOf;
         this.doctorId = doctorId;
-        this.urgent = urgent;
         this.status = Status.ON_HOLD;
+        this.description = description;
     }
 }

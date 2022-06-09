@@ -50,5 +50,11 @@ partial class DoctorGUI : Form
             RevisionForm revisionForm = new RevisionForm(database);
             revisionForm.Show();
         }
+
+        private void makeRequestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FreeDayRequestForm freeDayRequestForm = new FreeDayRequestForm(database, loggedUser);
+            freeDayRequestForm.Show();
+        }
     }
 }
