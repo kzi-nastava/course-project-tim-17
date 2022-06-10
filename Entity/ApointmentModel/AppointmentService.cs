@@ -357,6 +357,8 @@ namespace HealthcareSystem.Entity.ApointmentModel
             Prescription prescription = new Prescription(drug._id, when, Int32.Parse(quantity), meal);
             return prescription;
         }
+
+
     }
 
 

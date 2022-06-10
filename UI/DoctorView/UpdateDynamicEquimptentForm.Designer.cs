@@ -34,10 +34,10 @@
             this.quantityLabel = new System.Windows.Forms.Label();
             this.finishBtn = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.updateBtn = new System.Windows.Forms.Button();
-            this.loadEquipmentBtn = new System.Windows.Forms.Button();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.updateBtn = new System.Windows.Forms.Button();
+            this.loadEquipmentBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,6 +97,16 @@
             this.dataGridView1.Size = new System.Drawing.Size(249, 226);
             this.dataGridView1.TabIndex = 7;
             // 
+            // name
+            // 
+            this.name.HeaderText = "Name";
+            this.name.Name = "name";
+            // 
+            // quantity
+            // 
+            this.quantity.HeaderText = "Quantity";
+            this.quantity.Name = "quantity";
+            // 
             // updateBtn
             // 
             this.updateBtn.Location = new System.Drawing.Point(361, 279);
@@ -117,16 +127,6 @@
             this.loadEquipmentBtn.UseVisualStyleBackColor = true;
             this.loadEquipmentBtn.Click += new System.EventHandler(this.loadEquipmentBtn_Click);
             // 
-            // name
-            // 
-            this.name.HeaderText = "Name";
-            this.name.Name = "name";
-            // 
-            // quantity
-            // 
-            this.quantity.HeaderText = "Quantity";
-            this.quantity.Name = "quantity";
-            // 
             // UpdateDynamicEquimptentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -142,6 +142,7 @@
             this.Controls.Add(this.equipmentNameTextBox);
             this.Name = "UpdateDynamicEquimptentForm";
             this.Text = "UpdateDynamicEquimptentForm";
+            this.Load += new System.EventHandler(this.UpdateDynamicEquimptentForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

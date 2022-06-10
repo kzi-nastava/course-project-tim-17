@@ -34,6 +34,8 @@
             this.scheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drugRequestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.freeDaysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.makeRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,7 +43,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.appointmentsToolStripMenuItem,
-            this.scheduleToolStripMenuItem});
+            this.scheduleToolStripMenuItem,
+            this.freeDaysToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -75,16 +78,31 @@
             // viewScheduleToolStripMenuItem
             // 
             this.viewScheduleToolStripMenuItem.Name = "viewScheduleToolStripMenuItem";
-            this.viewScheduleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewScheduleToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.viewScheduleToolStripMenuItem.Text = "View schedule";
             this.viewScheduleToolStripMenuItem.Click += new System.EventHandler(this.viewScheduleToolStripMenuItem_Click);
             // 
             // drugRequestsToolStripMenuItem
             // 
             this.drugRequestsToolStripMenuItem.Name = "drugRequestsToolStripMenuItem";
-            this.drugRequestsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.drugRequestsToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.drugRequestsToolStripMenuItem.Text = "Drug Requests";
             this.drugRequestsToolStripMenuItem.Click += new System.EventHandler(this.drugRequestsToolStripMenuItem_Click);
+            // 
+            // freeDaysToolStripMenuItem
+            // 
+            this.freeDaysToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.makeRequestToolStripMenuItem});
+            this.freeDaysToolStripMenuItem.Name = "freeDaysToolStripMenuItem";
+            this.freeDaysToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.freeDaysToolStripMenuItem.Text = "Free Days";
+            // 
+            // makeRequestToolStripMenuItem
+            // 
+            this.makeRequestToolStripMenuItem.Name = "makeRequestToolStripMenuItem";
+            this.makeRequestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.makeRequestToolStripMenuItem.Text = "Make Request";
+            this.makeRequestToolStripMenuItem.Click += new System.EventHandler(this.makeRequestToolStripMenuItem_Click);
             // 
             // DoctorGUI
             // 
@@ -110,5 +128,7 @@
         private ToolStripMenuItem scheduleToolStripMenuItem;
         private ToolStripMenuItem viewScheduleToolStripMenuItem;
         private ToolStripMenuItem drugRequestsToolStripMenuItem;
+        private ToolStripMenuItem freeDaysToolStripMenuItem;
+        private ToolStripMenuItem makeRequestToolStripMenuItem;
     }
 }
