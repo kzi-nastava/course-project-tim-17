@@ -28,8 +28,8 @@ namespace HealthcareSystem
             settings.ServerApi = new ServerApi(ServerApiVersion.V1);
             var client = new MongoClient(settings);
             var database = client.GetDatabase("USI");
-            UserController uc = new UserController(database);
-            HealthCardController hc = new HealthCardController(database);
+            
+            
 
             User loggedUser = null;
             Boolean notLogged = true;

@@ -17,6 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 
 namespace HealthcareSystem.UI.Patient
 {
@@ -165,7 +166,7 @@ namespace HealthcareSystem.UI.Patient
                             string type = apointment.type.ToString();
                             Doctor doctor = patientRepositories.doctorController.findById(apointment.doctorId);
                             string doctorName = doctor.name + " " + doctor.lastName;
-                            Room room = patientRepositories.roomController.findById(apointment.roomId);
+                            Room room = patientRepositories.roomController.GetById(apointment.roomId);
                             string roomName = room.name;
                             anamnesisDescription = check.anamnesis.description;
                             anamnesisSymptoms = check.anamnesis.symptoms;

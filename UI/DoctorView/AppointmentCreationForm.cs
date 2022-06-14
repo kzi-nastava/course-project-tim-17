@@ -2,6 +2,7 @@
 using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.RoomModel;
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;

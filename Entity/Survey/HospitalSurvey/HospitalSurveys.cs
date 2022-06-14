@@ -14,8 +14,8 @@ namespace HealthcareSystem.Entity.Survey.HospitalSurvey
         [BsonElement("satisfaction")]
         public Mark satisfaction { get; set; }
         [BsonElement("comment")]
-        public string comment { get; set; }
 
+        public string comment { get; set; }
         public HospitalSurveys(Mark quality, Mark cleanliness, Mark satisfaction, string comment)
         {
             this._id = ObjectId.GenerateNewId();
@@ -23,6 +23,7 @@ namespace HealthcareSystem.Entity.Survey.HospitalSurvey
             this.cleanliness = cleanliness;
             this.satisfaction = satisfaction;
             this.comment = comment;
+            
         }
     }
 }

@@ -13,7 +13,7 @@ using HealthcareSystem.Entity.Survey.DoctorSurvey;
 using HealthcareSystem.Entity.Survey.HospitalSurvey;
 using HealthcareSystem.Entity.NotificationModel;
 using HealthcareSystem.Entity.DrugModel;
-
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 
 namespace HealthcareSystem.RoleControllers
 {
@@ -22,7 +22,7 @@ namespace HealthcareSystem.RoleControllers
 
         public ApointmentController appointmentController;
         public DoctorController doctorController;
-        public RoomController roomController;
+        public RoomRepository roomController;
         public UserActionController userActionController;
         public BlockedUserController blockedUserController;
         public AppointmentRequestsController appointmentRequestsController;
@@ -37,7 +37,7 @@ namespace HealthcareSystem.RoleControllers
         {
             this.appointmentController = new ApointmentController(database);
             this.doctorController = new DoctorController(database);
-            this.roomController = new RoomController(database);
+            this.roomController = new RoomRepository();
             this.userActionController = new UserActionController(database);
             this.blockedUserController = new BlockedUserController(database);
             this.appointmentRequestsController = new AppointmentRequestsController(database);

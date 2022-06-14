@@ -21,6 +21,7 @@ using HealthcareSystem.Entity.ReferralModel;
 using HealthcareSystem.Entity.RoomModel;
 using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.EquipmentRequestModel;
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 
 namespace HealthcareSystem.UI
 {
@@ -212,7 +213,7 @@ namespace HealthcareSystem.UI
             DateTime suggestedDate = DateTime.Now.AddDays(3);                     // stavljam kao prjedlog da je ovo datum
             suggestedDate = suggestedDate.Date.Add(new TimeSpan(12, 00, 00));
             DateTime doctorAvailable = suggestedDate;
-            List<Room> allRooms = secretaryControllers.roomController.GetAllRooms();
+            List<Room> allRooms = secretaryControllers.roomController.GetAll();
             Room availableRoom = allRooms[0];                                       // pocetna soba koju provjeravam
             bool notBreak = true;
             bool done = false;
@@ -302,7 +303,7 @@ namespace HealthcareSystem.UI
         public void MakeUrgentAppointment(List<Doctor> doctors, ObjectId patientId, ApointmentType t)
         {
             List<Apointment> doctorsAppointments = GetAppointmentsOfDoctors(doctors);   // dobila listu svih appointmenta od doktora
-            List<Room> rooms = secretaryControllers.roomController.GetAllRooms();
+            List<Room> rooms = secretaryControllers.roomController.GetAll();
             DateTime searchedDate;
             Room searchedRoom;
             doctorsAppointments.Sort((a, b) => a.dateTime.CompareTo(b.dateTime));
@@ -329,7 +330,7 @@ namespace HealthcareSystem.UI
                 ObjectId roomId = secretaryControllers.AppointmentController.FindById(apId).roomId;
                 Apointment a = new Apointment(date, t, doctors[0]._id, roomId, patientId);
                 Console.WriteLine("Appointment has been sucessfully made!");
-                Console.WriteLine("Room: " + secretaryControllers.roomController.findById(roomId).name);
+                Console.WriteLine("Room: " + secretaryControllers.roomController.GetById(roomId).name);
                 Console.WriteLine("Date and time: " + date.ToString());
                 secretaryControllers.AppointmentController.InsertToCollection(a);
 
@@ -432,7 +433,7 @@ namespace HealthcareSystem.UI
                         if (e.item.ToUpper().Equals(req.ItemName.ToUpper()))
                         {
                             e.quantity += req.Quantity;
-                            secretaryControllers.roomController.UpdateRoom(warehouse);
+                            secretaryControllers.roomController.Update(warehouse);
                             Console.WriteLine("REQUEST " + req._id + " SUCCESFULLY FULFILLED");
 
                         }
@@ -538,7 +539,7 @@ namespace HealthcareSystem.UI
                 if (eq.item.ToUpper().Equals(ItemName.ToUpper()))
                 {
                     eq.quantity -= enteredQuantity;
-                    secretaryControllers.roomController.UpdateRoom(from);
+                    secretaryControllers.roomController.Update(from);
                 }
             }
             foreach (Equipment eq in to.equipments)
@@ -546,7 +547,7 @@ namespace HealthcareSystem.UI
                 if (eq.item.ToUpper().Equals(ItemName.ToUpper()))
                 {
                     eq.quantity += enteredQuantity;
-                    secretaryControllers.roomController.UpdateRoom(to);
+                    secretaryControllers.roomController.Update(to);
                 }
             }
 
@@ -705,7 +706,7 @@ namespace HealthcareSystem.UI
 
                 }
                 else if (choice == "9") {
-                    List<Room> rooms = secretaryControllers.roomController.GetAllRooms();
+                    List<Room> rooms = secretaryControllers.roomController.GetAll();
                     PrintRoomsNeedingEquipment(rooms);
                     Console.WriteLine("Enter room ID which needs more equipment: ");
                     ObjectId roomIdInto = ObjectId.Parse(Console.ReadLine());
@@ -715,8 +716,8 @@ namespace HealthcareSystem.UI
                     GetRoomsWhichHaveSpecificEquipment(rooms, name);
                     Console.WriteLine("Enter room ID from which you transfer: ");
                     ObjectId roomIdFrom = ObjectId.Parse(Console.ReadLine());
-                    Room from = secretaryControllers.roomController.findById(roomIdFrom);
-                    Room inn = secretaryControllers.roomController.findById(roomIdInto);
+                    Room from = secretaryControllers.roomController.GetById(roomIdFrom);
+                    Room inn = secretaryControllers.roomController.GetById(roomIdInto);
                     Transfer(from, inn, name);
                 }
                 else if (choice == "11")

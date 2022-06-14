@@ -35,7 +35,7 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
                     {
                         patient = secretaryControllers.userController.FindById(secretaryControllers.AppointmentController.FindById(c.appointmentId).patientId);
                         Console.WriteLine("PATIENT: " + patient.name + " " + patient.lastName);
-                        Console.WriteLine("ROOM: :  " + secretaryControllers.roomController.findById(ap.roomId).name);
+                        Console.WriteLine("ROOM: :  " + secretaryControllers.roomController.GetById(ap.roomId).name);
                         Console.WriteLine("DATE: " + ap.dateTime.ToString());
                     }
                     Console.WriteLine("REQUEST: " + c.RequestState.ToString());
@@ -51,7 +51,7 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
                     {
                         patient = secretaryControllers.userController.FindById(ap.patientId);
                         Console.WriteLine("PATIENT: " + patient.name + " " + patient.lastName);
-                        Console.WriteLine("ROOM: :  " + secretaryControllers.roomController.findById(ap.roomId).name);
+                        Console.WriteLine("ROOM: :  " + secretaryControllers.roomController.GetById(ap.roomId).name);
                         Console.WriteLine("DATE: " + ap.dateTime.ToString());
                         Console.WriteLine("REQUEST: " + c.RequestState.ToString());
                         Console.WriteLine("STATUS: " + c.status.ToString());

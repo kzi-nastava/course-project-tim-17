@@ -12,6 +12,7 @@ using HealthcareSystem.Entity.EquipmentRequestModel;
 using HealthcareSystem.Entity.HealthCardModel;
 using HealthcareSystem.Entity.ReferralModel;
 using HealthcareSystem.Entity.RoomModel;
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.Entity.UserModel;
 using MongoDB.Driver;
 
@@ -25,7 +26,7 @@ namespace HealthcareSystem.RoleControllers
         public BlockedUserController blockedUserController;
         public CheckAppointmentRequestController checkAppointemtRequestController;
         public AppointmentRequestsController appointmentRequestsController;
-        public RoomController roomController;
+        public RoomRepository roomController;
         public ApointmentController AppointmentController;
         public CheckController checkController;
         public ReferralController referralController;
@@ -38,7 +39,7 @@ namespace HealthcareSystem.RoleControllers
             this.blockedUserController = new BlockedUserController(database);
             this.checkAppointemtRequestController = new CheckAppointmentRequestController(database);
             this.AppointmentController = new ApointmentController(database);
-            this.roomController = new RoomController(database);
+            this.roomController = new RoomRepository();
             this.appointmentRequestsController = new AppointmentRequestsController(database);
             this.checkController = new CheckController(database);
             this.referralController = new ReferralController(database);

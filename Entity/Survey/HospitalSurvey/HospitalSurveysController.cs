@@ -9,12 +9,12 @@ namespace HealthcareSystem.Entity.Survey.HospitalSurvey
 
         public HospitalSurveysController(IMongoDatabase database)
         {
-            this.hospitalSurveysCollection = database.GetCollection<HospitalSurveys>("DoctorSurveys");
+            this.hospitalSurveysCollection = database.GetCollection<HospitalSurveys>("HospitalSurveys");
         }
 
-        public void insertToCollection(HospitalSurveys doctorSurveys)
+        public void insertToCollection(HospitalSurveys hospitalSurveys)
         {
-            hospitalSurveysCollection.InsertOne(doctorSurveys);
+            hospitalSurveysCollection.InsertOne(hospitalSurveys);
         }
 
         public List<HospitalSurveys> getAllSurveys()

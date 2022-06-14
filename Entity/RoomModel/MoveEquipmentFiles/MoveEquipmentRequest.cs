@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using HealthcareSystem.Entity.Enumerations;
-namespace HealthcareSystem.Entity.RoomModel
+namespace HealthcareSystem.Entity.RoomModel.MoveEquipmentFiles
 {
 class MoveEquipmentRequest {
     public ObjectId _id{get;set;}

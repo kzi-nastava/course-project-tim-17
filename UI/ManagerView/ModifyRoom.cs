@@ -1,5 +1,8 @@
 ﻿using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.RoomModel;
+using HealthcareSystem.Entity.RoomModel.MoveEquipmentFiles;
+using HealthcareSystem.Entity.RoomModel.RenovationFiles;
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;
 using System;
@@ -16,23 +19,21 @@ namespace HealthcareSystem.UI.ManagerView
 {
     partial class ModifyRoom : Form
     {
-        public ManagerControllers managerControllers;
+        public RoomService roomService;
         public Room room;
-        public IMongoDatabase database;
-        public ModifyRoom(IMongoDatabase database, Room room)
+       
+        public ModifyRoom(Room room)
         {
             InitializeComponent();
-            this.managerControllers = new ManagerControllers(database);
+            roomService = new RoomService(new MoveEquipmentRepository(), new RoomRepository(), new RenovationRepository());
             this.room = room;
-            this.database = database; 
             loadRoomTypes();
         }
 
         void loadRoomTypes()
         {
             roomName.Text = room.name;
-            List<Entity.Enumerations.RoomType> rooms = Enum.GetValues(typeof(RoomType)).Cast<RoomType>().ToList();
-            //roomTypeComboBox.ValueMember = null;
+            List<Entity.Enumerations.RoomType> rooms = Enum.GetValues(typeof(RoomType)).Cast<RoomType>().ToList();           
             roomTypeComboBox.DataSource = rooms;
             roomTypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             roomTypeComboBox.SelectedItem = room.type;
@@ -50,9 +51,8 @@ namespace HealthcareSystem.UI.ManagerView
         {
             room.name = roomName.Text;
             Enum.TryParse(roomTypeComboBox.SelectedItem.ToString(), out RoomType roomType);
-            room.type = roomType;
-            RoomService rs = new RoomService(database);
-            rs.UpdateRoom(room);
+            room.type = roomType;          
+            roomService.Update(room);
             MessageBox.Show("Room Updated!");
             this.Dispose();
         }

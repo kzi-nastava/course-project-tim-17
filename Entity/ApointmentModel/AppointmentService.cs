@@ -4,6 +4,7 @@ using HealthcareSystem.Entity.DrugModel;
 using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.HealthCardModel;
 using HealthcareSystem.Entity.RoomModel;
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Bson;
@@ -134,7 +135,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
             foreach (Apointment apointment in apointments)
             {
                 User patient = doctorRepositories.userController.FindById(apointment.patientId);
-                Room room = doctorRepositories.roomController.findById(apointment.roomId);
+                Room room = doctorRepositories.roomController.GetById(apointment.roomId);
                 Console.WriteLine(apointment._id.ToString() + "|" +apointment.type.ToString() + "|" + apointment.dateTime.ToString("MM/dd/yyyy") + " "
                                   + apointment.dateTime.ToString("t") + "|" + doctor.name + " " + doctor.lastName
                                   + "|" + patient.name + " " + patient.lastName + "|" + room.name);
@@ -241,7 +242,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
             foreach (Apointment apointment in certainDoctorsApointments)
             {
                 User patient = doctorRepositories.userController.FindById(apointment.patientId);
-                Room room = doctorRepositories.roomController.findById(apointment.roomId);
+                Room room = doctorRepositories.roomController.GetById(apointment.roomId);
                 Console.WriteLine(apointment._id.ToString() + "|" +apointment.type.ToString() + "|" + apointment.dateTime.ToString("MM/dd/yyyy") + " "
                                   + apointment.dateTime.ToString("t") + "|" + doctor.name + " " + doctor.lastName
                                   + "|" + patient.name + " " + patient.lastName + "|" + room.name);
