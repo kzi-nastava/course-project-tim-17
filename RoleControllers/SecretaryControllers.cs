@@ -8,11 +8,11 @@ using HealthcareSystem.Entity.AppointmentRequestsModel;
 using HealthcareSystem.Entity.CheckAppointmentRequestModel;
 using HealthcareSystem.Entity.CheckModel;
 using HealthcareSystem.Entity.DoctorModel;
-using HealthcareSystem.Entity.EquipmentRequestModel;
 using HealthcareSystem.Entity.HealthCardModel;
 using HealthcareSystem.Entity.ReferralModel;
 using HealthcareSystem.Entity.RoomModel;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
+using HealthcareSystem.Entity.RoomModel.TransferEquipment;
 using HealthcareSystem.Entity.UserModel;
 using MongoDB.Driver;
 

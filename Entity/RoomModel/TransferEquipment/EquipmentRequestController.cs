@@ -7,7 +7,8 @@ using HealthcareSystem.Entity.ApointmentModel;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace HealthcareSystem.Entity.EquipmentRequestModel
+
+namespace HealthcareSystem.Entity.RoomModel.TransferEquipment
 {
     class EquipmentRequestController
     {

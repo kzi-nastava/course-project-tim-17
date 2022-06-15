@@ -9,7 +9,7 @@ using HealthcareSystem.Entity.UserModel;
 using HealthCareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;
-
+using Autofac;
 using MongoDB.Bson;
 
 using HealthcareSystem.Entity.ApointmentModel;
@@ -20,8 +20,9 @@ using HealthcareSystem.Entity;
 using HealthcareSystem.Entity.ReferralModel;
 using HealthcareSystem.Entity.RoomModel;
 using HealthcareSystem.Entity.DoctorModel;
-using HealthcareSystem.Entity.EquipmentRequestModel;
+using HealthcareSystem.UI.Secretary;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
+using HealthcareSystem.Entity.RoomModel.TransferEquipment;
 
 namespace HealthcareSystem.UI
 {
@@ -29,13 +30,21 @@ namespace HealthcareSystem.UI
     {
         public User LoggedUser { get; set; }
         public SecretaryControllers secretaryControllers { get; set; }
-        public SecretaryUI(SecretaryControllers secretaryControllers, User LoggedUser)
+       
+        public IMongoDatabase database;
+        public RoomService roomService { get; set; }
+
+        public EquipmentRequestService equipmentService { get; set; }
+
+        public SecretaryUI(SecretaryControllers secretaryControllers, User LoggedUser, IMongoDatabase database)
         {
             this.LoggedUser = LoggedUser;
             this.secretaryControllers = secretaryControllers;
+            this.database = database;
+            roomService = Globals.container.Resolve<RoomService>();
+            this.equipmentService = new EquipmentRequestService(database);
             this.UI();
         }
-
 
         public static void PrintCRUDMeni()
         {
@@ -45,140 +54,6 @@ namespace HealthcareSystem.UI
             Console.WriteLine("d -> DELETE ACCOUNT");
             Console.WriteLine("x -> EXIT");
 
-        }
-
-        public void PrintAllPatients(List<User> patients)
-        {
-            for (int i = 0; i < patients.Count; i++)
-            {
-                if (secretaryControllers.blockedUserController.FindByUserId(patients[i]._id) == null)
-                {
-                    Console.WriteLine(" ------------------------------------");
-                    Console.WriteLine("Name: " + " " + patients[i].name);
-                    Console.WriteLine("Last name: " + " " + patients[i].lastName);
-                    Console.WriteLine("Email: " + " " + patients[i].email);
-                    HealthCard found = null;
-                    List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
-                    foreach (HealthCard healthCard in healthCards)
-                    {
-                        if (healthCard.patientId == patients[i]._id)
-                        {
-                            found = healthCard;
-                        }
-
-                    }
-                    Console.WriteLine("Weight: " + found.weight.ToString());
-                    Console.WriteLine("height: " + found.height.ToString());
-                    Console.WriteLine("Allergies: " + secretaryControllers.healthCardController.GetAllergies(found));
-                }
-            }
-        }
-
-        public void PrintPatientsWithReferrals(List<User> patients)
-        {
-            for (int i = 0; i < patients.Count; i++)
-            {
-                if (secretaryControllers.blockedUserController.FindByUserId(patients[i]._id) == null)
-                {
-                    Console.WriteLine(" ------------------------------------");
-                    Console.WriteLine("Name: " + " " + patients[i].name);
-                    Console.WriteLine("Last name: " + " " + patients[i].lastName);
-                    Console.WriteLine("Email: " + " " + patients[i].email);
-                    HealthCard found = null;
-                    List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
-                    foreach (HealthCard healthCard in healthCards)
-                    {
-
-                        if (healthCard.patientId == patients[i]._id)
-                        {
-                            found = healthCard;
-                        }
-                    }
-                    List<Referral> referrals = secretaryControllers.referralController.GetReferralsOfHealthCard(found);
-                    if (referrals.Count > 0)
-                    {
-                        Console.WriteLine("REFERRALS:");
-                        foreach (Referral r in referrals)
-                        {
-                            Console.WriteLine("------------------------------------");
-                            Console.WriteLine("Referral's id: " + r._id);
-                            Console.WriteLine("------------------------------------");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Patient has no referrals");
-                    }
-                }
-            }
-
-        }
-
-        public void DeleteAppointementByRequest(CheckAppointementRequest cr)
-        {
-            Apointment a = secretaryControllers.AppointmentController.FindById(cr.appointmentId);
-            secretaryControllers.AppointmentController.DeleteApointment(a);
-        }
-
-        public void EditAppointementByRequest(CheckAppointementRequest cr)
-        {
-            AppointmentRequests ar = secretaryControllers.appointmentRequestsController.FindById(cr.appointmentId);
-            Apointment a = secretaryControllers.AppointmentController.FindById(ar.appointmentId);
-            a.dateTime = ar.dateTime;
-            a.doctorId = ar.doctorId;
-            a.patientId = ar.patientId;
-            a.roomId = ar.roomId;
-            secretaryControllers.AppointmentController.UpdateApointment(a);
-        }
-
-        public void HandleCRUD(string option)
-        {
-            UserService us = new UserService(secretaryControllers);
-            if (option.Equals("a"))
-            {                                                                // adding patient
-                User patient = us.AddPatient();
-                if (patient != null)
-                {
-                    HealthCardService hc = new HealthCardService(secretaryControllers, patient);
-                    hc.CreateHealthCard();
-                    Console.WriteLine("Patient is sucessfully created! ");
-                }
-                else
-                {
-                    Console.WriteLine("Sorry, patient already exists! ");
-                }
-            }
-            else if (option.Equals("b"))                                                         // preview of patients 
-            {
-                List<User> patients = us.GetAllPatients();
-                PrintAllPatients(patients);
-            }
-            else if (option.Equals("c"))
-            {                                                                            // update patient
-                User patient = us.UpdateUser();
-                HealthCardService hc = new HealthCardService(secretaryControllers, patient);
-                Console.WriteLine("To edit patient's healthcard enter '1': ");
-                string toEdit = Console.ReadLine();
-                if (toEdit.Equals("1"))
-                {
-                    hc.UpdateHealthCard();
-                }
-                Console.WriteLine("Patient is sucessfully updated! ");
-            }
-            else if (option.Equals("d"))                            // delete patient        
-            {
-                User patient = us.DeleteUser();
-                if (patient != null)
-                {
-                    HealthCardService hc = new HealthCardService(secretaryControllers, patient);
-                    hc.DeleteHealthCard();
-                    Console.WriteLine("Patient is sucessfully deleted! ");
-                }
-                else
-                {
-                    Console.WriteLine("Sorry, patient with entered email does not exist! ");
-                }
-            }
         }
 
         public bool IsRoomAvailable(Room r, DateTime time)
@@ -364,201 +239,14 @@ namespace HealthcareSystem.UI
 
         }
 
-        public void PrintLackingEquipmentFromWareHouse()
-        {
-            Room warehouse = secretaryControllers.roomController.getWarehouse();
-            List<Equipment> eq = warehouse.equipments;
-            Console.WriteLine("EQUIPMENT THAT IS LACKING IN WAREHOUSE: ");
-            foreach (Equipment eqItem in eq)
-            {
-                if (eqItem.isDynamic && eqItem.quantity == 0)
-                {
-                    Console.WriteLine("ITEM: " + eqItem.item.ToUpper());
-                    Console.WriteLine("TYPE:" + eqItem.type.ToString());
-                    Console.WriteLine("ID:" + eqItem._id);
-                    Console.WriteLine("----------------------------------------");
-                }
-            }
-        }
-
-        public void MakeEquipmentRequest() {
-            Console.WriteLine("Enter the item name you are making request for: ");
-            String itemName = Console.ReadLine();
-            Console.WriteLine("Enter the quantity: ");
-            int quantity = Int32.Parse(Console.ReadLine());
-            DateTime date = DateTime.Now.AddDays(1);
-            EquipmentRequest er = new EquipmentRequest(itemName, date, quantity);
-            secretaryControllers.equipmentRequestController.InsertToCollection(er);
-
-        }
-
-        public void PrintAllEquipmentRequest(List<EquipmentRequest> requests) {
-            Console.WriteLine("READY REQUESTS");
-            Console.WriteLine("-----------------------------");
-            foreach (EquipmentRequest req in requests) {
-                if (req.DateTime < DateTime.Now) {
-                    Console.WriteLine("ID: " + req._id);
-                    Console.WriteLine("ITEM: " + req.ItemName);
-                    Console.WriteLine("DATE: " + req.DateTime);
-                    Console.WriteLine("QUANTITY: " + req.Quantity.ToString());
-                }
-            }
-            Console.WriteLine("-----------------------------");
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("REQUESTS YET TO BE FULFILLED");
-            Console.WriteLine("-----------------------------");
-            foreach (EquipmentRequest req in requests)
-            {
-                if (req.DateTime >= DateTime.Now)
-                {
-                    Console.WriteLine("ITEM: " + req.ItemName);
-                    Console.WriteLine("DATE: " + req.DateTime);
-                    Console.WriteLine("QUANTITY: " + req.Quantity.ToString());
-                }
-            }
-            Console.WriteLine("-----------------------------");
-        }
-
-        public void FulfiilEquipmentRequests()
-        {
-            Room warehouse = secretaryControllers.roomController.getWarehouse();
-
-            List<EquipmentRequest> requests = secretaryControllers.equipmentRequestController.GetAllEquipmentRequests();
-            foreach (EquipmentRequest req in requests)
-            {
-                if (req.DateTime < DateTime.Now)
-                {
-                    foreach (Equipment e in warehouse.equipments) {
-                        if (e.item.ToUpper().Equals(req.ItemName.ToUpper()))
-                        {
-                            e.quantity += req.Quantity;
-                            secretaryControllers.roomController.Update(warehouse);
-                            Console.WriteLine("REQUEST " + req._id + " SUCCESFULLY FULFILLED");
-
-                        }
-                        secretaryControllers.equipmentRequestController.DeleteEquipmentRequest(req);
-
-                    }
-
-                }
-            }
-        }
-
-        public static Boolean RoomLacks(Room r)
-        {
-            foreach (Equipment e in r.equipments)
-            {
-                if (e.quantity < 5 && e.isDynamic)
-                {
-                    return true;
-
-                }
-            }
-            return false;
-
-        }
-
-        public void PrintRoomsNeedingEquipment(List<Room> rooms)
-        {
-            foreach (Room room in rooms) {
-                if (RoomLacks(room) && !room.name.Equals("Warehouse"))
-                {
-                    Console.WriteLine("ROOM: " + room.name);
-                    Console.WriteLine("TYPE: " + room.type.ToString());
-                    Console.WriteLine("ID: " + room._id);
-                    Console.WriteLine("ITEMS:");
-                    foreach (Equipment e in room.equipments)
-                    {
-                        if (e.isDynamic)
-                        {
-                            Console.WriteLine("        ITEM: " + e.item);
-                            Console.WriteLine("        TYPE: " + e.type.ToString());
-                            if (e.quantity < 5)
-                            {
-                                Console.WriteLine("        QUANTITY: " + e.quantity + " ***");
-                            }
-                            else
-                            {
-                                Console.WriteLine("        QUANTITY: " + e.quantity);
-                            }
-                        }
-
-
-                    }
-                    Console.WriteLine();
-                }
-
-            }
-
-        }
-
-        public Boolean DoesRoomHave(Room room, String Itemname)
-        {
-            foreach (Equipment e in room.equipments) {
-                if (e.item.ToUpper().Equals(Itemname.ToUpper())) {
-                    return true;
-                }
-
-            }
-            return false;
-
-        }
-        public void GetRoomsWhichHaveSpecificEquipment(List<Room> rooms, String ItemName)
-        {
-            foreach (Room room in rooms)
-            {
-                if (DoesRoomHave(room, ItemName))
-                {
-                    Console.WriteLine("ID: " + room._id);
-                    Console.WriteLine("ROOM: " + room.name);
-                    Console.WriteLine("TYPE: " + room.type);
-                    foreach (Equipment e in room.equipments)
-                    {
-                        if (e.item.ToUpper().Equals(ItemName.ToUpper()))
-                        {
-                            Console.WriteLine("QUANTITY: " + e.quantity);
-                        }
-                    }
-                    Console.WriteLine();
-                }
-
-            }
-        }
-
-        public void Transfer(Room from, Room to, String ItemName) {
-            Equipment e = from.equipments.Where(e => e.item.ToUpper() == ItemName.ToUpper()).FirstOrDefault();
-            Console.WriteLine("Max quantity you can enter is: " + e.quantity);
-            int enteredQuantity = Int32.Parse(Console.ReadLine());
-            while (enteredQuantity > e.quantity) {
-                Console.WriteLine("Not possible. Please enter again: ");
-                enteredQuantity = Int32.Parse(Console.ReadLine());
-            }
-            foreach (Equipment eq in from.equipments)
-            {
-                if (eq.item.ToUpper().Equals(ItemName.ToUpper()))
-                {
-                    eq.quantity -= enteredQuantity;
-                    secretaryControllers.roomController.Update(from);
-                }
-            }
-            foreach (Equipment eq in to.equipments)
-            {
-                if (eq.item.ToUpper().Equals(ItemName.ToUpper()))
-                {
-                    eq.quantity += enteredQuantity;
-                    secretaryControllers.roomController.Update(to);
-                }
-            }
-
-            Console.WriteLine("Sucessfully transfered! ");
-
-
-        }
+        
         public void UI()
         {
             UserService us = new UserService(secretaryControllers);
             CheckAppointmentRequestService crs = new CheckAppointmentRequestService(secretaryControllers);
+           // EquipmentRequestService ers = new EquipmentRequestService(database);
+          //  SecretaryAppointmentService a = new SecretaryAppointmentService(database);
+            FreeDayRequestService fs = new FreeDayRequestService(database);
             List<User> patients = us.GetAllPatients();
             while (true)
             {
@@ -591,14 +279,15 @@ namespace HealthcareSystem.UI
                         }
                         else
                         {
-                            HandleCRUD(option);
+                            CRUD c = new CRUD(secretaryControllers);
+                            c.HandleCRUD(option);
                         }
                     }
                 }
                 else if (choice == "2")
                 {
 
-                    PrintAllPatients(patients);
+                    us.PrintAllPatients(patients);
                     us.blockUser();
                     Console.WriteLine("Patient is sucessfully blocked! ");
 
@@ -629,18 +318,18 @@ namespace HealthcareSystem.UI
                         crs.Update(cr);
                         if (cr.RequestState == RequestState.DELETE)
                         {
-                            DeleteAppointementByRequest(cr);
+                           // a.DeleteAppointementByRequest(cr);
                             Console.WriteLine("Appointement is succesfully deleted!");
                         }
                         else if (cr.RequestState == RequestState.EDIT)
                         {
-                            EditAppointementByRequest(cr);
+                            AppointmentRequests ar = secretaryControllers.appointmentRequestsController.FindById(cr.appointmentId);
+                        //    a.EditAppointementByRequest(cr, ar);
                             Console.WriteLine("Appointement is succesfully edited!");
                         }
                     }
                     else if (opt.Equals("2"))
                     {
-
                         cr.status = Status.DENIED;
                         crs.Update(cr);
                         Console.WriteLine("Request denied!");
@@ -649,7 +338,7 @@ namespace HealthcareSystem.UI
                 }
                 else if (choice == "5")
                 {
-                    PrintPatientsWithReferrals(patients);
+                    us.PrintPatientsWithReferrals(patients);
                     Console.WriteLine("Enter '1' to make an appointment based on referral: ");
                     if (Console.ReadLine() == "1")
                     {
@@ -665,8 +354,7 @@ namespace HealthcareSystem.UI
                 }
                 else if (choice == "6")
                 {
-
-                    PrintAllPatients(patients);
+                    us.PrintAllPatients(patients);
                     Console.WriteLine("Enter patient email: ");
                     String patientEmail = Console.ReadLine();
                     PrintAllSpecializations();
@@ -682,11 +370,12 @@ namespace HealthcareSystem.UI
                 }
                 else if (choice == "7")
                 {
-                    PrintLackingEquipmentFromWareHouse();
+                    Room warehouse = secretaryControllers.roomController.getWarehouse();
+                    roomService.PrintLackingEquipmentFromWareHouse(warehouse);
                     Console.WriteLine("Enter '1' to make a request: ");
                     if (Console.ReadLine().Equals("1"))
                     {
-                        MakeEquipmentRequest();
+                        equipmentService.MakeEquipmentRequest();
                     }
                 }
                 else if (choice == "8")
@@ -699,26 +388,37 @@ namespace HealthcareSystem.UI
                     }
                     else
                     {
-                        PrintAllEquipmentRequest(requests);
+                        equipmentService.PrintAllEquipmentRequest(requests);
                         Console.WriteLine();
-                        FulfiilEquipmentRequests();
+                        FulfillEquipmentRequest request = new FulfillEquipmentRequest(secretaryControllers);
+                        request.Fulfiil();
                     }
 
                 }
                 else if (choice == "9") {
                     List<Room> rooms = secretaryControllers.roomController.GetAll();
-                    PrintRoomsNeedingEquipment(rooms);
+                    roomService.PrintRoomsNeedingEquipment(rooms);
                     Console.WriteLine("Enter room ID which needs more equipment: ");
                     ObjectId roomIdInto = ObjectId.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the name of equipment: ");
                     String name = Console.ReadLine();
                     Console.WriteLine();
-                    GetRoomsWhichHaveSpecificEquipment(rooms, name);
+                    roomService.PrintRoomsWhichHaveSpecificEquipment(rooms, name);
                     Console.WriteLine("Enter room ID from which you transfer: ");
                     ObjectId roomIdFrom = ObjectId.Parse(Console.ReadLine());
                     Room from = secretaryControllers.roomController.GetById(roomIdFrom);
-                    Room inn = secretaryControllers.roomController.GetById(roomIdInto);
-                    Transfer(from, inn, name);
+                    Room into = secretaryControllers.roomController.GetById(roomIdInto);
+                    TransferEquipment te = new TransferEquipment(secretaryControllers);
+                    te.Transfer(from, into, name);
+                } else if (choice == "10") {
+                    //List<FreeDayRequest> freeDayRequests = secretaryControllers.freeDayRequestController.getAllFreeDayRequests();
+                    //fs.PrintAllFreeDayRequests(freeDayRequests);
+                    Console.WriteLine("1 -> APPROVE REQUEST");
+                    Console.WriteLine("2 -> DECLINE REQUEST");
+                    string opt = Console.ReadLine();
+                    if (opt.Equals("1")) {                 // accept
+
+                    }
                 }
                 else if (choice == "11")
                 {

@@ -80,7 +80,7 @@ namespace HealthcareSystem.Functions
                 //secretaryGUI.Show();
 
                 
-                SecretaryUI secretaryUI = new SecretaryUI(secretaryControllers, loggedUser);
+                SecretaryUI secretaryUI = new SecretaryUI(secretaryControllers, loggedUser, database);
                 
             }
 

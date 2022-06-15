@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace HealthcareSystem.Entity.EquipmentRequestModel
+namespace HealthcareSystem.Entity.RoomModel.TransferEquipment
 {
     class EquipmentRequest
     {

@@ -18,7 +18,7 @@ namespace HealthcareSystem.Entity.DoctorModel
 
         public List<FreeDayRequest> GetFreeDayRequestByStatus(Status status)
         {
-            List<FreeDayRequest> freeDayRequests = freeDayRequestRepository.getAllFreeDayRequstests();
+            List<FreeDayRequest> freeDayRequests = freeDayRequestRepository.getAllFreeDayRequests();
             List<FreeDayRequest> certainFreeDayRequest = new List<FreeDayRequest>();
             foreach (FreeDayRequest freeDayRequest in freeDayRequests)
             {
@@ -32,7 +32,7 @@ namespace HealthcareSystem.Entity.DoctorModel
         }
         public List<FreeDayRequest> GetFreeDayRequestByStatusAndByDoctor(Status status, Doctor doctor)
         {
-            List<FreeDayRequest> freeDayRequests = freeDayRequestRepository.getAllFreeDayRequstests();
+            List<FreeDayRequest> freeDayRequests = freeDayRequestRepository.getAllFreeDayRequests();
             List<FreeDayRequest> certainFreeDayRequest = new List<FreeDayRequest>();
             foreach (FreeDayRequest freeDayRequest in freeDayRequests)
             {
@@ -43,6 +43,23 @@ namespace HealthcareSystem.Entity.DoctorModel
             }
             return certainFreeDayRequest;
 
+        }
+
+
+        public void PrintAllFreeDayRequests(List<FreeDayRequest> freeDayRequests)
+        {
+            Console.WriteLine("FREE DAYS REQUESTS: ");
+            Console.WriteLine();
+            foreach (FreeDayRequest fr in freeDayRequests)
+            {
+                Console.WriteLine(fr.doctorId);
+                Console.WriteLine("FROM: " + fr.startOf);
+                Console.WriteLine("TO: " + fr.endOf);
+                Console.WriteLine("DESCRIPTION: " + fr.description);
+                Console.WriteLine("STATUS: " + fr.status);
+                Console.WriteLine();
+                ;
+            }
         }
 
     }

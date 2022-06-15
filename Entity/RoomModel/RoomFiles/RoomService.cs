@@ -359,5 +359,106 @@ namespace HealthcareSystem.Entity.RoomModel.RoomFiles
         }
 
 
+        public static Boolean RoomLacks(Room r)
+        {
+            foreach (Equipment e in r.equipments)
+            {
+                if (e.quantity < 5 && e.isDynamic)
+                {
+                    return true;
+
+                }
+            }
+            return false;
+
+        }
+
+
+        public void PrintRoomsNeedingEquipment(List<Room> rooms)
+        {
+            foreach (Room room in rooms)
+            {
+                if (RoomLacks(room) && !room.name.Equals("Warehouse"))
+                {
+                    Console.WriteLine("ROOM: " + room.name);
+                    Console.WriteLine("TYPE: " + room.type.ToString());
+                    Console.WriteLine("ID: " + room._id);
+                    Console.WriteLine("ITEMS:");
+                    foreach (Equipment e in room.equipments)
+                    {
+                        if (e.isDynamic)
+                        {
+                            Console.WriteLine("        ITEM: " + e.item);
+                            Console.WriteLine("        TYPE: " + e.type.ToString());
+                            if (e.quantity < 5)
+                            {
+                                Console.WriteLine("        QUANTITY: " + e.quantity + " ***");
+                            }
+                            else
+                            {
+                                Console.WriteLine("        QUANTITY: " + e.quantity);
+                            }
+                        }
+
+
+                    }
+                    Console.WriteLine();
+                }
+
+            }
+        }
+        public static bool DoesRoomHave(Room room, String Itemname)
+        {
+            foreach (Equipment e in room.equipments)
+            {
+                if (e.item.ToUpper().Equals(Itemname.ToUpper()))
+                {
+                    return true;
+                }
+
+            }
+            return false;
+
+        }
+        public void PrintLackingEquipmentFromWareHouse(Room warehouse)
+        {
+            List<Equipment> eq = warehouse.equipments;
+            Console.WriteLine("EQUIPMENT THAT IS LACKING IN WAREHOUSE: ");
+            foreach (Equipment eqItem in eq)
+            {
+                if (eqItem.isDynamic && eqItem.quantity == 0)
+                {
+                    Console.WriteLine("ITEM: " + eqItem.item.ToUpper());
+                    Console.WriteLine("TYPE:" + eqItem.type.ToString());
+                    Console.WriteLine("ID:" + eqItem._id);
+                    Console.WriteLine("----------------------------------------");
+                }
+            }
+        }
+
+        public void PrintRoomsWhichHaveSpecificEquipment(List<Room> rooms, String ItemName)
+        {
+            foreach (Room room in rooms)
+            {
+                if (DoesRoomHave(room, ItemName))
+                {
+                    Console.WriteLine("ID: " + room._id);
+                    Console.WriteLine("ROOM: " + room.name);
+                    Console.WriteLine("TYPE: " + room.type);
+                    foreach (Equipment e in room.equipments)
+                    {
+                        if (e.item.ToUpper().Equals(ItemName.ToUpper()))
+                        {
+                            Console.WriteLine("QUANTITY: " + e.quantity);
+                        }
+                    }
+                    Console.WriteLine();
+                }
+
+            }
+        }
+
+
+
     }
 }
