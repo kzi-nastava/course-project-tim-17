@@ -12,7 +12,7 @@ using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.RoomModel;
 using HealthcareSystem.RoleControllers;
-
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 
 namespace HealthcareSystem.UI.Patient
 {
@@ -55,7 +55,7 @@ namespace HealthcareSystem.UI.Patient
                 string type = apointment.type.ToString();
                 Doctor doctor = patientRepositories.doctorController.findById(apointment.doctorId);
                 string doctorName = doctor.name + " " + doctor.lastName;
-                Room room = patientRepositories.roomController.findById(apointment.roomId);
+                Room room = patientRepositories.roomController.GetById(apointment.roomId);
                 string roomName = room.name;
                 dataTable.Rows.Add(date, type, doctorName, roomName);
             }

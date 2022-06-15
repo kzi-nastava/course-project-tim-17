@@ -1,6 +1,9 @@
 ﻿using HealthcareSystem.Entity;
 using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.RoomModel;
+using HealthcareSystem.Entity.RoomModel.MoveEquipmentFiles;
+using HealthcareSystem.Entity.RoomModel.RenovationFiles;
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;
 using System;
@@ -17,15 +20,13 @@ namespace HealthcareSystem.UI.ManagerView
 {
     partial class ShowEquipment : Form
     {
-        public ManagerControllers managerControllers;
-        public IMongoDatabase database;
+        public RoomService roomService;
         public Room room;
-        public ShowEquipment(IMongoDatabase database, Room room)
+        public ShowEquipment(Room room)
         {
             InitializeComponent();
             this.room = room;
-            this.managerControllers = new ManagerControllers(database);
-            this.database = database; 
+            roomService = new RoomService(new MoveEquipmentRepository(), new RoomRepository(), new RenovationRepository());
             loadEquipment();
             loadComboBoxes();
         }
@@ -93,9 +94,9 @@ namespace HealthcareSystem.UI.ManagerView
         private void itemNameButton_Click(object sender, EventArgs e)
         {
             equipmentListView.Items.Clear();
-            RoomService rs = new RoomService(database);
             
-                foreach (Tuple<Equipment, string> itemAndRoom in rs.GetEquipmentByItemName(itemNameTextBox.Text)) {
+            
+                foreach (Tuple<Equipment, string> itemAndRoom in roomService.GetEquipmentByItemName(itemNameTextBox.Text)) {
                     FillEquipmentListView(itemAndRoom);           
                 
             }
@@ -103,10 +104,9 @@ namespace HealthcareSystem.UI.ManagerView
 
         private void roomTypeButton_Click(object sender, EventArgs e)
         {
-            equipmentListView.Items.Clear();
-            RoomService rs = new RoomService(database);
+            equipmentListView.Items.Clear();         
 
-            foreach (Tuple<Equipment, string> itemAndRoom in rs.GetEquipmentByRoomType(roomTypeComboBox.Text))
+            foreach (Tuple<Equipment, string> itemAndRoom in roomService.GetEquipmentByRoomType(roomTypeComboBox.Text))
             {
                 FillEquipmentListView(itemAndRoom);
 
@@ -119,9 +119,8 @@ namespace HealthcareSystem.UI.ManagerView
         {
 
             equipmentListView.Items.Clear();
-            RoomService rs = new RoomService(database);
 
-            foreach (Tuple<Equipment, string> itemAndRoom in rs.GetEquipmentByItemType(itemTypeComboBox.Text))
+            foreach (Tuple<Equipment, string> itemAndRoom in roomService.GetEquipmentByItemType(itemTypeComboBox.Text))
             {
                 FillEquipmentListView(itemAndRoom);
 
@@ -132,9 +131,9 @@ namespace HealthcareSystem.UI.ManagerView
         private void quantityButton_Click(object sender, EventArgs e)
         {
             equipmentListView.Items.Clear();
-            RoomService rs = new RoomService(database);
+            
 
-            foreach (Tuple<Equipment, string> itemAndRoom in rs.GetEquipmentByQuantity(quantityComboBox.SelectedValue.ToString()))
+            foreach (Tuple<Equipment, string> itemAndRoom in roomService.GetEquipmentByQuantity(quantityComboBox.SelectedValue.ToString()))
             {
                 FillEquipmentListView(itemAndRoom);
 

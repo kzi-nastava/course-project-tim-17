@@ -1,6 +1,7 @@
 ﻿using HealthcareSystem.Entity;
 using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.RoomModel;
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.RoleControllers;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,7 @@ namespace HealthcareSystem.UI.DoctorView
                     equipment.quantity -= Int32.Parse(quantityTextBox.Text);
                 }
             }
-            doctorRepositories.roomController.UpdateRoom(room);
+            doctorRepositories.roomController.Update(room);
             MessageBox.Show("Selected equipment updated!");
 
 
@@ -85,7 +86,7 @@ namespace HealthcareSystem.UI.DoctorView
 
         private Room GetRoomFromAppointment()
         {
-            return doctorRepositories.roomController.findById(appointment.roomId);
+            return doctorRepositories.roomController.GetById(appointment.roomId);
         }
 
         private void UpdateDynamicEquimptentForm_Load(object sender, EventArgs e)

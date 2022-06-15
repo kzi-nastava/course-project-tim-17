@@ -1,7 +1,8 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using HealthcareSystem.Entity.Enumerations;
-namespace HealthcareSystem.Entity.RoomModel
+
+namespace HealthcareSystem.Entity.RoomModel.RoomFiles
 { //type, equipm
     class Room
     {

@@ -1,4 +1,5 @@
 ﻿using HealthcareSystem.Entity.Enumerations;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -10,15 +11,27 @@ namespace HealthcareSystem.Entity.DrugModel
 {  
     class DrugService
     {
-        public DrugController drugRepository;
-        public DrugService(IMongoDatabase database)
+        public IDrugRepository drugRepository;
+        public DrugService(IDrugRepository drugRepository)
         {
-            this.drugRepository = new DrugController(database);
-
+            this.drugRepository = drugRepository;
         }
+        public void Insert(Drug drug)
+        {
+            drugRepository.Insert(drug);
+        }
+        public void Update(Drug drug)
+        {
+            drugRepository.Update(drug);
+        }
+        public Drug GetById(string id)
+        {
+            return drugRepository.GetById(new ObjectId(id));
+        }
+
         public List<Drug> GetCertainDrugs(DrugStatus drugStatus)
         {
-            List<Drug> allDrugs = drugRepository.getAllDrugs();
+            List<Drug> allDrugs = drugRepository.GetAll();
             List<Drug> certainDrugs = new List<Drug>();
             foreach(Drug drug in allDrugs)
             {

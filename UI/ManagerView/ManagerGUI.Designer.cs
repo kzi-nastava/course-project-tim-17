@@ -43,6 +43,7 @@
             this.renovationButton = new System.Windows.Forms.Button();
             this.addDrugButton = new System.Windows.Forms.Button();
             this.revisionButton = new System.Windows.Forms.Button();
+            this.surveysButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -176,11 +177,22 @@
             this.revisionButton.UseVisualStyleBackColor = true;
             this.revisionButton.Click += new System.EventHandler(this.revisionButton_Click);
             // 
+            // surveysButton
+            // 
+            this.surveysButton.Location = new System.Drawing.Point(12, 243);
+            this.surveysButton.Name = "surveysButton";
+            this.surveysButton.Size = new System.Drawing.Size(93, 23);
+            this.surveysButton.TabIndex = 13;
+            this.surveysButton.Text = "Surveys";
+            this.surveysButton.UseVisualStyleBackColor = true;
+            this.surveysButton.Click += new System.EventHandler(this.surveysButton_Click);
+            // 
             // ManagerGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 362);
+            this.Controls.Add(this.surveysButton);
             this.Controls.Add(this.revisionButton);
             this.Controls.Add(this.addDrugButton);
             this.Controls.Add(this.renovationButton);
@@ -221,5 +233,6 @@
         private ColumnHeader roomTypeColum;
         private Button addDrugButton;
         private Button revisionButton;
+        private Button surveysButton;
     }
 }

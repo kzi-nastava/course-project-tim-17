@@ -1,6 +1,11 @@
 ﻿using HealthcareSystem.Entity;
 using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.RoomModel;
+using HealthcareSystem.Entity.RoomModel.MoveEquipmentFiles;
+using HealthcareSystem.Entity.RoomModel.RenovationFiles;
+using HealthcareSystem.Entity.RoomModel.RenovationFiles.MergeRenovation;
+using HealthcareSystem.Entity.RoomModel.RenovationFiles.SplitRenovation;
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;
 
@@ -10,10 +15,10 @@ namespace HealthcareSystem.UI.ManagerView
     partial class AddRenovation : Form
     {
 
-        public ManagerControllers managerControllers;
+        public RoomService roomService;
+        public RenovationService renovationService;
         public Room room;
         public ApointmentController apointmentController;
-        public IMongoDatabase database;
         public bool sizeChanged;
         Equipment currentItem = null;
         int iter  = 0;
@@ -21,13 +26,13 @@ namespace HealthcareSystem.UI.ManagerView
         List<Equipment> secondRoomEquipment = new List<Equipment>();
 
 
-        public AddRenovation(IMongoDatabase database,Room room)
+        public AddRenovation(Room room)
         {
             InitializeComponent();
-            managerControllers = new ManagerControllers(database);
+            roomService = new RoomService(new MoveEquipmentRepository(), new RoomRepository(), new RenovationRepository());
+            renovationService = new RenovationService(new RenovationRepository());
             this.room = room;
-            this.apointmentController = new ApointmentController(database);
-            this.database = database;
+            this.apointmentController = new ApointmentController(Globals.database);
             sizeChanged = false;
             
         }
@@ -38,14 +43,14 @@ namespace HealthcareSystem.UI.ManagerView
             DateTime dateEnd = endDateTimePicker.Value.Date;
             if (dateStart < dateEnd) 
             {
-                AppointmentService aps = new AppointmentService(new DoctorRepositories(database));
+                AppointmentService aps = new AppointmentService(new DoctorRepositories(Globals.database));
                 if (aps.CheckIfRoomIsAvaliableForRenovation(room._id, dateStart, dateEnd)) 
                 {
                     Renovation r = new Renovation(room._id, dateStart, dateEnd);
                     if (!mergeRoomCheckBox.Checked && !splitRoomCheckBox.Checked)
                     {
                         r.RenovationType = 0;
-                        managerControllers.renovationCollection.InsertToCollection(r);
+                        renovationService.Insert(r);
 
                     }
                     else if (mergeRoomCheckBox.Checked)
@@ -53,20 +58,20 @@ namespace HealthcareSystem.UI.ManagerView
                         Room secondRoom = secondRoomComboBox.SelectedValue as Room;
                         MergeRoomRenovation mr = new MergeRoomRenovation(mergedRoomNameTextBox.Text, r._id, room._id, secondRoom._id);
                         r.RenovationType = 1;
-                        managerControllers.renovationCollection.InsertToCollectionMergeRenovation(r, mr);
+                        renovationService.InsertMergeRenovation(r, mr);
                         secondRoom.InRenovation = true;
-                        managerControllers.roomCollection.UpdateRoom(secondRoom);
+                        roomService.Update(secondRoom);
 
                     }
                     else if (splitRoomCheckBox.Checked)
                     {
                         SplitRoomRenovation sr = new SplitRoomRenovation(room._id,r._id,firstSplitRoomName.Text, secondSplitRoomName.Text, firstRoomEquipment, secondRoomEquipment);
                         r.RenovationType = 2;
-                        managerControllers.renovationCollection.InsertToCollectionSplitRenovation(r, sr);
+                        renovationService.InsertSplitRenovation(r, sr);
                     }
                     
                     room.InRenovation = true;
-                    managerControllers.roomCollection.UpdateRoom(room);
+                    roomService.Update(room);
                     this.Dispose();
                 }
             
@@ -102,7 +107,7 @@ namespace HealthcareSystem.UI.ManagerView
         }
         public void loadMergeRoomComboBoxes() 
         { 
-            List<Room> Rooms = managerControllers.roomCollection.GetAllRooms();
+            List<Room> Rooms = roomService.GetAll();
             secondRoomComboBox.DataSource = Rooms;
             
 

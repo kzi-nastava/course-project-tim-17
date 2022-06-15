@@ -68,8 +68,8 @@ namespace HealthcareSystem.Functions
 
         public void SuccessfulLogin(User loggedUser) {
             if (loggedUser.role == Role.MANAGER) {
-                ManagerControllers managerControllers = new ManagerControllers(database);
-                ManagerGUI managerGUI = new ManagerGUI(loggedUser,database);
+               
+                ManagerGUI managerGUI = new ManagerGUI(loggedUser);
                 managerGUI.Show();
                 
             }else if (loggedUser.role == Role.SECRETARY)

@@ -7,13 +7,14 @@ using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.RoomModel;
 using HealthcareSystem.Entity.ReferralModel;
 using HealthcareSystem.Entity.DoctorModel;
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 
 namespace HealthcareSystem.RoleControllers
 {
     class DoctorRepositories
     {
-        public RoomController roomController;
-        public DrugController drugController;
+        public RoomRepository roomController;
+        public DrugRepository drugController;
         public HealthCardController healthCardController;
         public CheckController checkController;
         public ApointmentController apointmentController;
@@ -23,8 +24,8 @@ namespace HealthcareSystem.RoleControllers
 
         public DoctorRepositories(IMongoDatabase database)
         {
-            this.roomController = new RoomController(database);
-            this.drugController = new DrugController(database);
+            this.roomController = new RoomRepository();
+            this.drugController = new DrugRepository();
             this.healthCardController = new HealthCardController(database);
             this.checkController = new CheckController(database);
             this.apointmentController = new ApointmentController(database);

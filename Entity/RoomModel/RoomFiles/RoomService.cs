@@ -1,48 +1,60 @@
 using HealthcareSystem.Entity.Enumerations;
+using HealthcareSystem.Entity.RoomModel.MoveEquipmentFiles;
+using HealthcareSystem.Entity.RoomModel.RenovationFiles;
+using HealthcareSystem.Entity.RoomModel.RenovationFiles.MergeRenovation;
+using HealthcareSystem.Entity.RoomModel.RenovationFiles.SplitRenovation;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace HealthcareSystem.Entity.RoomModel
+namespace HealthcareSystem.Entity.RoomModel.RoomFiles
 {
 
     class RoomService
     {
-        public RoomController roomController;
-        public RenovationRepository renovationReposotory;
-        public MoveEquipmentRequestController moveController;
+        
+        public IRenovationRepository renovationReposotory;
+        public IMoveEquipmentRepository moveRepository;
+        public IRoomRepository roomRepository;
 
-
-        public RoomService(IMongoDatabase database)
+        public RoomService(IMoveEquipmentRepository moveController, IRoomRepository roomRepository,IRenovationRepository renovationRepository)
         {
 
-            this.roomController = new RoomController(database);
-            this.renovationReposotory = new RenovationRepository(database);
-            this.moveController = new MoveEquipmentRequestController(database);
+            this.roomRepository = roomRepository;
+            this.renovationReposotory = renovationRepository;
+            this.moveRepository = moveController;
         }
-        public void AddRoom(string roomName, RoomType roomType)
+        public List<Room> GetAll() 
+        {
+            return this.roomRepository.GetAll();
+        }
+        public void Add(string roomName, RoomType roomType)
         {
 
             Room room = new Room(roomName, roomType);
-            roomController.InsertToCollection(room);
+            roomRepository.Insert(room);
 
 
 
         }
-        public void AddRoom(Room room)
+        public Room GetById(string id) 
+        {
+            return this.roomRepository.GetById(new ObjectId(id));
+        }
+        public void Add(Room room)
         {
 
-            roomController.InsertToCollection(room);
-
+            roomRepository.Insert(room);
 
 
         }
 
-        public void addItemToRoom(Room room,Equipment item)
+
+        public void AddItemToRoom(Room room,Equipment item)
         {
 
-            
-            
-            roomController.addEquipment(room, item);
+
+            room.equipments.Add(item);
+            Update(room);
 
 
 
@@ -54,8 +66,10 @@ namespace HealthcareSystem.Entity.RoomModel
 
             foreach (Equipment item in equipment)
             {
-                roomController.addEquipment(room, item);
+                room.equipments.Add(item);
+                
             }
+            Update(room);
 
 
 
@@ -64,22 +78,22 @@ namespace HealthcareSystem.Entity.RoomModel
 
         
 
-        public void DeleteRoom(string id)
+        public void Delete(string id)
         {
-            roomController.DeleteRoom(new ObjectId(id));
+            roomRepository.Delete(new ObjectId(id));
 
 
         }
-        public void UpdateRoom(Room room)
+        public void Update(Room room)
         {
 
-            roomController.UpdateRoom(room);
+            roomRepository.Update(room);
 
 
         }
         public void CheckForRenovations()
         {
-            List<Renovation> roomsForRenovation = renovationReposotory.GetAllRenovations();
+            List<Renovation> roomsForRenovation = renovationReposotory.GetAll();
             DateTime currentTime = DateTime.Now;
             foreach (Renovation roomForRenovation in roomsForRenovation)
             {
@@ -91,12 +105,12 @@ namespace HealthcareSystem.Entity.RoomModel
                     }
                     if (roomForRenovation.RenovationType == 1)
                     {
-                        MergeRoomRenovation mr = renovationReposotory.findMergeRenovationByRenovationId(roomForRenovation._id);
+                        MergeRoomRenovation mr = renovationReposotory.GetMergeRenovationByRenovationId(roomForRenovation._id);
                         MergeRooms(mr,roomForRenovation); 
                     }
                     if (roomForRenovation.RenovationType == 2)
                     {
-                        SplitRoomRenovation sr = renovationReposotory.findSplitRenovationByRenovationId(roomForRenovation._id);
+                        SplitRoomRenovation sr = renovationReposotory.GetSplitRenovationByRenovationId(roomForRenovation._id);
                         SplitRoom(sr, roomForRenovation);
                     }
 
@@ -106,23 +120,23 @@ namespace HealthcareSystem.Entity.RoomModel
         }
         public void StandardRenovation(Renovation roomRenovation)
         {
-            Room room = roomController.findById(roomRenovation.roomId);
+            Room room = roomRepository.GetById(roomRenovation.roomId);
             room.InRenovation = false;
-            roomController.UpdateRoom(room);
-            renovationReposotory.DeleteRenovation(roomRenovation._id);
+            roomRepository.Update(room);
+            renovationReposotory.Delete(roomRenovation._id);
         }
 
         public void SplitRoom(SplitRoomRenovation roomForSplit, Renovation roomRenovation)
         {
 
-            Room room = roomController.findById(roomRenovation.roomId);
+            Room room = roomRepository.GetById(roomRenovation.roomId);
             Room roomOne = new Room(roomForSplit.FirstRoomName, room.type);
             Room roomTwo = new Room(roomForSplit.SecondRoomName, room.type);
             AddEquipmentToRoom(roomOne, roomForSplit.firstRoomEquipment);
             AddEquipmentToRoom(roomTwo, roomForSplit.secondRoomEquipment);
-            AddRoom(roomOne);
-            AddRoom(roomTwo);
-            DeleteRoom(room._id.ToString());
+            Add(roomOne);
+            Add(roomTwo);
+            Delete(room._id.ToString());
             DeleteSplitRenovation(roomForSplit);
 
         }
@@ -131,13 +145,13 @@ namespace HealthcareSystem.Entity.RoomModel
         public void MergeRooms(MergeRoomRenovation roomForMerge, Renovation roomRenovation)
         {
 
-            Room roomOne = roomController.findById(roomForMerge.FirstRoomId);
-            Room roomTwo = roomController.findById(roomForMerge.SecondRoomId);
+            Room roomOne = roomRepository.GetById(roomForMerge.FirstRoomId);
+            Room roomTwo = roomRepository.GetById(roomForMerge.SecondRoomId);
             Room newMergedRoom = new Room(roomForMerge.MergedRoomName, roomOne.type);
             AddEquipmentToRoom(newMergedRoom, MergeEquipment(roomOne.equipments, roomTwo.equipments));
-            AddRoom(newMergedRoom);
-            DeleteRoom(roomOne._id.ToString());
-            DeleteRoom(roomTwo._id.ToString());
+            Add(newMergedRoom);
+            Delete(roomOne._id.ToString());
+            Delete(roomTwo._id.ToString());
             DeleteMergeRenovation(roomForMerge);
 
         }
@@ -176,14 +190,14 @@ namespace HealthcareSystem.Entity.RoomModel
 
         public void DeleteSplitRenovation(SplitRoomRenovation sr) 
         {
-            Renovation r = renovationReposotory.findRenovationById(sr.RenovationId);
-            renovationReposotory.DeleteRenovation(r._id);
+            Renovation r = renovationReposotory.GetById(sr.RenovationId);
+            renovationReposotory.Delete(r._id);
             renovationReposotory.DeleteSplitRenovation(sr._id);
         }
         public void DeleteMergeRenovation(MergeRoomRenovation mr)
         {
-            Renovation r = renovationReposotory.findRenovationById(mr.RenovationId);
-            renovationReposotory.DeleteRenovation(r._id);
+            Renovation r = renovationReposotory.GetById(mr.RenovationId);
+            renovationReposotory.Delete(r._id);
             renovationReposotory.DeleteMergeRenovation(mr._id);
         }
 
@@ -192,7 +206,7 @@ namespace HealthcareSystem.Entity.RoomModel
         {
             List<Tuple<Equipment, string>> itemAndRoom = new List<Tuple<Equipment, string>>();
             
-            foreach (Room r in roomController.GetAllRooms())
+            foreach (Room r in roomRepository.GetAll())
             {
                 foreach (Equipment equipment in r.equipments)
                 {
@@ -210,7 +224,7 @@ namespace HealthcareSystem.Entity.RoomModel
         {
             List<Tuple<Equipment, string>> itemAndRoom = new List<Tuple<Equipment, string>>();
 
-            foreach (Room r in roomController.GetAllRooms())
+            foreach (Room r in roomRepository.GetAll())
             {
                 foreach (Equipment equipment in r.equipments)
                 {
@@ -228,7 +242,7 @@ namespace HealthcareSystem.Entity.RoomModel
         {
             List<Tuple<Equipment, string>> itemAndRoom = new List<Tuple<Equipment, string>>();
 
-            foreach (Room r in roomController.GetAllRooms())
+            foreach (Room r in roomRepository.GetAll())
             {
                 if (r.type.ToString() == roomType)
                 {
@@ -249,7 +263,7 @@ namespace HealthcareSystem.Entity.RoomModel
         {
             List<Tuple<Equipment, string>> itemAndRoom = new List<Tuple<Equipment, string>>();
 
-            foreach (Room r in roomController.GetAllRooms())
+            foreach (Room r in roomRepository.GetAll())
             {
                 
                 
@@ -280,28 +294,28 @@ namespace HealthcareSystem.Entity.RoomModel
 
         public void MoveEquipment()
         {
-            List<MoveEquipmentRequest> moveEquipmentRequests = moveController.GetAllMoveEquipmentRequests();
+            List<MoveEquipmentRequest> moveEquipmentRequests = moveRepository.GetAll();
             DateTime currentTime = DateTime.Now;
             foreach (MoveEquipmentRequest moveEquipmentRequest in moveEquipmentRequests)
             {
 
                 if (currentTime > moveEquipmentRequest.moveDate)
                 {
-                    Room roomFrom = roomController.findById(moveEquipmentRequest.moveFrom);
+                    Room roomFrom = roomRepository.GetById(moveEquipmentRequest.moveFrom);
                     if (roomFrom.CheckIfEquipmentIsAvaliable(moveEquipmentRequest.equipment))
                     {
-                        Room roomTo = roomController.findById(moveEquipmentRequest.moveTo);
+                        Room roomTo = roomRepository.GetById(moveEquipmentRequest.moveTo);
                         if (roomTo.ContainItem(moveEquipmentRequest.equipment.item))
                         {
                             changeQuantityFromEquipment(roomTo, moveEquipmentRequest, "add");
                             changeQuantityFromEquipment(roomFrom, moveEquipmentRequest, "sub");
-                            moveController.DeleteMoveEquipmentRequest(moveEquipmentRequest._id);
+                            moveRepository.Delete(moveEquipmentRequest._id);
                         }
                         else
                         {
-                            roomController.addEquipment(roomTo, moveEquipmentRequest.equipment);
+                            AddItemToRoom(roomTo, moveEquipmentRequest.equipment);
                             changeQuantityFromEquipment(roomFrom, moveEquipmentRequest, "sub");
-                            moveController.DeleteMoveEquipmentRequest(moveEquipmentRequest._id);
+                            moveRepository.Delete(moveEquipmentRequest._id);
 
                         }
 
@@ -319,7 +333,7 @@ namespace HealthcareSystem.Entity.RoomModel
         {
 
             MoveEquipmentRequest mer = new MoveEquipmentRequest(date, roomFirstId, roomSecondId, item);
-            moveController.InsertToCollection(mer);
+            moveRepository.Insert(mer);
 
 
 
@@ -338,7 +352,7 @@ namespace HealthcareSystem.Entity.RoomModel
                         room.equipments[i].quantity = room.equipments[i].quantity - moveEquipmentRequest.equipment.quantity;
                     if (operation == "add")
                         room.equipments[i].quantity = room.equipments[i].quantity + moveEquipmentRequest.equipment.quantity;
-                    roomController.UpdateRoom(room);
+                    roomRepository.Update(room);
                 }
             }
 

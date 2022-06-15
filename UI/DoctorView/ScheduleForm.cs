@@ -2,6 +2,7 @@
 using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.HealthCardModel;
 using HealthcareSystem.Entity.RoomModel;
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using System;
@@ -37,7 +38,7 @@ namespace HealthcareSystem.UI.DoctorView
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
                 User patient = doctorRepositories.userController.FindById(appointment.patientId);
-                Room room = doctorRepositories.roomController.findById(appointment.roomId);
+                Room room = doctorRepositories.roomController.GetById(appointment.roomId);
 
 
 

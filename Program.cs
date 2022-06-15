@@ -16,28 +16,24 @@ using HealthcareSystem.Entity.AppointmentRequestsModel;
 using MongoDB.Bson;
 
 using HealthcareSystem.Entity.UserActionModel;
+using Autofac;
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
+
 namespace HealthcareSystem
 
 {
     class Program
+
     {
+        
+
         static void Main(string[] args)
         {
-
-            var settings = MongoClientSettings.FromConnectionString("mongodb+srv://Tim17:UXGhApWVw9oc6VGg@cluster0.se6mz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
-            settings.ServerApi = new ServerApi(ServerApiVersion.V1);
-            var client = new MongoClient(settings);
-            var database = client.GetDatabase("USI");
-            UserController uc = new UserController(database);
-            HealthCardController hc = new HealthCardController(database);
-
-            User loggedUser = null;
-            Boolean notLogged = true;
-            string choice = "";
-
+             Globals.Load();
+           
             ApplicationConfiguration.Initialize();
 
-            Application.Run(new LoginGUI(database));
+            Application.Run(new LoginGUI(Globals.database));
         }
     }
 }

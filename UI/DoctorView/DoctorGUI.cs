@@ -47,7 +47,7 @@ partial class DoctorGUI : Form
 
         private void drugRequestsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RevisionForm revisionForm = new RevisionForm(database);
+            RevisionForm revisionForm = new RevisionForm();
             revisionForm.Show();
         }
 

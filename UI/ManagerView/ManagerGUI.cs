@@ -1,4 +1,5 @@
-﻿using HealthcareSystem.Entity.RoomModel;
+﻿using Autofac;
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Bson;
@@ -19,14 +20,15 @@ namespace HealthcareSystem.UI.ManagerView
     partial class ManagerGUI : Form
     {
         public User loggedUser { get; set; }
-        public ManagerControllers managerControllers { get; set; }
-        public IMongoDatabase database;
-        public ManagerGUI(User loggedUser, IMongoDatabase database)
+        public RoomService roomService { get; set; }
+
+        
+        public ManagerGUI(User loggedUser)
         {
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.managerControllers = new ManagerControllers(database);
-            this.database = database;
+            
+            roomService = Globals.container.Resolve<RoomService>();
             StartThreads();
             Console.WriteLine(DateTime.Now);
            
@@ -35,11 +37,11 @@ namespace HealthcareSystem.UI.ManagerView
         }
         public void CheckForMoveEquipment() 
         {
-            RoomService rs = new RoomService(database);
+            
             while (true)
             {
-                rs.CheckForRenovations();
-                rs.MoveEquipment();
+                roomService.CheckForRenovations();
+                roomService.MoveEquipment();
                 Console.WriteLine("Checked");
                 Thread.Sleep(30000);
             }
@@ -71,7 +73,7 @@ namespace HealthcareSystem.UI.ManagerView
 
         {
             roomListView.Items.Clear();    
-            foreach (Room r in managerControllers.roomCollection.GetAllRooms()) 
+            foreach (Room r in roomService.GetAll()) 
             { 
                 ListViewItem item = new ListViewItem(r._id.ToString());
                 item.SubItems.Add(r.name);
@@ -87,22 +89,22 @@ namespace HealthcareSystem.UI.ManagerView
 
         private void addRoomButton_Click(object sender, EventArgs e)
         {
-            AddRoom add = new AddRoom(database);
+            AddRoom add = new AddRoom();
             add.Show();
         }
 
         private void deleteRoomButton_Click(object sender, EventArgs e)
         {
-            RoomService rs = new RoomService(database);
-            rs.DeleteRoom(roomListView.SelectedItems[0].Text);
+
+            roomService.Delete(roomListView.SelectedItems[0].Text);
 
         }
 
         private void modifyRoomButton_Click(object sender, EventArgs e)
         {
             
-            Room room = managerControllers.roomCollection.findById(new ObjectId(roomListView.SelectedItems[0].Text));
-            ModifyRoom add = new ModifyRoom(database,room);
+            Room room = roomService.GetById(roomListView.SelectedItems[0].Text);
+            ModifyRoom add = new ModifyRoom(room);
             add.Show();
         }
 
@@ -111,32 +113,32 @@ namespace HealthcareSystem.UI.ManagerView
             Room room;
             try
             {
-                room = managerControllers.roomCollection.findById(new ObjectId(roomListView.SelectedItems[0].Text));
+                room = roomService.GetById(roomListView.SelectedItems[0].Text);
             }
             catch (Exception ex)
             {
                 room = null;
             }
-            ShowEquipment se = new ShowEquipment(database, room);
+            ShowEquipment se = new ShowEquipment(room);
             se.Show();
         }
 
         private void moveRequestButton_Click(object sender, EventArgs e)
         {
-            MoveRequest mr = new MoveRequest(database);
+            MoveRequest mr = new MoveRequest();
             mr.Show();
         }
 
         private void renovationButton_Click(object sender, EventArgs e)
         {
-            Room room = managerControllers.roomCollection.findById(new ObjectId(roomListView.SelectedItems[0].Text));
-            AddRenovation re = new AddRenovation(database,room);
+            Room room = roomService.GetById(roomListView.SelectedItems[0].Text);
+            AddRenovation re = new AddRenovation(room);
             re.Show();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            RoomService rs = new RoomService(database);
+            
         }
 
         private void ManagerGUI_FormClosed(object sender, FormClosedEventArgs e)
@@ -151,15 +153,21 @@ namespace HealthcareSystem.UI.ManagerView
 
         private void addDrugButton_Click(object sender, EventArgs e)
         {
-            AddDrug ad = new AddDrug(database);
+            AddDrug ad = new AddDrug();
             ad.Show();
         }
 
         private void revisionButton_Click(object sender, EventArgs e)
         {
-            RevisionsForm rf = new RevisionsForm(database);
+            RevisionsForm rf = new RevisionsForm();
             rf.Show();
 
+        }
+
+        private void surveysButton_Click(object sender, EventArgs e)
+        {
+            SurveysForm sf = new SurveysForm();
+            sf.Show();
         }
     }
 }

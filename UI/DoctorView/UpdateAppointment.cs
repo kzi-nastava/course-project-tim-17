@@ -1,6 +1,7 @@
 ﻿using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.RoomModel;
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;
 using System;
