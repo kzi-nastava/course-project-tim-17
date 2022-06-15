@@ -4,6 +4,7 @@ using HealthcareSystem.Entity.DrugModel;
 using HealthcareSystem.Entity.RoomModel.MoveEquipmentFiles;
 using HealthcareSystem.Entity.RoomModel.RenovationFiles;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
+using HealthcareSystem.Entity.AppointmentRequestsModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace HealthcareSystem
             builder.RegisterType<DrugService>().AsSelf();
             builder.RegisterType<AppointmentRepository>().As<IAppointmentRepository>();
             builder.RegisterType<AppointmentService>().AsSelf();
+            builder.RegisterType<AppointmentRequestsRepository>().As<IAppointmentRequestRepository>();
+            builder.RegisterType<AppointmentRequestsService>().AsSelf();
         }
     }
 }

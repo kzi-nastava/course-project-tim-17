@@ -16,5 +16,10 @@ namespace HealthcareSystem.UI.Patient
         {
             InitializeComponent();
         }
+
+        private void AppointmentDelete_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "AppointmentDelete";
             this.Text = "AppointmentDelete";
+            this.Load += new System.EventHandler(this.AppointmentDelete_Load);
             this.ResumeLayout(false);
 
         }
