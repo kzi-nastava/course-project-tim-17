@@ -43,7 +43,7 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
                 }
                 else
                 {
-                    AppointmentRequests ar = secretaryControllers.appointmentRequestsController.FindById(c.appointmentId);
+                    AppointmentRequests ar = secretaryControllers.appointmentRequestsController.GetById(c.appointmentId);
 
                     Appointment ap = secretaryControllers.AppointmentController.GetById(ar.appointmentId);
                     if (ap == null) { Console.WriteLine("This appointment has been deleted! "); }

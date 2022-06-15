@@ -25,7 +25,7 @@ namespace HealthcareSystem.RoleControllers
         public HealthCardRepository healthCardController;
         public BlockedUserController blockedUserController;
         public CheckAppointmentRequestController checkAppointemtRequestController;
-        public AppointmentRequestsController appointmentRequestsController;
+        public AppointmentRequestsRepository appointmentRequestsController;
         public RoomRepository roomController;
         public AppointmentRepository AppointmentController;
         public CheckController checkController;
@@ -40,7 +40,7 @@ namespace HealthcareSystem.RoleControllers
             this.checkAppointemtRequestController = new CheckAppointmentRequestController(database);
             this.AppointmentController = new AppointmentRepository();
             this.roomController = new RoomRepository();
-            this.appointmentRequestsController = new AppointmentRequestsController(database);
+            this.appointmentRequestsController = new AppointmentRequestsRepository();
             this.checkController = new CheckController(database);
             this.referralController = new ReferralController(database);
             this.doctorController = new DoctorController(database);
