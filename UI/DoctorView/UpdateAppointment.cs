@@ -4,6 +4,7 @@ using HealthcareSystem.Entity.RoomModel;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;
+using Autofac;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,8 +20,8 @@ namespace HealthcareSystem.UI.DoctorView
     partial class UpdateAppointment : Form
     {
         DoctorRepositories doctorRepositories { get; set; }
-        Apointment appointment { get; set; }
-        public UpdateAppointment(DoctorRepositories doctorRepositories, Apointment appointment)
+        Appointment appointment { get; set; }
+        public UpdateAppointment(DoctorRepositories doctorRepositories, Appointment appointment)
         {
             InitializeComponent();
             this.doctorRepositories = doctorRepositories;
@@ -34,7 +35,7 @@ namespace HealthcareSystem.UI.DoctorView
 
         private void updateBtn_Click(object sender, EventArgs e)
         {
-            AppointmentService appointmentService = new AppointmentService(doctorRepositories);
+            AppointmentService appointmentService = Globals.container.Resolve<AppointmentService>();
             DateTime newDateTime = GetDateTime();
             Room room = GetRoom();
             if (!appointmentService.DateTimeFree(newDateTime) && !appointmentService.RoomFree(room, newDateTime))
@@ -46,7 +47,7 @@ namespace HealthcareSystem.UI.DoctorView
             {
                 appointment.dateTime = newDateTime;
                 appointment.roomId = room._id;
-                doctorRepositories.apointmentController.replaceApointment(appointment);
+                appointmentService.Update(appointment);
                 MessageBox.Show("Appointment succesfully updated!");
                 this.Dispose();
             }

@@ -21,10 +21,10 @@ namespace HealthcareSystem.UI.DoctorView
         public DoctorRepositories doctorRepositories { get; set; }
 
         public HealthCard patientsHealthCard { get; set; }
-        public Apointment appointment { get; set; }
+        public Appointment appointment { get; set; }
 
 
-        public CheckForm(Apointment apointment,User patient, DoctorRepositories doctorRepositories, HealthCard patientsHealthCard)
+        public CheckForm(Appointment apointment,User patient, DoctorRepositories doctorRepositories, HealthCard patientsHealthCard)
         {
             InitializeComponent();
             this.appointment = apointment;

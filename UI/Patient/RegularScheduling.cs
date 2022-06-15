@@ -77,11 +77,11 @@ namespace HealthcareSystem.UI.Patient
         {
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
             List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
-            List<Apointment> allApointments = patientRepositories.appointmentController.apointmentCollection.Find(Item => true).ToList();
+            List<Appointment> allApointments = patientRepositories.appointmentController.appointmentCollection.Find(Item => true).ToList();
             List<Room> allRooms = patientRepositories.roomController.roomCollection.Find(Item => true).ToList();
             List<ObjectId> unavailableRoomId = new List<ObjectId>();
             List<ObjectId> unavailableDoctorId = new List<ObjectId>();
-            foreach (Apointment appointment in allApointments)
+            foreach (Appointment appointment in allApointments)
             {
                 DateTime startPoint = appointment.dateTime.AddMinutes(-15);
                 DateTime endPoint = appointment.dateTime.AddMinutes(15);
@@ -200,10 +200,10 @@ namespace HealthcareSystem.UI.Patient
             {
                 warningLabel.Visible = false;
                 DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
-                List<Apointment> allApointments = patientRepositories.appointmentController.apointmentCollection.Find(Item => true).ToList();
+                List<Appointment> allApointments = patientRepositories.appointmentController.appointmentCollection.Find(Item => true).ToList();
                 List<Room> allRooms = patientRepositories.roomController.roomCollection.Find(Item => true).ToList();
                 List<ObjectId> unavailableRoomId = new List<ObjectId>();
-                foreach (Apointment appointment in allApointments)
+                foreach (Appointment appointment in allApointments)
                 {
                     DateTime startPoint = appointment.dateTime.AddMinutes(-15);
                     DateTime endPoint = appointment.dateTime.AddMinutes(15);
@@ -239,8 +239,8 @@ namespace HealthcareSystem.UI.Patient
                     }
                 }
                 Doctor doctor = patientRepositories.doctorController.findByName(doctorBox.SelectedItem.ToString().Split(" ")[0], doctorBox.SelectedItem.ToString().Split(" ")[1]);
-                Apointment appointmentsubmit = new Apointment(date, appointmentType, doctor._id, allRooms[0]._id, loggedUser._id);
-                patientRepositories.appointmentController.InsertToCollection(appointmentsubmit);
+                Appointment appointmentsubmit = new Appointment(date, appointmentType, doctor._id, allRooms[0]._id, loggedUser._id);
+                patientRepositories.appointmentController.Insert(appointmentsubmit);
                 warningLabel.Text = "Appointment scheduled sucessfully!";
                 warningLabel.Visible = true;
                 UserAction userAction = new UserAction(loggedUser._id, appointmentsubmit._id, DateTime.Today, ActionStatus.CREATE);

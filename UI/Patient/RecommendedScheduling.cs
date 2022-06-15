@@ -76,7 +76,7 @@ namespace HealthcareSystem.UI.Patient
             Method = "Doctor";
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
             List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
-            List<Apointment> allApointments = patientRepositories.appointmentController.apointmentCollection.Find(Item => true).ToList();
+            List<Appointment> allApointments = patientRepositories.appointmentController.appointmentCollection.Find(Item => true).ToList();
             List<DateTime> busyDates = new List<DateTime>();
             List<DateTime> availableDates = new List<DateTime>();
             int datecount = 0;
@@ -89,7 +89,7 @@ namespace HealthcareSystem.UI.Patient
                 }
             }
 
-            foreach (Apointment apointment in allApointments.ToList())
+            foreach (Appointment apointment in allApointments.ToList())
             {
                 if(apointment.doctorId == doctorId)
                 {
@@ -151,9 +151,9 @@ namespace HealthcareSystem.UI.Patient
             Method = "Date";
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
             List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
-            List<Apointment> allApointments = patientRepositories.appointmentController.apointmentCollection.Find(Item => true).ToList();
+            List<Appointment> allApointments = patientRepositories.appointmentController.appointmentCollection.Find(Item => true).ToList();
             List<ObjectId> unavailableDoctors = new List<ObjectId>();
-            foreach(Apointment appointment in allApointments)
+            foreach(Appointment appointment in allApointments)
             {
                 DateTime startPoint = appointment.dateTime.AddMinutes(-15);
                 DateTime endPoint = appointment.dateTime.AddMinutes(15);
@@ -189,8 +189,8 @@ namespace HealthcareSystem.UI.Patient
         void submit(DateTime dateTime, ObjectId doctor)
         {
             List<Room> allRooms = patientRepositories.roomController.roomCollection.Find(Item => true).ToList();
-            List<Apointment> allApointments = patientRepositories.appointmentController.apointmentCollection.Find(Item => true).ToList();
-            foreach (Apointment appointment in allApointments)
+            List<Appointment> allApointments = patientRepositories.appointmentController.appointmentCollection.Find(Item => true).ToList();
+            foreach (Appointment appointment in allApointments)
             {
                 DateTime startPoint = appointment.dateTime.AddMinutes(-15);
                 DateTime endPoint = appointment.dateTime.AddMinutes(15);
@@ -227,8 +227,8 @@ namespace HealthcareSystem.UI.Patient
                 }
             }
             ObjectId roomSubmit = allRooms[0]._id;
-            Apointment appointmentSubmit = new Apointment(dateTime, apointmentType ,doctor, roomSubmit, loggedUser._id);
-            patientRepositories.appointmentController.InsertToCollection(appointmentSubmit);
+            Appointment appointmentSubmit = new Appointment(dateTime, apointmentType ,doctor, roomSubmit, loggedUser._id);
+            patientRepositories.appointmentController.Insert(appointmentSubmit);
             UserAction userAction = new UserAction(loggedUser._id, appointmentSubmit._id, DateTime.Today, ActionStatus.CREATE);
             patientRepositories.userActionController.InsertToCollection(userAction);
             trollCheck();
@@ -248,8 +248,8 @@ namespace HealthcareSystem.UI.Patient
                 }
             }
 
-            List<Apointment> allApointments = patientRepositories.appointmentController.apointmentCollection.Find(Item => true).ToList();
-            foreach(Apointment apointment in allApointments)
+            List<Appointment> allApointments = patientRepositories.appointmentController.appointmentCollection.Find(Item => true).ToList();
+            foreach(Appointment apointment in allApointments)
             {
                 DateTime startPoint = apointment.dateTime.AddMinutes(-15);
                 DateTime endPoint = apointment.dateTime.AddMinutes(15);

@@ -29,11 +29,11 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
                 Console.WriteLine("ID: " + c._id);
                 if (c.RequestState == RequestState.DELETE)
                 {
-                    Apointment ap = secretaryControllers.AppointmentController.FindById(c.appointmentId);
+                    Appointment ap = secretaryControllers.AppointmentController.GetById(c.appointmentId);
                     if (ap == null) { Console.WriteLine("This appointment has been deleted! "); }
                     else
                     {
-                        patient = secretaryControllers.userController.FindById(secretaryControllers.AppointmentController.FindById(c.appointmentId).patientId);
+                        patient = secretaryControllers.userController.FindById(secretaryControllers.AppointmentController.GetById(c.appointmentId).patientId);
                         Console.WriteLine("PATIENT: " + patient.name + " " + patient.lastName);
                         Console.WriteLine("ROOM: :  " + secretaryControllers.roomController.GetById(ap.roomId).name);
                         Console.WriteLine("DATE: " + ap.dateTime.ToString());
@@ -45,7 +45,7 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
                 {
                     AppointmentRequests ar = secretaryControllers.appointmentRequestsController.FindById(c.appointmentId);
 
-                    Apointment ap = secretaryControllers.AppointmentController.FindById(ar.appointmentId);
+                    Appointment ap = secretaryControllers.AppointmentController.GetById(ar.appointmentId);
                     if (ap == null) { Console.WriteLine("This appointment has been deleted! "); }
                     else
                     {

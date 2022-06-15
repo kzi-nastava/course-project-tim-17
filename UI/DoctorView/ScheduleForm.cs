@@ -21,8 +21,8 @@ namespace HealthcareSystem.UI.DoctorView
     {
         Doctor loggedUser { get; set; }
         DoctorRepositories doctorRepositories { get; set; }
-        List<Apointment> apointments { get; set; }
-        public ScheduleForm(Doctor loggedUser, DoctorRepositories doctorRepositories, List<Apointment> apointments)
+        List<Appointment> apointments { get; set; }
+        public ScheduleForm(Doctor loggedUser, DoctorRepositories doctorRepositories, List<Appointment> apointments)
         {
             InitializeComponent();
             this.loggedUser = loggedUser;
@@ -34,7 +34,7 @@ namespace HealthcareSystem.UI.DoctorView
         {
             this.dataGridView1.Rows.Clear();
 
-            foreach (Apointment appointment in apointments)
+            foreach (Appointment appointment in apointments)
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
                 User patient = doctorRepositories.userController.FindById(appointment.patientId);
@@ -70,7 +70,7 @@ namespace HealthcareSystem.UI.DoctorView
             string selectedAppointmentId = (string)dataGridView1.Rows[rowindex].Cells[0].Value;
             if (dataGridView1.Rows[rowindex].Cells[0].Value != null)
             {
-                Apointment certainAppointent = doctorRepositories.apointmentController.FindById(new MongoDB.Bson.ObjectId(selectedAppointmentId));
+                Appointment certainAppointent = doctorRepositories.apointmentController.GetById(new MongoDB.Bson.ObjectId(selectedAppointmentId));
                 User patient = doctorRepositories.userController.FindById(certainAppointent.patientId);
                 HealthCard patientsHealthCard = doctorRepositories.healthCardController.FindByPatientId(patient._id);
                 CheckForm checkForm = new CheckForm(certainAppointent, patient, doctorRepositories, patientsHealthCard);

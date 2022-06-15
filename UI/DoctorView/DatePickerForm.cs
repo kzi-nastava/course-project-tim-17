@@ -34,15 +34,15 @@ namespace HealthcareSystem.UI.DoctorView
         private void showBtn_Click(object sender, EventArgs e)
         {
             DateTime pickedDateTime = GetDate();
-            List<Apointment> certanAppointments = GetCertainAppointments(pickedDateTime);
+            List<Appointment> certanAppointments = GetCertainAppointments(pickedDateTime);
             ScheduleForm scheduleForm = new ScheduleForm(loggedUser, doctorRepositories, certanAppointments);
             scheduleForm.Show();
             this.Dispose();
         }
 
-        private List<Apointment> GetCertainAppointments(DateTime pickedDateTime)
+        private List<Appointment> GetCertainAppointments(DateTime pickedDateTime)
         {
-            return doctorRepositories.apointmentController.apointmentCollection
+            return doctorRepositories.apointmentController.appointmentCollection
                .Find(item => item.doctorId == loggedUser._id & item.dateTime > pickedDateTime & item.dateTime < pickedDateTime.AddDays(4)).ToList();
         }
 

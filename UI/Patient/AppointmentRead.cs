@@ -35,9 +35,9 @@ namespace HealthcareSystem.UI.Patient
         private void AppointmentRead_Load(object sender, EventArgs e)
         {
             
-            List<Apointment> selectedApointments = new List<Apointment>();
-            List<Apointment> allApointments = patientRepositories.appointmentController.getAllAppointments().ToList();
-            foreach (Apointment apointment in allApointments)
+            List<Appointment> selectedApointments = new List<Appointment>();
+            List<Appointment> allApointments = patientRepositories.appointmentController.GetAll().ToList();
+            foreach (Appointment apointment in allApointments)
             {
                 if (apointment.patientId == loggedUser._id)
                 {
@@ -49,7 +49,7 @@ namespace HealthcareSystem.UI.Patient
             dataTable.Columns.Add("Appointment Type", typeof(string));
             dataTable.Columns.Add("Doctor", typeof(string));
             dataTable.Columns.Add("Room", typeof(string));
-            foreach (Apointment apointment in selectedApointments)
+            foreach (Appointment apointment in selectedApointments)
             {
                 string date = apointment.dateTime.ToString("dd/MM/yyyy HH:mm");
                 string type = apointment.type.ToString();

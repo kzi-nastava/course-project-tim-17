@@ -21,8 +21,8 @@ namespace HealthcareSystem.UI.DoctorView
     {
         public DoctorRepositories doctorRepositories;
         public HealthCard patientHealthCard;
-        public Apointment appointment;
-        public PerfomeCheckupForm(Apointment appointment, HealthCard patientHealthCard, DoctorRepositories doctorRepositories)
+        public Appointment appointment;
+        public PerfomeCheckupForm(Appointment appointment, HealthCard patientHealthCard, DoctorRepositories doctorRepositories)
         {
             InitializeComponent();
             this.appointment = appointment;

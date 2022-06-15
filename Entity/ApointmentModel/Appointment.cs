@@ -10,7 +10,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
 
 {
 
-    class Apointment
+    class Appointment
     {
         public ObjectId _id { get; set; }
         [BsonElement("dateTime")]
@@ -27,7 +27,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
         public ObjectId patientId{ get; set; }
         
 
-        public Apointment(DateTime dateTime ,ApointmentType apointmentType,ObjectId doctor,ObjectId room,ObjectId user) {
+        public Appointment(DateTime dateTime ,ApointmentType apointmentType,ObjectId doctor,ObjectId room,ObjectId user) {
             this._id = ObjectId.GenerateNewId();
             this.dateTime = dateTime;
             this.type = apointmentType;
