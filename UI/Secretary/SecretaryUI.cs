@@ -56,10 +56,144 @@ namespace HealthcareSystem.UI
 
         }
 
+        public void PrintAllPatients(List<User> patients)
+        {
+            for (int i = 0; i < patients.Count; i++)
+            {
+                if (secretaryControllers.blockedUserController.FindByUserId(patients[i]._id) == null)
+                {
+                    Console.WriteLine(" ------------------------------------");
+                    Console.WriteLine("Name: " + " " + patients[i].name);
+                    Console.WriteLine("Last name: " + " " + patients[i].lastName);
+                    Console.WriteLine("Email: " + " " + patients[i].email);
+                    HealthCard found = null;
+                    List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
+                    foreach (HealthCard healthCard in healthCards)
+                    {
+                        if (healthCard.patientId == patients[i]._id)
+                        {
+                            found = healthCard;
+                        }
+
+                    }
+                    Console.WriteLine("Weight: " + found.weight.ToString());
+                    Console.WriteLine("height: " + found.height.ToString());
+                    Console.WriteLine("Allergies: " + secretaryControllers.healthCardController.GetAllergies(found));
+                }
+            }
+        }
+
+        public void PrintPatientsWithReferrals(List<User> patients)
+        {
+            for (int i = 0; i < patients.Count; i++)
+            {
+                if (secretaryControllers.blockedUserController.FindByUserId(patients[i]._id) == null)
+                {
+                    Console.WriteLine(" ------------------------------------");
+                    Console.WriteLine("Name: " + " " + patients[i].name);
+                    Console.WriteLine("Last name: " + " " + patients[i].lastName);
+                    Console.WriteLine("Email: " + " " + patients[i].email);
+                    HealthCard found = null;
+                    List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
+                    foreach (HealthCard healthCard in healthCards)
+                    {
+
+                        if (healthCard.patientId == patients[i]._id)
+                        {
+                            found = healthCard;
+                        }
+                    }
+                    List<Referral> referrals = secretaryControllers.referralController.GetReferralsOfHealthCard(found);
+                    if (referrals.Count > 0)
+                    {
+                        Console.WriteLine("REFERRALS:");
+                        foreach (Referral r in referrals)
+                        {
+                            Console.WriteLine("------------------------------------");
+                            Console.WriteLine("Referral's id: " + r._id);
+                            Console.WriteLine("------------------------------------");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Patient has no referrals");
+                    }
+                }
+            }
+
+        }
+
+        public void DeleteAppointementByRequest(CheckAppointementRequest cr)
+        {
+            Appointment a = secretaryControllers.AppointmentController.GetById(cr.appointmentId);
+            secretaryControllers.AppointmentController.Delete(a._id);
+        }
+
+        public void EditAppointementByRequest(CheckAppointementRequest cr)
+        {
+            AppointmentRequests ar = secretaryControllers.appointmentRequestsController.FindById(cr.appointmentId);
+            Appointment a = secretaryControllers.AppointmentController.GetById(ar.appointmentId);
+            a.dateTime = ar.dateTime;
+            a.doctorId = ar.doctorId;
+            a.patientId = ar.patientId;
+            a.roomId = ar.roomId;
+            secretaryControllers.AppointmentController.Update(a);
+        }
+
+        public void HandleCRUD(string option)
+        {
+            UserService us = new UserService(secretaryControllers);
+            if (option.Equals("a"))
+            {                                                                // adding patient
+                User patient = us.AddPatient();
+                if (patient != null)
+                {
+                    HealthCardService hc = new HealthCardService(secretaryControllers, patient);
+                    hc.CreateHealthCard();
+                    Console.WriteLine("Patient is sucessfully created! ");
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, patient already exists! ");
+                }
+            }
+            else if (option.Equals("b"))                                                         // preview of patients 
+            {
+                List<User> patients = us.GetAllPatients();
+                PrintAllPatients(patients);
+            }
+            else if (option.Equals("c"))
+            {                                                                            // update patient
+                User patient = us.UpdateUser();
+                HealthCardService hc = new HealthCardService(secretaryControllers, patient);
+                Console.WriteLine("To edit patient's healthcard enter '1': ");
+                string toEdit = Console.ReadLine();
+                if (toEdit.Equals("1"))
+                {
+                    hc.UpdateHealthCard();
+                }
+                Console.WriteLine("Patient is sucessfully updated! ");
+            }
+            else if (option.Equals("d"))                            // delete patient        
+            {
+                User patient = us.DeleteUser();
+                if (patient != null)
+                {
+                    HealthCardService hc = new HealthCardService(secretaryControllers, patient);
+                    hc.DeleteHealthCard();
+                    Console.WriteLine("Patient is sucessfully deleted! ");
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, patient with entered email does not exist! ");
+                }
+            }
+        }
+
         public bool IsRoomAvailable(Room r, DateTime time)
         {
-            List<Apointment> apointments = secretaryControllers.AppointmentController.getAllAppointments();
-            foreach (Apointment ap in apointments)
+            List<Appointment> apointments = secretaryControllers.AppointmentController.GetAll();
+            foreach (Appointment ap in apointments)
             {
                 if (ap.roomId == r._id)
                 {
@@ -80,8 +214,8 @@ namespace HealthcareSystem.UI
             ObjectId doctorId = r.doctorId;
             Specialisation s = r.specialization;
             List<DateTime> doctorTimes = new List<DateTime>();
-            List<Apointment> doctorsAppointments = secretaryControllers.AppointmentController.FindAllByDoctor(doctorId);   // dobila listu svih appointmenta od doktora
-            foreach (Apointment ap in doctorsAppointments)
+            List<Appointment> doctorsAppointments = secretaryControllers.AppointmentController.GetAllByDoctor(doctorId);   // dobila listu svih appointmenta od doktora
+            foreach (Appointment ap in doctorsAppointments)
             {
                 doctorTimes.Add(ap.dateTime);
             }
@@ -124,19 +258,19 @@ namespace HealthcareSystem.UI
                     }
                 }
             }
-            Apointment a = new Apointment(doctorAvailable, t, doctorId, availableRoom._id, patientId);
-            secretaryControllers.AppointmentController.InsertToCollection(a);
+            Appointment a = new Appointment(doctorAvailable, t, doctorId, availableRoom._id, patientId);
+            secretaryControllers.AppointmentController.Insert(a);
             secretaryControllers.referralController.Delete(r._id);
             Console.WriteLine("Date of appointment: " + suggestedDate.ToString());
             Console.WriteLine("Room: " + availableRoom.name);
         }
 
-        public List<Apointment> GetAppointmentsOfDoctors(List<Doctor> doctors) {
-            List<Apointment> all = secretaryControllers.AppointmentController.getAllAppointments();
-            List<Apointment> scheduledAppointments = new List<Apointment>();
+        public List<Appointment> GetAppointmentsOfDoctors(List<Doctor> doctors) {
+            List<Appointment> all = secretaryControllers.AppointmentController.GetAll();
+            List<Appointment> scheduledAppointments = new List<Appointment>();
             foreach (Doctor d in doctors) {
-                List<Apointment> doctorsAppointments = secretaryControllers.AppointmentController.FindAllByDoctor(d._id);
-                foreach (Apointment a in doctorsAppointments)
+                List<Appointment> doctorsAppointments = secretaryControllers.AppointmentController.GetAllByDoctor(d._id);
+                foreach (Appointment a in doctorsAppointments)
                 {
                     scheduledAppointments.Add(a);
                 }
@@ -145,19 +279,19 @@ namespace HealthcareSystem.UI
             return scheduledAppointments;
         }
 
-        public void ResheduleAppointment(Apointment a) {
+        public void ResheduleAppointment(Appointment a) {
             DateTime suggestedDate = DateTime.Now;
             suggestedDate = suggestedDate.AddDays(2);
             a.dateTime = suggestedDate.Date.Add(new TimeSpan(15, 00, 00));
-            secretaryControllers.AppointmentController.UpdateApointment(a);
+            secretaryControllers.AppointmentController.Update(a);
             Console.WriteLine("Appointment has been resheduled for: " + a.dateTime);
             Console.WriteLine();
         }
 
-        public List<Apointment> GetAppointmentsInNextTwoHours(List<Apointment> doctorsAppointments) {
-            List<Apointment> appointmentsInNextTwoHours = new List<Apointment>();
+        public List<Appointment> GetAppointmentsInNextTwoHours(List<Appointment> doctorsAppointments) {
+            List<Appointment> appointmentsInNextTwoHours = new List<Appointment>();
             DateTime today = DateTime.Now;
-            foreach (Apointment ap in doctorsAppointments)
+            foreach (Appointment ap in doctorsAppointments)
             {
                 if (ap.dateTime.Date == DateTime.Today)                                                              // da li je datum danas
                 {
@@ -177,17 +311,17 @@ namespace HealthcareSystem.UI
 
         public void MakeUrgentAppointment(List<Doctor> doctors, ObjectId patientId, ApointmentType t)
         {
-            List<Apointment> doctorsAppointments = GetAppointmentsOfDoctors(doctors);   // dobila listu svih appointmenta od doktora
+            List<Appointment> doctorsAppointments = GetAppointmentsOfDoctors(doctors);   // dobila listu svih appointmenta od doktora
             List<Room> rooms = secretaryControllers.roomController.GetAll();
             DateTime searchedDate;
             Room searchedRoom;
             doctorsAppointments.Sort((a, b) => a.dateTime.CompareTo(b.dateTime));
-            List<Apointment> appointmentsInNextTwoHours = GetAppointmentsInNextTwoHours(doctorsAppointments);
+            List<Appointment> appointmentsInNextTwoHours = GetAppointmentsInNextTwoHours(doctorsAppointments);
             if (appointmentsInNextTwoHours.Count > 0)
             {
                 Console.WriteLine("Doctors are not available! ");
                 Console.WriteLine("Here are their appointements: ");
-                foreach (Apointment app in doctorsAppointments) {
+                foreach (Appointment app in doctorsAppointments) {
                     if (app.dateTime.Date > DateTime.Today && app.dateTime.Date.Year == 2022)
                     {
                         Console.WriteLine("-----------------------------------------");
@@ -199,15 +333,15 @@ namespace HealthcareSystem.UI
                 Console.WriteLine();
                 Console.WriteLine("Enter ID of appointment you want to reschedule: ");
                 ObjectId apId = ObjectId.Parse(Console.ReadLine());
-                DateTime date = secretaryControllers.AppointmentController.FindById(apId).dateTime;
-                ResheduleAppointment(secretaryControllers.AppointmentController.FindById(apId));
+                DateTime date = secretaryControllers.AppointmentController.GetById(apId).dateTime;
+                ResheduleAppointment(secretaryControllers.AppointmentController.GetById(apId));
 
-                ObjectId roomId = secretaryControllers.AppointmentController.FindById(apId).roomId;
-                Apointment a = new Apointment(date, t, doctors[0]._id, roomId, patientId);
+                ObjectId roomId = secretaryControllers.AppointmentController.GetById(apId).roomId;
+                Appointment a = new Appointment(date, t, doctors[0]._id, roomId, patientId);
                 Console.WriteLine("Appointment has been sucessfully made!");
                 Console.WriteLine("Room: " + secretaryControllers.roomController.GetById(roomId).name);
                 Console.WriteLine("Date and time: " + date.ToString());
-                secretaryControllers.AppointmentController.InsertToCollection(a);
+                secretaryControllers.AppointmentController.Insert(a);
 
             }
             else
@@ -218,11 +352,11 @@ namespace HealthcareSystem.UI
                     if (IsRoomAvailable(r, searchedDate))
                     {
                         searchedRoom = r;
-                        Apointment a = new Apointment(searchedDate, t, doctors[0]._id, searchedRoom._id, patientId);
+                        Appointment a = new Appointment(searchedDate, t, doctors[0]._id, searchedRoom._id, patientId);
                         Console.WriteLine("Appointment has been sucessfully made!");
                         Console.WriteLine("Room: " + searchedRoom.name);
                         Console.WriteLine("Date and time: " + searchedDate.ToString());
-                        secretaryControllers.AppointmentController.InsertToCollection(a);
+                        secretaryControllers.AppointmentController.Insert(a);
                         break;
                     }
                 }

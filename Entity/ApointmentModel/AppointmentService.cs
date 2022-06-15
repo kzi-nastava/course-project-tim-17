@@ -15,19 +15,18 @@ namespace HealthcareSystem.Entity.ApointmentModel
 {
     class AppointmentService
     {
-        public DoctorRepositories doctorRepositories { get; set; }
+        public IAppointmentRepository appointmentRepository;
 
-
-        public AppointmentService(DoctorRepositories doctorRepositories )
+        public AppointmentService(IAppointmentRepository appointmentRepository)
         {
-            this.doctorRepositories = doctorRepositories;
+            this.appointmentRepository = appointmentRepository;
         }
 
        
         public bool CheckIfRoomIsAvaliableForRenovation(ObjectId roomId, DateTime startDate, DateTime endDate)
         {
-            List<Apointment> apointments = doctorRepositories.apointmentController.getAllAppointments();
-            foreach (Apointment apointment in apointments)
+            List<Appointment> apointments = appointmentRepository.GetAll();
+            foreach (Appointment apointment in apointments)
             {
                 if (roomId == apointment.roomId)
                 {
@@ -52,8 +51,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
                 return false;
             }
 
-            Apointment unavailableApointment = doctorRepositories.apointmentController.apointmentCollection
-                .Find(item => item.dateTime == dateTime).FirstOrDefault();
+            Appointment unavailableApointment = appointmentRepository.GetAppointmentByDateTime(dateTime);
             if (unavailableApointment != null)
             {
                 return false;
@@ -64,8 +62,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
 
         public bool RoomFree(Room room, DateTime dateTime)
         {
-            Apointment apointment = doctorRepositories.apointmentController.apointmentCollection
-                .Find(item => item.dateTime == dateTime & item.roomId == room._id).FirstOrDefault();
+            Appointment apointment = appointmentRepository.GetAppointmentByDateTimeAndRoom(room, dateTime);
             if (apointment != null)
             {
                 return false;
@@ -75,7 +72,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
         }
 
 
-        public bool ApointmentStarted(Apointment apointment)
+        public bool ApointmentStarted(Appointment apointment)
         {
             DateTime currentDateTime = DateTime.Now;
             DateTime endOfApointment= apointment.dateTime.AddMinutes(15);
@@ -86,6 +83,26 @@ namespace HealthcareSystem.Entity.ApointmentModel
             
             
             return false;
+        }
+
+        public void Insert(Appointment appointment)
+        {
+            appointmentRepository.Insert(appointment);
+        }
+
+        public void Delete(Appointment appointment)
+        {
+            appointmentRepository.Delete(appointment._id);
+        }
+
+        public void Update(Appointment appointment)
+        {
+            appointmentRepository.Update(appointment);
+        }
+
+        public List<Appointment> GetAll()
+        {
+            return appointmentRepository.GetAll();
         }
 
     }

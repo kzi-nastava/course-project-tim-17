@@ -100,9 +100,9 @@ namespace HealthcareSystem.UI.DoctorView
         }
         private bool IsScheduleFree(DateTime from, DateTime to)
         {
-            ApointmentController apointmentController = new ApointmentController(database);
-            List<Apointment> apointments = new List<Apointment>();
-            apointments = apointmentController.apointmentCollection.Find(item => item.dateTime >= from & item.dateTime <= to).ToList();
+            AppointmentRepository apointmentController = new AppointmentRepository();
+            List<Appointment> apointments = new List<Appointment>();
+            apointments = apointmentController.appointmentCollection.Find(item => item.dateTime >= from & item.dateTime <= to).ToList();
             if (apointments.Count == 0)
             {
                 return true;

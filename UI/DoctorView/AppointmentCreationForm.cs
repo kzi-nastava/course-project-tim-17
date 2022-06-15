@@ -71,7 +71,7 @@ namespace HealthcareSystem.UI.DoctorView
             }
             else
             {
-                doctorRepositories.apointmentController.InsertToCollection(new Apointment(dateTime, apointmentType, loggedUser._id, room._id, patient._id));
+                doctorRepositories.apointmentController.Insert(new Appointment(dateTime, apointmentType, loggedUser._id, room._id, patient._id));
                 MessageBox.Show("Appointment deleted succesfully!");
                 this.Dispose();
                 
@@ -118,7 +118,7 @@ namespace HealthcareSystem.UI.DoctorView
                 return true;
             }
 
-            Apointment unavailableApointment = doctorRepositories.apointmentController.apointmentCollection
+            Appointment unavailableApointment = doctorRepositories.apointmentController.appointmentCollection
                 .Find(item => item.dateTime == dateTime).FirstOrDefault();
             if (unavailableApointment != null)
             {
@@ -133,7 +133,7 @@ namespace HealthcareSystem.UI.DoctorView
             {
                 return true;
             }
-            Apointment apointment = doctorRepositories.apointmentController.apointmentCollection
+            Appointment apointment = doctorRepositories.apointmentController.appointmentCollection
                 .Find(item => item.dateTime == dateTime & item.roomId == room._id).FirstOrDefault();
             if (apointment != null)
             {

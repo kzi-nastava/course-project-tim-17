@@ -46,8 +46,8 @@ namespace HealthcareSystem.UI.DoctorView
             string selectedAppointmentId = (string)dataGridView1.Rows[rowindex].Cells[0].Value;
             if (dataGridView1.Rows[rowindex].Cells[0].Value != null)
             {
-                Apointment appointmentForDelete = doctorRepositories.apointmentController.FindById(new MongoDB.Bson.ObjectId(selectedAppointmentId));
-                doctorRepositories.apointmentController.DeleteApointment(appointmentForDelete);
+                Appointment appointmentForDelete = doctorRepositories.apointmentController.GetById(new MongoDB.Bson.ObjectId(selectedAppointmentId));
+                doctorRepositories.apointmentController.Delete(appointmentForDelete._id);
                 MessageBox.Show("Appointment deleted succesfully!");
             }
             else
@@ -61,9 +61,9 @@ namespace HealthcareSystem.UI.DoctorView
         private void loadBtn_Click(object sender, EventArgs e)
         {
             this.dataGridView1.Rows.Clear();
-            List<Apointment> allAppointments = doctorRepositories.apointmentController.getAllAppointments();
+            List<Appointment> allAppointments = doctorRepositories.apointmentController.GetAll();
 
-            foreach (Apointment appointment in allAppointments)
+            foreach (Appointment appointment in allAppointments)
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
                 User patient = doctorRepositories.userController.FindById(appointment.patientId);
@@ -102,7 +102,7 @@ namespace HealthcareSystem.UI.DoctorView
             string selectedAppointmentId = (string)dataGridView1.Rows[rowindex].Cells[0].Value;
             if (dataGridView1.Rows[rowindex].Cells[0].Value != null)
             {
-                Apointment apointment = doctorRepositories.apointmentController.FindById(new ObjectId(selectedAppointmentId));
+                Appointment apointment = doctorRepositories.apointmentController.GetById(new ObjectId(selectedAppointmentId));
                 UpdateAppointment changdeAppointmentDateTimeForm = new UpdateAppointment(doctorRepositories, apointment);
                 changdeAppointmentDateTimeForm.Show();
             }
