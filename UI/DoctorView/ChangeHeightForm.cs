@@ -27,7 +27,7 @@ namespace HealthcareSystem.UI.DoctorView
         {
             double newHeight = Convert.ToDouble(newHeightTextBox.Text);
             patientsHealthCard.height = newHeight;
-            doctorRepositories.healthCardController.update(patientsHealthCard);
+            doctorRepositories.healthCardController.Update(patientsHealthCard);
             MessageBox.Show("Height changed succesfully!");
             this.Dispose();
         }

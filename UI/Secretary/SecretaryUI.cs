@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.HealthCardModel;
 using HealthcareSystem.Entity.UserModel;
-using HealthCareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;
 using Autofac;
@@ -33,6 +32,7 @@ namespace HealthcareSystem.UI
        
         public IMongoDatabase database;
         public RoomService roomService { get; set; }
+        public HealthCardService healthCardService;
 
         public EquipmentRequestService equipmentService { get; set; }
 
@@ -42,6 +42,7 @@ namespace HealthcareSystem.UI
             this.secretaryControllers = secretaryControllers;
             this.database = database;
             roomService = Globals.container.Resolve<RoomService>();
+            healthCardService = Globals.container.Resolve<HealthCardService>();
             this.equipmentService = new EquipmentRequestService(database);
             this.UI();
         }
@@ -67,7 +68,7 @@ namespace HealthcareSystem.UI
                     Console.WriteLine("Last name: " + " " + patients[i].lastName);
                     Console.WriteLine("Email: " + " " + patients[i].email);
                     HealthCard found = null;
-                    List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
+                    List<HealthCard> healthCards = secretaryControllers.healthCardController.GetAll();
                     foreach (HealthCard healthCard in healthCards)
                     {
                         if (healthCard.patientId == patients[i]._id)
@@ -78,7 +79,7 @@ namespace HealthcareSystem.UI
                     }
                     Console.WriteLine("Weight: " + found.weight.ToString());
                     Console.WriteLine("height: " + found.height.ToString());
-                    Console.WriteLine("Allergies: " + secretaryControllers.healthCardController.GetAllergies(found));
+                    Console.WriteLine("Allergies: " + healthCardService.GetAllergies(found));
                 }
             }
         }
@@ -94,7 +95,7 @@ namespace HealthcareSystem.UI
                     Console.WriteLine("Last name: " + " " + patients[i].lastName);
                     Console.WriteLine("Email: " + " " + patients[i].email);
                     HealthCard found = null;
-                    List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
+                    List<HealthCard> healthCards = secretaryControllers.healthCardController.GetAll();
                     foreach (HealthCard healthCard in healthCards)
                     {
 
@@ -148,8 +149,7 @@ namespace HealthcareSystem.UI
                 User patient = us.AddPatient();
                 if (patient != null)
                 {
-                    HealthCardService hc = new HealthCardService(secretaryControllers, patient);
-                    hc.CreateHealthCard();
+                    healthCardService.CreateHealthCard(patient);
                     Console.WriteLine("Patient is sucessfully created! ");
                 }
                 else
@@ -165,12 +165,11 @@ namespace HealthcareSystem.UI
             else if (option.Equals("c"))
             {                                                                            // update patient
                 User patient = us.UpdateUser();
-                HealthCardService hc = new HealthCardService(secretaryControllers, patient);
                 Console.WriteLine("To edit patient's healthcard enter '1': ");
                 string toEdit = Console.ReadLine();
                 if (toEdit.Equals("1"))
                 {
-                    hc.UpdateHealthCard();
+                    healthCardService.UpdateHealthCard(patient);
                 }
                 Console.WriteLine("Patient is sucessfully updated! ");
             }
@@ -179,8 +178,7 @@ namespace HealthcareSystem.UI
                 User patient = us.DeleteUser();
                 if (patient != null)
                 {
-                    HealthCardService hc = new HealthCardService(secretaryControllers, patient);
-                    hc.DeleteHealthCard();
+                    healthCardService.DeleteHealthCard(patient);
                     Console.WriteLine("Patient is sucessfully deleted! ");
                 }
                 else

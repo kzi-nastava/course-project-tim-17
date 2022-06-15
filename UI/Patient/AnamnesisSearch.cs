@@ -50,7 +50,7 @@ namespace HealthcareSystem.UI.Patient
 
         void findHealthCardId()
         {
-            List<HealthCard> allHealthCards = patientRepositories.healthCardController.getAllHealthCards();
+            List<HealthCard> allHealthCards = patientRepositories.healthCardController.GetAll();
             foreach (HealthCard healthCard in allHealthCards)
             {
                 if (healthCard.patientId == loggedUser._id)

@@ -82,6 +82,7 @@ namespace HealthcareSystem.Functions
                 
                 SecretaryUI secretaryUI = new SecretaryUI(secretaryControllers, loggedUser, database);
                 
+
             }
 
             else if(loggedUser.role == Role.DOCTOR) {

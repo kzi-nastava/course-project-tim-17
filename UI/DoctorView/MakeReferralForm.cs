@@ -44,7 +44,7 @@ namespace HealthcareSystem.UI.DoctorView
                 Referral referral = new Referral(doctorReferredTo._id, patientHealthCard.patientId, doctorReferredTo.specialisation);
                 doctorRepositories.referralController.InsertToCollection(referral);
                 patientHealthCard.referrals.Add(referral._id);
-                doctorRepositories.healthCardController.update(patientHealthCard);
+                doctorRepositories.healthCardController.Update(patientHealthCard);
                 MessageBox.Show("Referral created sucessfuly");
                 this.Dispose();
             }

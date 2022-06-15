@@ -54,7 +54,7 @@ namespace HealthcareSystem.UI.DoctorView
             {
                 Check check = new Check(appointment._id, anamnesis, prescription);
                 patientHealthCard.checks.Add(check._id);
-                doctorRepositories.healthCardController.update(patientHealthCard);
+                doctorRepositories.healthCardController.Update(patientHealthCard);
                 doctorRepositories.checkController.InsertToCollection(check);
                 MessageBox.Show("Appointment is finished!");
                 UpdateDynamicEquimptentForm updateDynamicEquimptentForm = new UpdateDynamicEquimptentForm(doctorRepositories, appointment);

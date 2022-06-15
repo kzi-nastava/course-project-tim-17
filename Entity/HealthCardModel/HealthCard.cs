@@ -41,15 +41,6 @@ class HealthCard
 
     }
 
-    public void insert_new(HealthCard hc)
-    {
-        var settings = MongoClientSettings.FromConnectionString("mongodb+srv://Tim17:UXGhApWVw9oc6VGg@cluster0.se6mz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
-        settings.ServerApi = new ServerApi(ServerApiVersion.V1);
-        var client = new MongoClient(settings);
-        var database = client.GetDatabase("USI");
-        HealthCardController h = new HealthCardController(database);
-        h.InsertToCollection(hc);
-    }
-    
+   
     
 }

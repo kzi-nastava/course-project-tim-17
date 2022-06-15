@@ -32,7 +32,7 @@ namespace HealthcareSystem.UI.DoctorView
         {
             double newWeight = Convert.ToDouble(newWeightTextBox.Text);
             patientsHealthCard.weight = newWeight;
-            doctorRepositories.healthCardController.update(patientsHealthCard);
+            doctorRepositories.healthCardController.Update(patientsHealthCard);
             MessageBox.Show("Weight changed succesfully!");
             this.Dispose();
         }
