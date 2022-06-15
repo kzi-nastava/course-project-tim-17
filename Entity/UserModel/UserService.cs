@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HealthcareSystem.Entity.Enumerations;
+using HealthcareSystem.Entity.HealthCardModel;
+using HealthcareSystem.Entity.ReferralModel;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;
@@ -66,7 +68,7 @@ namespace HealthCareSystem.Entity.UserModel
             return patients;
         }
 
-      
+
 
 
 
@@ -156,10 +158,79 @@ namespace HealthCareSystem.Entity.UserModel
             }
             return false;
         }
+
+
+
+        public void PrintAllPatients(List<User> patients)
+        {
+            for (int i = 0; i < patients.Count; i++)
+            {
+                if (secretaryControllers.blockedUserController.FindByUserId(patients[i]._id) == null)
+                {
+                    Console.WriteLine(" ------------------------------------");
+                    Console.WriteLine("Name: " + " " + patients[i].name);
+                    Console.WriteLine("Last name: " + " " + patients[i].lastName);
+                    Console.WriteLine("Email: " + " " + patients[i].email);
+                    HealthCard found = null;
+                    List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
+                    foreach (HealthCard healthCard in healthCards)
+                    {
+                        if (healthCard.patientId == patients[i]._id)
+                        {
+                            found = healthCard;
+                        }
+                    }
+                    Console.WriteLine("Weight: " + found.weight.ToString());
+                    Console.WriteLine("height: " + found.height.ToString());
+                    Console.WriteLine("Allergies: " + secretaryControllers.healthCardController.GetAllergies(found));
+                }
+            }
+        }
+
+        public void PrintPatientsWithReferrals(List<User> patients)
+        {
+            for (int i = 0; i < patients.Count; i++)
+            {
+                if (secretaryControllers.blockedUserController.FindByUserId(patients[i]._id) == null)
+                {
+                    Console.WriteLine(" ------------------------------------");
+                    Console.WriteLine("Name: " + " " + patients[i].name);
+                    Console.WriteLine("Last name: " + " " + patients[i].lastName);
+                    Console.WriteLine("Email: " + " " + patients[i].email);
+                    HealthCard found = null;
+                    List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
+                    foreach (HealthCard healthCard in healthCards)
+                    {
+
+                        if (healthCard.patientId == patients[i]._id)
+                        {
+                            found = healthCard;
+                        }
+                    }
+                    List<Referral> referrals = secretaryControllers.referralController.GetReferralsOfHealthCard(found);
+                    if (referrals.Count > 0)
+                    {
+                        Console.WriteLine("REFERRALS:");
+                        foreach (Referral r in referrals)
+                        {
+                            Console.WriteLine("------------------------------------");
+                            Console.WriteLine("Referral's id: " + r._id);
+                            Console.WriteLine("------------------------------------");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Patient has no referrals");
+                    }
+                }
+            }
+
+
+        }
     }
 
 
 
-}
+    }
 
 

@@ -10,7 +10,7 @@ class FreeDayRequestController
         this.freeDayRequestsCollection = database.GetCollection<FreeDayRequest>("FreeDayRequests");
             
     }
-    public List<FreeDayRequest> getAllFreeDayRequstests() {
+    public List<FreeDayRequest> getAllFreeDayRequests() {
         
         List<FreeDayRequest> freeDayRequests = freeDayRequestsCollection.Find(item =>  true).ToList();
         return freeDayRequests;
