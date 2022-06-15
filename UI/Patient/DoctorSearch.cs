@@ -57,7 +57,7 @@ namespace HealthcareSystem.UI.Patient
                 totalRating.Add(rating);
             }
             int size = 0;
-            List<DoctorSurveys> allSurveys = patientRepositories.doctorSurveysController.getAllSurveys();
+            List<DoctorSurveys> allSurveys = patientRepositories.doctorSurveysController.GetAll();
             foreach(DoctorSurveys survey in allSurveys)
             {
                 if(doctorId == survey.doctorId)

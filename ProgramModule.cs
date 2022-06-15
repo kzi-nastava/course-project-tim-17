@@ -30,6 +30,8 @@ namespace HealthcareSystem
             builder.RegisterType<HealthCardService>().AsSelf();
             builder.RegisterType<AppointmentRequestsRepository>().As<IAppointmentRequestRepository>();
             builder.RegisterType<AppointmentRequestsService>().AsSelf();
+            builder.RegisterType<RevisionRepository>().As<IRevisionRepository>();
+            builder.RegisterType<RevisionService>().AsSelf();
         }
     }
 }

@@ -15,20 +15,20 @@ namespace HealthcareSystem.Entity.Survey
     internal class SurveyService
 
     {
-        public DoctorSurveysController doctorSurveyController;
-        public HospitalSurveysController hospitalSurveyController;
+        public DoctorSurveysRepository doctorSurveyController;
+        public HospitalSurveysRepository hospitalSurveyController;
         public DoctorController doctorController;
         public SurveyService(IMongoDatabase database)
         {
-            doctorSurveyController = new DoctorSurveysController(database); 
-            hospitalSurveyController = new HospitalSurveysController(database);
+            doctorSurveyController = new DoctorSurveysRepository(); 
+            hospitalSurveyController = new HospitalSurveysRepository();
             doctorController = new DoctorController(database);
 
         }
 
         public List<HospitalSurveys> GetAllHospitalSurveys()
         { 
-            return hospitalSurveyController.getAllSurveys(); 
+            return hospitalSurveyController.GetAll(); 
         }
 
         public double MarkToDouble(Mark mark)
@@ -43,7 +43,7 @@ namespace HealthcareSystem.Entity.Survey
 
         public List<DoctorSurveys> GetAllDoctorSurveys()
         {
-            return doctorSurveyController.getAllSurveys();
+            return doctorSurveyController.GetAll();
         }
         public List<DoctorSurveysAverages> GetAllDoctorSurveysAverages()
         {

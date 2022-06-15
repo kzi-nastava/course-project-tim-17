@@ -29,8 +29,8 @@ namespace HealthcareSystem.RoleControllers
         public CheckAppointmentRequestController checkAppointmentRequestController;
         public CheckController checkController;
         public HealthCardRepository healthCardController;
-        public DoctorSurveysController doctorSurveysController;
-        public HospitalSurveysController hospitalSurveysController;
+        public DoctorSurveysRepository doctorSurveysController;
+        public HospitalSurveysRepository hospitalSurveysController;
         public NotificationSettingsController notificationSettingsController;
         public DrugRepository drugController;
         public PatientRepositories(IMongoDatabase database)
@@ -44,8 +44,8 @@ namespace HealthcareSystem.RoleControllers
             this.checkAppointmentRequestController = new CheckAppointmentRequestController(database);
             this.checkController = new CheckController(database);
             this.healthCardController = new HealthCardRepository();
-            this.doctorSurveysController = new DoctorSurveysController(database);
-            this.hospitalSurveysController = new HospitalSurveysController(database);
+            this.doctorSurveysController = new DoctorSurveysRepository();
+            this.hospitalSurveysController = new HospitalSurveysRepository();
             this.notificationSettingsController = new NotificationSettingsController(database);
             this.drugController = new DrugRepository();
         }
