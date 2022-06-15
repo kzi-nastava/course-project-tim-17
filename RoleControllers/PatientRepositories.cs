@@ -20,7 +20,7 @@ namespace HealthcareSystem.RoleControllers
     class PatientRepositories
     {
 
-        public ApointmentController appointmentController;
+        public AppointmentRepository appointmentController;
         public DoctorController doctorController;
         public RoomRepository roomController;
         public UserActionController userActionController;
@@ -35,7 +35,7 @@ namespace HealthcareSystem.RoleControllers
         public DrugRepository drugController;
         public PatientRepositories(IMongoDatabase database)
         {
-            this.appointmentController = new ApointmentController(database);
+            this.appointmentController = new AppointmentRepository();
             this.doctorController = new DoctorController(database);
             this.roomController = new RoomRepository();
             this.userActionController = new UserActionController(database);

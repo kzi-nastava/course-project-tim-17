@@ -8,6 +8,7 @@ using HealthcareSystem.Entity.RoomModel.RenovationFiles.SplitRenovation;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;
+using Autofac;
 
 
 namespace HealthcareSystem.UI.ManagerView
@@ -18,7 +19,7 @@ namespace HealthcareSystem.UI.ManagerView
         public RoomService roomService;
         public RenovationService renovationService;
         public Room room;
-        public ApointmentController apointmentController;
+        public AppointmentService appointmentService;
         public bool sizeChanged;
         Equipment currentItem = null;
         int iter  = 0;
@@ -32,7 +33,7 @@ namespace HealthcareSystem.UI.ManagerView
             roomService = new RoomService(new MoveEquipmentRepository(), new RoomRepository(), new RenovationRepository());
             renovationService = new RenovationService(new RenovationRepository());
             this.room = room;
-            this.apointmentController = new ApointmentController(Globals.database);
+            appointmentService = Globals.container.Resolve<AppointmentService>();
             sizeChanged = false;
             
         }
@@ -43,8 +44,8 @@ namespace HealthcareSystem.UI.ManagerView
             DateTime dateEnd = endDateTimePicker.Value.Date;
             if (dateStart < dateEnd) 
             {
-                AppointmentService aps = new AppointmentService(new DoctorRepositories(Globals.database));
-                if (aps.CheckIfRoomIsAvaliableForRenovation(room._id, dateStart, dateEnd)) 
+
+                if (appointmentService.CheckIfRoomIsAvaliableForRenovation(room._id, dateStart, dateEnd)) 
                 {
                     Renovation r = new Renovation(room._id, dateStart, dateEnd);
                     if (!mergeRoomCheckBox.Checked && !splitRoomCheckBox.Checked)

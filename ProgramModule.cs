@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.DrugModel;
 using HealthcareSystem.Entity.RoomModel.MoveEquipmentFiles;
 using HealthcareSystem.Entity.RoomModel.RenovationFiles;
@@ -21,6 +22,8 @@ namespace HealthcareSystem
             builder.RegisterType<RoomService>().AsSelf();
             builder.RegisterType<DrugRepository>().As<IDrugRepository>();
             builder.RegisterType<DrugService>().AsSelf();
+            builder.RegisterType<AppointmentRepository>().As<IAppointmentRepository>();
+            builder.RegisterType<AppointmentService>().AsSelf();
         }
     }
 }

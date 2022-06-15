@@ -113,11 +113,11 @@ namespace HealthcareSystem.UI.Patient
             sortBox.Items.Add("Doctor");
             sortBox.Items.Add("Anamnesis");
 
-            List<Apointment> selectedApointments = new List<Apointment>();
-            List<Apointment> allApointments = patientRepositories.appointmentController.getAllAppointments().ToList();
+            List<Appointment> selectedApointments = new List<Appointment>();
+            List<Appointment> allApointments = patientRepositories.appointmentController.GetAll().ToList();
             List<Check> allChecks = patientRepositories.checkController.checkCollection.Find(item => true).ToList();
             List<Check> userChecks = new List<Check>();
-            foreach (Apointment apointment in allApointments)
+            foreach (Appointment apointment in allApointments)
             {
                 if (apointment.patientId == loggedUser._id)
                 {
@@ -157,7 +157,7 @@ namespace HealthcareSystem.UI.Patient
                 string anamnesisDescription = userChecks[0].anamnesis.description, anamnesisSymptoms = userChecks[0].anamnesis.symptoms, anamnesisDiagnosis = userChecks[0].anamnesis.diagnosis;
                 foreach (Check check in userChecks)
                 {
-                    foreach(Apointment apointment in selectedApointments)
+                    foreach(Appointment apointment in selectedApointments)
                     {
                         if(apointment._id == check.appointmentId)
                         {

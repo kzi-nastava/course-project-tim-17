@@ -19,8 +19,8 @@ namespace HealthcareSystem.UI.DoctorView
     {
 
     public DoctorRepositories doctorRepositories { get; set; }
-    public Apointment appointment { get; set; }
-        public UpdateDynamicEquimptentForm(DoctorRepositories doctorRepositories, Apointment appointment)
+    public Appointment appointment { get; set; }
+        public UpdateDynamicEquimptentForm(DoctorRepositories doctorRepositories, Appointment appointment)
         {
             this.doctorRepositories = doctorRepositories;
             this.appointment = appointment;
