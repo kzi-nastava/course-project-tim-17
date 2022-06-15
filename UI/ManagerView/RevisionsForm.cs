@@ -1,6 +1,7 @@
 ﻿using HealthcareSystem.Entity.DrugModel;
 using HealthcareSystem.Entity.Enumerations;
 using MongoDB.Bson;
+using Autofac;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -17,24 +18,23 @@ namespace HealthcareSystem.UI.ManagerView
     
     partial class RevisionsForm : Form
     {
-        public DrugController drugRepository;
+        
         public RevisionController revisionRepository;
         public DrugService drugService;
-        public IMongoDatabase database;
-        public RevisionsForm(IMongoDatabase database)
+        public RevisionsForm()
             
         {
-            revisionRepository = new RevisionController(database);
-            drugRepository = new DrugController(database);
-            this.drugService = new DrugService(database);
-            this.database = database;
+            revisionRepository = new RevisionController(Globals.database);
+
+            this.drugService = Globals.container.Resolve<DrugService>();
+            
             InitializeComponent();
         }
 
         private void reviseButton_Click(object sender, EventArgs e)
         {
-            Drug drug = drugRepository.FindById(new ObjectId(revisionView.SelectedItems[0].Text));
-            AddDrug ad = new AddDrug(database);
+            Drug drug = drugService.GetById(revisionView.SelectedItems[0].Text);
+            AddDrug ad = new AddDrug();
             ad.Revise(drug);
             ad.Show();
         }

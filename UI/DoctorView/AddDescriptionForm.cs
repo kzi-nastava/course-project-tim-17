@@ -18,11 +18,11 @@ namespace HealthcareSystem.UI.DoctorView
         public IMongoDatabase database;
         public ObjectId drugId;
         public RevisionController revisionRepository;
-        public AddDescriptionForm(IMongoDatabase database, ObjectId drugId)
+        public AddDescriptionForm(ObjectId drugId)
         {
             this.database = database;
             this.drugId = drugId;
-            this.revisionRepository = new RevisionController(database);
+            this.revisionRepository = new RevisionController(Globals.database);
             
             InitializeComponent();
         }

@@ -1,6 +1,7 @@
 ﻿using HealthcareSystem.Entity.DrugModel;
 using HealthcareSystem.Entity.Enumerations;
 using MongoDB.Bson;
+using Autofac;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -16,14 +17,13 @@ namespace HealthcareSystem.UI.DoctorView
 {
     partial class RevisionForm : Form
     {
-        public IMongoDatabase database;
+        
         public DrugService drugService;
-        public DrugController drugRepository;
-        public RevisionForm(IMongoDatabase database)
+        
+        public RevisionForm()
         {
-            this.database = database;
-            this.drugService = new DrugService(database);
-            this.drugRepository = new DrugController(database);
+            
+            this.drugService = Globals.container.Resolve<DrugService>();
             InitializeComponent();
         }
 
@@ -61,9 +61,9 @@ namespace HealthcareSystem.UI.DoctorView
         private void ChangeDrugStatus(DrugStatus drugStatus)
         {
             
-            Drug drug = drugRepository.FindById(new ObjectId(GetSelectedRow()));
+            Drug drug = drugService.GetById(GetSelectedRow());
             drug.DrugStatus = drugStatus;
-            drugRepository.UpdateDrug(drug);
+            drugService.Update(drug);
         }
 
         private void declineBtn_Click(object sender, EventArgs e)
@@ -74,7 +74,7 @@ namespace HealthcareSystem.UI.DoctorView
         private void reviseBtn_Click(object sender, EventArgs e)
         {
             
-            AddDescriptionForm adf = new AddDescriptionForm(database, new ObjectId(GetSelectedRow()));
+            AddDescriptionForm adf = new AddDescriptionForm(new ObjectId(GetSelectedRow()));
             adf.Show();
             ChangeDrugStatus(DrugStatus.CHANGES_REQUIRED);
         }

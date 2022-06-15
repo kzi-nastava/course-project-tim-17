@@ -47,7 +47,7 @@ namespace HealthcareSystem.UI.Patient
                     double timeDistance = (time - DateTime.Now).TotalHours;
                     if(hourCheck > timeDistance && timeDistance > 0)
                     {
-                        string drugName = patientRepositories.drugController.FindById(check.prescription.drug).name;
+                        string drugName = patientRepositories.drugController.GetById(check.prescription.drug).name;
                         finalPrint += "You should take " + drugName + " at " + time.ToString("HH:mm") + "\n";
                     }
                 }

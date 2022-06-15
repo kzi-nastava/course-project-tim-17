@@ -1,6 +1,7 @@
 ﻿using HealthcareSystem.Entity;
 using HealthcareSystem.Entity.DrugModel;
 using HealthcareSystem.Entity.Enumerations;
+using Autofac;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -16,19 +17,18 @@ namespace HealthcareSystem.UI.ManagerView
 {
     partial class AddDrug : Form
     {
-        DrugController drugRepository;
+        DrugService drugService;
         List<Ingredient> ingredients;
         Drug drugInRevision;
-        IMongoDatabase database;
+        
         bool inRevision;
 
-        public AddDrug(IMongoDatabase database)
+        public AddDrug()
         {
-            drugRepository = new DrugController(database);
+            drugService = Globals.container.Resolve<DrugService>();
             ingredients = new List<Ingredient>();
             inRevision = false;
             drugInRevision = null;
-            this.database = database;
             InitializeComponent();
 
         }
@@ -60,7 +60,7 @@ namespace HealthcareSystem.UI.ManagerView
         private void addDrugButton_Click(object sender, EventArgs e)
         {
             Drug drug = new Drug(drugNameTextBox.Text, ingredients);
-            drugRepository.InsertToCollection(drug);
+            drugService.Insert(drug);
             MessageBox.Show("Strava");
             this.Dispose();
         }
@@ -98,8 +98,8 @@ namespace HealthcareSystem.UI.ManagerView
             drugInRevision.ingredients = this.ingredients;
             drugInRevision.name = drugNameTextBox.Text;
             drugInRevision.DrugStatus = DrugStatus.ON_HOLD;
-            drugRepository.UpdateDrug(drugInRevision);
-            RevisionController rs = new RevisionController(database);
+            drugService.Update(drugInRevision);
+            RevisionController rs = new RevisionController(Globals.database);
             rs.DeleteByDrugId(drugInRevision._id);
             MessageBox.Show("cool");
             this.Dispose();

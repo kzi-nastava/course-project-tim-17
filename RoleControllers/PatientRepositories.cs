@@ -32,7 +32,7 @@ namespace HealthcareSystem.RoleControllers
         public DoctorSurveysController doctorSurveysController;
         public HospitalSurveysController hospitalSurveysController;
         public NotificationSettingsController notificationSettingsController;
-        public DrugController drugController;
+        public DrugRepository drugController;
         public PatientRepositories(IMongoDatabase database)
         {
             this.appointmentController = new ApointmentController(database);
@@ -47,7 +47,7 @@ namespace HealthcareSystem.RoleControllers
             this.doctorSurveysController = new DoctorSurveysController(database);
             this.hospitalSurveysController = new HospitalSurveysController(database);
             this.notificationSettingsController = new NotificationSettingsController(database);
-            this.drugController = new DrugController(database);
+            this.drugController = new DrugRepository();
         }
     }
 }

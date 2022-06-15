@@ -1,6 +1,4 @@
-﻿using HealthcareSystem.Entity.RoomModel;
-using HealthcareSystem.Entity.RoomModel.MoveEquipmentFiles;
-using HealthcareSystem.Entity.RoomModel.RenovationFiles;
+﻿using Autofac;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
@@ -24,16 +22,15 @@ namespace HealthcareSystem.UI.ManagerView
         public User loggedUser { get; set; }
         public RoomService roomService { get; set; }
 
-        public IMongoDatabase db;
         
-        public ManagerGUI(User loggedUser,IMongoDatabase database)
+        public ManagerGUI(User loggedUser)
         {
             InitializeComponent();
             this.loggedUser = loggedUser;
-            roomService = new RoomService(new MoveEquipmentRepository(),new RoomRepository(),new RenovationRepository());
+            
+            roomService = Globals.container.Resolve<RoomService>();
             StartThreads();
             Console.WriteLine(DateTime.Now);
-            this.db = database;
            
 
             
@@ -135,7 +132,7 @@ namespace HealthcareSystem.UI.ManagerView
         private void renovationButton_Click(object sender, EventArgs e)
         {
             Room room = roomService.GetById(roomListView.SelectedItems[0].Text);
-            AddRenovation re = new AddRenovation(db,room);
+            AddRenovation re = new AddRenovation(room);
             re.Show();
         }
 
@@ -156,20 +153,20 @@ namespace HealthcareSystem.UI.ManagerView
 
         private void addDrugButton_Click(object sender, EventArgs e)
         {
-            AddDrug ad = new AddDrug(db);
+            AddDrug ad = new AddDrug();
             ad.Show();
         }
 
         private void revisionButton_Click(object sender, EventArgs e)
         {
-            RevisionsForm rf = new RevisionsForm(db);
+            RevisionsForm rf = new RevisionsForm();
             rf.Show();
 
         }
 
         private void surveysButton_Click(object sender, EventArgs e)
         {
-            SurveysForm sf = new SurveysForm(db);
+            SurveysForm sf = new SurveysForm();
             sf.Show();
         }
     }

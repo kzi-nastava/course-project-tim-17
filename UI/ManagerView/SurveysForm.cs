@@ -16,11 +16,10 @@ namespace HealthcareSystem.UI.ManagerView
 {
     partial class SurveysForm : Form
     {
-        public IMongoDatabase database;
         public SurveyService surveyService;
-        public SurveysForm(IMongoDatabase database)
+        public SurveysForm()
         {
-            surveyService = new SurveyService(database);
+            surveyService = new SurveyService(Globals.database);
             InitializeComponent();
         }
         private void loadDoctorSurveyView() 

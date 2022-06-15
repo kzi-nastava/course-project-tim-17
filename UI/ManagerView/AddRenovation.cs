@@ -19,7 +19,6 @@ namespace HealthcareSystem.UI.ManagerView
         public RenovationService renovationService;
         public Room room;
         public ApointmentController apointmentController;
-        public IMongoDatabase database;
         public bool sizeChanged;
         Equipment currentItem = null;
         int iter  = 0;
@@ -27,14 +26,13 @@ namespace HealthcareSystem.UI.ManagerView
         List<Equipment> secondRoomEquipment = new List<Equipment>();
 
 
-        public AddRenovation(IMongoDatabase database,Room room)
+        public AddRenovation(Room room)
         {
             InitializeComponent();
             roomService = new RoomService(new MoveEquipmentRepository(), new RoomRepository(), new RenovationRepository());
             renovationService = new RenovationService(new RenovationRepository());
             this.room = room;
-            this.apointmentController = new ApointmentController(database);
-            this.database = database;
+            this.apointmentController = new ApointmentController(Globals.database);
             sizeChanged = false;
             
         }
@@ -45,7 +43,7 @@ namespace HealthcareSystem.UI.ManagerView
             DateTime dateEnd = endDateTimePicker.Value.Date;
             if (dateStart < dateEnd) 
             {
-                AppointmentService aps = new AppointmentService(new DoctorRepositories(database));
+                AppointmentService aps = new AppointmentService(new DoctorRepositories(Globals.database));
                 if (aps.CheckIfRoomIsAvaliableForRenovation(room._id, dateStart, dateEnd)) 
                 {
                     Renovation r = new Renovation(room._id, dateStart, dateEnd);
