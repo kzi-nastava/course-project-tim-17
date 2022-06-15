@@ -436,6 +436,11 @@ namespace HealthcareSystem.Entity.RoomModel.RoomFiles
             }
         }
 
+        public Room getWarehouse()
+        {
+            return roomRepository.getWarehouse();
+        }
+
         public void PrintRoomsWhichHaveSpecificEquipment(List<Room> rooms, String ItemName)
         {
             foreach (Room room in rooms)

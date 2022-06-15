@@ -10,10 +10,12 @@ namespace HealthcareSystem.Entity.RoomModel.TransferEquipment
 {
     class EquipmentRequestService
     {
-        public EquipmentRequestController equipmentRequestController;
-        public EquipmentRequestService(IMongoDatabase database)
+        
+        public IEquipmentRequestRepository equipmentRequestRepository;
+        public EquipmentRequestService(IEquipmentRequestRepository equipmentRequestRepository)
         {
-            this.equipmentRequestController = new EquipmentRequestController(database);
+
+            this.equipmentRequestRepository = equipmentRequestRepository;
 
         }
 
@@ -56,8 +58,17 @@ namespace HealthcareSystem.Entity.RoomModel.TransferEquipment
             int quantity = Int32.Parse(Console.ReadLine());
             DateTime date = DateTime.Now.AddDays(1);
             EquipmentRequest er = new EquipmentRequest(itemName, date, quantity);
-            equipmentRequestController.InsertToCollection(er);
+            equipmentRequestRepository.Insert(er);
 
+        }
+
+        public void Delete(EquipmentRequest er)
+        {
+            equipmentRequestRepository.Delete(er._id);
+        }
+
+        public List<EquipmentRequest> GetAll() {
+            return equipmentRequestRepository.GetAll();            
         }
     }
 }

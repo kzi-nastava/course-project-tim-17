@@ -34,8 +34,9 @@ namespace HealthcareSystem.UI
         public RoomService roomService { get; set; }
         public HealthCardService healthCardService;
 
-        public EquipmentRequestService equipmentService { get; set; }
-
+        public EquipmentRequestService equipmentService;
+        public CheckAppointmentRequestService checkRequestService;
+       
         public SecretaryUI(SecretaryControllers secretaryControllers, User LoggedUser, IMongoDatabase database)
         {
             this.LoggedUser = LoggedUser;
@@ -43,7 +44,8 @@ namespace HealthcareSystem.UI
             this.database = database;
             roomService = Globals.container.Resolve<RoomService>();
             healthCardService = Globals.container.Resolve<HealthCardService>();
-            this.equipmentService = new EquipmentRequestService(database);
+            equipmentService = Globals.container.Resolve<EquipmentRequestService>();
+            checkRequestService = Globals.container.Resolve<CheckAppointmentRequestService>();
             this.UI();
         }
 
@@ -84,46 +86,7 @@ namespace HealthcareSystem.UI
             }
         }
 
-        public void PrintPatientsWithReferrals(List<User> patients)
-        {
-            for (int i = 0; i < patients.Count; i++)
-            {
-                if (secretaryControllers.blockedUserController.FindByUserId(patients[i]._id) == null)
-                {
-                    Console.WriteLine(" ------------------------------------");
-                    Console.WriteLine("Name: " + " " + patients[i].name);
-                    Console.WriteLine("Last name: " + " " + patients[i].lastName);
-                    Console.WriteLine("Email: " + " " + patients[i].email);
-                    HealthCard found = null;
-                    List<HealthCard> healthCards = secretaryControllers.healthCardController.GetAll();
-                    foreach (HealthCard healthCard in healthCards)
-                    {
-
-                        if (healthCard.patientId == patients[i]._id)
-                        {
-                            found = healthCard;
-                        }
-                    }
-                    List<Referral> referrals = secretaryControllers.referralController.GetReferralsOfHealthCard(found);
-                    if (referrals.Count > 0)
-                    {
-                        Console.WriteLine("REFERRALS:");
-                        foreach (Referral r in referrals)
-                        {
-                            Console.WriteLine("------------------------------------");
-                            Console.WriteLine("Referral's id: " + r._id);
-                            Console.WriteLine("------------------------------------");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Patient has no referrals");
-                    }
-                }
-            }
-
-        }
-
+        
         public void DeleteAppointementByRequest(CheckAppointementRequest cr)
         {
             Appointment a = secretaryControllers.AppointmentController.GetById(cr.appointmentId);
@@ -139,53 +102,6 @@ namespace HealthcareSystem.UI
             a.patientId = ar.patientId;
             a.roomId = ar.roomId;
             secretaryControllers.AppointmentController.Update(a);
-        }
-
-        public void HandleCRUD(string option)
-        {
-            UserService us = new UserService(secretaryControllers);
-            if (option.Equals("a"))
-            {                                                                // adding patient
-                User patient = us.AddPatient();
-                if (patient != null)
-                {
-                    healthCardService.CreateHealthCard(patient);
-                    Console.WriteLine("Patient is sucessfully created! ");
-                }
-                else
-                {
-                    Console.WriteLine("Sorry, patient already exists! ");
-                }
-            }
-            else if (option.Equals("b"))                                                         // preview of patients 
-            {
-                List<User> patients = us.GetAllPatients();
-                PrintAllPatients(patients);
-            }
-            else if (option.Equals("c"))
-            {                                                                            // update patient
-                User patient = us.UpdateUser();
-                Console.WriteLine("To edit patient's healthcard enter '1': ");
-                string toEdit = Console.ReadLine();
-                if (toEdit.Equals("1"))
-                {
-                    healthCardService.UpdateHealthCard(patient);
-                }
-                Console.WriteLine("Patient is sucessfully updated! ");
-            }
-            else if (option.Equals("d"))                            // delete patient        
-            {
-                User patient = us.DeleteUser();
-                if (patient != null)
-                {
-                    healthCardService.DeleteHealthCard(patient);
-                    Console.WriteLine("Patient is sucessfully deleted! ");
-                }
-                else
-                {
-                    Console.WriteLine("Sorry, patient with entered email does not exist! ");
-                }
-            }
         }
 
         public bool IsRoomAvailable(Room r, DateTime time)
@@ -375,9 +291,6 @@ namespace HealthcareSystem.UI
         public void UI()
         {
             UserService us = new UserService(secretaryControllers);
-            CheckAppointmentRequestService crs = new CheckAppointmentRequestService(secretaryControllers);
-           // EquipmentRequestService ers = new EquipmentRequestService(database);
-          //  SecretaryAppointmentService a = new SecretaryAppointmentService(database);
             FreeDayRequestService fs = new FreeDayRequestService(database);
             List<User> patients = us.GetAllPatients();
             while (true)
@@ -437,17 +350,17 @@ namespace HealthcareSystem.UI
                 }
                 else if (choice == "4")
                 {
-                    crs.printAllRequests();
+                    checkRequestService.PrintAllRequests();
                     Console.WriteLine("Enter request id: ");
                     ObjectId obI = ObjectId.Parse(Console.ReadLine());
-                    CheckAppointementRequest cr = secretaryControllers.checkAppointemtRequestController.FindById(obI);
+                    CheckAppointementRequest cr = secretaryControllers.checkAppointemtRequestController.GetById(obI);
                     Console.WriteLine("1 -> APPROVE REQUEST");
                     Console.WriteLine("2 -> DECLINE REQUEST");
                     string opt = Console.ReadLine();
                     if (opt.Equals("1"))                // accept
                     {
                         cr.status = Status.ACCEPTED;
-                        crs.Update(cr);
+                        checkRequestService.Update(cr);
                         if (cr.RequestState == RequestState.DELETE)
                         {
                            // a.DeleteAppointementByRequest(cr);
@@ -463,7 +376,7 @@ namespace HealthcareSystem.UI
                     else if (opt.Equals("2"))
                     {
                         cr.status = Status.DENIED;
-                        crs.Update(cr);
+                        checkRequestService.Update(cr);
                         Console.WriteLine("Request denied!");
                     }
 
@@ -512,7 +425,7 @@ namespace HealthcareSystem.UI
                 }
                 else if (choice == "8")
                 {
-                    List<EquipmentRequest> requests = secretaryControllers.equipmentRequestController.GetAllEquipmentRequests();
+                    List<EquipmentRequest> requests = equipmentService.GetAll();
                     if (requests.Count == 0)
                     {
 

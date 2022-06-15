@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HealthcareSystem.Entity.CheckAppointmentRequestModel;
+using HealthCareSystem.Entity.CheckAppointementRequestModel;
+using HealthcareSystem.Entity.RoomModel.TransferEquipment;
 
 namespace HealthcareSystem
 {
@@ -30,6 +33,10 @@ namespace HealthcareSystem
             builder.RegisterType<HealthCardService>().AsSelf();
             builder.RegisterType<AppointmentRequestsRepository>().As<IAppointmentRequestRepository>();
             builder.RegisterType<AppointmentRequestsService>().AsSelf();
+            builder.RegisterType<CheckAppointmentRequestRepository>().As<ICheckAppointmentRequestRepository>();
+            builder.RegisterType<CheckAppointmentRequestService>().AsSelf();
+            builder.RegisterType<EquipmentRequestRepository>().As<IEquipmentRequestRepository>();
+            builder.RegisterType<EquipmentRequestService>().AsSelf();
         }
     }
 }

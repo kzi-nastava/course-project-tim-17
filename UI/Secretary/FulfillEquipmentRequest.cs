@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
 using HealthcareSystem.Entity;
 using HealthcareSystem.Entity.RoomModel;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
@@ -13,21 +14,22 @@ namespace HealthcareSystem.UI.Secretary
 {
     class FulfillEquipmentRequest
     {
-        public SecretaryControllers secretaryControllers { get; set; }
-
+        
+        public EquipmentRequestService equipmentRequestService;
+        public RoomService roomService;
 
         public FulfillEquipmentRequest(SecretaryControllers secretaryControllers)
         {
 
-            this.secretaryControllers = secretaryControllers;
-
+            this.roomService = Globals.container.Resolve<RoomService>();
+            this.equipmentRequestService = Globals.container.Resolve<EquipmentRequestService>();
         }
 
         public void Fulfiil()
         {
-            Room warehouse = secretaryControllers.roomController.getWarehouse();
+            Room warehouse = roomService.getWarehouse();
 
-            List<EquipmentRequest> requests = secretaryControllers.equipmentRequestController.GetAllEquipmentRequests();
+            List<EquipmentRequest> requests = equipmentRequestService.GetAll();
             foreach (EquipmentRequest req in requests)
             {
                 if (req.DateTime < DateTime.Now)
@@ -37,11 +39,11 @@ namespace HealthcareSystem.UI.Secretary
                         if (e.item.ToUpper().Equals(req.ItemName.ToUpper()))
                         {
                             e.quantity += req.Quantity;
-                            secretaryControllers.roomController.Update(warehouse);
+                            roomService.Update(warehouse);
                             Console.WriteLine("REQUEST " + req._id + " SUCCESFULLY FULFILLED");
 
                         }
-                        secretaryControllers.equipmentRequestController.DeleteEquipmentRequest(req);
+                        equipmentRequestService.Delete(req);
 
                     }
 
