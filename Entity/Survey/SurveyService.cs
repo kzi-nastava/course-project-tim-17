@@ -17,12 +17,12 @@ namespace HealthcareSystem.Entity.Survey
     {
         public DoctorSurveysController doctorSurveyController;
         public HospitalSurveysController hospitalSurveyController;
-        public DoctorController doctorController;
+        public DoctorRepository doctorController;
         public SurveyService(IMongoDatabase database)
         {
             doctorSurveyController = new DoctorSurveysController(database); 
             hospitalSurveyController = new HospitalSurveysController(database);
-            doctorController = new DoctorController(database);
+            doctorController = new DoctorRepository();
 
         }
 
@@ -48,7 +48,7 @@ namespace HealthcareSystem.Entity.Survey
         public List<DoctorSurveysAverages> GetAllDoctorSurveysAverages()
         {
             List<DoctorSurveysAverages> doctorSurveysAverages = new List<DoctorSurveysAverages>();
-            foreach (Doctor doctor in doctorController.getAllDoctors())
+            foreach (Doctor doctor in doctorController.GetAll())
             {
                 doctorSurveysAverages.Add(GetDoctorSurveyAverages(doctor));
             }

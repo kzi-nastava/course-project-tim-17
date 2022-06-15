@@ -1,6 +1,8 @@
 ﻿using HealthcareSystem.Entity;
 using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.RoomModel;
+using HealthcareSystem.Entity.RoomModel.MoveEquipmentFiles;
+using HealthcareSystem.Entity.RoomModel.RenovationFiles;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.RoleControllers;
 using System;
@@ -12,17 +14,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Autofac;
 
 namespace HealthcareSystem.UI.DoctorView
 {
     partial class UpdateDynamicEquimptentForm : Form
     {
-
-    public DoctorRepositories doctorRepositories { get; set; }
-    public Appointment appointment { get; set; }
-        public UpdateDynamicEquimptentForm(DoctorRepositories doctorRepositories, Appointment appointment)
+        public RoomService roomService;
+        public Appointment appointment { get; set; }
+        public UpdateDynamicEquimptentForm( Appointment appointment)
         {
-            this.doctorRepositories = doctorRepositories;
+            this.roomService = Globals.container.Resolve<RoomService>();
             this.appointment = appointment;
             InitializeComponent();
         }
@@ -50,7 +52,7 @@ namespace HealthcareSystem.UI.DoctorView
                     equipment.quantity -= Int32.Parse(quantityTextBox.Text);
                 }
             }
-            doctorRepositories.roomController.Update(room);
+            roomService.Update(room);
             MessageBox.Show("Selected equipment updated!");
 
 
@@ -86,7 +88,7 @@ namespace HealthcareSystem.UI.DoctorView
 
         private Room GetRoomFromAppointment()
         {
-            return doctorRepositories.roomController.GetById(appointment.roomId);
+            return roomService.GetById(appointment.roomId.ToString());
         }
 
         private void UpdateDynamicEquimptentForm_Load(object sender, EventArgs e)

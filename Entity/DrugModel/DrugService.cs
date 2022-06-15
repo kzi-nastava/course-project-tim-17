@@ -57,5 +57,9 @@ namespace HealthcareSystem.Entity.DrugModel
             }
             return ingredients;
         }
+        public Drug FindDrugByName(string drugName)
+        {
+            return drugRepository.FindByDrugName(drugName);
+        }
     }
 }

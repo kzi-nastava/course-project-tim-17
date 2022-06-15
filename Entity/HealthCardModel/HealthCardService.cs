@@ -23,7 +23,10 @@ namespace HealthcareSystem.Entity.HealthCardModel
              this.healthCardRepository = healthCardRepository;
            
         }
-
+        public void Update(HealthCard healthCard)
+        {
+            healthCardRepository.Update(healthCard);
+        }
         public void CreateHealthCard(User patient)
         {
             Console.WriteLine("Enter patient's height: ");

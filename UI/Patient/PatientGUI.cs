@@ -24,7 +24,7 @@ namespace HealthcareSystem.UI.Patient
             List<Check> checkList = new List<Check>();
             foreach(ObjectId checkId in listChecks)
             {
-                checkList.Add(patientRepositories.checkController.findById(checkId));
+                checkList.Add(patientRepositories.checkController.GetById(checkId));
             }
             string finalPrint = "";
             List<DateTime> clockList = new List<DateTime>();

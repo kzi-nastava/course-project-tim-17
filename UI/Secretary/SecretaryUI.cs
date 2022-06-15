@@ -22,6 +22,7 @@ using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.UI.Secretary;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.Entity.RoomModel.TransferEquipment;
+using Autofac;
 
 namespace HealthcareSystem.UI
 {
@@ -378,7 +379,7 @@ namespace HealthcareSystem.UI
             CheckAppointmentRequestService crs = new CheckAppointmentRequestService(secretaryControllers);
            // EquipmentRequestService ers = new EquipmentRequestService(database);
           //  SecretaryAppointmentService a = new SecretaryAppointmentService(database);
-            FreeDayRequestService fs = new FreeDayRequestService(database);
+            FreeDayRequestService fs = Globals.container.Resolve<FreeDayRequestService>();
             List<User> patients = us.GetAllPatients();
             while (true)
             {
@@ -476,7 +477,7 @@ namespace HealthcareSystem.UI
                     {
                         Console.WriteLine("Enter referral id: ");
                         ObjectId idRefferal = ObjectId.Parse(Console.ReadLine());
-                        Referral r = secretaryControllers.referralController.findById(idRefferal);
+                        Referral r = secretaryControllers.referralController.GetById(idRefferal);
                         Console.WriteLine("Enter type of appointment(checkup/operation): ");
                         ApointmentType type = (ApointmentType)Enum.Parse(typeof(ApointmentType), (Console.ReadLine().ToUpper()));
                         MakeAppointmentBasedOnReferral(r, type);

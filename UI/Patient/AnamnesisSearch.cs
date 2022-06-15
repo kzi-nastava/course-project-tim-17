@@ -164,7 +164,7 @@ namespace HealthcareSystem.UI.Patient
                             InputData data = new InputData();
                             string date = apointment.dateTime.ToString("dd/MM/yyyy HH:mm");
                             string type = apointment.type.ToString();
-                            Doctor doctor = patientRepositories.doctorController.findById(apointment.doctorId);
+                            Doctor doctor = patientRepositories.doctorController.GetById(apointment.doctorId);
                             string doctorName = doctor.name + " " + doctor.lastName;
                             Room room = patientRepositories.roomController.GetById(apointment.roomId);
                             string roomName = room.name;
