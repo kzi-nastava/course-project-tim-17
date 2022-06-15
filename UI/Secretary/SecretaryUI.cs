@@ -131,7 +131,7 @@ namespace HealthcareSystem.UI
 
         public void EditAppointementByRequest(CheckAppointementRequest cr)
         {
-            AppointmentRequests ar = secretaryControllers.appointmentRequestsController.FindById(cr.appointmentId);
+            AppointmentRequests ar = secretaryControllers.appointmentRequestsController.GetById(cr.appointmentId);
             Appointment a = secretaryControllers.AppointmentController.GetById(ar.appointmentId);
             a.dateTime = ar.dateTime;
             a.doctorId = ar.doctorId;
@@ -457,7 +457,7 @@ namespace HealthcareSystem.UI
                         }
                         else if (cr.RequestState == RequestState.EDIT)
                         {
-                            AppointmentRequests ar = secretaryControllers.appointmentRequestsController.FindById(cr.appointmentId);
+                            AppointmentRequests ar = secretaryControllers.appointmentRequestsController.GetById(cr.appointmentId);
                         //    a.EditAppointementByRequest(cr, ar);
                             Console.WriteLine("Appointement is succesfully edited!");
                         }
