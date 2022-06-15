@@ -9,18 +9,21 @@ using HealthcareSystem.Entity.ReferralModel;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;
+using Autofac;
 
-
-namespace HealthCareSystem.Entity.UserModel
+namespace HealthcareSystem.Entity.UserModel
 {
     class UserService
     {
 
         public SecretaryControllers secretaryControllers { get; set; }
+        public HealthCardService healthCardService { get; set; }    
 
         public UserService(SecretaryControllers sc)
         {
             this.secretaryControllers = sc;
+            this.healthCardService = Globals.container.Resolve<HealthCardService>();
+            
         }
 
         public User AddUser()
@@ -172,7 +175,7 @@ namespace HealthCareSystem.Entity.UserModel
                     Console.WriteLine("Last name: " + " " + patients[i].lastName);
                     Console.WriteLine("Email: " + " " + patients[i].email);
                     HealthCard found = null;
-                    List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
+                    List<HealthCard> healthCards = secretaryControllers.healthCardController.GetAll();
                     foreach (HealthCard healthCard in healthCards)
                     {
                         if (healthCard.patientId == patients[i]._id)
@@ -182,7 +185,7 @@ namespace HealthCareSystem.Entity.UserModel
                     }
                     Console.WriteLine("Weight: " + found.weight.ToString());
                     Console.WriteLine("height: " + found.height.ToString());
-                    Console.WriteLine("Allergies: " + secretaryControllers.healthCardController.GetAllergies(found));
+                    Console.WriteLine("Allergies: " + healthCardService.GetAllergies(found));
                 }
             }
         }
@@ -198,7 +201,7 @@ namespace HealthCareSystem.Entity.UserModel
                     Console.WriteLine("Last name: " + " " + patients[i].lastName);
                     Console.WriteLine("Email: " + " " + patients[i].email);
                     HealthCard found = null;
-                    List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
+                    List<HealthCard> healthCards = secretaryControllers.healthCardController.GetAll();
                     foreach (HealthCard healthCard in healthCards)
                     {
 

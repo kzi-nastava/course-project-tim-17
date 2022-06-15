@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 using HealthcareSystem.Entity.HealthCardModel;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
-using HealthCareSystem.Entity.UserModel;
-
+using HealthcareSystem.Entity.UserModel;
+using Autofac;
 namespace HealthcareSystem.UI.Secretary
 {
     class CRUD
     {
         public SecretaryControllers secretaryControllers { get; set; }
-
+        public HealthCardService healthCardService { get; set; }
 
         public CRUD(SecretaryControllers secretaryControllers)
         {
 
             this.secretaryControllers = secretaryControllers;
-
+            this.healthCardService = Globals.container.Resolve<HealthCardService>();
         }
 
         public void HandleCRUD(string option)
@@ -30,8 +30,8 @@ namespace HealthcareSystem.UI.Secretary
                 User patient = us.AddPatient();
                 if (patient != null)
                 {
-                    HealthCardService hc = new HealthCardService(secretaryControllers, patient);
-                    hc.CreateHealthCard();
+                   
+                    healthCardService.CreateHealthCard(patient);
                     Console.WriteLine("Patient is sucessfully created! ");
                 }
                 else
@@ -47,12 +47,11 @@ namespace HealthcareSystem.UI.Secretary
             else if (option.Equals("c"))
             {                                                                            // update patient
                 User patient = us.UpdateUser();
-                HealthCardService hc = new HealthCardService(secretaryControllers, patient);
                 Console.WriteLine("To edit patient's healthcard enter '1': ");
                 string toEdit = Console.ReadLine();
                 if (toEdit.Equals("1"))
                 {
-                    hc.UpdateHealthCard();
+                    healthCardService.UpdateHealthCard(patient);
                 }
                 Console.WriteLine("Patient is sucessfully updated! ");
             }
@@ -61,8 +60,8 @@ namespace HealthcareSystem.UI.Secretary
                 User patient = us.DeleteUser();
                 if (patient != null)
                 {
-                    HealthCardService hc = new HealthCardService(secretaryControllers, patient);
-                    hc.DeleteHealthCard();
+                   
+                    healthCardService.DeleteHealthCard(patient);
                     Console.WriteLine("Patient is sucessfully deleted! ");
                 }
                 else

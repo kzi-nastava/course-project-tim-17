@@ -22,7 +22,7 @@ namespace HealthcareSystem.RoleControllers
     {
 
         public UserController userController;
-        public HealthCardController healthCardController;
+        public HealthCardRepository healthCardController;
         public BlockedUserController blockedUserController;
         public CheckAppointmentRequestController checkAppointemtRequestController;
         public AppointmentRequestsController appointmentRequestsController;
@@ -35,7 +35,7 @@ namespace HealthcareSystem.RoleControllers
         public SecretaryControllers(IMongoDatabase database)
         {
             this.userController = new UserController(database);
-            this.healthCardController = new HealthCardController(database);
+            this.healthCardController = new HealthCardRepository();
             this.blockedUserController = new BlockedUserController(database);
             this.checkAppointemtRequestController = new CheckAppointmentRequestController(database);
             this.AppointmentController = new AppointmentRepository();
