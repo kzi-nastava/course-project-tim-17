@@ -21,13 +21,13 @@ namespace HealthcareSystem.RoleControllers
     {
 
         public AppointmentRepository appointmentController;
-        public DoctorController doctorController;
+        public DoctorRepository doctorController;
         public RoomRepository roomController;
         public UserActionController userActionController;
         public BlockedUserController blockedUserController;
         public AppointmentRequestsRepository appointmentRequestsController;
         public CheckAppointmentRequestController checkAppointmentRequestController;
-        public CheckController checkController;
+        public CheckRepository checkController;
         public HealthCardRepository healthCardController;
         public DoctorSurveysController doctorSurveysController;
         public HospitalSurveysController hospitalSurveysController;
@@ -36,13 +36,13 @@ namespace HealthcareSystem.RoleControllers
         public PatientRepositories(IMongoDatabase database)
         {
             this.appointmentController = new AppointmentRepository();
-            this.doctorController = new DoctorController(database);
+            this.doctorController = new DoctorRepository();
             this.roomController = new RoomRepository();
             this.userActionController = new UserActionController(database);
             this.blockedUserController = new BlockedUserController(database);
             this.appointmentRequestsController = new AppointmentRequestsRepository();
             this.checkAppointmentRequestController = new CheckAppointmentRequestController(database);
-            this.checkController = new CheckController(database);
+            this.checkController = new CheckRepository();
             this.healthCardController = new HealthCardRepository();
             this.doctorSurveysController = new DoctorSurveysController(database);
             this.hospitalSurveysController = new HospitalSurveysController(database);

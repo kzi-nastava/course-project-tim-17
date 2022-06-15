@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HealthcareSystem.Entity.CheckModel;
+using HealthcareSystem.Entity.DoctorModel;
+using HealthcareSystem.Entity.ReferralModel;
 
 namespace HealthcareSystem
 {
@@ -30,6 +33,14 @@ namespace HealthcareSystem
             builder.RegisterType<HealthCardService>().AsSelf();
             builder.RegisterType<AppointmentRequestsRepository>().As<IAppointmentRequestRepository>();
             builder.RegisterType<AppointmentRequestsService>().AsSelf();
+            builder.RegisterType<CheckRepository>().As<ICheckRepository>();
+            builder.RegisterType<CheckService>().AsSelf();
+            builder.RegisterType<FreeDayRequestRepository>().As<IFreeDayRequestRepository>();
+            builder.RegisterType<FreeDayRequestService>().AsSelf();
+            builder.RegisterType<ReferralRepository>().As<IReferralRepository>();
+            builder.RegisterType<ReferralService>().AsSelf();
+            builder.RegisterType<DoctorRepository>().As<IDoctorRepository>();
+            builder.RegisterType<DoctorService>().AsSelf();
         }
     }
 }

@@ -18,17 +18,15 @@ namespace HealthcareSystem.UI.DoctorView
     partial class CheckForm : Form
     {
         public User patient { get; set; }
-        public DoctorRepositories doctorRepositories { get; set; }
 
         public HealthCard patientsHealthCard { get; set; }
         public Appointment appointment { get; set; }
 
 
-        public CheckForm(Appointment apointment,User patient, DoctorRepositories doctorRepositories, HealthCard patientsHealthCard)
+        public CheckForm(Appointment apointment,User patient, HealthCard patientsHealthCard)
         {
             InitializeComponent();
             this.appointment = apointment;
-            this.doctorRepositories = doctorRepositories;
             this.patient = patient;
             this.patientsHealthCard = patientsHealthCard;
         }
@@ -57,26 +55,26 @@ namespace HealthcareSystem.UI.DoctorView
 
         private void changeWeightBtn_Click(object sender, EventArgs e)
         {
-            ChangeWeightForm changeWeightForm = new ChangeWeightForm(doctorRepositories, patientsHealthCard);
+            ChangeWeightForm changeWeightForm = new ChangeWeightForm(patientsHealthCard);
             changeWeightForm.Show();
         }
 
         private void changeHeightBtn_Click(object sender, EventArgs e)
         {
-            ChangeHeightForm changeHeightForm = new ChangeHeightForm(doctorRepositories, patientsHealthCard);
+            ChangeHeightForm changeHeightForm = new ChangeHeightForm(patientsHealthCard);
             changeHeightForm.Show();
         }
 
         private void makeReferralBtn_Click(object sender, EventArgs e)
         {
-            MakeReferralForm makeReferralForm = new MakeReferralForm(doctorRepositories, patientsHealthCard);
+            MakeReferralForm makeReferralForm = new MakeReferralForm(patientsHealthCard);
             makeReferralForm.Show();
         }
 
         private void performCheckupBtn_Click(object sender, EventArgs e)
         {
             
-            PerfomeCheckupForm perfomeCheckupForm = new PerfomeCheckupForm(appointment, patientsHealthCard, doctorRepositories);
+            PerfomeCheckupForm perfomeCheckupForm = new PerfomeCheckupForm(appointment, patientsHealthCard);
             perfomeCheckupForm.Show();
         }
     }

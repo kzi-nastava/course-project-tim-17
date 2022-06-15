@@ -73,7 +73,7 @@ namespace HealthcareSystem.UI.DoctorView
                 Appointment certainAppointent = doctorRepositories.apointmentController.GetById(new MongoDB.Bson.ObjectId(selectedAppointmentId));
                 User patient = doctorRepositories.userController.FindById(certainAppointent.patientId);
                 HealthCard patientsHealthCard = doctorRepositories.healthCardController.FindByPatientId(patient._id);
-                CheckForm checkForm = new CheckForm(certainAppointent, patient, doctorRepositories, patientsHealthCard);
+                CheckForm checkForm = new CheckForm(certainAppointent, patient, patientsHealthCard);
                 checkForm.Show();
             }
             else

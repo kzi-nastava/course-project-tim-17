@@ -36,7 +36,7 @@ namespace HealthcareSystem.UI.Patient
 
         public void setDoctor()
         {
-            Doctor doctor = patientRepositories.doctorController.findById(doctorId);
+            Doctor doctor = patientRepositories.doctorController.GetById(doctorId);
             if (doctor != null)
             {
                 string doctorName = doctor.name + " " + doctor.lastName;
@@ -238,7 +238,7 @@ namespace HealthcareSystem.UI.Patient
                         allRooms.Remove(room);
                     }
                 }
-                Doctor doctor = patientRepositories.doctorController.findByName(doctorBox.SelectedItem.ToString().Split(" ")[0], doctorBox.SelectedItem.ToString().Split(" ")[1]);
+                Doctor doctor = patientRepositories.doctorController.GetByNameAndLastName(doctorBox.SelectedItem.ToString().Split(" ")[0], doctorBox.SelectedItem.ToString().Split(" ")[1]);
                 Appointment appointmentsubmit = new Appointment(date, appointmentType, doctor._id, allRooms[0]._id, loggedUser._id);
                 patientRepositories.appointmentController.Insert(appointmentsubmit);
                 warningLabel.Text = "Appointment scheduled sucessfully!";

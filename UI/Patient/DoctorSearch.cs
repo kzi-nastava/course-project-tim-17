@@ -84,7 +84,7 @@ namespace HealthcareSystem.UI.Patient
         //Trazi sve informacije i dodaje u glavnu listu sa informacijama
         void findInfo()
         {
-            List<Doctor> allDoctors = patientRepositories.doctorController.getAllDoctors();
+            List<Doctor> allDoctors = patientRepositories.doctorController.GetAll();
             DoctorInfo doctorInfo = new DoctorInfo();
             foreach (Doctor doctor in allDoctors)
             {
@@ -261,7 +261,7 @@ namespace HealthcareSystem.UI.Patient
         private void appointmentBtn_Click(object sender, EventArgs e)
         {
             string[] a = this.sortComboBox.GetItemText(doctorComboBox.SelectedItem).Split(" ");
-            Doctor doctor = patientRepositories.doctorController.findByName(a[0], a[1]);
+            Doctor doctor = patientRepositories.doctorController.GetByNameAndLastName(a[0], a[1]);
             this.Hide();
             RegularScheduling regularScheduling = new RegularScheduling(loggedUser, patientRepositories, doctor._id);
             regularScheduling.Show();

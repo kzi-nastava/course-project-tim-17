@@ -10,18 +10,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Autofac;
 
 namespace HealthcareSystem.UI.DoctorView
 {
     partial class FreeDayRequestForm : Form
     {
         public Doctor doctor;
-        public FreeDayRequestController freeDayRequestRepository;
+        public FreeDayRequestService freeDayRequestService;
         public IMongoDatabase database;
-        public FreeDayRequestForm(IMongoDatabase database, Doctor doctor)
+        public FreeDayRequestForm(Doctor doctor)
         {
             this.doctor = doctor;
-            this.freeDayRequestRepository = new FreeDayRequestController(database);
+            this.freeDayRequestService = Globals.container.Resolve<FreeDayRequestService>();
             this.database = database;
             InitializeComponent();
         }
@@ -39,7 +40,7 @@ namespace HealthcareSystem.UI.DoctorView
                 {
                     FreeDayRequest freeDayRequest = new FreeDayRequest(dateFrom, dateTo, doctor._id, description);
                     freeDayRequest.status = Entity.Enumerations.Status.ACCEPTED;
-                    freeDayRequestRepository.InsertToCollection(freeDayRequest);
+                    freeDayRequestService.Insert(freeDayRequest);
                     MessageBox.Show("Request created succesfully");
                     this.Dispose();
                 }
@@ -56,7 +57,7 @@ namespace HealthcareSystem.UI.DoctorView
                 if (IsScheduleFree(dateFrom, dateTo))
                 {
                     FreeDayRequest freeDayRequest = new FreeDayRequest(dateFrom, dateTo, doctor._id, description);
-                    freeDayRequestRepository.InsertToCollection(freeDayRequest);
+                    freeDayRequestService.Insert(freeDayRequest);
                     MessageBox.Show("Request created succesfully");
                     this.Dispose();
                 }

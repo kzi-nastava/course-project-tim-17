@@ -5,6 +5,7 @@ using HealthcareSystem.Entity.DrugModel;
 using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.HealthCardModel;
 using HealthcareSystem.RoleControllers;
+using Autofac;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,15 +20,20 @@ namespace HealthcareSystem.UI.DoctorView
 {
     partial class PerfomeCheckupForm : Form
     {
-        public DoctorRepositories doctorRepositories;
+        public HealthCardService healthCardService;
+        public CheckService checkService;
+        public DrugService drugService;
         public HealthCard patientHealthCard;
         public Appointment appointment;
-        public PerfomeCheckupForm(Appointment appointment, HealthCard patientHealthCard, DoctorRepositories doctorRepositories)
+        public PerfomeCheckupForm(Appointment appointment, HealthCard patientHealthCard)
         {
             InitializeComponent();
             this.appointment = appointment;
             this.patientHealthCard = patientHealthCard;
-            this.doctorRepositories = doctorRepositories;
+            this.healthCardService = Globals.container.Resolve<HealthCardService>();
+            this.checkService = Globals.container.Resolve<CheckService>();
+            this.drugService = Globals.container.Resolve<DrugService>();
+
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -54,10 +60,10 @@ namespace HealthcareSystem.UI.DoctorView
             {
                 Check check = new Check(appointment._id, anamnesis, prescription);
                 patientHealthCard.checks.Add(check._id);
-                doctorRepositories.healthCardController.Update(patientHealthCard);
-                doctorRepositories.checkController.InsertToCollection(check);
+                healthCardService.Update(patientHealthCard);
+                checkService.Instert(check);
                 MessageBox.Show("Appointment is finished!");
-                UpdateDynamicEquimptentForm updateDynamicEquimptentForm = new UpdateDynamicEquimptentForm(doctorRepositories, appointment);
+                UpdateDynamicEquimptentForm updateDynamicEquimptentForm = new UpdateDynamicEquimptentForm(appointment);
                 updateDynamicEquimptentForm.Show();
                 this.Dispose();
 
@@ -120,8 +126,13 @@ namespace HealthcareSystem.UI.DoctorView
         }
         private Drug GetDrug()
         {
-            Drug drug = doctorRepositories.drugController.FindByDrugName(drugNameTextBox.Text);
+            Drug drug = drugService.FindDrugByName(drugNameTextBox.Text);
             return drug;
+
+        }
+
+        private void PerfomeCheckupForm_Load(object sender, EventArgs e)
+        {
 
         }
     }

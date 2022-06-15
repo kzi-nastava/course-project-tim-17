@@ -237,6 +237,7 @@
             this.Controls.Add(this.desctriptionTextBox);
             this.Name = "PerfomeCheckupForm";
             this.Text = "PerfomeCheckupForm";
+            this.Load += new System.EventHandler(this.PerfomeCheckupForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

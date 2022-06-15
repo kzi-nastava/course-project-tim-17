@@ -53,7 +53,7 @@ partial class DoctorGUI : Form
 
         private void makeRequestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FreeDayRequestForm freeDayRequestForm = new FreeDayRequestForm(database, loggedUser);
+            FreeDayRequestForm freeDayRequestForm = new FreeDayRequestForm(loggedUser);
             freeDayRequestForm.Show();
         }
     }
