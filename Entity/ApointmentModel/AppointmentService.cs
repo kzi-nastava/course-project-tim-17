@@ -125,7 +125,24 @@ namespace HealthcareSystem.Entity.ApointmentModel
             a.roomId = ar.roomId;
             appointmentRepository.Update(a);
         }
+        public Appointment GetByDateTime(DateTime dateTime)
+        {
+            return appointmentRepository.GetAppointmentByDateTime(dateTime);
+        }
 
+        public Appointment GetByDateTimeAndRoom(Room room, DateTime dateTime)
+        {
+            return appointmentRepository.GetAppointmentByDateTimeAndRoom(room, dateTime);
+        }
+        public Appointment GetById(ObjectId id)
+        {
+            return appointmentRepository.GetById(id);
+        }
+
+        public List<Appointment> GetDoctorSchedule(ObjectId doctorId, DateTime startingDate, DateTime endingDate)
+        {
+            return appointmentRepository.GetDoctorSchedule(doctorId, startingDate, endingDate);
+        }
 
 
     }

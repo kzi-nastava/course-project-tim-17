@@ -15,5 +15,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
         void DeleteApointmentByPatientId(ObjectId id);
         Appointment GetAppointmentByDateTime(DateTime dateTime);
         Appointment GetAppointmentByDateTimeAndRoom(Room room, DateTime dateTime);
+
+        List<Appointment> GetDoctorSchedule(ObjectId doctorId, DateTime startingDate, DateTime endingDate);
     }
 }
