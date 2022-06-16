@@ -74,6 +74,10 @@ namespace HealthcareSystem.Entity.UserModel
           collection.ReplaceOne(item => item._id == user._id, user);
 
         }
+        public User GetByNameAndLastName(string name, string lastName)
+        {
+            return collection.Find(item => item.name == name && item.lastName == lastName).FirstOrDefault();
+        }
     }
 
     }

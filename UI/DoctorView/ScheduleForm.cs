@@ -14,20 +14,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Autofac;
 
 namespace HealthcareSystem.UI.DoctorView
 {
     partial class ScheduleForm : Form
     {
-        Doctor loggedUser { get; set; }
-        DoctorRepositories doctorRepositories { get; set; }
-        List<Appointment> apointments { get; set; }
-        public ScheduleForm(Doctor loggedUser, DoctorRepositories doctorRepositories, List<Appointment> apointments)
+        public Doctor loggedUser { get; set; }
+        public List<Appointment> apointments { get; set; }
+
+        public RoomService roomService;
+        public HealthCardService healthCardService;
+        public UserService userService;
+        public AppointmentService appointmentService;
+
+        public ScheduleForm(Doctor loggedUser, List<Appointment> apointments)
         {
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.doctorRepositories = doctorRepositories;
             this.apointments = apointments;
+            this.roomService = Globals.container.Resolve<RoomService>();
+            this.healthCardService = Globals.container.Resolve<HealthCardService>();
+            this.userService = Globals.container.Resolve<UserService>();
+            this. appointmentService = Globals.container.Resolve<AppointmentService>();
         }
 
         private void ScheduleForm_Load(object sender, EventArgs e)
@@ -37,8 +46,8 @@ namespace HealthcareSystem.UI.DoctorView
             foreach (Appointment appointment in apointments)
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
-                User patient = doctorRepositories.userController.GetById(appointment.patientId);
-                Room room = doctorRepositories.roomController.GetById(appointment.roomId);
+                User patient = userService.GetById(appointment.patientId);
+                Room room = roomService.GetById(appointment.roomId.ToString());
 
 
 
@@ -70,9 +79,9 @@ namespace HealthcareSystem.UI.DoctorView
             string selectedAppointmentId = (string)dataGridView1.Rows[rowindex].Cells[0].Value;
             if (dataGridView1.Rows[rowindex].Cells[0].Value != null)
             {
-                Appointment certainAppointent = doctorRepositories.apointmentController.GetById(new MongoDB.Bson.ObjectId(selectedAppointmentId));
-                User patient = doctorRepositories.userController.GetById(certainAppointent.patientId);
-                HealthCard patientsHealthCard = doctorRepositories.healthCardController.FindByPatientId(patient._id);
+                Appointment certainAppointent = appointmentService.GetById(new MongoDB.Bson.ObjectId(selectedAppointmentId));
+                User patient = userService.GetById(certainAppointent.patientId);
+                HealthCard patientsHealthCard = healthCardService.GetByPatientId(patient._id);
                 CheckForm checkForm = new CheckForm(certainAppointent, patient, patientsHealthCard);
                 checkForm.Show();
             }

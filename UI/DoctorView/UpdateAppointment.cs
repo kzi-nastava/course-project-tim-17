@@ -14,18 +14,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Autofac;
 
 namespace HealthcareSystem.UI.DoctorView
 {
     partial class UpdateAppointment : Form
     {
-        DoctorRepositories doctorRepositories { get; set; }
-        Appointment appointment { get; set; }
-        public UpdateAppointment(DoctorRepositories doctorRepositories, Appointment appointment)
+
+        public Appointment appointment { get; set; }
+        public RoomService roomService;
+        public UpdateAppointment(Appointment appointment)
         {
             InitializeComponent();
-            this.doctorRepositories = doctorRepositories;
             this.appointment = appointment;
+            this.roomService = Globals.container.Resolve<RoomService>();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -73,7 +75,7 @@ namespace HealthcareSystem.UI.DoctorView
             {
                 roomType = RoomType.OPERATION_ROOM;
             }
-            Room room = doctorRepositories.roomController.roomCollection.Find(item => item.name == roomTextBox.Text && item.type == roomType).FirstOrDefault();
+            Room room = roomService.GetByNameAndType(roomTextBox.Text, roomType);
             return room;
         }
 

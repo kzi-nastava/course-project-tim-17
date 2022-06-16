@@ -11,18 +11,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Autofac;
 
 namespace HealthcareSystem.UI.DoctorView
 {
     partial class DatePickerForm : Form
     {
         public Doctor loggedUser { get; set; }
-        public DoctorRepositories doctorRepositories { get; set; }
-        public DatePickerForm(Doctor LoggedUser, DoctorRepositories doctorRepositories)
+        public AppointmentService appointmentService;
+        public DatePickerForm(Doctor LoggedUser)
         {
             InitializeComponent();
-            this.loggedUser = LoggedUser; 
-            this.doctorRepositories = doctorRepositories;
+            this.loggedUser = LoggedUser;
+            this.appointmentService = Globals.container.Resolve<AppointmentService>();
+
         
         }
 
@@ -34,17 +36,12 @@ namespace HealthcareSystem.UI.DoctorView
         private void showBtn_Click(object sender, EventArgs e)
         {
             DateTime pickedDateTime = GetDate();
-            List<Appointment> certanAppointments = GetCertainAppointments(pickedDateTime);
-            ScheduleForm scheduleForm = new ScheduleForm(loggedUser, doctorRepositories, certanAppointments);
+            List<Appointment> certanAppointments = appointmentService.GetDoctorSchedule(loggedUser._id, pickedDateTime, pickedDateTime.AddDays(4));
+            ScheduleForm scheduleForm = new ScheduleForm(loggedUser, certanAppointments);
             scheduleForm.Show();
             this.Dispose();
         }
 
-        private List<Appointment> GetCertainAppointments(DateTime pickedDateTime)
-        {
-            return doctorRepositories.apointmentController.appointmentCollection
-               .Find(item => item.doctorId == loggedUser._id & item.dateTime > pickedDateTime & item.dateTime < pickedDateTime.AddDays(4)).ToList();
-        }
 
         private DateTime GetDate()
         {

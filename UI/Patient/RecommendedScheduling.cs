@@ -188,7 +188,7 @@ namespace HealthcareSystem.UI.Patient
 
         void submit(DateTime dateTime, ObjectId doctor)
         {
-            List<Room> allRooms = patientRepositories.roomController.roomCollection.Find(Item => true).ToList();
+            List<Room> allRooms = patientRepositories.roomController.collection.Find(Item => true).ToList();
             List<Appointment> allApointments = patientRepositories.appointmentController.appointmentCollection.Find(Item => true).ToList();
             foreach (Appointment appointment in allApointments)
             {
@@ -238,7 +238,7 @@ namespace HealthcareSystem.UI.Patient
         {
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
             List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
-            List<Room> allRooms = patientRepositories.roomController.roomCollection.Find(Item => true).ToList();
+            List<Room> allRooms = patientRepositories.roomController.collection.Find(Item => true).ToList();
             ObjectId doctorId = allDoctors[0]._id;
             foreach(Doctor doctor in allDoctors)
             {

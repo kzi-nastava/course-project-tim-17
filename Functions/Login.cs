@@ -86,7 +86,6 @@ namespace HealthcareSystem.Functions
             }
 
             else if(loggedUser.role == Role.DOCTOR) {
-                DoctorRepositories doctorRepositories = new DoctorRepositories(database);
                 DoctorGUI doctorGUI = new DoctorGUI((Doctor)loggedUser, database);
                 doctorGUI.Show();
 

@@ -78,7 +78,7 @@ namespace HealthcareSystem.UI.Patient
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
             List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
             List<Appointment> allApointments = patientRepositories.appointmentController.appointmentCollection.Find(Item => true).ToList();
-            List<Room> allRooms = patientRepositories.roomController.roomCollection.Find(Item => true).ToList();
+            List<Room> allRooms = patientRepositories.roomController.collection.Find(Item => true).ToList();
             List<ObjectId> unavailableRoomId = new List<ObjectId>();
             List<ObjectId> unavailableDoctorId = new List<ObjectId>();
             foreach (Appointment appointment in allApointments)
@@ -201,7 +201,7 @@ namespace HealthcareSystem.UI.Patient
                 warningLabel.Visible = false;
                 DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
                 List<Appointment> allApointments = patientRepositories.appointmentController.appointmentCollection.Find(Item => true).ToList();
-                List<Room> allRooms = patientRepositories.roomController.roomCollection.Find(Item => true).ToList();
+                List<Room> allRooms = patientRepositories.roomController.collection.Find(Item => true).ToList();
                 List<ObjectId> unavailableRoomId = new List<ObjectId>();
                 foreach (Appointment appointment in allApointments)
                 {
