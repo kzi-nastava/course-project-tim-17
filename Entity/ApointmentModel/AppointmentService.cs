@@ -103,6 +103,10 @@ namespace HealthcareSystem.Entity.ApointmentModel
             appointmentRepository.Update(appointment);
         }
 
+        public List<Appointment> GetAllByUser(string id)
+        {
+            return appointmentRepository.GetAllByUser(new MongoDB.Bson.ObjectId(id)).ToList();
+        }
         public List<Appointment> GetAll()
         {
             return appointmentRepository.GetAll();

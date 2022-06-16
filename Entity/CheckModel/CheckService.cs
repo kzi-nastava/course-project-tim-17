@@ -19,6 +19,11 @@ namespace HealthcareSystem.Entity.CheckModel
             return this.checkRepository.GetAll();
         }
 
+        public List<Check> GetAllById(string id)
+        {
+            return this.checkRepository.GetAllById(new MongoDB.Bson.ObjectId(id));
+        }
+
         public Check GetById(string id)
         {
             return this.checkRepository.GetById(new MongoDB.Bson.ObjectId(id));

@@ -56,6 +56,16 @@ namespace HealthcareSystem.Entity.Survey
             return doctorSurveysAverages;
         }
 
+        public void InsertDoctorSurvey(DoctorSurveys doctorSurvey)
+        {
+            doctorSurveyRepository.Insert(doctorSurvey);
+        }
+
+        public void InsertHospitalSurvey(HospitalSurveys hospitalSurvey)
+        {
+            hospitalSurveyRepository.Insert(hospitalSurvey);
+        }
+
         public DoctorSurveysAverages GetDoctorSurveyAverages(Doctor doctor)
         {
             DoctorSurveysAverages doctorSurveyAverages = new DoctorSurveysAverages();
