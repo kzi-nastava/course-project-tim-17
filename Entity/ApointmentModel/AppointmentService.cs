@@ -126,8 +126,16 @@ namespace HealthcareSystem.Entity.ApointmentModel
             appointmentRepository.Update(a);
         }
 
+        public List<Appointment> GetAllByDoctor(ObjectId id) {
+
+            return appointmentRepository.GetAllByDoctor(id);
+        }
 
 
+        public Appointment GetById(ObjectId id)
+        {
+            return appointmentRepository.GetById(id);
+        }
     }
 
 

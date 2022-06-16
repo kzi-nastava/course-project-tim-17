@@ -6,13 +6,13 @@ using HealthcareSystem.UI;
 using HealthcareSystem.UI.DoctorView;
 using HealthcareSystem.UI.ManagerView;
 using Autofac;
-using HealthcareSystem.UI.Secretary;
+using HealthcareSystem.UI.SecretaryView;
 using HealthcareSystem.UI.Patient;
 
 
 using HealthcareSystem.UI.Patient;
 
-using HealthcareSystem.UI.Secretary;
+using HealthcareSystem.UI.SecretaryView;
 
 using MongoDB.Driver;
 

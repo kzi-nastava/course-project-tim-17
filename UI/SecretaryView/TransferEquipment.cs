@@ -9,7 +9,7 @@ using HealthcareSystem.Entity.RoomModel;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.RoleControllers;
 
-namespace HealthcareSystem.UI.Secretary
+namespace HealthcareSystem.UI.SecretaryView
 {
 
     class TransferEquipment { 

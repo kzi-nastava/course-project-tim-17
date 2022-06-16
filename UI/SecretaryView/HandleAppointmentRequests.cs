@@ -11,7 +11,7 @@ using HealthcareSystem.Entity.Enumerations;
 using HealthCareSystem.Entity.CheckAppointementRequestModel;
 
 
-namespace HealthcareSystem.UI.Secretary
+namespace HealthcareSystem.UI.SecretaryView
 {
     internal class HandleAppointmentRequests
     {
