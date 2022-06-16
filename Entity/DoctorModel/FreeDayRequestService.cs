@@ -1,4 +1,5 @@
-﻿using HealthcareSystem.Entity.Enumerations;
+﻿using Autofac;
+using HealthcareSystem.Entity.Enumerations;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
@@ -11,10 +12,12 @@ namespace HealthcareSystem.Entity.DoctorModel
 {
     class FreeDayRequestService
     {
+        public DoctorService doctorService { get; set; }
         public IFreeDayRequestRepository freeDayRequestRepository;
         public FreeDayRequestService(IFreeDayRequestRepository freeDayRequestRepository)
         {
             this.freeDayRequestRepository = freeDayRequestRepository;
+            this.doctorService = Globals.container.Resolve<DoctorService>();
         }
         public void Insert(FreeDayRequest freeDayRequest)
         {
@@ -52,23 +55,33 @@ namespace HealthcareSystem.Entity.DoctorModel
         public FreeDayRequest GetById(ObjectId id) { 
             
             return freeDayRequestRepository.GetById(id);
+
+
         }
 
-
+        public List<FreeDayRequest> GetAll() { 
+        
+            return freeDayRequestRepository.GetAll();
+        }
         public void PrintAllFreeDayRequests()
         {
             List<FreeDayRequest> freeDayRequests = freeDayRequestRepository.GetAll();
             Console.WriteLine("FREE DAYS REQUESTS: ");
             Console.WriteLine();
+            int i = 0;
             foreach (FreeDayRequest fr in freeDayRequests)
             {
-                Console.WriteLine(fr.doctorId);
+                i += 1;
+                Doctor doc = doctorService.GetById(fr.doctorId);
+                Console.WriteLine(i);
+                Console.WriteLine("REQUEST ID: " + fr._id);
                 Console.WriteLine("FROM: " + fr.startOf);
                 Console.WriteLine("TO: " + fr.endOf);
                 Console.WriteLine("DESCRIPTION: " + fr.description);
                 Console.WriteLine("STATUS: " + fr.status);
+                Console.WriteLine("DOCTOR EMAIL: " + doc.email);
                 Console.WriteLine();
-                ;
+                
             }
         }
 

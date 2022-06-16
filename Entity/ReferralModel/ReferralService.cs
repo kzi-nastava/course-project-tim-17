@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace HealthcareSystem.Entity.ReferralModel
 {
@@ -34,6 +35,10 @@ namespace HealthcareSystem.Entity.ReferralModel
         public Referral GetById(Referral referral)
         {
             return ReferralRepository.GetById(referral._id);
+        }
+        public Referral GetById(ObjectId id)
+        {
+            return ReferralRepository.GetById(id);
         }
     }
 }
