@@ -15,18 +15,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Autofac;
 
 namespace HealthcareSystem.UI.DoctorView
 {
     partial class AppointmentCreationForm : Form
     {
         public Doctor loggedUser { get; set; }
-        public DoctorRepositories doctorRepositories { get; set; }
-        public AppointmentCreationForm(Doctor loggedUser, DoctorRepositories doctorRepositories)
+        public RoomService roomService;
+        public AppointmentService appointmentService;
+        
+        public AppointmentCreationForm(Doctor loggedUser)
         {
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.doctorRepositories = doctorRepositories;
+            this.roomService = Globals.container.Resolve<RoomService>();
+            this.appointmentService = Globals.container.Resolve<AppointmentService>();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -71,7 +75,7 @@ namespace HealthcareSystem.UI.DoctorView
             }
             else
             {
-                doctorRepositories.apointmentController.Insert(new Appointment(dateTime, apointmentType, loggedUser._id, room._id, patient._id));
+                appointmentService.Insert(new Appointment(dateTime, apointmentType, loggedUser._id, room._id, patient._id));
                 MessageBox.Show("Appointment deleted succesfully!");
                 this.Dispose();
                 
@@ -96,12 +100,12 @@ namespace HealthcareSystem.UI.DoctorView
         }
         public Room GetRoom(RoomType roomType)
         {
-            Room room = doctorRepositories.roomController.roomCollection.Find(item => item.name == roomNameTextBox.Text && item.type == roomType).FirstOrDefault();
+            Room room = roomService.GetByNameAndType(roomNameTextBox.Text, roomType);
             return room;
         }
         public User GetPatient()
         {
-            User patient = doctorRepositories.userController.userCollection.Find(item => item.name == patientNameTextBox.Text && item.lastName == patientLastNameTextBox.Text).FirstOrDefault();
+            User patient = Globals.container.Resolve<UserService>().GetByNameAndLastName(patientNameTextBox.Text, patientLastNameTextBox.Text);
             return patient;
         }
 
@@ -118,8 +122,7 @@ namespace HealthcareSystem.UI.DoctorView
                 return true;
             }
 
-            Appointment unavailableApointment = doctorRepositories.apointmentController.appointmentCollection
-                .Find(item => item.dateTime == dateTime).FirstOrDefault();
+            Appointment unavailableApointment = appointmentService.GetByDateTime(dateTime);
             if (unavailableApointment != null)
             {
                 return true;
@@ -133,8 +136,7 @@ namespace HealthcareSystem.UI.DoctorView
             {
                 return true;
             }
-            Appointment apointment = doctorRepositories.apointmentController.appointmentCollection
-                .Find(item => item.dateTime == dateTime & item.roomId == room._id).FirstOrDefault();
+            Appointment apointment = appointmentService.GetByDateTimeAndRoom(room, dateTime);
             if (apointment != null)
             {
                 return true;

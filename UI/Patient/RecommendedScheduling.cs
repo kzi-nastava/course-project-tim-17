@@ -29,18 +29,18 @@ namespace HealthcareSystem.UI.Patient
         public AppointmentService appointmentService { get; set; }
         public RoomService roomService { get; set; }
         public BlockedUserService blockedUserService { get; set; }
-        public PatientRepositories patientRepositories { get; set; }
+        public DoctorService doctorService { get; set; }
         public string Method { get; set; }
         public ObjectId mainDoctorId { get; set; }
-        public RecommendedScheduling(User loggedUser, PatientRepositories patientRepositories)
+        public RecommendedScheduling(User loggedUser)
         {
             roomService = Globals.container.Resolve<RoomService>();
             userActionService = Globals.container.Resolve<UserActionService>();
             appointmentService = Globals.container.Resolve<AppointmentService>();
             blockedUserService = Globals.container.Resolve<BlockedUserService>();
+            doctorService = Globals.container.Resolve<DoctorService>();
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.patientRepositories = patientRepositories;
         }
 
         public void trollCheck()
@@ -84,7 +84,7 @@ namespace HealthcareSystem.UI.Patient
         {
             Method = "Doctor";
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
-            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = doctorService.GetAll();
             List<Appointment> allApointments = appointmentService.GetAll();
             List<DateTime> busyDates = new List<DateTime>();
             List<DateTime> availableDates = new List<DateTime>();
@@ -159,7 +159,7 @@ namespace HealthcareSystem.UI.Patient
         {
             Method = "Date";
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
-            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = doctorService.GetAll();
             List<Appointment> allApointments = appointmentService.GetAll();
             List<ObjectId> unavailableDoctors = new List<ObjectId>();
             foreach(Appointment appointment in allApointments)
@@ -246,7 +246,7 @@ namespace HealthcareSystem.UI.Patient
         int CheckAvailability()
         {
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
-            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = doctorService.GetAll();
             List<Room> allRooms = roomService.GetAll();
             ObjectId doctorId = allDoctors[0]._id;
             foreach(Doctor doctor in allDoctors)
@@ -303,7 +303,7 @@ namespace HealthcareSystem.UI.Patient
         void loadDoctor()
         {
             doctorBox.Items.Clear();
-            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = doctorService.GetAll();
             foreach (Doctor doctor in allDoctors)
             {
                 string doctorName = doctor.name + " " + doctor.lastName;
@@ -392,7 +392,7 @@ namespace HealthcareSystem.UI.Patient
 
         private void submitBtn_Click(object sender, EventArgs e)
         {
-            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = doctorService.GetAll();
             ObjectId doctorId = allDoctors[0]._id;
             DateTime date;
             foreach (Doctor doctor in allDoctors)

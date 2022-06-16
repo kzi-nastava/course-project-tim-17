@@ -2,6 +2,7 @@
 using HealthcareSystem.RoleControllers;
 using HealthcareSystem.Entity.DrugModel;
 using HealthcareSystem.Entity.NotificationModel;
+using HealthcareSystem.Entity.HealthCardModel;
 using Autofac;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -14,23 +15,25 @@ namespace HealthcareSystem.UI.Patient
         public User loggedUser { get; set; }
         public NotificationSettingsService notificationSettingsService { get; set; }
         public DrugService drugService { get; set; }
-        public PatientRepositories patientRepositories { get; set; }
-        public PatientGUI(User loggedUser, PatientRepositories patientRepositories)
+        public HealthCardService healthCardService { get; set; }
+        public CheckService checkService { get; set; }
+        public PatientGUI(User loggedUser)
         {
             notificationSettingsService = Globals.container.Resolve<NotificationSettingsService>();
-            notificationSettingsService = Globals.container.Resolve<NotificationSettingsService>();
+            drugService = Globals.container.Resolve<DrugService>();
+            healthCardService = Globals.container.Resolve<HealthCardService>();
+            checkService = Globals.container.Resolve<CheckService>();
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.patientRepositories = patientRepositories;
         }
 
         void AddNotification()
         {
-            List<ObjectId> listChecks = patientRepositories.healthCardController.FindByPatientId(loggedUser._id).checks;
+            List<ObjectId> listChecks = healthCardService.GetByPatientId(loggedUser._id).checks;
             List<Check> checkList = new List<Check>();
             foreach(ObjectId checkId in listChecks)
             {
-                checkList.Add(patientRepositories.checkController.findById(checkId));
+                checkList.Add(checkService.GetById(checkId.ToString()));
             }
             string finalPrint = "";
             List<DateTime> clockList = new List<DateTime>();
@@ -70,14 +73,14 @@ namespace HealthcareSystem.UI.Patient
         private void schedulingBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AppointmentSchedulingOptions appointmentSchedulingOptions = new AppointmentSchedulingOptions(loggedUser, patientRepositories);
+            AppointmentSchedulingOptions appointmentSchedulingOptions = new AppointmentSchedulingOptions(loggedUser);
             appointmentSchedulingOptions.Show();
         }
 
         private void readAppointmentBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AppointmentRead appointmentRead = new AppointmentRead(loggedUser, patientRepositories);
+            AppointmentRead appointmentRead = new AppointmentRead(loggedUser);
             appointmentRead.Show();
         }
 
@@ -92,13 +95,13 @@ namespace HealthcareSystem.UI.Patient
         private void searchAnamnsesisBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AnamnesisSearch anamnesisSearch = new AnamnesisSearch(loggedUser, patientRepositories);
+            AnamnesisSearch anamnesisSearch = new AnamnesisSearch(loggedUser);
             anamnesisSearch.Show();
         }
         private void searchDoctorBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            DoctorSearch doctorSearch = new DoctorSearch(loggedUser, patientRepositories);
+            DoctorSearch doctorSearch = new DoctorSearch(loggedUser);
             doctorSearch.Show();
         }
         private void surveyDoctorBtn_Click(object sender, EventArgs e)
@@ -113,7 +116,7 @@ namespace HealthcareSystem.UI.Patient
         private void notificationBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            NotificationSetting notificationSetting = new NotificationSetting(loggedUser, patientRepositories);
+            NotificationSetting notificationSetting = new NotificationSetting(loggedUser);
             notificationSetting.Show();
         }
     }

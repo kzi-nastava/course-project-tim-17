@@ -9,18 +9,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Autofac;
 
 namespace HealthcareSystem.UI.DoctorView
 {
     partial class ChangeWeightForm : Form
     {
-        public DoctorRepositories doctorRepositories { get; set; }
         public HealthCard patientsHealthCard { get; set; }
-        public ChangeWeightForm(DoctorRepositories doctorRepositories, HealthCard patientsHealthCard)
+        public HealthCardService healthCardService;
+        public ChangeWeightForm(HealthCard patientsHealthCard)
         {
             InitializeComponent();
-            this.doctorRepositories = doctorRepositories;
             this.patientsHealthCard = patientsHealthCard;
+            this.healthCardService = Globals.container.Resolve<HealthCardService>();
         }
 
         private void newWeightTextBox_TextChanged(object sender, EventArgs e)
@@ -32,7 +33,7 @@ namespace HealthcareSystem.UI.DoctorView
         {
             double newWeight = Convert.ToDouble(newWeightTextBox.Text);
             patientsHealthCard.weight = newWeight;
-            doctorRepositories.healthCardController.update(patientsHealthCard);
+            healthCardService.Update(patientsHealthCard);
             MessageBox.Show("Weight changed succesfully!");
             this.Dispose();
         }

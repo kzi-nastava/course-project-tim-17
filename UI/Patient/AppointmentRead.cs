@@ -13,15 +13,15 @@ namespace HealthcareSystem.UI.Patient
     {
         public User loggedUser { get; set; }
         public RoomService roomService { get; set; }
-        public PatientRepositories patientRepositories { get; set; }
         public AppointmentService appointmentService { get; set; }
-        public AppointmentRead(User loggedUser, PatientRepositories patientRepositories)
+        public DoctorService doctorService { get; set; }
+        public AppointmentRead(User loggedUser)
         {
             roomService = Globals.container.Resolve<RoomService>();
             appointmentService = Globals.container.Resolve<AppointmentService>();
+            doctorService = Globals.container.Resolve<DoctorService>();
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.patientRepositories = patientRepositories;
         }
 
         private void dataTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -50,7 +50,7 @@ namespace HealthcareSystem.UI.Patient
             {
                 string date = apointment.dateTime.ToString("dd/MM/yyyy HH:mm");
                 string type = apointment.type.ToString();
-                Doctor doctor = patientRepositories.doctorController.findById(apointment.doctorId);
+                Doctor doctor = doctorService.GetById(apointment.doctorId);
                 string doctorName = doctor.name + " " + doctor.lastName;
                 Room room = roomService.GetById(apointment.roomId.ToString());
                 string roomName = room.name;

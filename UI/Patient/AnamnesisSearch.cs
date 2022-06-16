@@ -31,23 +31,27 @@ namespace HealthcareSystem.UI.Patient
         public User loggedUser { get; set; }
         public RoomService roomService { get; set; }
         public AppointmentService appointmentService { get; set; }
-        public PatientRepositories patientRepositories { get; set; }
+        public HealthCardService healthCardService { get; set; }
+        public CheckService checkService { get; set; }
+        public DoctorService doctorService { get; set; }
         public HealthCard userHealthCard { get; set; }
         public List<InputData> checkData { get; set; } = new List<InputData>();
         public DataTable dataTable { get; set; } = new DataTable();
-        public AnamnesisSearch(User loggedUser, PatientRepositories patientRepositories)
+        public AnamnesisSearch(User loggedUser)
         {
             appointmentService = Globals.container.Resolve<AppointmentService>();
             roomService = Globals.container.Resolve<RoomService>();
+            healthCardService = Globals.container.Resolve<HealthCardService>();
+            checkService = Globals.container.Resolve<CheckService>();
+            doctorService = Globals.container.Resolve<DoctorService>();
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.patientRepositories = patientRepositories;
         }
 
 
         void findHealthCardId()
         {
-            List<HealthCard> allHealthCards = patientRepositories.healthCardController.getAllHealthCards();
+            List<HealthCard> allHealthCards = healthCardService.GetAll();
             foreach (HealthCard healthCard in allHealthCards)
             {
                 if (healthCard.patientId == loggedUser._id)
@@ -112,7 +116,7 @@ namespace HealthcareSystem.UI.Patient
 
             List<Appointment> selectedApointments = new List<Appointment>();
             List<Appointment> allApointments = appointmentService.GetAll();
-            List<Check> allChecks = patientRepositories.checkController.checkCollection.Find(item => true).ToList();
+            List<Check> allChecks = checkService.GetAll();
             List<Check> userChecks = new List<Check>();
             foreach (Appointment apointment in allApointments)
             {
@@ -161,7 +165,7 @@ namespace HealthcareSystem.UI.Patient
                             InputData data = new InputData();
                             string date = apointment.dateTime.ToString("dd/MM/yyyy HH:mm");
                             string type = apointment.type.ToString();
-                            Doctor doctor = patientRepositories.doctorController.findById(apointment.doctorId);
+                            Doctor doctor = doctorService.GetById(apointment.doctorId);
                             string doctorName = doctor.name + " " + doctor.lastName;
                             Room room = roomService.GetById(apointment.roomId.ToString());
                             string roomName = room.name;

@@ -1,3 +1,5 @@
+using HealthcareSystem.Entity.AppointmentRequestsModel;
+using HealthcareSystem.Entity.CheckAppointmentRequestModel;
 using HealthcareSystem.Entity.CheckModel;
 using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.DrugModel;
@@ -16,10 +18,11 @@ namespace HealthcareSystem.Entity.ApointmentModel
     class AppointmentService
     {
         public IAppointmentRepository appointmentRepository;
-
-        public AppointmentService(IAppointmentRepository appointmentRepository)
+        public IAppointmentRequestRepository appointmentRequestRepository;
+        public AppointmentService(IAppointmentRepository appointmentRepository, IAppointmentRequestRepository appointmentRequestRepository)
         {
             this.appointmentRepository = appointmentRepository;
+            this.appointmentRequestRepository = appointmentRequestRepository;
         }
 
        
@@ -105,10 +108,47 @@ namespace HealthcareSystem.Entity.ApointmentModel
             return appointmentRepository.GetAll();
         }
 
+
+        public void DeleteAppointementByRequest(CheckAppointementRequest cr)
+        {
+            Appointment a = appointmentRepository.GetById(cr.appointmentId);
+            appointmentRepository.Delete(a._id);
+        }
+
+        public void EditAppointementByRequest(CheckAppointementRequest cr)
+        {
+            AppointmentRequests ar = appointmentRequestRepository.GetById(cr.appointmentId);
+            Appointment a = appointmentRepository.GetById(ar.appointmentId);
+            a.dateTime = ar.dateTime;
+            a.doctorId = ar.doctorId;
+            a.patientId = ar.patientId;
+            a.roomId = ar.roomId;
+            appointmentRepository.Update(a);
+        }
+        public Appointment GetByDateTime(DateTime dateTime)
+        {
+            return appointmentRepository.GetAppointmentByDateTime(dateTime);
+        }
+
+        public Appointment GetByDateTimeAndRoom(Room room, DateTime dateTime)
+        {
+            return appointmentRepository.GetAppointmentByDateTimeAndRoom(room, dateTime);
+        }
+        public Appointment GetById(ObjectId id)
+        {
+            return appointmentRepository.GetById(id);
+        }
+
+        public List<Appointment> GetDoctorSchedule(ObjectId doctorId, DateTime startingDate, DateTime endingDate)
+        {
+            return appointmentRepository.GetDoctorSchedule(doctorId, startingDate, endingDate);
+        }
+
+
     }
 
 
-   
+
 
 
 }

@@ -14,19 +14,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Autofac;
 
 namespace HealthcareSystem.UI.DoctorView
 {
     partial class AppointmentsTableForm : Form
     {
         public Doctor loggedUser { get; set; }
-        public DoctorRepositories doctorRepositories { get; set; }
+        public AppointmentService appointmentService;
+        public UserService userService;
+        public RoomService roomService;
 
-        public AppointmentsTableForm(Doctor loggedUser, DoctorRepositories doctorRepositories)
+        public AppointmentsTableForm(Doctor loggedUser)
         {
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.doctorRepositories = doctorRepositories;
+            this.appointmentService = Globals.container.Resolve<AppointmentService>();
+            this.userService = Globals.container.Resolve<UserService>();
+            this.roomService = Globals.container.Resolve<RoomService>();
         }
 
         private void AppointmentsTableForm_Load(object sender, EventArgs e)
@@ -36,7 +41,7 @@ namespace HealthcareSystem.UI.DoctorView
         }
         private void addBtn_Click(object sender, EventArgs e)
         {
-            AppointmentCreationForm appointmentCreationForm = new AppointmentCreationForm(loggedUser, doctorRepositories);
+            AppointmentCreationForm appointmentCreationForm = new AppointmentCreationForm(loggedUser);
             appointmentCreationForm.Show();
         }
 
@@ -46,8 +51,8 @@ namespace HealthcareSystem.UI.DoctorView
             string selectedAppointmentId = (string)dataGridView1.Rows[rowindex].Cells[0].Value;
             if (dataGridView1.Rows[rowindex].Cells[0].Value != null)
             {
-                Appointment appointmentForDelete = doctorRepositories.apointmentController.GetById(new MongoDB.Bson.ObjectId(selectedAppointmentId));
-                doctorRepositories.apointmentController.Delete(appointmentForDelete._id);
+                Appointment appointmentForDelete = appointmentService.GetById(new MongoDB.Bson.ObjectId(selectedAppointmentId));
+                appointmentService.Delete(appointmentForDelete);
                 MessageBox.Show("Appointment deleted succesfully!");
             }
             else
@@ -61,13 +66,13 @@ namespace HealthcareSystem.UI.DoctorView
         private void loadBtn_Click(object sender, EventArgs e)
         {
             this.dataGridView1.Rows.Clear();
-            List<Appointment> allAppointments = doctorRepositories.apointmentController.GetAll();
+            List<Appointment> allAppointments = appointmentService.GetAll();
 
             foreach (Appointment appointment in allAppointments)
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
-                User patient = doctorRepositories.userController.FindById(appointment.patientId);
-                Room room = doctorRepositories.roomController.GetById(appointment.roomId);
+                User patient = userService.GetById(appointment.patientId);
+                Room room = roomService.GetById(appointment.roomId.ToString());
                 
                 
                
@@ -102,8 +107,8 @@ namespace HealthcareSystem.UI.DoctorView
             string selectedAppointmentId = (string)dataGridView1.Rows[rowindex].Cells[0].Value;
             if (dataGridView1.Rows[rowindex].Cells[0].Value != null)
             {
-                Appointment apointment = doctorRepositories.apointmentController.GetById(new ObjectId(selectedAppointmentId));
-                UpdateAppointment changdeAppointmentDateTimeForm = new UpdateAppointment(doctorRepositories, apointment);
+                Appointment apointment = appointmentService.GetById(new ObjectId(selectedAppointmentId));
+                UpdateAppointment changdeAppointmentDateTimeForm = new UpdateAppointment(apointment);
                 changdeAppointmentDateTimeForm.Show();
             }
             else

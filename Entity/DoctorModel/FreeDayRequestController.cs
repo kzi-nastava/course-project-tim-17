@@ -21,5 +21,10 @@ class FreeDayRequestController
     public FreeDayRequest findById(ObjectId id) {
         return freeDayRequestsCollection.Find(item => item._id == id).FirstOrDefault();
     }
-    
+
+    public void Update(FreeDayRequest req)
+    {
+        freeDayRequestsCollection.ReplaceOne(item => item._id == req._id, req);
+    }
+
 }

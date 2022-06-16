@@ -9,7 +9,7 @@ namespace HealthcareSystem.Entity.UserModel
         public IMongoCollection<User> userCollection;
         public IMongoDatabase database;
 
-        public BlockedUserRepository(IMongoDatabase database)
+        public BlockedUserRepository()
         {
             GetDatabase();
             GetCollection();

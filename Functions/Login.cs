@@ -5,7 +5,7 @@ using HealthcareSystem.RoleControllers;
 using HealthcareSystem.UI;
 using HealthcareSystem.UI.DoctorView;
 using HealthcareSystem.UI.ManagerView;
-
+using Autofac;
 using HealthcareSystem.UI.Secretary;
 using HealthcareSystem.UI.Patient;
 
@@ -22,18 +22,18 @@ namespace HealthcareSystem.Functions
 
     {
 
-        public UserController userRepository;
+        public UserService userService;
 
-        public DoctorController doctorRepository;
+        public DoctorRepository doctorRepository;
 
-        public BlockedUserRepository blockedUserRepository;
+        public BlockedUserService blockedUserService { get; set; }
 
         IMongoDatabase database;
 
         public Login(IMongoDatabase db) {
-            this.userRepository = new UserController(db);
-            this.doctorRepository = new DoctorController(db);
-            this.blockedUserRepository = new BlockedUserRepository(db);
+            this.doctorRepository = new DoctorRepository();
+            this.blockedUserService = Globals.container.Resolve<BlockedUserService>();
+            this.userService = Globals.container.Resolve<UserService>();
             this.database = db;
     }
 
@@ -42,10 +42,10 @@ namespace HealthcareSystem.Functions
 
             
 
-            User loggedUser = userRepository.CheckCredentials(email, password);
+            User loggedUser = userService.CheckCredentials(email, password);
 
             if (loggedUser != null) {
-                if (blockedUserRepository.CheckIfBlocked(loggedUser._id) == null)
+                if (blockedUserService.CheckIfBlocked(loggedUser._id) == null)
                 {
                     return 1;
                 }
@@ -82,18 +82,17 @@ namespace HealthcareSystem.Functions
                 
                 SecretaryUI secretaryUI = new SecretaryUI(secretaryControllers, loggedUser, database);
                 
+
             }
 
             else if(loggedUser.role == Role.DOCTOR) {
-                DoctorRepositories doctorRepositories = new DoctorRepositories(database);
                 DoctorGUI doctorGUI = new DoctorGUI((Doctor)loggedUser, database);
                 doctorGUI.Show();
 
             }
             else if (loggedUser.role == Role.PATIENT)
             {
-                PatientRepositories patientRepositories = new PatientRepositories(database);
-                PatientGUI patientGUI = new PatientGUI(loggedUser, patientRepositories);
+                PatientGUI patientGUI = new PatientGUI(loggedUser);
                 patientGUI.Show();
             }
         

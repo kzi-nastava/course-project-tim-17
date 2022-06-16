@@ -16,16 +16,26 @@ namespace HealthcareSystem.Entity.HealthCardModel
     class HealthCardService
     {
 
-        public User patient;
-        public SecretaryControllers secretaryControllers { get; set; }
+       public IHealthCardRepository healthCardRepository { get; set; }  
 
-        public HealthCardService(SecretaryControllers sc, User patient)
+        public HealthCardService(IHealthCardRepository healthCardRepository)
         {
-            this.secretaryControllers = sc;
-            this.patient = patient;
+             this.healthCardRepository = healthCardRepository;
+           
         }
-
-        public void CreateHealthCard()
+        public void Update(HealthCard healthCard)
+        {
+            healthCardRepository.Update(healthCard);
+        }
+        public List<HealthCard> GetAll()
+        {
+            return healthCardRepository.GetAll();
+        }
+        public HealthCard GetByPatientId(ObjectId id)
+        {
+            return healthCardRepository.FindByPatientId(id);
+        }
+        public void CreateHealthCard(User patient)
         {
             Console.WriteLine("Enter patient's height: ");
             double height = Double.Parse(Console.ReadLine());
@@ -33,31 +43,31 @@ namespace HealthcareSystem.Entity.HealthCardModel
             double weight = Double.Parse(Console.ReadLine());
             Console.WriteLine("Enter '1' if patient has allergies: ");
             List<Ingredient> ingredients = new List<Ingredient>();
-            if (Console.ReadLine()=="1")
+            if (Console.ReadLine() == "1")
             {
                 Console.WriteLine("Enter patients allergies(separate them with coma): ");
                 string allergies = Console.ReadLine();
                 string[] splitted = allergies.Split(',');
-                
+
                 foreach (string s in splitted)
                 {
                     ingredients.Add(new Ingredient(s));
                 }
             }
-            HealthCard hc = new HealthCard(height, weight, this.patient._id, ingredients);
-            
-            secretaryControllers.healthCardController.InsertToCollection(hc);
+            HealthCard hc = new HealthCard(height, weight, patient._id, ingredients);
+
+            healthCardRepository.Insert(hc);
 
         }
 
-        public void DeleteHealthCard()
+        public void DeleteHealthCard(User patient)
         {
-            List<HealthCard> healthCards =secretaryControllers.healthCardController.getAllHealthCards();
+            List<HealthCard> healthCards = healthCardRepository.GetAll();
             foreach (HealthCard healthCard in healthCards)
             {
-                if (healthCard.patientId == this.patient._id)
+                if (healthCard.patientId == patient._id)
                 {
-                    secretaryControllers.healthCardController.deleteHealthCard(healthCard);
+                    healthCardRepository.Delete(healthCard._id);
                 }
 
             }
@@ -65,16 +75,16 @@ namespace HealthcareSystem.Entity.HealthCardModel
         }
 
 
-        public void UpdateHealthCard()
-        { 
+        public void UpdateHealthCard(User patient)
+        {
             Console.WriteLine("1 -> Edit height");
             Console.WriteLine("2 -> Edit weight");
             Console.WriteLine("3 -> Add allergy");
-            HealthCard found = null; 
-            List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
+            HealthCard found = null;
+            List<HealthCard> healthCards = healthCardRepository.GetAll();
             foreach (HealthCard healthCard in healthCards)
             {
-                if (healthCard.patientId == this.patient._id)
+                if (healthCard.patientId == patient._id)
                 {
                     found = healthCard;
                 }
@@ -92,29 +102,19 @@ namespace HealthcareSystem.Entity.HealthCardModel
                 found.weight = Double.Parse(Console.ReadLine());
 
             }
-            else if (choice == "3") {
+            else if (choice == "3")
+            {
                 Console.WriteLine("Enter new allergy: ");
                 Ingredient a = new Ingredient(Console.ReadLine());
                 found.allergies.Add(a);
             }
 
-            secretaryControllers.healthCardController.update(found);
+            healthCardRepository.Update(found);
 
-            
+
         }
 
-        public List<Check> getChecks(HealthCard healthCard)
-        {
-            List<Check> checks = new List<Check>();
-            List<ObjectId> ids = healthCard.checks;
-            foreach (ObjectId id in ids)
-            {
-                checks.Add(secretaryControllers.checkController.findById(id));
-            }
-
-            return checks;
-        }
-
+     /*
 
         public List<Referral> getReferrals(HealthCard healthCard)
         {
@@ -130,14 +130,33 @@ namespace HealthcareSystem.Entity.HealthCardModel
 
         public void addRefferral(HealthCard healthCard, Doctor doctor, Referral r)
         {
-           
+
             healthCard.referrals.Add(r._id);
             secretaryControllers.healthCardController.healthCardCollection.ReplaceOne(item => item._id == healthCard._id, healthCard);
         }
+     */
+        public string GetAllergies(HealthCard h)
+        {
+            string gatheredAllergies = "";
+            List<Ingredient> allergies = h.allergies;
+            foreach (Ingredient a in allergies)
+            {
+                if (a != null)
+                {
+                    gatheredAllergies += a.name + ";";
+                }
+            }
+            if (gatheredAllergies != "")
+            {
+                return gatheredAllergies;
+            }
+            else
+            {
+                return "None";
+            }
 
 
-
-
+        }
     }
 
 

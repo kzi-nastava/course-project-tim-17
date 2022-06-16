@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using HealthcareSystem.Entity.Enumerations;
 using HealthcareSystem.Entity.HealthCardModel;
 using HealthcareSystem.Entity.UserModel;
-using HealthCareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;
 using Autofac;
@@ -23,6 +22,7 @@ using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.UI.Secretary;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.Entity.RoomModel.TransferEquipment;
+using Autofac;
 
 namespace HealthcareSystem.UI
 {
@@ -33,16 +33,23 @@ namespace HealthcareSystem.UI
        
         public IMongoDatabase database;
         public RoomService roomService { get; set; }
+        public HealthCardService healthCardService;
 
-        public EquipmentRequestService equipmentService { get; set; }
-
+        public EquipmentRequestService equipmentService;
+        public CheckAppointmentRequestService checkRequestService;
+        public AppointmentService appointmentService;
+        
         public SecretaryUI(SecretaryControllers secretaryControllers, User LoggedUser, IMongoDatabase database)
         {
             this.LoggedUser = LoggedUser;
             this.secretaryControllers = secretaryControllers;
             this.database = database;
             roomService = Globals.container.Resolve<RoomService>();
-            this.equipmentService = new EquipmentRequestService(database);
+            healthCardService = Globals.container.Resolve<HealthCardService>();
+            equipmentService = Globals.container.Resolve<EquipmentRequestService>();
+            checkRequestService = Globals.container.Resolve<CheckAppointmentRequestService>();
+            appointmentService = Globals.container.Resolve<AppointmentService>();
+           
             this.UI();
         }
 
@@ -67,7 +74,7 @@ namespace HealthcareSystem.UI
                     Console.WriteLine("Last name: " + " " + patients[i].lastName);
                     Console.WriteLine("Email: " + " " + patients[i].email);
                     HealthCard found = null;
-                    List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
+                    List<HealthCard> healthCards = secretaryControllers.healthCardController.GetAll();
                     foreach (HealthCard healthCard in healthCards)
                     {
                         if (healthCard.patientId == patients[i]._id)
@@ -78,7 +85,7 @@ namespace HealthcareSystem.UI
                     }
                     Console.WriteLine("Weight: " + found.weight.ToString());
                     Console.WriteLine("height: " + found.height.ToString());
-                    Console.WriteLine("Allergies: " + secretaryControllers.healthCardController.GetAllergies(found));
+                    Console.WriteLine("Allergies: " + healthCardService.GetAllergies(found));
                 }
             }
         }
@@ -94,7 +101,7 @@ namespace HealthcareSystem.UI
                     Console.WriteLine("Last name: " + " " + patients[i].lastName);
                     Console.WriteLine("Email: " + " " + patients[i].email);
                     HealthCard found = null;
-                    List<HealthCard> healthCards = secretaryControllers.healthCardController.getAllHealthCards();
+                    List<HealthCard> healthCards = secretaryControllers.healthCardController.GetAll();
                     foreach (HealthCard healthCard in healthCards)
                     {
 
@@ -142,14 +149,13 @@ namespace HealthcareSystem.UI
 
         public void HandleCRUD(string option)
         {
-            UserService us = new UserService(secretaryControllers);
+            UserService us = Globals.container.Resolve<UserService>();
             if (option.Equals("a"))
             {                                                                // adding patient
                 User patient = us.AddPatient();
                 if (patient != null)
                 {
-                    HealthCardService hc = new HealthCardService(secretaryControllers, patient);
-                    hc.CreateHealthCard();
+                    healthCardService.CreateHealthCard(patient);
                     Console.WriteLine("Patient is sucessfully created! ");
                 }
                 else
@@ -159,18 +165,17 @@ namespace HealthcareSystem.UI
             }
             else if (option.Equals("b"))                                                         // preview of patients 
             {
-                List<User> patients = us.GetAllPatients();
+                List<User> patients = us.GetAll();
                 PrintAllPatients(patients);
             }
             else if (option.Equals("c"))
             {                                                                            // update patient
                 User patient = us.UpdateUser();
-                HealthCardService hc = new HealthCardService(secretaryControllers, patient);
                 Console.WriteLine("To edit patient's healthcard enter '1': ");
                 string toEdit = Console.ReadLine();
                 if (toEdit.Equals("1"))
                 {
-                    hc.UpdateHealthCard();
+                    healthCardService.UpdateHealthCard(patient);
                 }
                 Console.WriteLine("Patient is sucessfully updated! ");
             }
@@ -179,8 +184,7 @@ namespace HealthcareSystem.UI
                 User patient = us.DeleteUser();
                 if (patient != null)
                 {
-                    HealthCardService hc = new HealthCardService(secretaryControllers, patient);
-                    hc.DeleteHealthCard();
+                    healthCardService.DeleteHealthCard(patient);
                     Console.WriteLine("Patient is sucessfully deleted! ");
                 }
                 else
@@ -266,7 +270,7 @@ namespace HealthcareSystem.UI
         }
 
         public List<Appointment> GetAppointmentsOfDoctors(List<Doctor> doctors) {
-            List<Appointment> all = secretaryControllers.AppointmentController.GetAll();
+            List<Appointment> all =appointmentService.GetAll();
             List<Appointment> scheduledAppointments = new List<Appointment>();
             foreach (Doctor d in doctors) {
                 List<Appointment> doctorsAppointments = secretaryControllers.AppointmentController.GetAllByDoctor(d._id);
@@ -376,12 +380,14 @@ namespace HealthcareSystem.UI
         
         public void UI()
         {
-            UserService us = new UserService(secretaryControllers);
-            CheckAppointmentRequestService crs = new CheckAppointmentRequestService(secretaryControllers);
+            UserService us = Globals.container.Resolve<UserService>();
+            CheckAppointmentRequestService crs = Globals.container.Resolve<CheckAppointmentRequestService>();
            // EquipmentRequestService ers = new EquipmentRequestService(database);
           //  SecretaryAppointmentService a = new SecretaryAppointmentService(database);
-            FreeDayRequestService fs = new FreeDayRequestService(database);
+            FreeDayRequestService fs = Globals.container.Resolve<FreeDayRequestService>();
+
             List<User> patients = us.GetAllPatients();
+            BlockPatient b = new BlockPatient(secretaryControllers);
             while (true)
             {
                 Console.WriteLine("1 -> CREATE/READ/UPDATE/DELETE PATIENT'S ACCOUNT");
@@ -422,8 +428,7 @@ namespace HealthcareSystem.UI
                 {
 
                     us.PrintAllPatients(patients);
-                    us.blockUser();
-                    Console.WriteLine("Patient is sucessfully blocked! ");
+                    b.Block();
 
                 }
                 else if (choice == "3")
@@ -433,41 +438,20 @@ namespace HealthcareSystem.UI
                     string response = Console.ReadLine();
                     if (response.Equals("1"))
                     {
-                        us.unblockUser();
+                        b.Unblock();
                     }
-
                 }
                 else if (choice == "4")
                 {
-                    crs.printAllRequests();
+                    checkRequestService.PrintAllRequests();
                     Console.WriteLine("Enter request id: ");
                     ObjectId obI = ObjectId.Parse(Console.ReadLine());
-                    CheckAppointementRequest cr = secretaryControllers.checkAppointemtRequestController.FindById(obI);
+                    CheckAppointementRequest cr = checkRequestService.GetById(obI);
                     Console.WriteLine("1 -> APPROVE REQUEST");
                     Console.WriteLine("2 -> DECLINE REQUEST");
                     string opt = Console.ReadLine();
-                    if (opt.Equals("1"))                // accept
-                    {
-                        cr.status = Status.ACCEPTED;
-                        crs.Update(cr);
-                        if (cr.RequestState == RequestState.DELETE)
-                        {
-                           // a.DeleteAppointementByRequest(cr);
-                            Console.WriteLine("Appointement is succesfully deleted!");
-                        }
-                        else if (cr.RequestState == RequestState.EDIT)
-                        {
-                            AppointmentRequests ar = secretaryControllers.appointmentRequestsController.GetById(cr.appointmentId);
-                        //    a.EditAppointementByRequest(cr, ar);
-                            Console.WriteLine("Appointement is succesfully edited!");
-                        }
-                    }
-                    else if (opt.Equals("2"))
-                    {
-                        cr.status = Status.DENIED;
-                        crs.Update(cr);
-                        Console.WriteLine("Request denied!");
-                    }
+                    HandleAppointmentRequests h = new HandleAppointmentRequests();
+                    h.Handle(opt, cr);
 
                 }
                 else if (choice == "5")
@@ -478,7 +462,7 @@ namespace HealthcareSystem.UI
                     {
                         Console.WriteLine("Enter referral id: ");
                         ObjectId idRefferal = ObjectId.Parse(Console.ReadLine());
-                        Referral r = secretaryControllers.referralController.findById(idRefferal);
+                        Referral r = secretaryControllers.referralController.GetById(idRefferal);
                         Console.WriteLine("Enter type of appointment(checkup/operation): ");
                         ApointmentType type = (ApointmentType)Enum.Parse(typeof(ApointmentType), (Console.ReadLine().ToUpper()));
                         MakeAppointmentBasedOnReferral(r, type);
@@ -497,7 +481,7 @@ namespace HealthcareSystem.UI
 
                     List<Doctor> doctors = secretaryControllers.doctorController.FindDoctorsBySpecialisation(s);
 
-                    User patient = secretaryControllers.userController.FindByEmail(patientEmail);
+                    User patient = secretaryControllers.userController.GetByEmail(patientEmail);
                     Console.WriteLine("Enter type of appointment(checkup/operation): ");
                     ApointmentType type = (ApointmentType)Enum.Parse(typeof(ApointmentType), (Console.ReadLine().ToUpper()));
                     MakeUrgentAppointment(doctors, patient._id, type);
@@ -514,7 +498,7 @@ namespace HealthcareSystem.UI
                 }
                 else if (choice == "8")
                 {
-                    List<EquipmentRequest> requests = secretaryControllers.equipmentRequestController.GetAllEquipmentRequests();
+                    List<EquipmentRequest> requests = equipmentService.GetAll();
                     if (requests.Count == 0)
                     {
 
@@ -524,7 +508,7 @@ namespace HealthcareSystem.UI
                     {
                         equipmentService.PrintAllEquipmentRequest(requests);
                         Console.WriteLine();
-                        FulfillEquipmentRequest request = new FulfillEquipmentRequest(secretaryControllers);
+                        FulfillEquipmentRequest request = new FulfillEquipmentRequest();
                         request.Fulfiil();
                     }
 
@@ -542,17 +526,21 @@ namespace HealthcareSystem.UI
                     ObjectId roomIdFrom = ObjectId.Parse(Console.ReadLine());
                     Room from = secretaryControllers.roomController.GetById(roomIdFrom);
                     Room into = secretaryControllers.roomController.GetById(roomIdInto);
-                    TransferEquipment te = new TransferEquipment(secretaryControllers);
+                    TransferEquipment te = new TransferEquipment();
                     te.Transfer(from, into, name);
                 } else if (choice == "10") {
-                    //List<FreeDayRequest> freeDayRequests = secretaryControllers.freeDayRequestController.getAllFreeDayRequests();
-                    //fs.PrintAllFreeDayRequests(freeDayRequests);
+
+                    fs.PrintAllFreeDayRequests();
+                    Console.WriteLine("Enter request id: ");
+                    ObjectId obI = ObjectId.Parse(Console.ReadLine());
+                    FreeDayRequest freeDayRequest = fs.GetById(obI);
+                    Console.WriteLine(freeDayRequest._id);
                     Console.WriteLine("1 -> APPROVE REQUEST");
                     Console.WriteLine("2 -> DECLINE REQUEST");
                     string opt = Console.ReadLine();
-                    if (opt.Equals("1")) {                 // accept
+                    HandleFreeDayRequests h = new HandleFreeDayRequests();
+                    h.Handle(opt, freeDayRequest, fs);
 
-                    }
                 }
                 else if (choice == "11")
                 {

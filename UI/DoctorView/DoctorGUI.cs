@@ -16,7 +16,7 @@ namespace HealthcareSystem.UI.DoctorView
 partial class DoctorGUI : Form
     {
         public Doctor loggedUser { get; set; }
-        public DoctorRepositories doctorRepositories { get; set; }
+
         public IMongoDatabase database;
 
 
@@ -25,7 +25,7 @@ partial class DoctorGUI : Form
             InitializeComponent();
             this.loggedUser = loggedUser;
             this.database = database;
-            this.doctorRepositories = new DoctorRepositories(database);
+
         }
 
         private void DoctorGUI_Load(object sender, EventArgs e)
@@ -35,13 +35,13 @@ partial class DoctorGUI : Form
 
         private void listAllAppointmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AppointmentsTableForm appointmentsTableForm = new AppointmentsTableForm(loggedUser, doctorRepositories);
+            AppointmentsTableForm appointmentsTableForm = new AppointmentsTableForm(loggedUser);
             appointmentsTableForm.Show();
         }
 
         private void viewScheduleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DatePickerForm datePickerForm = new DatePickerForm(loggedUser, doctorRepositories);
+            DatePickerForm datePickerForm = new DatePickerForm(loggedUser);
             datePickerForm.Show();
         }
 
@@ -53,7 +53,7 @@ partial class DoctorGUI : Form
 
         private void makeRequestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FreeDayRequestForm freeDayRequestForm = new FreeDayRequestForm(database, loggedUser);
+            FreeDayRequestForm freeDayRequestForm = new FreeDayRequestForm(loggedUser);
             freeDayRequestForm.Show();
         }
     }

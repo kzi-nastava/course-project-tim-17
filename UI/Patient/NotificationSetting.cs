@@ -18,13 +18,11 @@ namespace HealthcareSystem.UI.Patient
     {
         public User loggedUser { get; set; }
         public NotificationSettingsService notificationSettingsService {get; set;}
-        public PatientRepositories patientRepositories { get; set; }
-        public NotificationSetting(User loggedUser, PatientRepositories patientRepositories)
+        public NotificationSetting(User loggedUser)
         {
             notificationSettingsService = Globals.container.Resolve<NotificationSettingsService>();
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.patientRepositories = patientRepositories;
         }
 
         private void NotificationSetting_Load(object sender, EventArgs e)

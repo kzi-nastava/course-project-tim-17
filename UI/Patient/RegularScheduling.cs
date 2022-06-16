@@ -18,30 +18,31 @@ namespace HealthcareSystem.UI.Patient
         public UserActionService userActionService { get; set; }
         public RoomService roomService { get; set; }
         public BlockedUserService blockedUserService { get; set; }
-        public PatientRepositories patientRepositories { get; set; }
+        public DoctorService doctorService { get; set; }
         public AppointmentService appointmentService { get; set; }
         public ObjectId doctorId { get; set; }
-        public RegularScheduling(User loggedUser, PatientRepositories patientRepositories, ObjectId doctorId)
+        public RegularScheduling(User loggedUser, ObjectId doctorId)
         {
             userActionService = Globals.container.Resolve<UserActionService>();
             roomService = Globals.container.Resolve<RoomService>();
             appointmentService = Globals.container.Resolve<AppointmentService>();
+            doctorService = Globals.container.Resolve<DoctorService>();
             blockedUserService = Globals.container.Resolve<BlockedUserService>();
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.patientRepositories = patientRepositories;
             this.doctorId = doctorId;
         }
 
         public void setDoctor()
         {
-            Doctor doctor = patientRepositories.doctorController.findById(doctorId);
+            Doctor doctor = doctorService.GetById(doctorId);
             if (doctor != null)
             {
                 string doctorName = doctor.name + " " + doctor.lastName;
                 doctorBox.Items.Add(doctorName);
+                doctorBox.SelectedIndex = 0;
             }
-            doctorBox.SelectedIndex = 0;
+            
         }
 
         public void trollCheck()
@@ -75,7 +76,7 @@ namespace HealthcareSystem.UI.Patient
         private void checkAvailability()
         {
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
-            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = doctorService.GetAll();
             List<Appointment> allApointments = appointmentService.GetAll();
             List<Room> allRooms = roomService.GetAll();
             List<ObjectId> unavailableRoomId = new List<ObjectId>();
@@ -237,7 +238,7 @@ namespace HealthcareSystem.UI.Patient
                         allRooms.Remove(room);
                     }
                 }
-                Doctor doctor = patientRepositories.doctorController.findByName(doctorBox.SelectedItem.ToString().Split(" ")[0], doctorBox.SelectedItem.ToString().Split(" ")[1]);
+                Doctor doctor = doctorService.GetByNameAndLastName(doctorBox.SelectedItem.ToString().Split(" ")[0], doctorBox.SelectedItem.ToString().Split(" ")[1]);
                 Appointment appointmentsubmit = new Appointment(date, appointmentType, doctor._id, allRooms[0]._id, loggedUser._id);
                 appointmentService.Insert(appointmentsubmit);
                 warningLabel.Text = "Appointment scheduled sucessfully!";

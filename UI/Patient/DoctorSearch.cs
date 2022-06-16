@@ -3,9 +3,11 @@ using MongoDB.Bson;
 using HealthcareSystem.RoleControllers;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.Entity.Enumerations;
+using HealthcareSystem.Entity.Survey;
 using HealthcareSystem.Entity.Survey.DoctorSurvey;
 using HealthcareSystem.Entity.DoctorModel;
 using System.Data;
+using Autofac;
 
 namespace HealthcareSystem.UI.Patient
 {
@@ -14,14 +16,15 @@ namespace HealthcareSystem.UI.Patient
     {
         
         public User loggedUser { get; set; }
-        public PatientRepositories patientRepositories { get; set; }
         public List<DoctorInfo> doctorList { get; set; } = new List<DoctorInfo>();
         public DataTable dataTable { get; set; } = new DataTable();
-        public DoctorSearch(User loggedUser, PatientRepositories patientRepositories)
-        {
+        public DoctorService doctorService { get; set; }
+        public SurveyService surveyService { get; set; }
+        public DoctorSearch(User loggedUser) {
+            doctorService = Globals.container.Resolve<DoctorService>();
+            surveyService = Globals.container.Resolve<SurveyService>();
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.patientRepositories = patientRepositories;
         }
 
         //Klasa sa svim atributima za prikaz
@@ -57,7 +60,7 @@ namespace HealthcareSystem.UI.Patient
                 totalRating.Add(rating);
             }
             int size = 0;
-            List<DoctorSurveys> allSurveys = patientRepositories.doctorSurveysController.getAllSurveys();
+            List<DoctorSurveys> allSurveys = surveyService.GetAllDoctorSurveys();
             foreach(DoctorSurveys survey in allSurveys)
             {
                 if(doctorId == survey.doctorId)
@@ -84,10 +87,10 @@ namespace HealthcareSystem.UI.Patient
         //Trazi sve informacije i dodaje u glavnu listu sa informacijama
         void findInfo()
         {
-            List<Doctor> allDoctors = patientRepositories.doctorController.getAllDoctors();
-            DoctorInfo doctorInfo = new DoctorInfo();
+            List<Doctor> allDoctors = doctorService.GetAll();
             foreach (Doctor doctor in allDoctors)
             {
+                DoctorInfo doctorInfo = new DoctorInfo();
                 doctorInfo.name = doctor.name;
                 doctorInfo.lastname = doctor.lastName;
                 List<float> avgRating = getAverageRating(doctor._id);
@@ -98,7 +101,6 @@ namespace HealthcareSystem.UI.Patient
             }
         }
 
-        //Dodaje sve iteme na pocetku u boxeve potrebne
         void addItems()
         {
             searchComboBox.Items.Add("");
@@ -125,7 +127,6 @@ namespace HealthcareSystem.UI.Patient
             doctorComboBox.SelectedIndex = 0;
         }
 
-        //Dodaje elemente iz liste u tabelu
         void insertItems(List<DoctorInfo> selectedDoctors)
         {
             dataTable.Rows.Clear();
@@ -148,7 +149,6 @@ namespace HealthcareSystem.UI.Patient
             dataGridView.Refresh();
         }
 
-        //Filtriranje kroz listu preko selektovane kljucne reci
         List<DoctorInfo> selectKeyword()
         {
             if(string.IsNullOrEmpty(searchComboBox.Text))
@@ -183,7 +183,6 @@ namespace HealthcareSystem.UI.Patient
             return selectedDoctors;
         }
 
-        //Sortiranje liste doktora prema odredjenom parametru
         List<DoctorInfo> sortDoctors(List<DoctorInfo> selectedDoctors)
         {
             List<DoctorInfo> doctorListSorted = new List<DoctorInfo>();
@@ -237,7 +236,6 @@ namespace HealthcareSystem.UI.Patient
             dataGridView.Refresh();
         }
 
-        //Ukoliko se odabir selektovanja po kljucnoj reci promeni, promeni se i moguce sortiranje
         private void searchComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             sortComboBox.Items.Clear();
@@ -261,9 +259,9 @@ namespace HealthcareSystem.UI.Patient
         private void appointmentBtn_Click(object sender, EventArgs e)
         {
             string[] a = this.sortComboBox.GetItemText(doctorComboBox.SelectedItem).Split(" ");
-            Doctor doctor = patientRepositories.doctorController.findByName(a[0], a[1]);
+            Doctor doctor = doctorService.GetByNameAndLastName(a[0], a[1]);
             this.Hide();
-            RegularScheduling regularScheduling = new RegularScheduling(loggedUser, patientRepositories, doctor._id);
+            RegularScheduling regularScheduling = new RegularScheduling(loggedUser, doctor._id);
             regularScheduling.Show();
         }
     }

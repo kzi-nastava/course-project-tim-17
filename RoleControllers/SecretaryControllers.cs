@@ -21,30 +21,30 @@ namespace HealthcareSystem.RoleControllers
     class SecretaryControllers
     {
 
-        public UserController userController;
-        public HealthCardController healthCardController;
+        public UserRepository userController;
+        public HealthCardRepository healthCardController;
         public BlockedUserRepository blockedUserController;
-        public CheckAppointmentRequestController checkAppointemtRequestController;
+        public CheckAppointmentRequestRepository checkAppointemtRequestController;
         public AppointmentRequestsRepository appointmentRequestsController;
         public RoomRepository roomController;
         public AppointmentRepository AppointmentController;
-        public CheckController checkController;
-        public ReferralController referralController;
-        public DoctorController doctorController;
-        public EquipmentRequestController equipmentRequestController;
+        public CheckRepository checkController;
+        public ReferralRepository referralController;
+        public DoctorRepository doctorController;
+        public EquipmentRequestRepository equipmentRequestController;
         public SecretaryControllers(IMongoDatabase database)
         {
-            this.userController = new UserController(database);
-            this.healthCardController = new HealthCardController(database);
-            this.blockedUserController = new BlockedUserRepository(database);
-            this.checkAppointemtRequestController = new CheckAppointmentRequestController(database);
+            this.userController = new UserRepository();
+            this.healthCardController = new HealthCardRepository();
+            this.blockedUserController = new BlockedUserRepository();
             this.AppointmentController = new AppointmentRepository();
             this.roomController = new RoomRepository();
             this.appointmentRequestsController = new AppointmentRequestsRepository();
-            this.checkController = new CheckController(database);
-            this.referralController = new ReferralController(database);
-            this.doctorController = new DoctorController(database);
-            this.equipmentRequestController = new EquipmentRequestController(database);
+
+            this.checkController = new CheckRepository();
+            this.referralController = new ReferralRepository();
+            this.doctorController = new DoctorRepository();
+            this.equipmentRequestController = new EquipmentRequestRepository();
         }
     }
 }
