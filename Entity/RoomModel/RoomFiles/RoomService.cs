@@ -40,6 +40,10 @@ namespace HealthcareSystem.Entity.RoomModel.RoomFiles
         {
             return this.roomRepository.GetById(new ObjectId(id));
         }
+
+        public Room GetById(ObjectId id) {
+            return this.roomRepository.GetById(id);
+        }
         public void Add(Room room)
         {
 

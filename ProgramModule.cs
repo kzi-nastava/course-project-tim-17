@@ -25,6 +25,7 @@ using HealthcareSystem.Entity.Survey.DoctorSurvey;
 using HealthcareSystem.Entity.Survey.HospitalSurvey;
 using HealthcareSystem.Entity.Survey;
 using HealthcareSystem.Entity.UserModel;
+using HealthcareSystem.Entity.NotificationModel;
 
 namespace HealthcareSystem
 {
@@ -69,6 +70,8 @@ namespace HealthcareSystem
             builder.RegisterType<NotificationSettingsService>().AsSelf();
             builder.RegisterType<UserActionRepository>().As<IUserActionRepository>();
             builder.RegisterType<UserActionService>().AsSelf();
+            builder.RegisterType<NotificationFreeDayRepository>().As<INotificationFreeDayRepository>();
+            builder.RegisterType<NotificationFreeDayService>().AsSelf();
         }
     }
 }

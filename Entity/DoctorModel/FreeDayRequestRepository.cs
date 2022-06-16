@@ -44,4 +44,5 @@ class FreeDayRequestRepository : IFreeDayRequestRepository
     {
         freeDayRequestsCollection.DeleteOne(item => item._id == id);
     }
+
 }

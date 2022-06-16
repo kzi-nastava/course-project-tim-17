@@ -1,4 +1,4 @@
-﻿namespace HealthcareSystem.UI.Secretary
+﻿namespace HealthcareSystem.UI.SecretaryView
 {
     partial class SecretaryGUI
     {

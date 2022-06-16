@@ -50,6 +50,7 @@ namespace HealthcareSystem.Entity.DoctorModel
             return doctorRepository.checkCredentials(email, password);
         }
 
+        
     }
 
 }
