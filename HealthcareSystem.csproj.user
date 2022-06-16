@@ -89,6 +89,12 @@
     <Compile Update="UI\Patient\AppointmentSchedulingOptions.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UI\Patient\DoctorSurvey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\Patient\HospitalSurvey.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UI\Patient\NotificationSetting.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -19,6 +19,7 @@ namespace HealthcareSystem.Entity.Survey.DoctorSurvey
         public DoctorSurveys(ObjectId doctorId, Mark quality, Mark recommendation, string comment)
         {
             this._id = ObjectId.GenerateNewId();
+            this.doctorId = doctorId;
             this.quality = quality;
             this.recommendation = recommendation;
             this.comment = comment;

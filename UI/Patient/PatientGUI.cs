@@ -72,14 +72,12 @@ namespace HealthcareSystem.UI.Patient
 
         private void schedulingBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
             AppointmentSchedulingOptions appointmentSchedulingOptions = new AppointmentSchedulingOptions(loggedUser);
             appointmentSchedulingOptions.Show();
         }
 
         private void readAppointmentBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
             AppointmentRead appointmentRead = new AppointmentRead(loggedUser);
             appointmentRead.Show();
         }
@@ -94,28 +92,27 @@ namespace HealthcareSystem.UI.Patient
         }
         private void searchAnamnsesisBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
             AnamnesisSearch anamnesisSearch = new AnamnesisSearch(loggedUser);
             anamnesisSearch.Show();
         }
         private void searchDoctorBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
             DoctorSearch doctorSearch = new DoctorSearch(loggedUser);
             doctorSearch.Show();
         }
         private void surveyDoctorBtn_Click(object sender, EventArgs e)
         {
-
+            DoctorSurvey doctorSurvey = new DoctorSurvey(loggedUser);
+            doctorSurvey.Show();
         }
         private void surveyHospitalBtn_Click(object sender, EventArgs e)
         {
-
+            HospitalSurvey hospitalSurvey = new HospitalSurvey(loggedUser);
+            hospitalSurvey.Show();
         }
 
         private void notificationBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
             NotificationSetting notificationSetting = new NotificationSetting(loggedUser);
             notificationSetting.Show();
         }

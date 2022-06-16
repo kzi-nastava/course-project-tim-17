@@ -39,6 +39,11 @@ namespace HealthcareSystem.Entity.CheckModel
             return checkCollection.Find(item => item._id == id).FirstOrDefault();
         }
 
+        public List<Check> GetAllById(ObjectId id)
+        {
+            return checkCollection.Find(item => item._id == id).ToList();
+        }
+
         public void Delete(ObjectId id)
         {
 
