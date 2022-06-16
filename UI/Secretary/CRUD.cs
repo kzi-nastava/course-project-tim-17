@@ -23,7 +23,7 @@ namespace HealthcareSystem.UI.Secretary
         }
 
         public void Add() {
-            UserService us = new UserService(secretaryControllers);
+            UserService us   = Globals.container.Resolve<UserService>();
             User patient = us.AddPatient();
             if (patient != null)
             {
@@ -39,7 +39,7 @@ namespace HealthcareSystem.UI.Secretary
         }
 
         public void Update() {
-            UserService us = new UserService(secretaryControllers);
+            UserService us   = Globals.container.Resolve<UserService>();
             User patient = us.UpdateUser();
             Console.WriteLine("To edit patient's healthcard enter '1': ");
             string toEdit = Console.ReadLine();
@@ -51,7 +51,7 @@ namespace HealthcareSystem.UI.Secretary
         }
 
         public void Delete() {
-            UserService us = new UserService(secretaryControllers);
+            UserService us = Globals.container.Resolve<UserService>();
             User patient = us.DeleteUser();
             if (patient != null)
             {
@@ -68,7 +68,7 @@ namespace HealthcareSystem.UI.Secretary
 
         public void HandleCRUD(string option)
         {
-            UserService us = new UserService(secretaryControllers);
+            UserService us = Globals.container.Resolve<UserService>();
             if (option.Equals("a"))
             {                                                              
                 Add();

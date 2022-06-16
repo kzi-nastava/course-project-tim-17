@@ -99,8 +99,8 @@ namespace HealthcareSystem.UI.ManagerView
             drugInRevision.name = drugNameTextBox.Text;
             drugInRevision.DrugStatus = DrugStatus.ON_HOLD;
             drugService.Update(drugInRevision);
-            RevisionController rs = new RevisionController(Globals.database);
-            rs.DeleteByDrugId(drugInRevision._id);
+            Globals.container.Resolve<RevisionService>()
+                .Delete(drugInRevision._id);
             MessageBox.Show("cool");
             this.Dispose();
 

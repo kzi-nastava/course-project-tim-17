@@ -38,7 +38,7 @@ namespace HealthcareSystem.Functions
                 statusLabel.Text = "The user has been blocked";
             }           
             else if(loggedStatus == 1){ 
-                this.loggedUser = login.userRepository.CheckCredentials(emailBox.Text,passwordBox.Text);
+                this.loggedUser = login.userService.CheckCredentials(emailBox.Text,passwordBox.Text);
                 
                 this.Hide();
                 login.SuccessfulLogin(loggedUser);

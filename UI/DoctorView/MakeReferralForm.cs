@@ -13,18 +13,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Autofac;
 
 namespace HealthcareSystem.UI.DoctorView
 {
     partial class MakeReferralForm : Form
     {
-        public DoctorRepositories doctorRepositories;
         public HealthCard patientHealthCard;
-        public MakeReferralForm(DoctorRepositories doctorRepositories, HealthCard patientHealthCard)
+        public HealthCardService healthCardService;
+        public ReferralService referralService;
+        public DoctorService doctorService;
+        public MakeReferralForm(HealthCard patientHealthCard)
         {
             InitializeComponent();
-            this.doctorRepositories = doctorRepositories;
             this.patientHealthCard = patientHealthCard;
+            this.healthCardService = Globals.container.Resolve<HealthCardService>();
+            this.referralService = Globals.container.Resolve<ReferralService>();
+            this.doctorService = Globals.container.Resolve<DoctorService>();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -34,17 +39,17 @@ namespace HealthcareSystem.UI.DoctorView
 
         private void createReferralBtn_Click(object sender, EventArgs e)
         {
-            Doctor doctorReferredTo = doctorRepositories.doctorController.doctorCollection.Find(Item => Item.name == nameTextBox.Text && Item.lastName == lastNameTextBox.Text).FirstOrDefault();
-            if(doctorReferredTo == null)
+            Doctor doctorReferredTo = doctorService.GetByNameAndLastName(nameTextBox.Text, lastNameTextBox.Text);
+            if (doctorReferredTo == null)
             {
                 warningMessageLabel.Text = "Entered Doctor does not exist!";
             }
             else
             {
                 Referral referral = new Referral(doctorReferredTo._id, patientHealthCard.patientId, doctorReferredTo.specialisation);
-                doctorRepositories.referralController.InsertToCollection(referral);
+                referralService.Insert(referral);
                 patientHealthCard.referrals.Add(referral._id);
-                doctorRepositories.healthCardController.Update(patientHealthCard);
+                healthCardService.Update(patientHealthCard);
                 MessageBox.Show("Referral created sucessfuly");
                 this.Dispose();
             }

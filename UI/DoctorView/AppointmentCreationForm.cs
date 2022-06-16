@@ -101,7 +101,7 @@ namespace HealthcareSystem.UI.DoctorView
         }
         public User GetPatient()
         {
-            User patient = doctorRepositories.userController.userCollection.Find(item => item.name == patientNameTextBox.Text && item.lastName == patientLastNameTextBox.Text).FirstOrDefault();
+            User patient = doctorRepositories.userController.collection.Find(item => item.name == patientNameTextBox.Text && item.lastName == patientLastNameTextBox.Text).FirstOrDefault();
             return patient;
         }
 

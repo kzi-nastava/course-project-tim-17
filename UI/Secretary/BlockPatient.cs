@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
+using Autofac;
 
 namespace HealthcareSystem.UI.Secretary
 {
@@ -22,14 +23,14 @@ namespace HealthcareSystem.UI.Secretary
 
 
         public void Block() {
-            UserService us = new UserService(secretaryControllers);
+            UserService us = Globals.container.Resolve<UserService>();
             us.blockUser();
             Console.WriteLine("Patient is sucessfully blocked! ");
 
         }
 
         public void Unblock() {
-            UserService us = new UserService(secretaryControllers);
+            UserService us  = Globals.container.Resolve<UserService>();
             us.unblockUser();
         }
 

@@ -16,22 +16,22 @@ namespace HealthcareSystem.RoleControllers
         public RoomRepository roomController;
         public DrugRepository drugController;
         public HealthCardRepository healthCardController;
-        public CheckController checkController;
+        public CheckRepository checkController;
         public AppointmentRepository apointmentController;
-        public UserController userController;
-        public ReferralController referralController;
-        public DoctorController doctorController;
+        public UserRepository userController;
+        public ReferralRepository referralController;
+        public DoctorRepository doctorController;
 
         public DoctorRepositories(IMongoDatabase database)
         {
             this.roomController = new RoomRepository();
             this.drugController = new DrugRepository();
             this.healthCardController = new HealthCardRepository();
-            this.checkController = new CheckController(database);
+            this.checkController = new CheckRepository();
             this.apointmentController = new AppointmentRepository();
-            this.userController = new UserController(database);
-            this.doctorController = new DoctorController(database);
-            this.referralController = new ReferralController(database);
+            this.userController = new UserRepository();
+            this.doctorController = new DoctorRepository();
+            this.referralController = new ReferralRepository();
         }
     }
 }

@@ -66,7 +66,7 @@ namespace HealthcareSystem.UI.DoctorView
             foreach (Appointment appointment in allAppointments)
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
-                User patient = doctorRepositories.userController.FindById(appointment.patientId);
+                User patient = doctorRepositories.userController.GetById(appointment.patientId);
                 Room room = doctorRepositories.roomController.GetById(appointment.roomId);
                 
                 

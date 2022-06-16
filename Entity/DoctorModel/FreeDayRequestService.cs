@@ -11,15 +11,18 @@ namespace HealthcareSystem.Entity.DoctorModel
 {
     class FreeDayRequestService
     {
-        public FreeDayRequestController freeDayRequestRepository;
-        public FreeDayRequestService(IMongoDatabase database)
+        public IFreeDayRequestRepository freeDayRequestRepository;
+        public FreeDayRequestService(IFreeDayRequestRepository freeDayRequestRepository)
         {
-            freeDayRequestRepository = new FreeDayRequestController(database);
+            this.freeDayRequestRepository = freeDayRequestRepository;
         }
-
+        public void Insert(FreeDayRequest freeDayRequest)
+        {
+            freeDayRequestRepository.Insert(freeDayRequest);
+        }
         public List<FreeDayRequest> GetFreeDayRequestByStatus(Status status)
         {
-            List<FreeDayRequest> freeDayRequests = freeDayRequestRepository.getAllFreeDayRequests();
+            List<FreeDayRequest> freeDayRequests = freeDayRequestRepository.GetAll();
             List<FreeDayRequest> certainFreeDayRequest = new List<FreeDayRequest>();
             foreach (FreeDayRequest freeDayRequest in freeDayRequests)
             {
@@ -33,7 +36,7 @@ namespace HealthcareSystem.Entity.DoctorModel
         }
         public List<FreeDayRequest> GetFreeDayRequestByStatusAndByDoctor(Status status, Doctor doctor)
         {
-            List<FreeDayRequest> freeDayRequests = freeDayRequestRepository.getAllFreeDayRequests();
+            List<FreeDayRequest> freeDayRequests = freeDayRequestRepository.GetAll();
             List<FreeDayRequest> certainFreeDayRequest = new List<FreeDayRequest>();
             foreach (FreeDayRequest freeDayRequest in freeDayRequests)
             {
@@ -48,13 +51,13 @@ namespace HealthcareSystem.Entity.DoctorModel
 
         public FreeDayRequest GetById(ObjectId id) { 
             
-            return freeDayRequestRepository.findById(id);
+            return freeDayRequestRepository.GetById(id);
         }
 
 
         public void PrintAllFreeDayRequests()
         {
-            List<FreeDayRequest> freeDayRequests = freeDayRequestRepository.getAllFreeDayRequests();
+            List<FreeDayRequest> freeDayRequests = freeDayRequestRepository.GetAll();
             Console.WriteLine("FREE DAYS REQUESTS: ");
             Console.WriteLine();
             foreach (FreeDayRequest fr in freeDayRequests)
