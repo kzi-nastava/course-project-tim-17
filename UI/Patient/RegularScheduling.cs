@@ -3,20 +3,11 @@ using HealthcareSystem.Entity.UserActionModel;
 using HealthcareSystem.RoleControllers;
 using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.ApointmentModel;
-using HealthcareSystem.Entity.RoomModel;
 using HealthcareSystem.Entity.Enumerations;
+using HealthcareSystem.Entity.UserActionModel;
+using Autofac;
 using MongoDB.Driver;
 using MongoDB.Bson;
-using System.Globalization;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
 
 namespace HealthcareSystem.UI.Patient
@@ -24,10 +15,18 @@ namespace HealthcareSystem.UI.Patient
     partial class RegularScheduling : Form
     {
         public User loggedUser { get; set; }
+        public UserActionService userActionService { get; set; }
+        public RoomService roomService { get; set; }
+        public BlockedUserService blockedUserService { get; set; }
         public PatientRepositories patientRepositories { get; set; }
+        public AppointmentService appointmentService { get; set; }
         public ObjectId doctorId { get; set; }
         public RegularScheduling(User loggedUser, PatientRepositories patientRepositories, ObjectId doctorId)
         {
+            userActionService = Globals.container.Resolve<UserActionService>();
+            roomService = Globals.container.Resolve<RoomService>();
+            appointmentService = Globals.container.Resolve<AppointmentService>();
+            blockedUserService = Globals.container.Resolve<BlockedUserService>();
             InitializeComponent();
             this.loggedUser = loggedUser;
             this.patientRepositories = patientRepositories;
@@ -48,7 +47,7 @@ namespace HealthcareSystem.UI.Patient
         public void trollCheck()
         {
             int create = 0, change = 0;
-            List<UserAction> userActions = patientRepositories.userActionController.findAllByUser(loggedUser._id);
+            List<UserAction> userActions = userActionService.GetAllById(loggedUser._id);
             foreach (UserAction userAction in userActions)
             {
                 if (DateTime.Compare(userAction.dateTime, DateTime.Today.AddMinutes(-43200)) > 0)
@@ -66,7 +65,7 @@ namespace HealthcareSystem.UI.Patient
             if (create >= 8 || change >= 5)
             {
                 BlockedUser blockedUser = new BlockedUser(loggedUser._id, BlockedBy.SYSTEM);
-                patientRepositories.blockedUserController.InsertToCollection(blockedUser);
+                blockedUserService.Insert(blockedUser);
                 this.Hide();
                 Console.WriteLine("The account is blocked because too much changes were made to the appointments. Contact secretary for more info.");
                 System.Environment.Exit(1);
@@ -77,8 +76,8 @@ namespace HealthcareSystem.UI.Patient
         {
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
             List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
-            List<Appointment> allApointments = patientRepositories.appointmentController.appointmentCollection.Find(Item => true).ToList();
-            List<Room> allRooms = patientRepositories.roomController.roomCollection.Find(Item => true).ToList();
+            List<Appointment> allApointments = appointmentService.GetAll();
+            List<Room> allRooms = roomService.GetAll();
             List<ObjectId> unavailableRoomId = new List<ObjectId>();
             List<ObjectId> unavailableDoctorId = new List<ObjectId>();
             foreach (Appointment appointment in allApointments)
@@ -200,8 +199,8 @@ namespace HealthcareSystem.UI.Patient
             {
                 warningLabel.Visible = false;
                 DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
-                List<Appointment> allApointments = patientRepositories.appointmentController.appointmentCollection.Find(Item => true).ToList();
-                List<Room> allRooms = patientRepositories.roomController.roomCollection.Find(Item => true).ToList();
+                List<Appointment> allApointments = appointmentService.GetAll();
+                List<Room> allRooms = roomService.GetAll();
                 List<ObjectId> unavailableRoomId = new List<ObjectId>();
                 foreach (Appointment appointment in allApointments)
                 {
@@ -240,11 +239,11 @@ namespace HealthcareSystem.UI.Patient
                 }
                 Doctor doctor = patientRepositories.doctorController.findByName(doctorBox.SelectedItem.ToString().Split(" ")[0], doctorBox.SelectedItem.ToString().Split(" ")[1]);
                 Appointment appointmentsubmit = new Appointment(date, appointmentType, doctor._id, allRooms[0]._id, loggedUser._id);
-                patientRepositories.appointmentController.Insert(appointmentsubmit);
+                appointmentService.Insert(appointmentsubmit);
                 warningLabel.Text = "Appointment scheduled sucessfully!";
                 warningLabel.Visible = true;
                 UserAction userAction = new UserAction(loggedUser._id, appointmentsubmit._id, DateTime.Today, ActionStatus.CREATE);
-                patientRepositories.userActionController.InsertToCollection(userAction);
+                userActionService.Insert(userAction);
                 trollCheck();
             }
         }

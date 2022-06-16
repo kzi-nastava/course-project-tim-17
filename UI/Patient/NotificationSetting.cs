@@ -1,5 +1,7 @@
 ﻿using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
+using HealthcareSystem.Entity.NotificationModel;
+using Autofac;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +17,11 @@ namespace HealthcareSystem.UI.Patient
     partial class NotificationSetting : Form
     {
         public User loggedUser { get; set; }
+        public NotificationSettingsService notificationSettingsService {get; set;}
         public PatientRepositories patientRepositories { get; set; }
         public NotificationSetting(User loggedUser, PatientRepositories patientRepositories)
         {
+            notificationSettingsService = Globals.container.Resolve<NotificationSettingsService>();
             InitializeComponent();
             this.loggedUser = loggedUser;
             this.patientRepositories = patientRepositories;
@@ -31,7 +35,7 @@ namespace HealthcareSystem.UI.Patient
         private void submitBtn_Click(object sender, EventArgs e)
         {
             int count = Convert.ToInt32(Math.Round(hoursNumeric.Value, 0));
-            patientRepositories.notificationSettingsController.ChangeTimeById(loggedUser._id, count);
+            notificationSettingsService.ChangeTimeById(loggedUser._id, count);
             successLabel.Visible = true;
         }
     }

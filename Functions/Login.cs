@@ -26,14 +26,14 @@ namespace HealthcareSystem.Functions
 
         public DoctorController doctorRepository;
 
-        public BlockedUserController blockedUserRepository;
+        public BlockedUserRepository blockedUserRepository;
 
         IMongoDatabase database;
 
         public Login(IMongoDatabase db) {
             this.userRepository = new UserController(db);
             this.doctorRepository = new DoctorController(db);
-            this.blockedUserRepository = new BlockedUserController(db);
+            this.blockedUserRepository = new BlockedUserRepository(db);
             this.database = db;
     }
 

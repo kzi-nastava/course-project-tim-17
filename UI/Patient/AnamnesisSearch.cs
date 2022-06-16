@@ -8,15 +8,8 @@ using HealthcareSystem.Entity.CheckModel;
 using HealthcareSystem.Entity.Enumerations;
 using MongoDB.Driver;
 using MongoDB.Bson;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using Autofac;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
 
 namespace HealthcareSystem.UI.Patient
@@ -36,12 +29,16 @@ namespace HealthcareSystem.UI.Patient
 
         }
         public User loggedUser { get; set; }
+        public RoomService roomService { get; set; }
+        public AppointmentService appointmentService { get; set; }
         public PatientRepositories patientRepositories { get; set; }
         public HealthCard userHealthCard { get; set; }
         public List<InputData> checkData { get; set; } = new List<InputData>();
         public DataTable dataTable { get; set; } = new DataTable();
         public AnamnesisSearch(User loggedUser, PatientRepositories patientRepositories)
         {
+            appointmentService = Globals.container.Resolve<AppointmentService>();
+            roomService = Globals.container.Resolve<RoomService>();
             InitializeComponent();
             this.loggedUser = loggedUser;
             this.patientRepositories = patientRepositories;
@@ -114,7 +111,7 @@ namespace HealthcareSystem.UI.Patient
             sortBox.Items.Add("Anamnesis");
 
             List<Appointment> selectedApointments = new List<Appointment>();
-            List<Appointment> allApointments = patientRepositories.appointmentController.GetAll().ToList();
+            List<Appointment> allApointments = appointmentService.GetAll();
             List<Check> allChecks = patientRepositories.checkController.checkCollection.Find(item => true).ToList();
             List<Check> userChecks = new List<Check>();
             foreach (Appointment apointment in allApointments)
@@ -166,7 +163,7 @@ namespace HealthcareSystem.UI.Patient
                             string type = apointment.type.ToString();
                             Doctor doctor = patientRepositories.doctorController.findById(apointment.doctorId);
                             string doctorName = doctor.name + " " + doctor.lastName;
-                            Room room = patientRepositories.roomController.GetById(apointment.roomId);
+                            Room room = roomService.GetById(apointment.roomId.ToString());
                             string roomName = room.name;
                             anamnesisDescription = check.anamnesis.description;
                             anamnesisSymptoms = check.anamnesis.symptoms;

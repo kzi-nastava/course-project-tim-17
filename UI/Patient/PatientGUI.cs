@@ -1,6 +1,8 @@
 ﻿using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using HealthcareSystem.Entity.DrugModel;
+using HealthcareSystem.Entity.NotificationModel;
+using Autofac;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using HealthcareSystem.Entity.CheckModel;
@@ -10,9 +12,13 @@ namespace HealthcareSystem.UI.Patient
     partial class PatientGUI : Form
     {
         public User loggedUser { get; set; }
+        public NotificationSettingsService notificationSettingsService { get; set; }
+        public DrugService drugService { get; set; }
         public PatientRepositories patientRepositories { get; set; }
         public PatientGUI(User loggedUser, PatientRepositories patientRepositories)
         {
+            notificationSettingsService = Globals.container.Resolve<NotificationSettingsService>();
+            notificationSettingsService = Globals.container.Resolve<NotificationSettingsService>();
             InitializeComponent();
             this.loggedUser = loggedUser;
             this.patientRepositories = patientRepositories;
@@ -30,7 +36,7 @@ namespace HealthcareSystem.UI.Patient
             List<DateTime> clockList = new List<DateTime>();
             DateTime prescriptionDate;
             TimeSpan prescriptionTime;
-            int hourCheck = patientRepositories.notificationSettingsController.FindById(loggedUser._id).time;
+            int hourCheck = notificationSettingsService.GetById(loggedUser._id).time;
             foreach(Check check in checkList)
             {
                 clockList.Clear();
@@ -47,7 +53,7 @@ namespace HealthcareSystem.UI.Patient
                     double timeDistance = (time - DateTime.Now).TotalHours;
                     if(hourCheck > timeDistance && timeDistance > 0)
                     {
-                        string drugName = patientRepositories.drugController.GetById(check.prescription.drug).name;
+                        string drugName = drugService.GetById(check.prescription.drug.ToString()).name;
                         finalPrint += "You should take " + drugName + " at " + time.ToString("HH:mm") + "\n";
                     }
                 }

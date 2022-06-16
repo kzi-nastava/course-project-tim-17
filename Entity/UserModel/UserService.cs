@@ -82,7 +82,7 @@ namespace HealthCareSystem.Entity.UserModel
                 BlockedUser b = secretaryControllers.blockedUserController.CheckIfBlocked(u._id);
                 if (b != null)
                 {
-                    secretaryControllers.blockedUserController.Unblock(u._id);
+                    secretaryControllers.blockedUserController.Delete(u._id);
                 }
                 secretaryControllers.userController.DeleteFromCollection(u._id);
                 secretaryControllers.AppointmentController.DeleteApointmentByPatientId(u._id);
@@ -133,7 +133,7 @@ namespace HealthCareSystem.Entity.UserModel
             string email = Console.ReadLine();
             User u = secretaryControllers.userController.FindByEmail(email);
             BlockedUser blockedUser = new BlockedUser(u._id, BlockedBy.SECRETARY);
-            secretaryControllers.blockedUserController.InsertToCollection(blockedUser);
+            secretaryControllers.blockedUserController.Insert(blockedUser);
 
         }
 
@@ -143,8 +143,8 @@ namespace HealthCareSystem.Entity.UserModel
             Console.WriteLine("Enter email: ");
             string email = Console.ReadLine();
             User u = secretaryControllers.userController.FindByEmail(email);
-            BlockedUser bu = secretaryControllers.blockedUserController.FindByUserId(u._id);
-            secretaryControllers.blockedUserController.Unblock(bu._id);
+            BlockedUser bu = secretaryControllers.blockedUserController.GetByUserId(u._id);
+            secretaryControllers.blockedUserController.Delete(bu._id);
 
         }
 
@@ -165,7 +165,7 @@ namespace HealthCareSystem.Entity.UserModel
         {
             for (int i = 0; i < patients.Count; i++)
             {
-                if (secretaryControllers.blockedUserController.FindByUserId(patients[i]._id) == null)
+                if (secretaryControllers.blockedUserController.GetByUserId(patients[i]._id) == null)
                 {
                     Console.WriteLine(" ------------------------------------");
                     Console.WriteLine("Name: " + " " + patients[i].name);
@@ -191,7 +191,7 @@ namespace HealthCareSystem.Entity.UserModel
         {
             for (int i = 0; i < patients.Count; i++)
             {
-                if (secretaryControllers.blockedUserController.FindByUserId(patients[i]._id) == null)
+                if (secretaryControllers.blockedUserController.GetByUserId(patients[i]._id) == null)
                 {
                     Console.WriteLine(" ------------------------------------");
                     Console.WriteLine("Name: " + " " + patients[i].name);

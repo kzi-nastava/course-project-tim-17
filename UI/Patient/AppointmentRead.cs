@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
+using Autofac;
 using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.Entity.DoctorModel;
@@ -19,9 +12,13 @@ namespace HealthcareSystem.UI.Patient
     partial class AppointmentRead : Form
     {
         public User loggedUser { get; set; }
+        public RoomService roomService { get; set; }
         public PatientRepositories patientRepositories { get; set; }
+        public AppointmentService appointmentService { get; set; }
         public AppointmentRead(User loggedUser, PatientRepositories patientRepositories)
         {
+            roomService = Globals.container.Resolve<RoomService>();
+            appointmentService = Globals.container.Resolve<AppointmentService>();
             InitializeComponent();
             this.loggedUser = loggedUser;
             this.patientRepositories = patientRepositories;
@@ -36,7 +33,7 @@ namespace HealthcareSystem.UI.Patient
         {
             
             List<Appointment> selectedApointments = new List<Appointment>();
-            List<Appointment> allApointments = patientRepositories.appointmentController.GetAll().ToList();
+            List<Appointment> allApointments = appointmentService.GetAll();
             foreach (Appointment apointment in allApointments)
             {
                 if (apointment.patientId == loggedUser._id)
@@ -55,7 +52,7 @@ namespace HealthcareSystem.UI.Patient
                 string type = apointment.type.ToString();
                 Doctor doctor = patientRepositories.doctorController.findById(apointment.doctorId);
                 string doctorName = doctor.name + " " + doctor.lastName;
-                Room room = patientRepositories.roomController.GetById(apointment.roomId);
+                Room room = roomService.GetById(apointment.roomId.ToString());
                 string roomName = room.name;
                 dataTable.Rows.Add(date, type, doctorName, roomName);
             }

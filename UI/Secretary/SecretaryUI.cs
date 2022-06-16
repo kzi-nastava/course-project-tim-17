@@ -60,7 +60,7 @@ namespace HealthcareSystem.UI
         {
             for (int i = 0; i < patients.Count; i++)
             {
-                if (secretaryControllers.blockedUserController.FindByUserId(patients[i]._id) == null)
+                if (secretaryControllers.blockedUserController.GetByUserId(patients[i]._id) == null)
                 {
                     Console.WriteLine(" ------------------------------------");
                     Console.WriteLine("Name: " + " " + patients[i].name);
@@ -87,7 +87,7 @@ namespace HealthcareSystem.UI
         {
             for (int i = 0; i < patients.Count; i++)
             {
-                if (secretaryControllers.blockedUserController.FindByUserId(patients[i]._id) == null)
+                if (secretaryControllers.blockedUserController.GetByUserId(patients[i]._id) == null)
                 {
                     Console.WriteLine(" ------------------------------------");
                     Console.WriteLine("Name: " + " " + patients[i].name);
