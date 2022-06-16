@@ -19,15 +19,15 @@ namespace HealthcareSystem.Entity.UserModel
     {
         public IUserRepository userRepository;
         public IHealthCardRepository healthCardRepository;
-        public BlockedUserController blockedUserRepository;
+        public IBlockedUserRepository blockedUserRepository;
 
-        public UserService(IUserRepository userRepository, IHealthCardRepository healthCardRepository)
+        public UserService(IUserRepository userRepository, IHealthCardRepository healthCardRepository, IBlockedUserRepository blockedUserRepository)
         {
             this.userRepository = userRepository;
             this.healthCardRepository = healthCardRepository;
-            this.blockedUserRepository = new BlockedUserController(Globals.database);
-            
-            
+            this.blockedUserRepository = blockedUserRepository;
+
+
         }
 
         public User Add()
@@ -107,7 +107,7 @@ namespace HealthcareSystem.Entity.UserModel
                 BlockedUser b = blockedUserRepository.CheckIfBlocked(u._id);
                 if (b != null)
                 {
-                    blockedUserRepository.Unblock(u._id);
+                    blockedUserRepository.Delete(u._id);
                 }
                 userRepository.Delete(u._id);
                 new AppointmentRepository().DeleteApointmentByPatientId(u._id);
@@ -163,7 +163,7 @@ namespace HealthcareSystem.Entity.UserModel
             string email = Console.ReadLine();
             User u = GetByEmail(email);
             BlockedUser blockedUser = new BlockedUser(u._id, BlockedBy.SECRETARY);
-            blockedUserRepository.InsertToCollection(blockedUser);
+            blockedUserRepository.Insert(blockedUser);
 
         }
 
@@ -173,8 +173,8 @@ namespace HealthcareSystem.Entity.UserModel
             Console.WriteLine("Enter email: ");
             string email = Console.ReadLine();
             User u = GetByEmail(email);
-            BlockedUser bu = blockedUserRepository.FindByUserId(u._id);
-            blockedUserRepository.Unblock(bu._id);
+            BlockedUser bu = blockedUserRepository.GetByUserId(u._id);
+            blockedUserRepository.Delete(bu._id);
 
         }
 
@@ -195,7 +195,7 @@ namespace HealthcareSystem.Entity.UserModel
         {
             for (int i = 0; i < patients.Count; i++)
             {
-                if (blockedUserRepository.FindByUserId(patients[i]._id) == null)
+                if (blockedUserRepository.GetByUserId(patients[i]._id) == null)
                 {
                     Console.WriteLine(" ------------------------------------");
                     Console.WriteLine("Name: " + " " + patients[i].name);
@@ -221,7 +221,7 @@ namespace HealthcareSystem.Entity.UserModel
         {
             for (int i = 0; i < patients.Count; i++)
             {
-                if (blockedUserRepository.FindByUserId(patients[i]._id) == null)
+                if (blockedUserRepository.GetByUserId(patients[i]._id) == null)
                 {
                     Console.WriteLine(" ------------------------------------");
                     Console.WriteLine("Name: " + " " + patients[i].name);

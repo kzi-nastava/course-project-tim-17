@@ -17,26 +17,24 @@ namespace HealthcareSystem.UI.Patient
     partial class AppointmentSchedulingOptions : Form
     {
         public User loggedUser { get; set; }
-        public PatientRepositories patientRepositories { get; set; }
-        public AppointmentSchedulingOptions(User loggedUser, PatientRepositories patientRepositories)
+        public AppointmentSchedulingOptions(User loggedUser)
         {
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.patientRepositories = patientRepositories;
         }
 
         private void regularBtn_Click(object sender, EventArgs e)
         {
             ObjectId doctorId = new ObjectId();
             this.Hide();
-            RegularScheduling regularScheduling = new RegularScheduling(loggedUser, patientRepositories, doctorId);
+            RegularScheduling regularScheduling = new RegularScheduling(loggedUser, doctorId);
             regularScheduling.Show();
         }
 
         private void recommendedBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            RecommendedScheduling recommendedScheduling = new RecommendedScheduling(loggedUser, patientRepositories);
+            RecommendedScheduling recommendedScheduling = new RecommendedScheduling(loggedUser);
             recommendedScheduling.Show();
         }
 

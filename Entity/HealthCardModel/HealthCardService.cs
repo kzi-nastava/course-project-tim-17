@@ -27,7 +27,10 @@ namespace HealthcareSystem.Entity.HealthCardModel
         {
             healthCardRepository.Update(healthCard);
         }
-
+        public List<HealthCard> GetAll()
+        {
+            return healthCardRepository.GetAll();
+        }
         public HealthCard GetByPatientId(ObjectId id)
         {
             return healthCardRepository.FindByPatientId(id);

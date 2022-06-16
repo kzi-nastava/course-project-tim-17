@@ -6,6 +6,9 @@ using HealthcareSystem.Entity.RoomModel.MoveEquipmentFiles;
 using HealthcareSystem.Entity.RoomModel.RenovationFiles;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.Entity.AppointmentRequestsModel;
+using HealthcareSystem.Entity.UserActionModel;
+using HealthcareSystem.Entity.NotificationModel;
+using HealthcareSystem.Entity.UserModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +64,12 @@ namespace HealthcareSystem
             builder.RegisterType<SurveyService>().AsSelf();
             builder.RegisterType<UserRepository>().As<IUserRepository>();
             builder.RegisterType<UserService>().AsSelf();
+            builder.RegisterType<BlockedUserRepository>().As<IBlockedUserRepository>();
+            builder.RegisterType<BlockedUserService>().AsSelf();
+            builder.RegisterType<NotificationSettingsRepository>().As<INotificationSettingsRepository>();
+            builder.RegisterType<NotificationSettingsService>().AsSelf();
+            builder.RegisterType<UserActionRepository>().As<IUserActionRepository>();
+            builder.RegisterType<UserActionService>().AsSelf();
             builder.RegisterType<NotificationFreeDayRepository>().As<INotificationFreeDayRepository>();
             builder.RegisterType<NotificationFreeDayService>().AsSelf();
         }

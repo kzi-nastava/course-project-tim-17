@@ -8,6 +8,7 @@ using HealthcareSystem.Entity.Enumerations;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using System.Globalization;
+using Autofac;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,20 +25,28 @@ namespace HealthcareSystem.UI.Patient
     partial class RecommendedScheduling : Form
     {
         public User loggedUser { get; set; }
-        public PatientRepositories patientRepositories { get; set; }
+        public UserActionService userActionService { get; set; }
+        public AppointmentService appointmentService { get; set; }
+        public RoomService roomService { get; set; }
+        public BlockedUserService blockedUserService { get; set; }
+        public DoctorService doctorService { get; set; }
         public string Method { get; set; }
         public ObjectId mainDoctorId { get; set; }
-        public RecommendedScheduling(User loggedUser, PatientRepositories patientRepositories)
+        public RecommendedScheduling(User loggedUser)
         {
+            roomService = Globals.container.Resolve<RoomService>();
+            userActionService = Globals.container.Resolve<UserActionService>();
+            appointmentService = Globals.container.Resolve<AppointmentService>();
+            blockedUserService = Globals.container.Resolve<BlockedUserService>();
+            doctorService = Globals.container.Resolve<DoctorService>();
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.patientRepositories = patientRepositories;
         }
 
         public void trollCheck()
         {
             int create = 0, change = 0;
-            List<UserAction> userActions = patientRepositories.userActionController.findAllByUser(loggedUser._id);
+            List<UserAction> userActions = userActionService.GetAllById(loggedUser._id);
             foreach (UserAction userAction in userActions)
             {
                 if (DateTime.Compare(userAction.dateTime, DateTime.Today.AddMinutes(-43200)) > 0)
@@ -55,7 +64,7 @@ namespace HealthcareSystem.UI.Patient
             if (create >= 8 || change >= 5)
             {
                 BlockedUser blockedUser = new BlockedUser(loggedUser._id, BlockedBy.SYSTEM);
-                patientRepositories.blockedUserController.InsertToCollection(blockedUser);
+                blockedUserService.Insert(blockedUser);
                 this.Hide();
                 Console.WriteLine("The account is blocked because too much changes were made to the appointments. Contact secretary for more info.");
                 System.Environment.Exit(1);
@@ -75,8 +84,8 @@ namespace HealthcareSystem.UI.Patient
         {
             Method = "Doctor";
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
-            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
-            List<Appointment> allApointments = patientRepositories.appointmentController.appointmentCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = doctorService.GetAll();
+            List<Appointment> allApointments = appointmentService.GetAll();
             List<DateTime> busyDates = new List<DateTime>();
             List<DateTime> availableDates = new List<DateTime>();
             int datecount = 0;
@@ -150,8 +159,8 @@ namespace HealthcareSystem.UI.Patient
         {
             Method = "Date";
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
-            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
-            List<Appointment> allApointments = patientRepositories.appointmentController.appointmentCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = doctorService.GetAll();
+            List<Appointment> allApointments = appointmentService.GetAll();
             List<ObjectId> unavailableDoctors = new List<ObjectId>();
             foreach(Appointment appointment in allApointments)
             {
@@ -188,8 +197,8 @@ namespace HealthcareSystem.UI.Patient
 
         void submit(DateTime dateTime, ObjectId doctor)
         {
-            List<Room> allRooms = patientRepositories.roomController.collection.Find(Item => true).ToList();
-            List<Appointment> allApointments = patientRepositories.appointmentController.appointmentCollection.Find(Item => true).ToList();
+            List<Room> allRooms = roomService.GetAll();
+            List<Appointment> allApointments = appointmentService.GetAll();
             foreach (Appointment appointment in allApointments)
             {
                 DateTime startPoint = appointment.dateTime.AddMinutes(-15);
@@ -228,17 +237,17 @@ namespace HealthcareSystem.UI.Patient
             }
             ObjectId roomSubmit = allRooms[0]._id;
             Appointment appointmentSubmit = new Appointment(dateTime, apointmentType ,doctor, roomSubmit, loggedUser._id);
-            patientRepositories.appointmentController.Insert(appointmentSubmit);
+            appointmentService.Insert(appointmentSubmit);
             UserAction userAction = new UserAction(loggedUser._id, appointmentSubmit._id, DateTime.Today, ActionStatus.CREATE);
-            patientRepositories.userActionController.InsertToCollection(userAction);
+            userActionService.Insert(userAction);
             trollCheck();
             infoLabel.Text = "Appointment added successfully";
         }
         int CheckAvailability()
         {
             DateTime date = datePicker.Value.Date + timePicker.Value.TimeOfDay;
-            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
-            List<Room> allRooms = patientRepositories.roomController.collection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = doctorService.GetAll();
+            List<Room> allRooms = roomService.GetAll();
             ObjectId doctorId = allDoctors[0]._id;
             foreach(Doctor doctor in allDoctors)
             {
@@ -248,7 +257,7 @@ namespace HealthcareSystem.UI.Patient
                 }
             }
 
-            List<Appointment> allApointments = patientRepositories.appointmentController.appointmentCollection.Find(Item => true).ToList();
+            List<Appointment> allApointments = appointmentService.GetAll();
             foreach(Appointment apointment in allApointments)
             {
                 DateTime startPoint = apointment.dateTime.AddMinutes(-15);
@@ -294,7 +303,7 @@ namespace HealthcareSystem.UI.Patient
         void loadDoctor()
         {
             doctorBox.Items.Clear();
-            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = doctorService.GetAll();
             foreach (Doctor doctor in allDoctors)
             {
                 string doctorName = doctor.name + " " + doctor.lastName;
@@ -383,7 +392,7 @@ namespace HealthcareSystem.UI.Patient
 
         private void submitBtn_Click(object sender, EventArgs e)
         {
-            List<Doctor> allDoctors = patientRepositories.doctorController.doctorCollection.Find(Item => true).ToList();
+            List<Doctor> allDoctors = doctorService.GetAll();
             ObjectId doctorId = allDoctors[0]._id;
             DateTime date;
             foreach (Doctor doctor in allDoctors)

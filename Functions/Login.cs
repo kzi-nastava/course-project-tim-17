@@ -26,14 +26,14 @@ namespace HealthcareSystem.Functions
 
         public DoctorRepository doctorRepository;
 
-        public BlockedUserController blockedUserRepository;
+        public BlockedUserService blockedUserService { get; set; }
 
         IMongoDatabase database;
 
         public Login(IMongoDatabase db) {
-            this.userService = Globals.container.Resolve<UserService>();
             this.doctorRepository = new DoctorRepository();
-            this.blockedUserRepository = new BlockedUserController(db);
+            this.blockedUserService = Globals.container.Resolve<BlockedUserService>();
+            this.userService = Globals.container.Resolve<UserService>();
             this.database = db;
     }
 
@@ -45,7 +45,7 @@ namespace HealthcareSystem.Functions
             User loggedUser = userService.CheckCredentials(email, password);
 
             if (loggedUser != null) {
-                if (blockedUserRepository.CheckIfBlocked(loggedUser._id) == null)
+                if (blockedUserService.CheckIfBlocked(loggedUser._id) == null)
                 {
                     return 1;
                 }
@@ -92,8 +92,7 @@ namespace HealthcareSystem.Functions
             }
             else if (loggedUser.role == Role.PATIENT)
             {
-                PatientRepositories patientRepositories = new PatientRepositories(database);
-                PatientGUI patientGUI = new PatientGUI(loggedUser, patientRepositories);
+                PatientGUI patientGUI = new PatientGUI(loggedUser);
                 patientGUI.Show();
             }
         

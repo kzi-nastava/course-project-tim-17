@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
+using Autofac;
 using HealthcareSystem.Entity.ApointmentModel;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.Entity.DoctorModel;
@@ -19,12 +12,16 @@ namespace HealthcareSystem.UI.Patient
     partial class AppointmentRead : Form
     {
         public User loggedUser { get; set; }
-        public PatientRepositories patientRepositories { get; set; }
-        public AppointmentRead(User loggedUser, PatientRepositories patientRepositories)
+        public RoomService roomService { get; set; }
+        public AppointmentService appointmentService { get; set; }
+        public DoctorService doctorService { get; set; }
+        public AppointmentRead(User loggedUser)
         {
+            roomService = Globals.container.Resolve<RoomService>();
+            appointmentService = Globals.container.Resolve<AppointmentService>();
+            doctorService = Globals.container.Resolve<DoctorService>();
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.patientRepositories = patientRepositories;
         }
 
         private void dataTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -36,7 +33,7 @@ namespace HealthcareSystem.UI.Patient
         {
             
             List<Appointment> selectedApointments = new List<Appointment>();
-            List<Appointment> allApointments = patientRepositories.appointmentController.GetAll().ToList();
+            List<Appointment> allApointments = appointmentService.GetAll();
             foreach (Appointment apointment in allApointments)
             {
                 if (apointment.patientId == loggedUser._id)
@@ -53,9 +50,9 @@ namespace HealthcareSystem.UI.Patient
             {
                 string date = apointment.dateTime.ToString("dd/MM/yyyy HH:mm");
                 string type = apointment.type.ToString();
-                Doctor doctor = patientRepositories.doctorController.GetById(apointment.doctorId);
+                Doctor doctor = doctorService.GetById(apointment.doctorId);
                 string doctorName = doctor.name + " " + doctor.lastName;
-                Room room = patientRepositories.roomController.GetById(apointment.roomId);
+                Room room = roomService.GetById(apointment.roomId.ToString());
                 string roomName = room.name;
                 dataTable.Rows.Add(date, type, doctorName, roomName);
             }

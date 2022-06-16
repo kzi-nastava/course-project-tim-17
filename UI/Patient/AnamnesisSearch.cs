@@ -8,15 +8,8 @@ using HealthcareSystem.Entity.CheckModel;
 using HealthcareSystem.Entity.Enumerations;
 using MongoDB.Driver;
 using MongoDB.Bson;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using Autofac;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
 
 namespace HealthcareSystem.UI.Patient
@@ -36,21 +29,29 @@ namespace HealthcareSystem.UI.Patient
 
         }
         public User loggedUser { get; set; }
-        public PatientRepositories patientRepositories { get; set; }
+        public RoomService roomService { get; set; }
+        public AppointmentService appointmentService { get; set; }
+        public HealthCardService healthCardService { get; set; }
+        public CheckService checkService { get; set; }
+        public DoctorService doctorService { get; set; }
         public HealthCard userHealthCard { get; set; }
         public List<InputData> checkData { get; set; } = new List<InputData>();
         public DataTable dataTable { get; set; } = new DataTable();
-        public AnamnesisSearch(User loggedUser, PatientRepositories patientRepositories)
+        public AnamnesisSearch(User loggedUser)
         {
+            appointmentService = Globals.container.Resolve<AppointmentService>();
+            roomService = Globals.container.Resolve<RoomService>();
+            healthCardService = Globals.container.Resolve<HealthCardService>();
+            checkService = Globals.container.Resolve<CheckService>();
+            doctorService = Globals.container.Resolve<DoctorService>();
             InitializeComponent();
             this.loggedUser = loggedUser;
-            this.patientRepositories = patientRepositories;
         }
 
 
         void findHealthCardId()
         {
-            List<HealthCard> allHealthCards = patientRepositories.healthCardController.GetAll();
+            List<HealthCard> allHealthCards = healthCardService.GetAll();
             foreach (HealthCard healthCard in allHealthCards)
             {
                 if (healthCard.patientId == loggedUser._id)
@@ -114,8 +115,8 @@ namespace HealthcareSystem.UI.Patient
             sortBox.Items.Add("Anamnesis");
 
             List<Appointment> selectedApointments = new List<Appointment>();
-            List<Appointment> allApointments = patientRepositories.appointmentController.GetAll().ToList();
-            List<Check> allChecks = patientRepositories.checkController.checkCollection.Find(item => true).ToList();
+            List<Appointment> allApointments = appointmentService.GetAll();
+            List<Check> allChecks = checkService.GetAll();
             List<Check> userChecks = new List<Check>();
             foreach (Appointment apointment in allApointments)
             {
@@ -164,9 +165,9 @@ namespace HealthcareSystem.UI.Patient
                             InputData data = new InputData();
                             string date = apointment.dateTime.ToString("dd/MM/yyyy HH:mm");
                             string type = apointment.type.ToString();
-                            Doctor doctor = patientRepositories.doctorController.GetById(apointment.doctorId);
+                            Doctor doctor = doctorService.GetById(apointment.doctorId);
                             string doctorName = doctor.name + " " + doctor.lastName;
-                            Room room = patientRepositories.roomController.GetById(apointment.roomId);
+                            Room room = roomService.GetById(apointment.roomId.ToString());
                             string roomName = room.name;
                             anamnesisDescription = check.anamnesis.description;
                             anamnesisSymptoms = check.anamnesis.symptoms;

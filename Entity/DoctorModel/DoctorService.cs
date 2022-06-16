@@ -33,6 +33,14 @@ namespace HealthcareSystem.Entity.DoctorModel
         {
             return doctorRepository.GetByNameAndLastName(name, lastname);
         }
+        public List<Doctor> GetAll ()
+        {
+            return doctorRepository.GetAll();
+        }
+        public Doctor GetById(ObjectId id)
+        {
+            return doctorRepository.GetById(id);
+        }
         public List<Doctor> GetBySpecialisation(Specialisation specialisation)
         {
             return doctorRepository.FindDoctorsBySpecialisation(specialisation);
@@ -42,9 +50,7 @@ namespace HealthcareSystem.Entity.DoctorModel
             return doctorRepository.checkCredentials(email, password);
         }
 
-        public Doctor GetById(ObjectId id) {
-            return doctorRepository.GetById(id);
-        }
+        
     }
 
 }

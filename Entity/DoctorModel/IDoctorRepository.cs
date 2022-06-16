@@ -1,4 +1,5 @@
 ﻿using HealthcareSystem.Entity.Enumerations;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,6 @@ namespace HealthcareSystem.Entity.DoctorModel
         List<Doctor> FindDoctorsBySpecialisation(Specialisation s);
         Doctor checkCredentials(string email, string password);
         Doctor GetByNameAndLastName(string name, string lastname);
-
-
+        Doctor GetById(ObjectId id);
     }
 }
