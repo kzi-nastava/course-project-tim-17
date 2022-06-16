@@ -2,6 +2,7 @@
 using HealthcareSystem.Entity.AppointmentRequestsModel;
 using HealthcareSystem.Entity.CheckAppointmentRequestModel;
 using HealthcareSystem.Entity.Enumerations;
+using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Bson;
@@ -12,15 +13,21 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
 
         public SecretaryControllers secretaryControllers { get; set; }
 
-
-        public CheckAppointmentRequestService(SecretaryControllers sc)
+        public ICheckAppointmentRequestRepository checkAppointmentRequestRepository;
+        public IAppointmentRepository appointmentRepository;
+        public IRoomRepository roomRepository;
+        public IAppointmentRequestRepository appointmentRequestRepository;
+        public CheckAppointmentRequestService(ICheckAppointmentRequestRepository checkAppointmentRequestRepository, IAppointmentRepository appointmentRepository, IRoomRepository roomRepository, IAppointmentRequestRepository appointmentRequestRepository)
         {
-            this.secretaryControllers = sc;
+            this.checkAppointmentRequestRepository = checkAppointmentRequestRepository;
+            this.appointmentRepository = appointmentRepository;
+            this.roomRepository = roomRepository;
+            this.appointmentRequestRepository = appointmentRequestRepository;   
         }
 
-        public void printAllRequests()
+        public void PrintAllRequests()
         {
-            List<CheckAppointementRequest> crs = secretaryControllers.checkAppointemtRequestController.GetAllCheckAppointmentRequests();
+            List<CheckAppointementRequest> crs = checkAppointmentRequestRepository.GetAllCheckAppointmentRequests();
             User patient;
             foreach (CheckAppointementRequest c in crs)
             {
@@ -29,13 +36,13 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
                 Console.WriteLine("ID: " + c._id);
                 if (c.RequestState == RequestState.DELETE)
                 {
-                    Appointment ap = secretaryControllers.AppointmentController.GetById(c.appointmentId);
+                    Appointment ap = appointmentRepository.GetById(c.appointmentId);
                     if (ap == null) { Console.WriteLine("This appointment has been deleted! "); }
                     else
                     {
-                        patient = secretaryControllers.userController.FindById(secretaryControllers.AppointmentController.GetById(c.appointmentId).patientId);
+                        patient = secretaryControllers.userController.GetById(secretaryControllers.AppointmentController.GetById(c.appointmentId).patientId);
                         Console.WriteLine("PATIENT: " + patient.name + " " + patient.lastName);
-                        Console.WriteLine("ROOM: :  " + secretaryControllers.roomController.GetById(ap.roomId).name);
+                        Console.WriteLine("ROOM: :  " + roomRepository.GetById(ap.roomId).name);
                         Console.WriteLine("DATE: " + ap.dateTime.ToString());
                     }
                     Console.WriteLine("REQUEST: " + c.RequestState.ToString());
@@ -43,15 +50,15 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
                 }
                 else
                 {
-                    AppointmentRequests ar = secretaryControllers.appointmentRequestsController.GetById(c.appointmentId);
+                    AppointmentRequests ar = appointmentRequestRepository.GetById(c.appointmentId);
 
-                    Appointment ap = secretaryControllers.AppointmentController.GetById(ar.appointmentId);
+                    Appointment ap = appointmentRepository.GetById(ar.appointmentId);
                     if (ap == null) { Console.WriteLine("This appointment has been deleted! "); }
                     else
                     {
-                        patient = secretaryControllers.userController.FindById(ap.patientId);
+                        patient = secretaryControllers.userController.GetById(ap.patientId);
                         Console.WriteLine("PATIENT: " + patient.name + " " + patient.lastName);
-                        Console.WriteLine("ROOM: :  " + secretaryControllers.roomController.GetById(ap.roomId).name);
+                        Console.WriteLine("ROOM: :  " + roomRepository.GetById(ap.roomId).name);
                         Console.WriteLine("DATE: " + ap.dateTime.ToString());
                         Console.WriteLine("REQUEST: " + c.RequestState.ToString());
                         Console.WriteLine("STATUS: " + c.status.ToString());
@@ -66,14 +73,21 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
      
         public void DeleteRequest(ObjectId id)
         {
-            CheckAppointementRequest cr = secretaryControllers.checkAppointemtRequestController.FindById(id);
-            secretaryControllers.checkAppointemtRequestController.DeleteCheckAppointementRequestCard(cr);
+            CheckAppointementRequest cr = checkAppointmentRequestRepository.GetById(id);
+            checkAppointmentRequestRepository.Delete(cr._id);
 
         }
 
         public void Update(CheckAppointementRequest cr)
         {
-            secretaryControllers.checkAppointemtRequestController.Update(cr);
+
+            checkAppointmentRequestRepository.Update(cr);
+        }
+
+
+        public CheckAppointementRequest GetById(ObjectId id) {
+            return checkAppointmentRequestRepository.GetById(id);
+        
         }
 
     }

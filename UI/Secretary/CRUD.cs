@@ -22,52 +22,71 @@ namespace HealthcareSystem.UI.Secretary
             this.healthCardService = Globals.container.Resolve<HealthCardService>();
         }
 
+        public void Add() {
+            UserService us   = Globals.container.Resolve<UserService>();
+            User patient = us.AddPatient();
+            if (patient != null)
+            {
+
+                healthCardService.CreateHealthCard(patient);
+                Console.WriteLine("Patient is sucessfully created! ");
+            }
+            else
+            {
+                Console.WriteLine("Sorry, patient already exists! ");
+            }
+
+        }
+
+        public void Update() {
+            UserService us   = Globals.container.Resolve<UserService>();
+            User patient = us.UpdateUser();
+            Console.WriteLine("To edit patient's healthcard enter '1': ");
+            string toEdit = Console.ReadLine();
+            if (toEdit.Equals("1"))
+            {
+                healthCardService.UpdateHealthCard(patient);
+            }
+            Console.WriteLine("Patient is sucessfully updated! ");
+        }
+
+        public void Delete() {
+            UserService us = Globals.container.Resolve<UserService>();
+            User patient = us.DeleteUser();
+            if (patient != null)
+            {
+
+                healthCardService.DeleteHealthCard(patient);
+                Console.WriteLine("Patient is sucessfully deleted! ");
+            }
+            else
+            {
+                Console.WriteLine("Sorry, patient with entered email does not exist! ");
+            }
+
+        }
+
         public void HandleCRUD(string option)
         {
-            UserService us = new UserService(secretaryControllers);
+            UserService us = Globals.container.Resolve<UserService>();
             if (option.Equals("a"))
-            {                                                                // adding patient
-                User patient = us.AddPatient();
-                if (patient != null)
-                {
-                   
-                    healthCardService.CreateHealthCard(patient);
-                    Console.WriteLine("Patient is sucessfully created! ");
-                }
-                else
-                {
-                    Console.WriteLine("Sorry, patient already exists! ");
-                }
+            {                                                              
+                Add();
             }
-            else if (option.Equals("b"))                                                         // preview of patients 
+            else if (option.Equals("b"))                                                        
             {
                 List<User> patients = us.GetAllPatients();
                 us.PrintAllPatients(patients);
             }
+
             else if (option.Equals("c"))
-            {                                                                            // update patient
-                User patient = us.UpdateUser();
-                Console.WriteLine("To edit patient's healthcard enter '1': ");
-                string toEdit = Console.ReadLine();
-                if (toEdit.Equals("1"))
-                {
-                    healthCardService.UpdateHealthCard(patient);
-                }
-                Console.WriteLine("Patient is sucessfully updated! ");
+            {                                                                         
+                Update();
             }
-            else if (option.Equals("d"))                            // delete patient        
+
+            else if (option.Equals("d"))                           
             {
-                User patient = us.DeleteUser();
-                if (patient != null)
-                {
-                   
-                    healthCardService.DeleteHealthCard(patient);
-                    Console.WriteLine("Patient is sucessfully deleted! ");
-                }
-                else
-                {
-                    Console.WriteLine("Sorry, patient with entered email does not exist! ");
-                }
+                Delete();
             }
         }
     }

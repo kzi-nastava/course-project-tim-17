@@ -21,30 +21,30 @@ namespace HealthcareSystem.RoleControllers
     class SecretaryControllers
     {
 
-        public UserController userController;
+        public UserRepository userController;
         public HealthCardRepository healthCardController;
         public BlockedUserController blockedUserController;
-        public CheckAppointmentRequestController checkAppointemtRequestController;
+        public CheckAppointmentRequestRepository checkAppointemtRequestController;
         public AppointmentRequestsRepository appointmentRequestsController;
         public RoomRepository roomController;
         public AppointmentRepository AppointmentController;
         public CheckRepository checkController;
         public ReferralRepository referralController;
         public DoctorRepository doctorController;
-        public EquipmentRequestController equipmentRequestController;
+        public EquipmentRequestRepository equipmentRequestController;
         public SecretaryControllers(IMongoDatabase database)
         {
-            this.userController = new UserController(database);
+            this.userController = new UserRepository();
             this.healthCardController = new HealthCardRepository();
             this.blockedUserController = new BlockedUserController(database);
-            this.checkAppointemtRequestController = new CheckAppointmentRequestController(database);
             this.AppointmentController = new AppointmentRepository();
             this.roomController = new RoomRepository();
             this.appointmentRequestsController = new AppointmentRequestsRepository();
+
             this.checkController = new CheckRepository();
             this.referralController = new ReferralRepository();
             this.doctorController = new DoctorRepository();
-            this.equipmentRequestController = new EquipmentRequestController(database);
+            this.equipmentRequestController = new EquipmentRequestRepository();
         }
     }
 }

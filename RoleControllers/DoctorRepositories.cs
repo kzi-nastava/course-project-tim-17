@@ -18,7 +18,7 @@ namespace HealthcareSystem.RoleControllers
         public HealthCardRepository healthCardController;
         public CheckRepository checkController;
         public AppointmentRepository apointmentController;
-        public UserController userController;
+        public UserRepository userController;
         public ReferralRepository referralController;
         public DoctorRepository doctorController;
 
@@ -29,7 +29,7 @@ namespace HealthcareSystem.RoleControllers
             this.healthCardController = new HealthCardRepository();
             this.checkController = new CheckRepository();
             this.apointmentController = new AppointmentRepository();
-            this.userController = new UserController(database);
+            this.userController = new UserRepository();
             this.doctorController = new DoctorRepository();
             this.referralController = new ReferralRepository();
         }

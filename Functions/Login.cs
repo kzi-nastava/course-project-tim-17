@@ -5,7 +5,7 @@ using HealthcareSystem.RoleControllers;
 using HealthcareSystem.UI;
 using HealthcareSystem.UI.DoctorView;
 using HealthcareSystem.UI.ManagerView;
-
+using Autofac;
 using HealthcareSystem.UI.Secretary;
 using HealthcareSystem.UI.Patient;
 
@@ -22,7 +22,7 @@ namespace HealthcareSystem.Functions
 
     {
 
-        public UserController userRepository;
+        public UserService userService;
 
         public DoctorRepository doctorRepository;
 
@@ -31,7 +31,7 @@ namespace HealthcareSystem.Functions
         IMongoDatabase database;
 
         public Login(IMongoDatabase db) {
-            this.userRepository = new UserController(db);
+            this.userService = Globals.container.Resolve<UserService>();
             this.doctorRepository = new DoctorRepository();
             this.blockedUserRepository = new BlockedUserController(db);
             this.database = db;
@@ -42,7 +42,7 @@ namespace HealthcareSystem.Functions
 
             
 
-            User loggedUser = userRepository.CheckCredentials(email, password);
+            User loggedUser = userService.CheckCredentials(email, password);
 
             if (loggedUser != null) {
                 if (blockedUserRepository.CheckIfBlocked(loggedUser._id) == null)

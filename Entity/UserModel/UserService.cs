@@ -10,23 +10,26 @@ using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;
 using Autofac;
+using HealthcareSystem.Entity.ApointmentModel;
 
 namespace HealthcareSystem.Entity.UserModel
 {
     class UserService
     {
+        public IUserRepository userRepository;
+        public IHealthCardRepository healthCardRepository;
+        public BlockedUserController blockedUserRepository;
 
-        public SecretaryControllers secretaryControllers { get; set; }
-        public HealthCardService healthCardService { get; set; }    
-
-        public UserService(SecretaryControllers sc)
+        public UserService(IUserRepository userRepository, IHealthCardRepository healthCardRepository)
         {
-            this.secretaryControllers = sc;
-            this.healthCardService = Globals.container.Resolve<HealthCardService>();
+            this.userRepository = userRepository;
+            this.healthCardRepository = healthCardRepository;
+            this.blockedUserRepository = new BlockedUserController(Globals.database);
+            
             
         }
 
-        public User AddUser()
+        public User Add()
         {
             Console.WriteLine("Enter name: ");
             string name = Console.ReadLine();
@@ -39,7 +42,7 @@ namespace HealthcareSystem.Entity.UserModel
             Console.WriteLine("Enter role: ");
             Role role = (Role)Enum.Parse(typeof(Role), Console.ReadLine());
             User user = new User(name, lastName, email, password, role);
-            secretaryControllers.userController.InsertToCollection(user);
+            userRepository.Insert(user);
             return user;
         }
 
@@ -58,37 +61,51 @@ namespace HealthcareSystem.Entity.UserModel
             User user = new User(name, lastName, email, password, role);
             if (!doesUserExist(email, password))
             {
-                secretaryControllers.userController.InsertToCollection(user);
+                userRepository.Insert(user);
                 return user;
             }
             return null;
 
         }
 
+        public List<User> GetAll()
+        {
+
+            return userRepository.GetAll();
+        }
+
         public List<User> GetAllPatients()
         {
-            List<User> patients = secretaryControllers.userController.userCollection.Find(item => item.role == Role.PATIENT).ToList();
-            return patients;
+            return userRepository.GetAllPatients();
         }
 
 
+        public User GetByEmail(string email)
+        {
+            return userRepository.GetByEmail(email);
+        }
 
+        public User CheckCredentials(string email, string password)
+        {
+            return userRepository.CheckCredentials(email, password);
+        }
 
 
         public User DeleteUser()
         {
             Console.WriteLine("Enter email: ");
             string email = Console.ReadLine();
-            User u = secretaryControllers.userController.FindByEmail(email);
+            User u = GetByEmail(email);
+            
             if (u != null)
             {
-                BlockedUser b = secretaryControllers.blockedUserController.CheckIfBlocked(u._id);
+                BlockedUser b = blockedUserRepository.CheckIfBlocked(u._id);
                 if (b != null)
                 {
-                    secretaryControllers.blockedUserController.Unblock(u._id);
+                    blockedUserRepository.Unblock(u._id);
                 }
-                secretaryControllers.userController.DeleteFromCollection(u._id);
-                secretaryControllers.AppointmentController.DeleteApointmentByPatientId(u._id);
+                userRepository.Delete(u._id);
+                new AppointmentRepository().DeleteApointmentByPatientId(u._id);
                 return u;
             }
             return null;
@@ -98,7 +115,7 @@ namespace HealthcareSystem.Entity.UserModel
         {
             Console.WriteLine("Enter email: ");
             string email = Console.ReadLine();
-            User u = secretaryControllers.userController.FindByEmail(email);
+            User u = GetByEmail(email);
             Console.WriteLine("1 -> Edit name");
             Console.WriteLine("2 -> Edit lastname");
             Console.WriteLine("3 -> Edit email");
@@ -126,7 +143,7 @@ namespace HealthcareSystem.Entity.UserModel
                 u.password = Console.ReadLine();
             }
 
-            secretaryControllers.userController.Update(u);
+            userRepository.Update(u);
             return u;
         }
 
@@ -134,9 +151,9 @@ namespace HealthcareSystem.Entity.UserModel
         {
             Console.WriteLine("Enter email: ");
             string email = Console.ReadLine();
-            User u = secretaryControllers.userController.FindByEmail(email);
+            User u = GetByEmail(email);
             BlockedUser blockedUser = new BlockedUser(u._id, BlockedBy.SECRETARY);
-            secretaryControllers.blockedUserController.InsertToCollection(blockedUser);
+            blockedUserRepository.InsertToCollection(blockedUser);
 
         }
 
@@ -145,16 +162,16 @@ namespace HealthcareSystem.Entity.UserModel
         {
             Console.WriteLine("Enter email: ");
             string email = Console.ReadLine();
-            User u = secretaryControllers.userController.FindByEmail(email);
-            BlockedUser bu = secretaryControllers.blockedUserController.FindByUserId(u._id);
-            secretaryControllers.blockedUserController.Unblock(bu._id);
+            User u = GetByEmail(email);
+            BlockedUser bu = blockedUserRepository.FindByUserId(u._id);
+            blockedUserRepository.Unblock(bu._id);
 
         }
 
 
         public bool doesUserExist(string email, string password)
         {
-            User u = secretaryControllers.userController.CheckCredentials(email, password);
+            User u = userRepository.CheckCredentials(email, password);
             if (u != null)
             {
                 return true;
@@ -168,14 +185,14 @@ namespace HealthcareSystem.Entity.UserModel
         {
             for (int i = 0; i < patients.Count; i++)
             {
-                if (secretaryControllers.blockedUserController.FindByUserId(patients[i]._id) == null)
+                if (blockedUserRepository.FindByUserId(patients[i]._id) == null)
                 {
                     Console.WriteLine(" ------------------------------------");
                     Console.WriteLine("Name: " + " " + patients[i].name);
                     Console.WriteLine("Last name: " + " " + patients[i].lastName);
                     Console.WriteLine("Email: " + " " + patients[i].email);
                     HealthCard found = null;
-                    List<HealthCard> healthCards = secretaryControllers.healthCardController.GetAll();
+                    List<HealthCard> healthCards = healthCardRepository.GetAll();
                     foreach (HealthCard healthCard in healthCards)
                     {
                         if (healthCard.patientId == patients[i]._id)
@@ -185,7 +202,7 @@ namespace HealthcareSystem.Entity.UserModel
                     }
                     Console.WriteLine("Weight: " + found.weight.ToString());
                     Console.WriteLine("height: " + found.height.ToString());
-                    Console.WriteLine("Allergies: " + healthCardService.GetAllergies(found));
+                    Console.WriteLine("Allergies: " + Globals.container.Resolve<HealthCardService>().GetAllergies(found));
                 }
             }
         }
@@ -194,14 +211,14 @@ namespace HealthcareSystem.Entity.UserModel
         {
             for (int i = 0; i < patients.Count; i++)
             {
-                if (secretaryControllers.blockedUserController.FindByUserId(patients[i]._id) == null)
+                if (blockedUserRepository.FindByUserId(patients[i]._id) == null)
                 {
                     Console.WriteLine(" ------------------------------------");
                     Console.WriteLine("Name: " + " " + patients[i].name);
                     Console.WriteLine("Last name: " + " " + patients[i].lastName);
                     Console.WriteLine("Email: " + " " + patients[i].email);
                     HealthCard found = null;
-                    List<HealthCard> healthCards = secretaryControllers.healthCardController.GetAll();
+                    List<HealthCard> healthCards = healthCardRepository.GetAll();
                     foreach (HealthCard healthCard in healthCards)
                     {
 
@@ -210,7 +227,8 @@ namespace HealthcareSystem.Entity.UserModel
                             found = healthCard;
                         }
                     }
-                    List<Referral> referrals = secretaryControllers.referralController.GetReferralsOfHealthCard(found);
+                    ReferralRepository rr = new ReferralRepository();
+                    List<Referral> referrals = rr.GetReferralsOfHealthCard(found);
                     if (referrals.Count > 0)
                     {
                         Console.WriteLine("REFERRALS:");

@@ -37,7 +37,7 @@ namespace HealthcareSystem.UI.DoctorView
             foreach (Appointment appointment in apointments)
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
-                User patient = doctorRepositories.userController.FindById(appointment.patientId);
+                User patient = doctorRepositories.userController.GetById(appointment.patientId);
                 Room room = doctorRepositories.roomController.GetById(appointment.roomId);
 
 
@@ -71,7 +71,7 @@ namespace HealthcareSystem.UI.DoctorView
             if (dataGridView1.Rows[rowindex].Cells[0].Value != null)
             {
                 Appointment certainAppointent = doctorRepositories.apointmentController.GetById(new MongoDB.Bson.ObjectId(selectedAppointmentId));
-                User patient = doctorRepositories.userController.FindById(certainAppointent.patientId);
+                User patient = doctorRepositories.userController.GetById(certainAppointent.patientId);
                 HealthCard patientsHealthCard = doctorRepositories.healthCardController.FindByPatientId(patient._id);
                 CheckForm checkForm = new CheckForm(certainAppointent, patient, patientsHealthCard);
                 checkForm.Show();

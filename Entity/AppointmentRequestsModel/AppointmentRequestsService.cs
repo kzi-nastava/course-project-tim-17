@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace HealthcareSystem.Entity.AppointmentRequestsModel
 {
@@ -34,6 +35,10 @@ namespace HealthcareSystem.Entity.AppointmentRequestsModel
         public List<AppointmentRequests> GetAll()
         {
             return appointmentRequestRepository.GetAll();
+        }
+
+        public AppointmentRequests GetById(ObjectId id) { 
+            return appointmentRequestRepository.GetById(id);
         }
 
     }

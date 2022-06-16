@@ -12,19 +12,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Autofac;
 
 namespace HealthcareSystem.UI.ManagerView
 {
     
     partial class RevisionsForm : Form
     {
-        
-        public RevisionController revisionRepository;
+
+        public RevisionService revisionService;
         public DrugService drugService;
         public RevisionsForm()
             
         {
-            revisionRepository = new RevisionController(Globals.database);
+            this.revisionService = Globals.container.Resolve<RevisionService>();
 
             this.drugService = Globals.container.Resolve<DrugService>();
             
@@ -45,7 +46,7 @@ namespace HealthcareSystem.UI.ManagerView
 
             foreach (Drug d in drugs)
             {
-                Revision r = revisionRepository.FindByDrugId(d._id);
+                Revision r = revisionService.GetByDrugId(d._id);
                 ListViewItem item = new ListViewItem(d._id.ToString());
                 item.SubItems.Add(d.name);
                 item.SubItems.Add(r.desctription);

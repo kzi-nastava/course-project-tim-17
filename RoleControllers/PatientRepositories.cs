@@ -26,11 +26,11 @@ namespace HealthcareSystem.RoleControllers
         public UserActionController userActionController;
         public BlockedUserController blockedUserController;
         public AppointmentRequestsRepository appointmentRequestsController;
-        public CheckAppointmentRequestController checkAppointmentRequestController;
+        public CheckAppointmentRequestRepository checkAppointmentRequestController;
         public CheckRepository checkController;
         public HealthCardRepository healthCardController;
-        public DoctorSurveysController doctorSurveysController;
-        public HospitalSurveysController hospitalSurveysController;
+        public DoctorSurveysRepository doctorSurveysController;
+        public HospitalSurveysRepository hospitalSurveysController;
         public NotificationSettingsController notificationSettingsController;
         public DrugRepository drugController;
         public PatientRepositories(IMongoDatabase database)
@@ -41,11 +41,11 @@ namespace HealthcareSystem.RoleControllers
             this.userActionController = new UserActionController(database);
             this.blockedUserController = new BlockedUserController(database);
             this.appointmentRequestsController = new AppointmentRequestsRepository();
-            this.checkAppointmentRequestController = new CheckAppointmentRequestController(database);
+            this.checkAppointmentRequestController = new CheckAppointmentRequestRepository();
             this.checkController = new CheckRepository();
             this.healthCardController = new HealthCardRepository();
-            this.doctorSurveysController = new DoctorSurveysController(database);
-            this.hospitalSurveysController = new HospitalSurveysController(database);
+            this.doctorSurveysController = new DoctorSurveysRepository();
+            this.hospitalSurveysController = new HospitalSurveysRepository();
             this.notificationSettingsController = new NotificationSettingsController(database);
             this.drugController = new DrugRepository();
         }
