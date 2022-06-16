@@ -12,5 +12,6 @@ namespace HealthcareSystem.Entity.UserModel
         public User CheckCredentials(string email, string password);
 
         public List<User> GetAllPatients();
+        User GetByNameAndLastName(string name, string lastName);
     }
 }

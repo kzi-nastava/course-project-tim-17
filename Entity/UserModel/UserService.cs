@@ -11,6 +11,7 @@ using HealthcareSystem.RoleControllers;
 using MongoDB.Driver;
 using Autofac;
 using HealthcareSystem.Entity.ApointmentModel;
+using MongoDB.Bson;
 
 namespace HealthcareSystem.Entity.UserModel
 {
@@ -77,6 +78,10 @@ namespace HealthcareSystem.Entity.UserModel
         public List<User> GetAllPatients()
         {
             return userRepository.GetAllPatients();
+        }
+        public User GetById(ObjectId id)
+        {
+            return userRepository.GetById(id);
         }
 
 
@@ -145,6 +150,11 @@ namespace HealthcareSystem.Entity.UserModel
 
             userRepository.Update(u);
             return u;
+        }
+
+        public User GetByNameAndLastName(string name, string lastName)
+        {
+            return userRepository.GetByNameAndLastName(name, lastName);
         }
 
         public void blockUser()
@@ -248,6 +258,7 @@ namespace HealthcareSystem.Entity.UserModel
 
 
         }
+        
     }
 
 

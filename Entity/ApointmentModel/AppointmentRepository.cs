@@ -78,6 +78,10 @@ namespace HealthcareSystem.Entity.ApointmentModel
         {
             return appointmentCollection.Find(item => item.dateTime == dateTime & item.roomId == room._id).FirstOrDefault();
         }
+        public List<Appointment> GetDoctorSchedule(ObjectId doctorId, DateTime startingDate, DateTime endingDate)
+        {
+            return appointmentCollection.Find(item => item.doctorId == doctorId & item.dateTime > startingDate & item.dateTime <endingDate).ToList();
+        }
 
        
     }

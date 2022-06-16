@@ -466,7 +466,10 @@ namespace HealthcareSystem.Entity.RoomModel.RoomFiles
 
             }
         }
-
+        public Room GetByNameAndType(string roomName, RoomType roomType)
+        {
+            return roomRepository.GetByNameAndType(roomName, roomType);
+        }
 
 
     }

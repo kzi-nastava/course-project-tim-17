@@ -27,6 +27,11 @@ namespace HealthcareSystem.Entity.HealthCardModel
         {
             healthCardRepository.Update(healthCard);
         }
+
+        public HealthCard GetByPatientId(ObjectId id)
+        {
+            return healthCardRepository.FindByPatientId(id);
+        }
         public void CreateHealthCard(User patient)
         {
             Console.WriteLine("Enter patient's height: ");
