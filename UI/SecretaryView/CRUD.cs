@@ -8,17 +8,17 @@ using HealthcareSystem.Entity.UserModel;
 using HealthcareSystem.RoleControllers;
 using HealthcareSystem.Entity.UserModel;
 using Autofac;
-namespace HealthcareSystem.UI.Secretary
+namespace HealthcareSystem.UI.SecretaryView
 {
     class CRUD
     {
-        public SecretaryControllers secretaryControllers { get; set; }
+      
         public HealthCardService healthCardService { get; set; }
 
-        public CRUD(SecretaryControllers secretaryControllers)
+        public CRUD()
         {
 
-            this.secretaryControllers = secretaryControllers;
+           
             this.healthCardService = Globals.container.Resolve<HealthCardService>();
         }
 

@@ -130,6 +130,7 @@ namespace HealthcareSystem.Entity.ApointmentModel
             return appointmentRepository.GetAppointmentByDateTime(dateTime);
         }
 
+
         public Appointment GetByDateTimeAndRoom(Room room, DateTime dateTime)
         {
             return appointmentRepository.GetAppointmentByDateTimeAndRoom(room, dateTime);
@@ -144,7 +145,12 @@ namespace HealthcareSystem.Entity.ApointmentModel
             return appointmentRepository.GetDoctorSchedule(doctorId, startingDate, endingDate);
         }
 
+        public List<Appointment> GetAllByDoctor(ObjectId id) 
+            {
 
+            return appointmentRepository.GetAllByDoctor(id);
+
+        }
     }
 
 

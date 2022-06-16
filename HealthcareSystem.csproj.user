@@ -104,7 +104,7 @@
     <Compile Update="UI\Patient\DoctorSearch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UI\Secretary\SecretaryGUI.cs">
+    <Compile Update="UI\SecretaryView\SecretaryGUI.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

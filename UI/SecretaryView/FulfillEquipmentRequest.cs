@@ -10,7 +10,7 @@ using HealthcareSystem.Entity.RoomModel.RoomFiles;
 using HealthcareSystem.Entity.RoomModel.TransferEquipment;
 using HealthcareSystem.RoleControllers;
 
-namespace HealthcareSystem.UI.Secretary
+namespace HealthcareSystem.UI.SecretaryView
 {
     class FulfillEquipmentRequest
     {

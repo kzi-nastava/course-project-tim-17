@@ -1,4 +1,5 @@
 ﻿using HealthcareSystem.Entity.Enumerations;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,9 @@ namespace HealthcareSystem.Entity.DoctorModel
             return doctorRepository.checkCredentials(email, password);
         }
 
+        public Doctor GetById(ObjectId id) {
+            return doctorRepository.GetById(id);
+        }
     }
 
 }

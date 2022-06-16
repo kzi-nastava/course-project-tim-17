@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace HealthcareSystem.UI.Secretary
+namespace HealthcareSystem.UI.SecretaryView
 
 {
     partial class SecretaryGUI : Form
