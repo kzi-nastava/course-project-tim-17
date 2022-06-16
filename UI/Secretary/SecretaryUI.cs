@@ -37,6 +37,7 @@ namespace HealthcareSystem.UI
         public EquipmentRequestService equipmentService;
         public CheckAppointmentRequestService checkRequestService;
         public AppointmentService appointmentService;
+        
         public SecretaryUI(SecretaryControllers secretaryControllers, User LoggedUser, IMongoDatabase database)
         {
             this.LoggedUser = LoggedUser;
@@ -47,7 +48,7 @@ namespace HealthcareSystem.UI
             equipmentService = Globals.container.Resolve<EquipmentRequestService>();
             checkRequestService = Globals.container.Resolve<CheckAppointmentRequestService>();
             appointmentService = Globals.container.Resolve<AppointmentService>();
-
+           
             this.UI();
         }
 
@@ -303,39 +304,18 @@ namespace HealthcareSystem.UI
                     {
                         b.Unblock();
                     }
-
                 }
                 else if (choice == "4")
                 {
                     checkRequestService.PrintAllRequests();
                     Console.WriteLine("Enter request id: ");
                     ObjectId obI = ObjectId.Parse(Console.ReadLine());
-                    CheckAppointementRequest cr = secretaryControllers.checkAppointemtRequestController.GetById(obI);
+                    CheckAppointementRequest cr = checkRequestService.GetById(obI);
                     Console.WriteLine("1 -> APPROVE REQUEST");
                     Console.WriteLine("2 -> DECLINE REQUEST");
                     string opt = Console.ReadLine();
-                    if (opt.Equals("1"))                // accept
-                    {
-                        cr.status = Status.ACCEPTED;
-                        checkRequestService.Update(cr);
-                        if (cr.RequestState == RequestState.DELETE)
-                        {
-                           appointmentService.DeleteAppointementByRequest(cr);
-                            Console.WriteLine("Appointement is succesfully deleted!");
-                        }
-                        else if (cr.RequestState == RequestState.EDIT)
-                        {
-                            AppointmentRequests ar = secretaryControllers.appointmentRequestsController.GetById(cr.appointmentId);
-                            appointmentService.EditAppointementByRequest(cr);
-                            Console.WriteLine("Appointement is succesfully edited!");
-                        }
-                    }
-                    else if (opt.Equals("2"))
-                    {
-                        cr.status = Status.DENIED;
-                        checkRequestService.Update(cr);
-                        Console.WriteLine("Request denied!");
-                    }
+                    HandleAppointmentRequests h = new HandleAppointmentRequests();
+                    h.Handle(opt, cr);
 
                 }
                 else if (choice == "5")
@@ -413,14 +393,18 @@ namespace HealthcareSystem.UI
                     TransferEquipment te = new TransferEquipment();
                     te.Transfer(from, into, name);
                 } else if (choice == "10") {
-                    //List<FreeDayRequest> freeDayRequests = secretaryControllers.freeDayRequestController.getAllFreeDayRequests();
-                    //fs.PrintAllFreeDayRequests(freeDayRequests);
+
+                    fs.PrintAllFreeDayRequests();
+                    Console.WriteLine("Enter request id: ");
+                    ObjectId obI = ObjectId.Parse(Console.ReadLine());
+                    FreeDayRequest freeDayRequest = fs.GetById(obI);
+                    Console.WriteLine(freeDayRequest._id);
                     Console.WriteLine("1 -> APPROVE REQUEST");
                     Console.WriteLine("2 -> DECLINE REQUEST");
                     string opt = Console.ReadLine();
-                    if (opt.Equals("1")) {                 // accept
+                    HandleFreeDayRequests h = new HandleFreeDayRequests();
+                    h.Handle(opt, freeDayRequest, fs);
 
-                    }
                 }
                 else if (choice == "11")
                 {

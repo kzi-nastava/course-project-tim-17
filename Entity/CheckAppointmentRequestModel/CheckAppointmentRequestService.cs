@@ -84,5 +84,11 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
             checkAppointmentRequestRepository.Update(cr);
         }
 
+
+        public CheckAppointementRequest GetById(ObjectId id) {
+            return checkAppointmentRequestRepository.GetById(id);
+        
+        }
+
     }
 }
