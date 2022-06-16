@@ -18,8 +18,8 @@ namespace HealthcareSystem.UI.ManagerView
 
         public RoomService roomService;
         public RenovationService renovationService;
-        public Room room;
         public AppointmentService appointmentService;
+        public Room room;
         public bool sizeChanged;
         Equipment currentItem = null;
         int iter  = 0;

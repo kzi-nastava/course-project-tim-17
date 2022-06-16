@@ -33,7 +33,7 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
                     if (ap == null) { Console.WriteLine("This appointment has been deleted! "); }
                     else
                     {
-                        patient = secretaryControllers.userController.FindById(secretaryControllers.AppointmentController.GetById(c.appointmentId).patientId);
+                        patient = secretaryControllers.userController.GetById(secretaryControllers.AppointmentController.GetById(c.appointmentId).patientId);
                         Console.WriteLine("PATIENT: " + patient.name + " " + patient.lastName);
                         Console.WriteLine("ROOM: :  " + secretaryControllers.roomController.GetById(ap.roomId).name);
                         Console.WriteLine("DATE: " + ap.dateTime.ToString());
@@ -49,7 +49,7 @@ namespace HealthCareSystem.Entity.CheckAppointementRequestModel
                     if (ap == null) { Console.WriteLine("This appointment has been deleted! "); }
                     else
                     {
-                        patient = secretaryControllers.userController.FindById(ap.patientId);
+                        patient = secretaryControllers.userController.GetById(ap.patientId);
                         Console.WriteLine("PATIENT: " + patient.name + " " + patient.lastName);
                         Console.WriteLine("ROOM: :  " + secretaryControllers.roomController.GetById(ap.roomId).name);
                         Console.WriteLine("DATE: " + ap.dateTime.ToString());

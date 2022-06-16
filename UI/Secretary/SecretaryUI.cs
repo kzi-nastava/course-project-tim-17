@@ -144,7 +144,7 @@ namespace HealthcareSystem.UI
 
         public void HandleCRUD(string option)
         {
-            UserService us = new UserService(secretaryControllers);
+            UserService us = Globals.container.Resolve<UserService>();
             if (option.Equals("a"))
             {                                                                // adding patient
                 User patient = us.AddPatient();
@@ -160,7 +160,7 @@ namespace HealthcareSystem.UI
             }
             else if (option.Equals("b"))                                                         // preview of patients 
             {
-                List<User> patients = us.GetAllPatients();
+                List<User> patients = us.GetAll();
                 PrintAllPatients(patients);
             }
             else if (option.Equals("c"))
@@ -375,7 +375,7 @@ namespace HealthcareSystem.UI
         
         public void UI()
         {
-            UserService us = new UserService(secretaryControllers);
+            UserService us = Globals.container.Resolve<UserService>();
             CheckAppointmentRequestService crs = new CheckAppointmentRequestService(secretaryControllers);
            // EquipmentRequestService ers = new EquipmentRequestService(database);
           //  SecretaryAppointmentService a = new SecretaryAppointmentService(database);
@@ -496,7 +496,7 @@ namespace HealthcareSystem.UI
 
                     List<Doctor> doctors = secretaryControllers.doctorController.FindDoctorsBySpecialisation(s);
 
-                    User patient = secretaryControllers.userController.FindByEmail(patientEmail);
+                    User patient = secretaryControllers.userController.GetByEmail(patientEmail);
                     Console.WriteLine("Enter type of appointment(checkup/operation): ");
                     ApointmentType type = (ApointmentType)Enum.Parse(typeof(ApointmentType), (Console.ReadLine().ToUpper()));
                     MakeUrgentAppointment(doctors, patient._id, type);

@@ -1,6 +1,7 @@
 ﻿using HealthcareSystem.Entity.DrugModel;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Autofac;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,13 +18,12 @@ namespace HealthcareSystem.UI.DoctorView
     {
         public IMongoDatabase database;
         public ObjectId drugId;
-        public RevisionController revisionRepository;
+        public RevisionService revisionService;
         public AddDescriptionForm(ObjectId drugId)
         {
             this.database = database;
             this.drugId = drugId;
-            this.revisionRepository = new RevisionController(Globals.database);
-            
+            this.revisionService = Globals.container.Resolve<RevisionService>();                
             InitializeComponent();
         }
 
@@ -36,7 +36,7 @@ namespace HealthcareSystem.UI.DoctorView
         {
             string description = descriptionTextBox.Text;
             Revision revision = new Revision(description, drugId);
-            revisionRepository.InsertToCollection(revision);
+            revisionService.Insert(revision);
             MessageBox.Show("Ide ges");
             this.Dispose();
         }

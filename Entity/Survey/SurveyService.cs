@@ -15,20 +15,21 @@ namespace HealthcareSystem.Entity.Survey
     internal class SurveyService
 
     {
-        public DoctorSurveysController doctorSurveyController;
-        public HospitalSurveysController hospitalSurveyController;
-        public DoctorRepository doctorController;
-        public SurveyService(IMongoDatabase database)
+
+        public IDoctorSurveysRepository doctorSurveyRepository;
+        public IHospitalSurveysRepository hospitalSurveyRepository;
+        public IDoctorRepository doctorRepository;
+        public SurveyService(IDoctorSurveysRepository doctorSurveyRepository, IHospitalSurveysRepository hospitalSurveyRepository, IDoctorRepository doctorRepository)
         {
-            doctorSurveyController = new DoctorSurveysController(database); 
-            hospitalSurveyController = new HospitalSurveysController(database);
-            doctorController = new DoctorRepository();
+            this.doctorSurveyRepository = doctorSurveyRepository;
+            this.hospitalSurveyRepository = hospitalSurveyRepository;
+            this.doctorRepository = doctorRepository;
 
         }
 
         public List<HospitalSurveys> GetAllHospitalSurveys()
         { 
-            return hospitalSurveyController.getAllSurveys(); 
+            return hospitalSurveyRepository.GetAll(); 
         }
 
         public double MarkToDouble(Mark mark)
@@ -43,12 +44,12 @@ namespace HealthcareSystem.Entity.Survey
 
         public List<DoctorSurveys> GetAllDoctorSurveys()
         {
-            return doctorSurveyController.getAllSurveys();
+            return doctorSurveyRepository.GetAll();
         }
         public List<DoctorSurveysAverages> GetAllDoctorSurveysAverages()
         {
             List<DoctorSurveysAverages> doctorSurveysAverages = new List<DoctorSurveysAverages>();
-            foreach (Doctor doctor in doctorController.GetAll())
+            foreach(Doctor doctor in doctorRepository.GetAll())
             {
                 doctorSurveysAverages.Add(GetDoctorSurveyAverages(doctor));
             }

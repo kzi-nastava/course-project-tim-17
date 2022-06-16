@@ -14,6 +14,10 @@ using System.Threading.Tasks;
 using HealthcareSystem.Entity.CheckModel;
 using HealthcareSystem.Entity.DoctorModel;
 using HealthcareSystem.Entity.ReferralModel;
+using HealthcareSystem.Entity.Survey.DoctorSurvey;
+using HealthcareSystem.Entity.Survey.HospitalSurvey;
+using HealthcareSystem.Entity.Survey;
+using HealthcareSystem.Entity.UserModel;
 
 namespace HealthcareSystem
 {
@@ -33,6 +37,7 @@ namespace HealthcareSystem
             builder.RegisterType<HealthCardService>().AsSelf();
             builder.RegisterType<AppointmentRequestsRepository>().As<IAppointmentRequestRepository>();
             builder.RegisterType<AppointmentRequestsService>().AsSelf();
+
             builder.RegisterType<CheckRepository>().As<ICheckRepository>();
             builder.RegisterType<CheckService>().AsSelf();
             builder.RegisterType<FreeDayRequestRepository>().As<IFreeDayRequestRepository>();
@@ -41,6 +46,13 @@ namespace HealthcareSystem
             builder.RegisterType<ReferralService>().AsSelf();
             builder.RegisterType<DoctorRepository>().As<IDoctorRepository>();
             builder.RegisterType<DoctorService>().AsSelf();
+            builder.RegisterType<RevisionRepository>().As<IRevisionRepository>();
+            builder.RegisterType<RevisionService>().AsSelf();
+            builder.RegisterType<DoctorSurveysRepository>().As<IDoctorSurveysRepository>();
+            builder.RegisterType<HospitalSurveysRepository>().As<IHospitalSurveysRepository>();
+            builder.RegisterType<SurveyService>().AsSelf();
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
+            builder.RegisterType<UserService>().AsSelf();
         }
     }
 }

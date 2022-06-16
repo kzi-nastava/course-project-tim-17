@@ -1,6 +1,7 @@
 ﻿using HealthcareSystem.Entity.Survey;
 using HealthcareSystem.Entity.Survey.DoctorSurvey;
 using HealthcareSystem.Entity.Survey.HospitalSurvey;
+using Autofac;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace HealthcareSystem.UI.ManagerView
         public SurveyService surveyService;
         public SurveysForm()
         {
-            surveyService = new SurveyService(Globals.database);
+            surveyService = Globals.container.Resolve<SurveyService>();
             InitializeComponent();
         }
         private void loadDoctorSurveyView() 

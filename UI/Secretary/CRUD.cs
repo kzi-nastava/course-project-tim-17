@@ -24,7 +24,7 @@ namespace HealthcareSystem.UI.Secretary
 
         public void HandleCRUD(string option)
         {
-            UserService us = new UserService(secretaryControllers);
+            UserService us = Globals.container.Resolve<UserService>();
             if (option.Equals("a"))
             {                                                                // adding patient
                 User patient = us.AddPatient();
