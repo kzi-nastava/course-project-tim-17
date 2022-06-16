@@ -18,7 +18,7 @@ namespace HealthcareSystem.UI.Secretary
         public EquipmentRequestService equipmentRequestService;
         public RoomService roomService;
 
-        public FulfillEquipmentRequest(SecretaryControllers secretaryControllers)
+        public FulfillEquipmentRequest()
         {
 
             this.roomService = Globals.container.Resolve<RoomService>();

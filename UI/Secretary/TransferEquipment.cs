@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
 using HealthcareSystem.Entity;
 using HealthcareSystem.Entity.RoomModel;
 using HealthcareSystem.Entity.RoomModel.RoomFiles;
@@ -12,13 +13,13 @@ namespace HealthcareSystem.UI.Secretary
 {
 
     class TransferEquipment { 
-          public SecretaryControllers secretaryControllers { get; set; }
+   
+        public RoomService roomService;
 
-
-        public TransferEquipment(SecretaryControllers secretaryControllers)
+        public TransferEquipment()
         {
 
-            this.secretaryControllers = secretaryControllers;
+            this.roomService = Globals.container.Resolve<RoomService>();
 
         }
 
@@ -37,7 +38,7 @@ namespace HealthcareSystem.UI.Secretary
                 if (eq.item.ToUpper().Equals(ItemName.ToUpper()))
                 {
                     eq.quantity -= enteredQuantity;
-                    secretaryControllers.roomController.Update(from);
+                    roomService.Update(from);
                 }
             }
             foreach (Equipment eq in to.equipments)
@@ -45,7 +46,7 @@ namespace HealthcareSystem.UI.Secretary
                 if (eq.item.ToUpper().Equals(ItemName.ToUpper()))
                 {
                     eq.quantity += enteredQuantity;
-                    secretaryControllers.roomController.Update(to);
+                    roomService.Update(to);
                 }
             }
 
